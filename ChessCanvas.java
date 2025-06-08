@@ -268,7 +268,7 @@ implements Runnable {
     public int dD;
     public int dE;
     public GameSpritesManager dF;
-    public a dG;
+    public ActionPair dG;
     public int dH;
     public int dI;
     private int eA;
@@ -3852,7 +3852,7 @@ implements Runnable {
         int n2 = 0;
         int n3 = 0;
         while (n3 < n) {
-            this.dG = (a)this.l.elementAt(n3);
+            this.dG = (ActionPair)this.l.elementAt(n3);
             if (g.a[this.dG.b] == 0) {
                 nArray[n3] = 5;
                 ++n2;
@@ -3934,7 +3934,7 @@ implements Runnable {
             }
             ++n3;
         }
-        this.dG = (a)this.l.elementAt(n2);
+        this.dG = (ActionPair)this.l.elementAt(n2);
         this.l.removeElementAt(n2);
         this.dH = this.dG.a;
         if (nArray[n2] <= 2) {
@@ -6734,8 +6734,8 @@ implements Runnable {
             dataOutputStream.writeByte((byte)n);
             int n2 = 0;
             while (n2 < n) {
-                dataOutputStream.writeByte(((a)this.l.elementAt((int)n2)).a);
-                dataOutputStream.writeByte(((a)this.l.elementAt((int)n2)).b);
+                dataOutputStream.writeByte(((ActionPair)this.l.elementAt((int)n2)).a);
+                dataOutputStream.writeByte(((ActionPair)this.l.elementAt((int)n2)).b);
                 ++n2;
             }
             return;
@@ -6756,7 +6756,7 @@ implements Runnable {
             int n2 = 0;
             while (n2 < n) {
                 this.eg += 2L;
-                this.l.addElement(new a(dataInputStream.readByte(), dataInputStream.readByte()));
+                this.l.addElement(new ActionPair(dataInputStream.readByte(), dataInputStream.readByte()));
                 ++n2;
             }
             return;

@@ -163,7 +163,7 @@ extends MIDlet {
         int n2 = Math.abs(s);
         if (c.bk != 2 && r != 0 && s != 0) {
             if (c.af) {
-                ChessR.b.l.addElement(new a(s, q));
+                ChessR.b.l.addElement(new ActionPair(s, q));
             }
             if (!c.af && b.c(23, n2)) {
                 c.a(888);
