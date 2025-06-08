@@ -81,6 +81,7 @@ public final class GameConfig {
         w = 0;
         x = false;
         y = 0;
+        @SuppressWarnings("unused")
         int[] nArray = new int[]{100, 120, 140};
         z = 1;
         A = 1;

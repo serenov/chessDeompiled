@@ -332,6 +332,7 @@ public final class ResourceManger {
         return n3;
     }
 
+    @SuppressWarnings("unused")
     private boolean a(char c2, int n) {
         int n2 = this.h[n];
         while (n2 < this.f[n]) {
@@ -346,6 +347,7 @@ public final class ResourceManger {
         return true;
     }
 
+    @SuppressWarnings("unused")
     private int f(int n, int n2) {
         int n3 = 0;
         while (n3 < this.f[n2]) {

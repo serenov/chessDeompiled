@@ -282,6 +282,7 @@ implements Runnable {
     private static void c(int n) {
         int n2;
         int n3;
+        @SuppressWarnings("unused")
         int n4;
         int n5 = n & 0xFF;
         int n6 = n >> 8 & 0xFF;
@@ -2320,6 +2321,7 @@ implements Runnable {
         return this.a(n, n2, n3, true);
     }
 
+    @SuppressWarnings("null")
     private int a(int n, int n2, int n3, boolean bl) {
         int n4;
         int n5;
@@ -2334,6 +2336,7 @@ implements Runnable {
             return 0;
         }
         int n10 = -1;
+        @SuppressWarnings("unused")
         int n11 = 0;
         boolean bl2 = false;
         int n12 = 0;
