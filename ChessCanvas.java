@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  javax.microedition.io.ConnectionNotFoundException
  *  javax.microedition.lcdui.Canvas
  *  javax.microedition.lcdui.Graphics
  *  javax.microedition.lcdui.Image
@@ -19,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Vector;
-import javax.microedition.io.ConnectionNotFoundException;
 import javax.microedition.lcdui.Canvas;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -5217,7 +5215,7 @@ implements Runnable {
                                 this.a.notifyDestroyed();
                                 return;
                             }
-                            catch (ConnectionNotFoundException connectionNotFoundException) {
+                            catch (Exception exception) {
                                 return;
                             }
                             catch (Exception exception) {

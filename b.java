@@ -245,33 +245,33 @@ public final class b {
      * Unable to fully structure code
      */
     public final int a(int var1_1, int var2_2) {
-        var3_3 = 0;
-        var4_4 = 0;
-        while (var4_4 < this.g[var2_2]) {
-            this.d[var2_2][var4_4] = this.j;
-            ++var4_4;
-        }
-        this.h[var2_2] = this.f(var1_1, var2_2);
-        if (this.h[var2_2] != -1) ** GOTO lbl13
-        this.h[var2_2] = 0;
-        return -1;
-lbl-1000:
-        // 1 sources
+//         var3_3 = 0;
+//         var4_4 = 0;
+//         while (var4_4 < this.g[var2_2]) {
+//             this.d[var2_2][var4_4] = this.j;
+//             ++var4_4;
+//         }
+//         this.h[var2_2] = this.f(var1_1, var2_2);
+//         if (this.h[var2_2] != -1) ** GOTO lbl13
+//         this.h[var2_2] = 0;
+//         return -1;
+// lbl-1000:
+//         // 1 sources
 
-        {
-            this.d[var2_2][var3_3] = this.e(this.h[var2_2], var2_2);
-            ++var3_3;
-lbl13:
-            // 2 sources
+//         {
+//             this.d[var2_2][var3_3] = this.e(this.h[var2_2], var2_2);
+//             ++var3_3;
+// lbl13:
+//             // 2 sources
 
-            ** while (this.a((char)'+', (int)var2_2))
-        }
-lbl14:
-        // 1 sources
+//             ** while (this.a((char)'+', (int)var2_2))
+//         }
+// lbl14:
+//         // 1 sources
 
-        v0 = var2_2;
-        this.h[v0] = this.h[v0] + 2;
-        return var3_3;
+//         v0 = var2_2;
+//         this.h[v0] = this.h[v0] + 2;
+//         return var3_3;
     }
 
     public final byte[] c(int n) {
