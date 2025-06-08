@@ -2148,7 +2148,7 @@ implements Runnable {
             this.W();
             return;
         }
-        this.dJ = ResourceManger.getImageByAssetName("makepiece");
+        this.dJ = ResourceManger.GetImageByAssetName("makepiece");
     }
 
     private void V() {
