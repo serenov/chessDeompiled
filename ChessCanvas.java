@@ -29,7 +29,7 @@ public final class ChessCanvas
 extends Canvas
 implements Runnable {
     public ChessR a;
-    public b b;
+    public ResourceManger b;
     public h c;
     public static g d;
     public Graphics e;
@@ -533,7 +533,7 @@ implements Runnable {
         this.ey = 0;
         this.a = chessR;
         this.setFullScreenMode(true);
-        this.b = new b();
+        this.b = new ResourceManger();
         this.c = new h();
         bA = this.getWidth();
         bB = this.getHeight();

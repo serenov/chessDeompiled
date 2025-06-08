@@ -16,3 +16,8 @@ a(javax.microedition.lcdui.Graphics javax.microedition.lcdui.Image int int int i
   Handled duff style switch with additional control
 aN()
   Handled duff style switch with additional control
+
+
+c -> ChessCanvas
+i -> LittleEndianInt
+b -> ResourceManager

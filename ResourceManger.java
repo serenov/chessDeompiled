@@ -12,7 +12,7 @@ import java.util.Random;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class b {
+public final class ResourceManger {
     public int a;
     public int b;
     public byte[][] c;
