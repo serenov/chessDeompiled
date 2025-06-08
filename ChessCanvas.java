@@ -7125,7 +7125,7 @@ implements Runnable {
                 ++n;
             }
         }
-        byte[] byArray3 = ResourceManger.a(this.br);
+        byte[] byArray3 = ResourceManger.ConvertIntToByteArray(this.br);
         System.arraycopy(byArray3, 0, byArray2, n2, 4);
         return byArray2;
     }

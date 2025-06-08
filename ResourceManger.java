@@ -60,7 +60,7 @@ public final class ResourceManger {
         }
     }
 
-    public static byte[] a(int n) {
+    public static byte[] ConvertIntToByteArray(int n) {
         byte[] byArray = new byte[4];
         byte[] byArray2 = byArray;
         byArray[0] = (byte)((n & 0xFF000000) >> 24);
