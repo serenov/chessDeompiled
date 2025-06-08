@@ -3,7 +3,7 @@
  */
 import java.util.Random;
 
-public final class g
+public final class ChessEngine
 implements Runnable {
     private int v;
     private static int w;

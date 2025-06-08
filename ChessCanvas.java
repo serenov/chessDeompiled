@@ -31,7 +31,7 @@ implements Runnable {
     public ChessR a;
     public ResourceManger b;
     public AudioManager c;
-    public static g d;
+    public static ChessEngine d;
     public Graphics e;
     public Thread f;
     public boolean g;
@@ -538,7 +538,7 @@ implements Runnable {
         bA = this.getWidth();
         bB = this.getHeight();
         this.m();
-        d = new g();
+        d = new ChessEngine();
         this.T = new byte[9];
         this.by();
         this.br = 0;
@@ -1789,7 +1789,7 @@ implements Runnable {
         bK = false;
         bL = 0;
         if (d == null) {
-            d = new g();
+            d = new ChessEngine();
         }
         this.bJ = null;
         ChessR.c = null;
@@ -1800,7 +1800,7 @@ implements Runnable {
                 this.bA();
             }
             d = null;
-            d = new g();
+            d = new ChessEngine();
             ChessR.k = 0;
             g.h();
             g.a(this.L());
