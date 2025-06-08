@@ -37,7 +37,7 @@ public final class ResourceManger {
     public int[] r;
     public static final Random s = new Random();
 
-    public static Image a(String string) {
+    public static Image getImageByAssetName(String string) {
         Image image = null;
         try {
             try {
