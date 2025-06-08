@@ -275,8 +275,8 @@ implements Runnable {
     }
 
     public static final void a(LittleEndianInt i2) {
-        g.c(i2.a());
-        g.o();
+        ChessEngine.c(i2.a());
+        ChessEngine.o();
     }
 
     private static void c(int n) {
@@ -288,9 +288,9 @@ implements Runnable {
         int n7 = n >> 16 & 0xFF;
         byte by = (byte)(n >> 24 & 0xFF);
         int n8 = m;
-        g.Z[g.U] = n4 = (k << 16) + (g.n << 8) + n8 + (b[n6] << 24);
+        ChessEngine.Z[ChessEngine.U] = n4 = (k << 16) + (ChessEngine.n << 8) + n8 + (b[n6] << 24);
         ++k;
-        g.n = 10;
+        ChessEngine.n = 10;
         int n9 = l * b[n5];
         if (n9 == 1) {
             k = 0;
@@ -298,10 +298,10 @@ implements Runnable {
             if (n3 == -16 || n3 == 16) {
                 n2 = n5 & 7;
                 if (n2 > 0 && b[n6 - 1] == -l) {
-                    g.n = (byte)n2;
+                    ChessEngine.n = (byte)n2;
                 }
                 if (n2 < 7 && b[n6 + 1] == -l) {
-                    g.n = (byte)n2;
+                    ChessEngine.n = (byte)n2;
                 }
             }
         }
@@ -340,7 +340,7 @@ implements Runnable {
             }
         }
         if ((n7 & 0x40) != 0) {
-            g.b[n6 - (g.l << 3)] = 0;
+            ChessEngine.b[n6 - (ChessEngine.l << 3)] = 0;
             if (l == 1) {
                 I -= q[n6 - 8];
             } else {
@@ -370,40 +370,40 @@ implements Runnable {
         } else if (n3 == 6) {
             ao = n6;
             W = 30000;
-            g.B();
+            ChessEngine.B();
         } else if (n3 == -6) {
             an = n6;
             W = 30000;
-            g.B();
+            ChessEngine.B();
         }
-        g.b[n6] = b[n5];
-        g.b[n5] = 0;
+        ChessEngine.b[n6] = b[n5];
+        ChessEngine.b[n5] = 0;
         if (n9 == 6) {
             if (n6 - n5 == -2) {
-                g.b[n5 & 0xFFFFFFF8] = 0;
-                g.b[(n5 & 0xFFFFFFF8) + 3] = (byte)(4 * l);
+                ChessEngine.b[n5 & 0xFFFFFFF8] = 0;
+                ChessEngine.b[(n5 & 0xFFFFFFF8) + 3] = (byte)(4 * l);
                 ak += l * 52;
             } else if (n6 - n5 == 2) {
-                g.b[(n5 & 0xFFFFFFF8) + 7] = 0;
-                g.b[(n5 & 0xFFFFFFF8) + 5] = (byte)(4 * l);
+                ChessEngine.b[(n5 & 0xFFFFFFF8) + 7] = 0;
+                ChessEngine.b[(n5 & 0xFFFFFFF8) + 5] = (byte)(4 * l);
                 ak += l * 65;
             }
             m = l < 0 ? (m &= 0xFFFFFFF3) : (m &= 0xFFFFFFFC);
         }
         if (n9 == 1) {
-            g.w(n5 & 7);
+            ChessEngine.w(n5 & 7);
             if ((n5 - n6 & 7) != 0) {
-                g.w(n6 & 7);
+                ChessEngine.w(n6 & 7);
             }
         }
         if (l == 1) {
             if (n9 == 6) {
                 if (n6 - n5 == -2) {
-                    g.b[0] = 0;
-                    g.b[3] = 4;
+                    ChessEngine.b[0] = 0;
+                    ChessEngine.b[3] = 4;
                 } else if (n6 - n5 == 2) {
-                    g.b[7] = 0;
-                    g.b[5] = 4;
+                    ChessEngine.b[7] = 0;
+                    ChessEngine.b[5] = 4;
                 }
             }
             if (n5 == 0) {
@@ -419,17 +419,17 @@ implements Runnable {
                 m &= 0xFFFFFFFB;
             }
             if (by != 0) {
-                g.b[n6] = by;
-                g.A();
+                ChessEngine.b[n6] = by;
+                ChessEngine.A();
             }
         } else {
             if (n9 == 6) {
                 if (n6 - n5 == -2) {
-                    g.b[56] = 0;
-                    g.b[59] = -4;
+                    ChessEngine.b[56] = 0;
+                    ChessEngine.b[59] = -4;
                 } else if (n6 - n5 == 2) {
-                    g.b[63] = 0;
-                    g.b[61] = -4;
+                    ChessEngine.b[63] = 0;
+                    ChessEngine.b[61] = -4;
                 }
             }
             if (n5 == 56) {
@@ -445,17 +445,17 @@ implements Runnable {
                 m &= 0xFFFFFFFE;
             }
             if (by != 0) {
-                g.b[n6] = by;
-                g.A();
+                ChessEngine.b[n6] = by;
+                ChessEngine.A();
             }
         }
         l = -l;
         if (Y[U >>> 8] == null) {
-            g.Y[g.U >>> 8] = new int[256];
+            ChessEngine.Y[ChessEngine.U >>> 8] = new int[256];
         }
-        g.Y[g.U >>> 8][g.U & 0xFF] = n;
+        ChessEngine.Y[ChessEngine.U >>> 8][ChessEngine.U & 0xFF] = n;
         if (U < 512) {
-            g.aa[g.U] = (short)W;
+            ChessEngine.aa[ChessEngine.U] = (short)W;
         }
         ++U;
     }
@@ -497,20 +497,23 @@ implements Runnable {
         int n9 = n8 & 0xFF;
         m = n9 & 0xF;
         k = n8 >> 16 & 0xFF;
-        g.n = n8 >> 8 & 0xFF;
+        ChessEngine.n = n8 >> 8 & 0xFF;
         l = -l;
-        g.b[n5] = b[n6];
-        g.b[n6] = n3 = (int)(n8 >> 24);
+
+        n3 = (int)(n8 >> 24);
+        ChessEngine.b[n5] = b[n6];
+        ChessEngine.b[n6] = (byte) n3;
+
         W = U < 512 ? aa[U] : 30000;
         if (bl) {
             n2 = n6;
             n = n3;
             if (n != 0) {
                 if (n == 1) {
-                    g.w(n2 & 7);
+                    ChessEngine.w(n2 & 7);
                     H += p[n2];
                 } else if (n == -1) {
-                    g.w(n2 & 7);
+                    ChessEngine.w(n2 & 7);
                     I += q[n2];
                 } else if (n == 2) {
                     g += t[n2];
@@ -532,25 +535,25 @@ implements Runnable {
             }
             if (n == 6) {
                 ao = n6;
-                g.B();
+                ChessEngine.B();
             } else if (n == -6) {
                 an = n6;
-                g.B();
+                ChessEngine.B();
             }
             n2 = b[n5];
             if (n2 == 1) {
                 H -= p[n6];
                 H += p[n5];
-                g.w(n6 & 7);
+                ChessEngine.w(n6 & 7);
                 if ((n6 - n5 & 7) != 0) {
-                    g.w(n5 & 7);
+                    ChessEngine.w(n5 & 7);
                 }
             } else if (n2 == -1) {
                 I -= q[n6];
                 I += q[n5];
-                g.w(n6 & 7);
+                ChessEngine.w(n6 & 7);
                 if ((n6 - n5 & 7) != 0) {
-                    g.w(n5 & 7);
+                    ChessEngine.w(n5 & 7);
                 }
             } else if (n2 == 2) {
                 g -= t[n6];
@@ -571,27 +574,27 @@ implements Runnable {
             }
         }
         if (n7 != 0) {
-            g.b[n5] = (byte)l;
-            g.A();
+            ChessEngine.b[n5] = (byte)l;
+            ChessEngine.A();
         }
-        if ((n2 = l * b[n5]) == 1 && g.n >= 0 && n3 == 0 && (n6 & 7) != (n5 & 7)) {
-            g.b[(n5 & 0xF8) + g.n] = (byte)(-l);
-            g.A();
+        if ((n2 = l * b[n5]) == 1 && ChessEngine.n >= 0 && n3 == 0 && (n6 & 7) != (n5 & 7)) {
+            ChessEngine.b[(n5 & 0xF8) + ChessEngine.n] = (byte)(-l);
+            ChessEngine.A();
         }
         if (n2 == 6) {
             if (n6 - n5 == -2) {
                 n = n5 & 0xFFFFFFF8;
                 int n10 = (n5 & 0xFFFFFFF8) + 3;
-                g.b[n] = b[n10];
-                g.b[n10] = 0;
+                ChessEngine.b[n] = b[n10];
+                ChessEngine.b[n10] = 0;
                 ak -= l * 52;
                 return;
             }
             if (n6 - n5 == 2) {
                 n = n5 | 7;
                 int n11 = (n5 & 0xFFFFFFF8) + 5;
-                g.b[n] = b[n11];
-                g.b[n11] = 0;
+                ChessEngine.b[n] = b[n11];
+                ChessEngine.b[n11] = 0;
                 ak -= l * 65;
             }
         }
@@ -609,7 +612,7 @@ implements Runnable {
             if (b[n7] != 0) {
                 return;
             }
-            g.e[g.f++] = n + (n7 << 8);
+            ChessEngine.e[ChessEngine.f++] = n + (n7 << 8);
             ++n6;
         }
     }
@@ -622,7 +625,7 @@ implements Runnable {
             n2 = b[n4];
             if (n2 != 0) {
                 if (n2 <= 0) break;
-                g.e[g.f++] = n + (n4 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536;
                 break;
             }
             n4 -= 8;
@@ -632,7 +635,7 @@ implements Runnable {
             n2 = b[n4];
             if (n2 != 0) {
                 if (n2 <= 0) break;
-                g.e[g.f++] = n + (n4 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536;
                 break;
             }
             n4 += 8;
@@ -642,7 +645,7 @@ implements Runnable {
             n2 = b[n - n4];
             if (n2 != 0) {
                 if (n2 <= 0) break;
-                g.e[g.f++] = n + (n - n4 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - n4 << 8) + 65536;
                 break;
             }
             ++n4;
@@ -653,7 +656,7 @@ implements Runnable {
             byte by = b[n + n2];
             if (by != 0) {
                 if (by <= 0) break;
-                g.e[g.f++] = n + (n + n2 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + n2 << 8) + 65536;
                 return;
             }
             ++n2;
@@ -668,7 +671,7 @@ implements Runnable {
             n2 = b[n4];
             if (n2 != 0) {
                 if (n2 >= 0) break;
-                g.e[g.f++] = n + (n4 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536;
                 break;
             }
             n4 -= 8;
@@ -678,7 +681,7 @@ implements Runnable {
             n2 = b[n4];
             if (n2 != 0) {
                 if (n2 >= 0) break;
-                g.e[g.f++] = n + (n4 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536;
                 break;
             }
             n4 += 8;
@@ -688,7 +691,7 @@ implements Runnable {
             n2 = b[n - n4];
             if (n2 != 0) {
                 if (n2 >= 0) break;
-                g.e[g.f++] = n + (n - n4 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - n4 << 8) + 65536;
                 break;
             }
             ++n4;
@@ -699,7 +702,7 @@ implements Runnable {
             byte by = b[n + n2];
             if (by != 0) {
                 if (by >= 0) break;
-                g.e[g.f++] = n + (n + n2 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + n2 << 8) + 65536;
                 return;
             }
             ++n2;
@@ -720,7 +723,7 @@ implements Runnable {
             by = b[n5 -= 9];
             if (by != 0) {
                 if (by <= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 break;
             }
             ++n6;
@@ -734,7 +737,7 @@ implements Runnable {
             by = b[n5 -= 7];
             if (by != 0) {
                 if (by <= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 break;
             }
             ++n6;
@@ -748,7 +751,7 @@ implements Runnable {
             by = b[n5 += 7];
             if (by != 0) {
                 if (by <= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 break;
             }
             ++n6;
@@ -763,7 +766,7 @@ implements Runnable {
             by = b[n5 += 9];
             if (by != 0) {
                 if (by <= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 return;
             }
             ++n6;
@@ -784,7 +787,7 @@ implements Runnable {
             by = b[n5 -= 9];
             if (by != 0) {
                 if (by >= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 break;
             }
             ++n6;
@@ -798,7 +801,7 @@ implements Runnable {
             by = b[n5 -= 7];
             if (by != 0) {
                 if (by >= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 break;
             }
             ++n6;
@@ -812,7 +815,7 @@ implements Runnable {
             by = b[n5 += 7];
             if (by != 0) {
                 if (by >= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 break;
             }
             ++n6;
@@ -827,7 +830,7 @@ implements Runnable {
             by = b[n5 += 9];
             if (by != 0) {
                 if (by >= 0) break;
-                g.e[g.f++] = n + (n5 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n5 << 8) + 65536;
                 return;
             }
             ++n6;
@@ -835,51 +838,51 @@ implements Runnable {
     }
 
     private static void i(int n) {
-        g.a(n, 1, 1);
-        g.a(n, -1, 1);
-        g.a(n, -1, -1);
-        g.a(n, 1, -1);
+        ChessEngine.a(n, 1, 1);
+        ChessEngine.a(n, -1, 1);
+        ChessEngine.a(n, -1, -1);
+        ChessEngine.a(n, 1, -1);
     }
 
     private static void j(int n) {
-        g.a(n, 1, 0);
-        g.a(n, -1, 0);
-        g.a(n, 0, 1);
-        g.a(n, 0, -1);
+        ChessEngine.a(n, 1, 0);
+        ChessEngine.a(n, -1, 0);
+        ChessEngine.a(n, 0, 1);
+        ChessEngine.a(n, 0, -1);
     }
 
     private static void k(int n) {
-        g.a(n, 1, 0);
-        g.a(n, -1, 0);
-        g.a(n, 0, 1);
-        g.a(n, 0, -1);
-        g.a(n, 1, 1);
-        g.a(n, -1, 1);
-        g.a(n, -1, -1);
-        g.a(n, 1, -1);
+        ChessEngine.a(n, 1, 0);
+        ChessEngine.a(n, -1, 0);
+        ChessEngine.a(n, 0, 1);
+        ChessEngine.a(n, 0, -1);
+        ChessEngine.a(n, 1, 1);
+        ChessEngine.a(n, -1, 1);
+        ChessEngine.a(n, -1, -1);
+        ChessEngine.a(n, 1, -1);
     }
 
     private static final void k() {
         if (F != 0 && b[5] == 0 && b[6] == 0 && b[11] != -1 && b[12] != -1 && b[13] != -1 && b[14] != -1 && b[15] != -1) {
-            g.e[g.f++] = 263684;
+            ChessEngine.e[ChessEngine.f++] = 263684;
         }
     }
 
     private static void l() {
         if (F != 0 && b[1] == 0 && b[2] == 0 && b[3] == 0 && b[8] != -1 && b[9] != -1 && b[10] != -1 && b[11] != -1 && b[12] != -1) {
-            g.e[g.f++] = 524804;
+            ChessEngine.e[ChessEngine.f++] = 524804;
         }
     }
 
     private static final void m() {
         if (F != 0 && b[61] == 0 && b[62] == 0 && b[51] != 1 && b[52] != 1 && b[53] != 1 && b[54] != 1 && b[55] != 1) {
-            g.e[g.f++] = 278076;
+            ChessEngine.e[ChessEngine.f++] = 278076;
         }
     }
 
     private static void n() {
         if (F != 0 && b[57] == 0 && b[58] == 0 && b[59] == 0 && b[48] != 1 && b[49] != 1 && b[50] != 1 && b[51] != 1 && b[52] != 1) {
-            g.e[g.f++] = 539196;
+            ChessEngine.e[ChessEngine.f++] = 539196;
         }
     }
 
@@ -888,30 +891,30 @@ implements Runnable {
         int n3 = n >> 3;
         if (n2 > 0) {
             if (b[n - 1] == 0) {
-                g.e[g.f++] = n + (n - 1 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n - 1 << 8);
             }
             if (n3 > 0 && b[n - 9] == 0) {
-                g.e[g.f++] = n + (n - 9 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n - 9 << 8);
             }
             if (n3 < 7 && b[n + 7] == 0) {
-                g.e[g.f++] = n + (n + 7 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n + 7 << 8);
             }
         }
         if (n3 > 0 && b[n - 8] == 0) {
-            g.e[g.f++] = n + (n - 8 << 8);
+            ChessEngine.e[ChessEngine.f++] = n + (n - 8 << 8);
         }
         if (n3 < 7 && b[n + 8] == 0) {
-            g.e[g.f++] = n + (n + 8 << 8);
+            ChessEngine.e[ChessEngine.f++] = n + (n + 8 << 8);
         }
         if (n2 < 7) {
             if (b[n + 1] == 0) {
-                g.e[g.f++] = n + (n + 1 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n + 1 << 8);
             }
             if (n3 > 0 && b[n - 7] == 0) {
-                g.e[g.f++] = n + (n - 7 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n - 7 << 8);
             }
             if (n3 < 7 && b[n + 9] == 0) {
-                g.e[g.f++] = n + (n + 9 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n + 9 << 8);
             }
         }
     }
@@ -921,30 +924,30 @@ implements Runnable {
         int n3 = n >> 3;
         if (n2 > 0) {
             if (b[n - 1] > 0) {
-                g.e[g.f++] = n + (n - 1 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 1 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 9] > 0) {
-                g.e[g.f++] = n + (n - 9 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 9 << 8) + 65536;
             }
             if (n3 < 7 && b[n + 7] > 0) {
-                g.e[g.f++] = n + (n + 7 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 7 << 8) + 65536;
             }
         }
         if (n3 > 0 && b[n - 8] > 0) {
-            g.e[g.f++] = n + (n - 8 << 8) + 65536;
+            ChessEngine.e[ChessEngine.f++] = n + (n - 8 << 8) + 65536;
         }
         if (n3 < 7 && b[n + 8] > 0) {
-            g.e[g.f++] = n + (n + 8 << 8) + 65536;
+            ChessEngine.e[ChessEngine.f++] = n + (n + 8 << 8) + 65536;
         }
         if (n2 < 7) {
             if (b[n + 1] > 0) {
-                g.e[g.f++] = n + (n + 1 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 1 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 7] > 0) {
-                g.e[g.f++] = n + (n - 7 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 7 << 8) + 65536;
             }
             if (n3 < 7 && b[n + 9] > 0) {
-                g.e[g.f++] = n + (n + 9 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 9 << 8) + 65536;
             }
         }
     }
@@ -954,30 +957,30 @@ implements Runnable {
         int n3 = n >> 3;
         if (n2 > 0) {
             if (b[n - 1] < 0) {
-                g.e[g.f++] = n + (n - 1 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 1 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 9] < 0) {
-                g.e[g.f++] = n + (n - 9 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 9 << 8) + 65536;
             }
             if (n3 < 7 && b[n + 7] < 0) {
-                g.e[g.f++] = n + (n + 7 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 7 << 8) + 65536;
             }
         }
         if (n3 > 0 && b[n - 8] < 0) {
-            g.e[g.f++] = n + (n - 8 << 8) + 65536;
+            ChessEngine.e[ChessEngine.f++] = n + (n - 8 << 8) + 65536;
         }
         if (n3 < 7 && b[n + 8] < 0) {
-            g.e[g.f++] = n + (n + 8 << 8) + 65536;
+            ChessEngine.e[ChessEngine.f++] = n + (n + 8 << 8) + 65536;
         }
         if (n2 < 7) {
             if (b[n + 1] < 0) {
-                g.e[g.f++] = n + (n + 1 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 1 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 7] < 0) {
-                g.e[g.f++] = n + (n - 7 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 7 << 8) + 65536;
             }
             if (n3 < 7 && b[n + 9] < 0) {
-                g.e[g.f++] = n + (n + 9 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 9 << 8) + 65536;
             }
         }
     }
@@ -987,34 +990,34 @@ implements Runnable {
         int n3 = n >> 3;
         if (n2 < 6) {
             if (n3 < 7 && b[n + 10] == 0) {
-                g.e[g.f++] = n + (n + 10 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n + 10 << 8);
             }
             if (n3 > 0 && b[n - 6] == 0) {
-                g.e[g.f++] = n + (n - 6 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n - 6 << 8);
             }
         }
         if (n2 >= 2) {
             if (n3 < 7 && b[n + 6] == 0) {
-                g.e[g.f++] = n + (n + 6 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n + 6 << 8);
             }
             if (n3 > 0 && b[n - 10] == 0) {
-                g.e[g.f++] = n + (n - 10 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n - 10 << 8);
             }
         }
         if (n3 < 6) {
             if (n2 < 7 && b[n + 17] == 0) {
-                g.e[g.f++] = n + (n + 17 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n + 17 << 8);
             }
             if (n2 > 0 && b[n + 15] == 0) {
-                g.e[g.f++] = n + (n + 15 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n + 15 << 8);
             }
         }
         if (n3 >= 2) {
             if (n2 < 7 && b[n - 15] == 0) {
-                g.e[g.f++] = n + (n - 15 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n - 15 << 8);
             }
             if (n2 > 0 && b[n - 17] == 0) {
-                g.e[g.f++] = n + (n - 17 << 8);
+                ChessEngine.e[ChessEngine.f++] = n + (n - 17 << 8);
             }
         }
     }
@@ -1024,34 +1027,34 @@ implements Runnable {
         int n3 = n >> 3;
         if (n2 < 6) {
             if (n3 < 7 && b[n + 10] < 0) {
-                g.e[g.f++] = n + (n + 10 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 10 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 6] < 0) {
-                g.e[g.f++] = n + (n - 6 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 6 << 8) + 65536;
             }
         }
         if (n2 >= 2) {
             if (n3 < 7 && b[n + 6] < 0) {
-                g.e[g.f++] = n + (n + 6 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 6 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 10] < 0) {
-                g.e[g.f++] = n + (n - 10 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 10 << 8) + 65536;
             }
         }
         if (n3 < 6) {
             if (n2 < 7 && b[n + 17] < 0) {
-                g.e[g.f++] = n + (n + 17 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 17 << 8) + 65536;
             }
             if (n2 > 0 && b[n + 15] < 0) {
-                g.e[g.f++] = n + (n + 15 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 15 << 8) + 65536;
             }
         }
         if (n3 >= 2) {
             if (n2 < 7 && b[n - 15] < 0) {
-                g.e[g.f++] = n + (n - 15 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 15 << 8) + 65536;
             }
             if (n2 > 0 && b[n - 17] < 0) {
-                g.e[g.f++] = n + (n - 17 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 17 << 8) + 65536;
             }
         }
     }
@@ -1061,34 +1064,34 @@ implements Runnable {
         int n3 = n >> 3;
         if (n2 < 6) {
             if (n3 < 7 && b[n + 10] > 0) {
-                g.e[g.f++] = n + (n + 10 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 10 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 6] > 0) {
-                g.e[g.f++] = n + (n - 6 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 6 << 8) + 65536;
             }
         }
         if (n2 >= 2) {
             if (n3 < 7 && b[n + 6] > 0) {
-                g.e[g.f++] = n + (n + 6 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 6 << 8) + 65536;
             }
             if (n3 > 0 && b[n - 10] > 0) {
-                g.e[g.f++] = n + (n - 10 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 10 << 8) + 65536;
             }
         }
         if (n3 < 6) {
             if (n2 < 7 && b[n + 17] > 0) {
-                g.e[g.f++] = n + (n + 17 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 17 << 8) + 65536;
             }
             if (n2 > 0 && b[n + 15] > 0) {
-                g.e[g.f++] = n + (n + 15 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 15 << 8) + 65536;
             }
         }
         if (n3 >= 2) {
             if (n2 < 7 && b[n - 15] > 0) {
-                g.e[g.f++] = n + (n - 15 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 15 << 8) + 65536;
             }
             if (n2 > 0 && b[n - 17] > 0) {
-                g.e[g.f++] = n + (n - 17 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 17 << 8) + 65536;
             }
         }
     }
@@ -1104,10 +1107,10 @@ implements Runnable {
         }
         int n6 = n + 8 * l;
         if (n3 == n4 && b[n2 = n + 16 * l] == 0 && b[n6] == 0) {
-            g.e[g.f++] = n + (n2 << 8);
+            ChessEngine.e[ChessEngine.f++] = n + (n2 << 8);
         }
         if (n3 != n5 && b[n6] == 0) {
-            g.e[g.f++] = n + (n6 << 8);
+            ChessEngine.e[ChessEngine.f++] = n + (n6 << 8);
         }
     }
 
@@ -1115,10 +1118,10 @@ implements Runnable {
         int n2 = n & 7;
         if (n < 48) {
             if (n2 > 0 && b[n + 7] < 0) {
-                g.e[g.f++] = n + (n + 7 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 7 << 8) + 65536;
             }
             if (n2 < 7 && b[n + 9] < 0) {
-                g.e[g.f++] = n + (n + 9 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n + 9 << 8) + 65536;
                 return;
             }
         } else {
@@ -1126,13 +1129,13 @@ implements Runnable {
             while (n3 <= 5) {
                 int n4 = n + 7;
                 if (n2 > 0 && b[n4] < 0) {
-                    g.e[g.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
+                    ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
                 }
                 if (b[++n4] == 0) {
-                    g.e[g.f++] = n + (n4 << 8) + 0 + (n3 << 24);
+                    ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 0 + (n3 << 24);
                 }
                 if (n2 < 7 && b[++n4] < 0) {
-                    g.e[g.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
+                    ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
                 }
                 ++n3;
             }
@@ -1143,10 +1146,10 @@ implements Runnable {
         int n2 = n & 7;
         if (n >= 16) {
             if (n2 > 0 && b[n - 9] > 0) {
-                g.e[g.f++] = n + (n - 9 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 9 << 8) + 65536;
             }
             if (n2 < 7 && b[n - 7] > 0) {
-                g.e[g.f++] = n + (n - 7 << 8) + 65536;
+                ChessEngine.e[ChessEngine.f++] = n + (n - 7 << 8) + 65536;
                 return;
             }
         } else {
@@ -1154,13 +1157,13 @@ implements Runnable {
             while (n3 >= -5) {
                 int n4 = n - 9;
                 if (n2 > 0 && b[n4] > 0) {
-                    g.e[g.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
+                    ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
                 }
                 if (b[++n4] == 0) {
-                    g.e[g.f++] = n + (n4 << 8) + 0 + (n3 << 24);
+                    ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 0 + (n3 << 24);
                 }
                 if (n2 < 7 && b[++n4] > 0) {
-                    g.e[g.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
+                    ChessEngine.e[ChessEngine.f++] = n + (n4 << 8) + 65536 + (n3 << 24);
                 }
                 --n3;
             }
@@ -1172,14 +1175,14 @@ implements Runnable {
     }
 
     private static void o() {
-        int[] nArray = g.p();
+        int[] nArray = ChessEngine.p();
         o = new LittleEndianInt[nArray.length];
         int n = 0;
         int n2 = 0;
         while (n2 < 8) {
             int n3 = n2;
             while (n3 < nArray.length) {
-                g.o[n] = new LittleEndianInt(nArray[n3] & 0xFF, nArray[n3] >>> 8 & 0xFF, nArray[n3] >>> 16 & 0xFF, nArray[n3] >>> 24);
+                ChessEngine.o[n] = new LittleEndianInt(nArray[n3] & 0xFF, nArray[n3] >>> 8 & 0xFF, nArray[n3] >>> 16 & 0xFF, nArray[n3] >>> 24);
                 n3 += 8;
                 ++n;
             }
@@ -1187,7 +1190,7 @@ implements Runnable {
         }
         n2 = 0;
         while (n2 < 64) {
-            g.a[n2] = b[n2];
+            ChessEngine.a[n2] = b[n2];
             ++n2;
         }
     }
@@ -1196,7 +1199,7 @@ implements Runnable {
         int n;
         int n2;
         F = 99;
-        int[] nArray = g.s();
+        int[] nArray = ChessEngine.s();
         F = 0;
         boolean bl = false;
         int n3 = 0;
@@ -1210,18 +1213,18 @@ implements Runnable {
         }
         n4 = 0;
         while (n4 < nArray.length) {
-            g.c(nArray[n4]);
-            if (g.b(-l)) {
+            ChessEngine.c(nArray[n4]);
+            if (ChessEngine.b(-l)) {
                 ++n3;
                 nArray[n4] = -1;
             }
-            g.a(true);
+            ChessEngine.a(true);
             ++n4;
         }
         if (bl) {
             int n5;
             l = -l;
-            int[] nArray2 = g.s();
+            int[] nArray2 = ChessEngine.s();
             l = -l;
             n2 = 0;
             n = 0;
@@ -1282,29 +1285,29 @@ implements Runnable {
                 n2 = b[n3];
                 if (n2 > 0) {
                     if (n2 == 1) {
-                        g.s(n3);
+                        ChessEngine.s(n3);
                     } else if (n2 == 4) {
-                        g.f(n3);
+                        ChessEngine.f(n3);
                     } else if (n2 == 3) {
-                        g.h(n3);
+                        ChessEngine.h(n3);
                     } else if (n2 == 2) {
-                        g.p(n3);
+                        ChessEngine.p(n3);
                     } else if (n2 == 5) {
-                        g.h(n3);
-                        g.f(n3);
+                        ChessEngine.h(n3);
+                        ChessEngine.f(n3);
                     }
                 }
                 ++n3;
             }
-            if (g.n != 10) {
-                if (g.n < 7 && b[33 + g.n] == 1) {
-                    g.e[g.f++] = 33 + g.n + (40 + g.n << 8) + 0x410000;
+            if (ChessEngine.n != 10) {
+                if (ChessEngine.n < 7 && b[33 + ChessEngine.n] == 1) {
+                    ChessEngine.e[ChessEngine.f++] = 33 + ChessEngine.n + (40 + ChessEngine.n << 8) + 0x410000;
                 }
-                if (g.n >= 1 && b[31 + g.n] == 1) {
-                    g.e[g.f++] = 31 + g.n + (40 + g.n << 8) + 0x410000;
+                if (ChessEngine.n >= 1 && b[31 + ChessEngine.n] == 1) {
+                    ChessEngine.e[ChessEngine.f++] = 31 + ChessEngine.n + (40 + ChessEngine.n << 8) + 0x410000;
                 }
             }
-            g.n(ao);
+            ChessEngine.n(ao);
             n3 = 0;
             while (n3 < f) {
                 n2 = e[n3];
@@ -1318,8 +1321,8 @@ implements Runnable {
                     int n10 = n8 & 0xFF;
                     int n11 = (b[n9] << 4) + b[n10];
                     if (n11 < n6) {
-                        g.e[n7] = n2;
-                        g.e[n3] = n8;
+                        ChessEngine.e[n7] = n2;
+                        ChessEngine.e[n3] = n8;
                         n2 = n8;
                         n6 = n11;
                     }
@@ -1334,29 +1337,29 @@ implements Runnable {
             n = b[n12];
             if (n < 0) {
                 if (n == -1) {
-                    g.t(n12);
+                    ChessEngine.t(n12);
                 } else if (n == -4) {
-                    g.e(n12);
+                    ChessEngine.e(n12);
                 } else if (n == -3) {
-                    g.g(n12);
+                    ChessEngine.g(n12);
                 } else if (n == -2) {
-                    g.q(n12);
+                    ChessEngine.q(n12);
                 } else if (n == -5) {
-                    g.g(n12);
-                    g.e(n12);
+                    ChessEngine.g(n12);
+                    ChessEngine.e(n12);
                 }
             }
             --n12;
         }
-        if (g.n != 10) {
-            if (g.n < 7 && b[25 + g.n] == -1) {
-                g.e[g.f++] = 25 + g.n + (16 + g.n << 8) + 0x410000;
+        if (ChessEngine.n != 10) {
+            if (ChessEngine.n < 7 && b[25 + ChessEngine.n] == -1) {
+                ChessEngine.e[ChessEngine.f++] = 25 + ChessEngine.n + (16 + ChessEngine.n << 8) + 0x410000;
             }
-            if (g.n >= 1 && b[23 + g.n] == -1) {
-                g.e[g.f++] = 23 + g.n + (16 + g.n << 8) + 0x410000;
+            if (ChessEngine.n >= 1 && b[23 + ChessEngine.n] == -1) {
+                ChessEngine.e[ChessEngine.f++] = 23 + ChessEngine.n + (16 + ChessEngine.n << 8) + 0x410000;
             }
         }
-        g.m(an);
+        ChessEngine.m(an);
         n12 = 0;
         while (n12 < f) {
             n = e[n12];
@@ -1370,8 +1373,8 @@ implements Runnable {
                 int n19 = n17 & 0xFF;
                 int n20 = (b[n18] << 4) + b[n19];
                 if (n20 > n15) {
-                    g.e[n16] = n;
-                    g.e[n12] = n17;
+                    ChessEngine.e[n16] = n;
+                    ChessEngine.e[n12] = n17;
                     n = n17;
                     n15 = n20;
                 }
@@ -1386,7 +1389,7 @@ implements Runnable {
             return Q;
         }
         f = 0;
-        g.q();
+        ChessEngine.q();
         int[] nArray = new int[f];
         int n = 0;
         while (n < f) {
@@ -1401,8 +1404,8 @@ implements Runnable {
             return Q;
         }
         f = 0;
-        g.q();
-        g.t();
+        ChessEngine.q();
+        ChessEngine.t();
         int[] nArray = new int[f];
         int n = 0;
         while (n < f) {
@@ -1415,27 +1418,27 @@ implements Runnable {
     private static void t() {
         if (l < 0) {
             if ((m & 4) != 0) {
-                g.m();
+                ChessEngine.m();
             }
             if ((m & 8) != 0) {
-                g.n();
+                ChessEngine.n();
             }
             int n = 0;
             while (n < 64) {
                 byte by = b[n];
                 if (by < 0) {
                     if (by == -1) {
-                        g.r(n);
+                        ChessEngine.r(n);
                     } else if (by == -4) {
-                        g.j(n);
+                        ChessEngine.j(n);
                     } else if (by == -3) {
-                        g.i(n);
+                        ChessEngine.i(n);
                     } else if (by == -2) {
-                        g.o(n);
+                        ChessEngine.o(n);
                     } else if (by == -6) {
-                        g.l(n);
+                        ChessEngine.l(n);
                     } else if (by == -5) {
-                        g.k(n);
+                        ChessEngine.k(n);
                     }
                 }
                 ++n;
@@ -1443,27 +1446,27 @@ implements Runnable {
             return;
         }
         if ((m & 1) != 0) {
-            g.k();
+            ChessEngine.k();
         }
         if ((m & 2) != 0) {
-            g.l();
+            ChessEngine.l();
         }
         int n = 63;
         while (n >= 0) {
             byte by = b[n];
             if (by > 0) {
                 if (by == 1) {
-                    g.r(n);
+                    ChessEngine.r(n);
                 } else if (by == 6) {
-                    g.l(n);
+                    ChessEngine.l(n);
                 } else if (by == 5) {
-                    g.k(n);
+                    ChessEngine.k(n);
                 } else if (by == 4) {
-                    g.j(n);
+                    ChessEngine.j(n);
                 } else if (by == 3) {
-                    g.i(n);
+                    ChessEngine.i(n);
                 } else if (by == 2) {
-                    g.o(n);
+                    ChessEngine.o(n);
                 }
             }
             --n;
@@ -1486,7 +1489,7 @@ implements Runnable {
                 }
             }
             f = n2;
-            g.p(n3);
+            ChessEngine.p(n3);
             int n5 = n2;
             while (n5 < f) {
                 if (b[e[n5] >> 8 & 0xFF] == -2) {
@@ -1496,7 +1499,7 @@ implements Runnable {
                 ++n5;
             }
             f = n2;
-            g.f(n3);
+            ChessEngine.f(n3);
             n5 = n2;
             while (n5 < f) {
                 by2 = b[e[n5] >> 8 & 0xFF];
@@ -1507,7 +1510,7 @@ implements Runnable {
                 ++n5;
             }
             f = n2;
-            g.h(n3);
+            ChessEngine.h(n3);
             n5 = n2;
             while (n5 < f) {
                 by2 = b[e[n5] >> 8 & 0xFF];
@@ -1518,7 +1521,7 @@ implements Runnable {
                 ++n5;
             }
             f = n2;
-            g.n(n3);
+            ChessEngine.n(n3);
             n5 = n2;
             while (n5 < f) {
                 by2 = b[e[n5] >> 8 & 0xFF];
@@ -1542,7 +1545,7 @@ implements Runnable {
             }
         }
         f = n2;
-        g.q(n6);
+        ChessEngine.q(n6);
         int n8 = n2;
         while (n8 < f) {
             if (b[e[n8] >> 8 & 0xFF] == 2) {
@@ -1552,7 +1555,7 @@ implements Runnable {
             ++n8;
         }
         f = n2;
-        g.e(n6);
+        ChessEngine.e(n6);
         n8 = n2;
         while (n8 < f) {
             by = b[e[n8] >> 8 & 0xFF];
@@ -1563,7 +1566,7 @@ implements Runnable {
             ++n8;
         }
         f = n2;
-        g.g(n6);
+        ChessEngine.g(n6);
         n8 = n2;
         while (n8 < f) {
             by = b[e[n8] >> 8 & 0xFF];
@@ -1574,7 +1577,7 @@ implements Runnable {
             ++n8;
         }
         f = n2;
-        g.m(n6);
+        ChessEngine.m(n6);
         n8 = n2;
         while (n8 < f) {
             by = b[e[n8] >> 8 & 0xFF];
@@ -1589,7 +1592,7 @@ implements Runnable {
     }
 
     public static final boolean a(LittleEndianInt[] iArray) {
-        if (g.b() || k >= 100 || g.g() >= 3) {
+        if (ChessEngine.b() || k >= 100 || ChessEngine.g() >= 3) {
             return true;
         }
         return iArray.length == 0;
@@ -1606,10 +1609,10 @@ implements Runnable {
         if (an < 0) {
             return 1;
         }
-        if (g.b(l) && iArray.length == 0) {
+        if (ChessEngine.b(l) && iArray.length == 0) {
             return -l;
         }
-        if (g.g() >= 3 || k < 100) {
+        if (ChessEngine.g() >= 3 || k < 100) {
             // empty if block
         }
         return 0;
@@ -1633,13 +1636,13 @@ implements Runnable {
         N = 5;
         this.at = -1;
         this.as = -1;
-        int[] nArray = g.p();
+        int[] nArray = ChessEngine.p();
         if (nArray.length == 1) {
             this.as = nArray[0];
         }
         int n2 = 0;
         this.P = null;
-        if (U > 0 && this.as == -1 && ab != null && (object = g.d(U - 1)) != null) {
+        if (U > 0 && this.as == -1 && ab != null && (object = ChessEngine.d(U - 1)) != null) {
             n = 0;
             while (n < ab.length) {
                 if (this.ac[n] != null && ab[n] == ((LittleEndianInt)object).a()) {
@@ -1650,18 +1653,18 @@ implements Runnable {
             }
         }
         if (R >= 511 && i.nextInt() % 10 < 4 && this.as == -1 || R >= 1024 && this.as == -1) {
-            int[] nArray2 = g.p();
-            object = nArray2;
-            if (nArray2.length > 0) {
-                n = (i.nextInt() >>> 8) % ((Object)object).length;
-                this.as = (int)object[n];
-            }
+            // int[] nArray2 = ChessEngine.p();
+            // object = nArray2;
+            // if (nArray2.length > 0) {
+            //     n = (i.nextInt() >>> 8) % ((Object)object).length;
+            //     this.as = (int)object[n];
+            // }
         }
         if (this.as == -1) {
             if (this.P != null) {
                 this.at = this.as = this.P[0];
             }
-            boolean bl = false;
+            // boolean bl = false;
             n = n2 + 1;
             while (n <= T) {
                 Runtime.getRuntime().gc();
@@ -1684,11 +1687,11 @@ implements Runnable {
             }
         }
         if (this.as != -1) {
-            g.c(this.as);
+            ChessEngine.c(this.as);
         }
         ab = null;
         N = 2;
-        g.o();
+        ChessEngine.o();
         Runtime.getRuntime().gc();
     }
 
@@ -1735,7 +1738,7 @@ implements Runnable {
                     if (!j && (ah || ag)) continue block2;
                     Thread.sleep(400L);
                 }
-                break;
+                // break;
             }
         }
         catch (Throwable throwable) {
@@ -1745,7 +1748,7 @@ implements Runnable {
 
     private void v() {
         int n;
-        ab = g.p();
+        ab = ChessEngine.p();
         this.ac = new int[ab.length][];
         if (this.ad == null || this.ad.length < ab.length) {
             this.ad = new int[ab.length + 32];
@@ -1772,10 +1775,10 @@ implements Runnable {
                         this.P = this.ac[n5];
                     }
                     int n6 = this.ad[n5] + 1;
-                    g.c(ab[n5]);
+                    ChessEngine.c(ab[n5]);
                     this.at = -1;
                     int n7 = -this.c(-10000000, 10000000, n6);
-                    g.a(true);
+                    ChessEngine.a(true);
                     if (!j) {
                         this.ae[n5] = n7;
                         this.ad[n5] = n6;
@@ -1793,8 +1796,8 @@ implements Runnable {
                         this.ae[n5] = this.ae[n4];
                         this.ae[n4] = n3;
                         n3 = ab[n5];
-                        g.ab[n5] = ab[n4];
-                        g.ab[n4] = n3;
+                        ChessEngine.ab[n5] = ab[n4];
+                        ChessEngine.ab[n4] = n3;
                         n3 = this.ad[n5];
                         this.ad[n5] = this.ad[n4];
                         this.ad[n4] = n3;
@@ -1832,7 +1835,7 @@ implements Runnable {
         int n8 = g;
         int n9 = h;
         int n10 = n6 - n7;
-        int n11 = g.C();
+        int n11 = ChessEngine.C();
         n10 += n11;
         n10 += l << 3;
         if (G > 2000) {
@@ -1899,7 +1902,7 @@ implements Runnable {
             if (aw == 1) {
                 n13 = ao;
             }
-            n10 -= aw * g.b(ao, an) << 3;
+            n10 -= aw * ChessEngine.b(ao, an) << 3;
             n4 = (an & 7) - (ao & 7);
             n3 = (an >> 3) - (ao >> 3);
             if (n4 < 0) {
@@ -1924,7 +1927,7 @@ implements Runnable {
             if (n13 >= 0) {
                 n10 -= aw * (av[n13] - 10) << 3;
             }
-            n10 += g.u(-aw);
+            n10 += ChessEngine.u(-aw);
         }
         if (G < 1200) {
             n10 -= av[ao] - 10;
@@ -2091,7 +2094,7 @@ implements Runnable {
                             n6 = 3;
                         }
                         n2 += n6 << 3;
-                        n2 += g.c(n4, n3) << 3;
+                        n2 += ChessEngine.c(n4, n3) << 3;
                         if ((n4 + 8 & 0x3F) < 16) {
                             n2 += 9;
                         }
@@ -2126,8 +2129,8 @@ implements Runnable {
                             n10 = 3;
                         }
                         n2 -= n10 << 3;
-                        n2 -= g.c(n8, n7) << 3;
-                        if (g.v(n8)) {
+                        n2 -= ChessEngine.c(n8, n7) << 3;
+                        if (ChessEngine.v(n8)) {
                             n2 -= 9;
                         }
                     } else if (by == -2 || by == -3 || by == -6) {
@@ -2183,7 +2186,7 @@ implements Runnable {
         this.aq = ao;
         this.al = ak;
         this.ar = m;
-        this.au = g.n;
+        this.au = ChessEngine.n;
         this.J = H;
         this.K = I;
         this.L = g;
@@ -2194,7 +2197,7 @@ implements Runnable {
     private void x() {
         int n = 63;
         while (n >= 0) {
-            g.b[n] = this.z[n];
+            ChessEngine.b[n] = this.z[n];
             --n;
         }
         W = this.X;
@@ -2202,7 +2205,7 @@ implements Runnable {
         ao = this.aq;
         ak = this.al;
         m = this.ar;
-        g.n = this.au;
+        ChessEngine.n = this.au;
         H = this.J;
         I = this.K;
         g = this.L;
@@ -2218,7 +2221,7 @@ implements Runnable {
             }
             ++n;
         }
-        return this.ar == m && this.au == g.n;
+        return this.ar == m && this.au == ChessEngine.n;
     }
 
     public static int g() {
@@ -2236,17 +2239,17 @@ implements Runnable {
         if (n3 < 0) {
             n3 = 0;
         }
-        g.a(false);
-        g.a(false);
-        g.a(false);
+        ChessEngine.a(false);
+        ChessEngine.a(false);
+        ChessEngine.a(false);
         int n4 = U;
         while (n4 >= n3) {
             if (this.y()) {
                 ++n2;
             }
             if (U > 1) {
-                g.a(false);
-                g.a(false);
+                ChessEngine.a(false);
+                ChessEngine.a(false);
             }
             n4 -= 2;
         }
@@ -2257,35 +2260,35 @@ implements Runnable {
     }
 
     private int b(int n, int n2, int n3) {
-        int n4 = g.f() * l;
+        int n4 = ChessEngine.f() * l;
         if (n4 > n && (n = n4) >= n2) {
             return n;
         }
-        int[] nArray = g.r();
+        int[] nArray = ChessEngine.r();
         if (nArray.length == 0) {
             return n;
         }
         int n5 = 0;
         while (n5 < nArray.length) {
             int n6 = nArray[n5];
-            g.c(n6);
+            ChessEngine.c(n6);
             if (l > 0) {
                 if (ao < 0) {
                     if (this.v > U) {
                         this.v = U;
                     }
-                    g.a(true);
+                    ChessEngine.a(true);
                     return 100000 - U;
                 }
             } else if (an < 0) {
                 if (this.v > U) {
                     this.v = U;
                 }
-                g.a(true);
+                ChessEngine.a(true);
                 return 100000 - U;
             }
             int n7 = -this.b(-n2, -n, n3 - 1);
-            g.a(true);
+            ChessEngine.a(true);
             if (n < n7 && (n = n7) >= n2) break;
             ++n5;
         }
@@ -2322,7 +2325,7 @@ implements Runnable {
         int n5;
         int n6;
         int n7;
-        int[] nArray;
+        int[] nArray = null;
         int n8 = 0;
         int[] nArray2 = null;
         int n9 = 0;
@@ -2337,9 +2340,9 @@ implements Runnable {
         if (n3 < 1) {
             n12 = this.b(n, n2, n3);
         } else {
-            n11 = T == 1 ? this.z() : g.g();
+            n11 = T == 1 ? this.z() : ChessEngine.g();
         }
-        boolean bl3 = bl2 = n11 >= 2;
+        // boolean bl3 = bl2 = n11 >= 2;
         if (n3 <= 0) {
             if (bl2) {
                 return 30;
@@ -2349,16 +2352,16 @@ implements Runnable {
         nArray2 = new int[48];
         int n13 = n3 - 1;
         if (n3 > 1 && ao >= 0 && an >= 0) {
-            g.C();
+            ChessEngine.C();
         }
-        if ((nArray = (n7 = U - V) < 3 ? g.p() : g.s()).length == 0) {
+        if ((nArray = (n7 = U - V) < 3 ? ChessEngine.p() : ChessEngine.s()).length == 0) {
             if (l > 0 && ao < 0 || l < 0 && an < 0) {
                 if (this.v > U) {
                     this.v = U;
                 }
                 return -100000 + U;
             }
-            if (g.b(l)) {
+            if (ChessEngine.b(l)) {
                 return -100000 + U;
             }
             return 0;
@@ -2392,20 +2395,20 @@ implements Runnable {
             if (U == V) {
                 S = (U + n6) * w + n6 * x + U * y & R;
             }
-            g.c(n5);
+            ChessEngine.c(n5);
             if (l > 0) {
                 if (ao < 0) {
                     if (this.v > U) {
                         this.v = U;
                     }
-                    g.a(true);
+                    ChessEngine.a(true);
                     return 100000 - U;
                 }
             } else if (an < 0) {
                 if (this.v > U) {
                     this.v = U;
                 }
-                g.a(true);
+                ChessEngine.a(true);
                 return 100000 - U;
             }
             n4 = this.v;
@@ -2423,7 +2426,7 @@ implements Runnable {
                     n15 = n3;
                 }
             }
-            if (n15 != n3 && n7 < 5 && g.b(l)) {
+            if (n15 != n3 && n7 < 5 && ChessEngine.b(l)) {
                 n15 = n3;
             }
             int n16 = -this.a(-n2, -n, n15, n6 == 0 && bl);
@@ -2431,7 +2434,7 @@ implements Runnable {
                 ++n14;
             }
             this.v = n4;
-            g.a(true);
+            ChessEngine.a(true);
             if (j && this.aj) {
                 return 0;
             }
@@ -2449,7 +2452,7 @@ implements Runnable {
             ++n6;
         }
         if (n14 == nArray.length) {
-            if (g.b(l)) {
+            if (ChessEngine.b(l)) {
                 return -100000 + U;
             }
             return 0;
@@ -2475,48 +2478,48 @@ implements Runnable {
         x = i.nextInt() >>> 8 | 0x104;
         y = i.nextInt() >>> 8 | 0x402;
         W = 30000;
-        g.d();
+        ChessEngine.d();
         ab = null;
-        g.n = 10;
+        ChessEngine.n = 10;
         ak = 0;
         k = 0;
         U = 0;
         l = 1;
-        if (!c.i) {
+        if (!ChessCanvas.i) {
             n = 63;
             while (n >= 0) {
-                g.b[n] = 0;
-                g.b[8 + (n & 7)] = 1;
-                g.b[48 + (n & 7)] = -1;
+                ChessEngine.b[n] = 0;
+                ChessEngine.b[8 + (n & 7)] = 1;
+                ChessEngine.b[48 + (n & 7)] = -1;
                 --n;
             }
-            g.b[7] = 4;
-            g.b[0] = 4;
-            g.b[6] = 2;
-            g.b[1] = 2;
-            g.b[5] = 3;
-            g.b[2] = 3;
-            g.b[3] = 5;
-            g.b[4] = 6;
-            g.b[63] = -4;
-            g.b[56] = -4;
-            g.b[62] = -2;
-            g.b[57] = -2;
-            g.b[61] = -3;
-            g.b[58] = -3;
-            g.b[59] = -5;
-            g.b[60] = -6;
+            ChessEngine.b[7] = 4;
+            ChessEngine.b[0] = 4;
+            ChessEngine.b[6] = 2;
+            ChessEngine.b[1] = 2;
+            ChessEngine.b[5] = 3;
+            ChessEngine.b[2] = 3;
+            ChessEngine.b[3] = 5;
+            ChessEngine.b[4] = 6;
+            ChessEngine.b[63] = -4;
+            ChessEngine.b[56] = -4;
+            ChessEngine.b[62] = -2;
+            ChessEngine.b[57] = -2;
+            ChessEngine.b[61] = -3;
+            ChessEngine.b[58] = -3;
+            ChessEngine.b[59] = -5;
+            ChessEngine.b[60] = -6;
             m = 15;
         }
-        g.j();
-        g.A();
-        g.B();
+        ChessEngine.j();
+        ChessEngine.A();
+        ChessEngine.B();
         n = 0;
         while (n < 8) {
-            g.w(n);
+            ChessEngine.w(n);
             ++n;
         }
-        g.o();
+        ChessEngine.o();
     }
 
     private static void A() {
@@ -2561,8 +2564,8 @@ implements Runnable {
             return;
         }
         ab = null;
-        g.a(true);
-        g.o();
+        ChessEngine.a(true);
+        ChessEngine.o();
     }
 
     private static void B() {
@@ -2590,16 +2593,16 @@ implements Runnable {
             if ((n4 = n3 - n) < 0) {
                 n4 = -n4;
             }
-            g.A[n3] = (G - 700) * (n4 - n5) >> 10;
+            ChessEngine.A[n3] = (G - 700) * (n4 - n5) >> 10;
             ++n3;
         }
     }
 
     private static void w(int n) {
-        g.B[n] = -1;
-        g.C[n] = -1;
-        g.D[n] = 8;
-        g.E[n] = 8;
+        ChessEngine.B[n] = -1;
+        ChessEngine.C[n] = -1;
+        ChessEngine.D[n] = 8;
+        ChessEngine.E[n] = 8;
         int n2 = n;
         while (n2 < 64) {
             byte by = b[n2];
@@ -2608,18 +2611,18 @@ implements Runnable {
                 if (by == 1) {
                     n3 = n2 >> 3;
                     if (B[n] < n3) {
-                        g.B[n] = n3;
+                        ChessEngine.B[n] = n3;
                     }
                     if (D[n] > n3) {
-                        g.D[n] = n3;
+                        ChessEngine.D[n] = n3;
                     }
                 } else if (by == -1) {
                     n3 = n2 >> 3;
                     if (C[n] < n3) {
-                        g.C[n] = n3;
+                        ChessEngine.C[n] = n3;
                     }
                     if (E[n] > n3) {
-                        g.E[n] = n3;
+                        ChessEngine.E[n] = n3;
                     }
                 }
             }
@@ -2693,20 +2696,20 @@ implements Runnable {
     }
 
     public static void a(int n, int n2) {
-        g.b[n2] = (byte)n;
+        ChessEngine.b[n2] = (byte)n;
         ++U;
-        g.a[n2] = b[n2];
-        g.j();
-        g.A();
-        g.B();
+        ChessEngine.a[n2] = b[n2];
+        ChessEngine.j();
+        ChessEngine.A();
+        ChessEngine.B();
         int n3 = 0;
         while (n3 < 8) {
-            g.w(n3);
+            ChessEngine.w(n3);
             ++n3;
         }
-        g.o();
-        c.j();
-        c.k();
+        ChessEngine.o();
+        ChessCanvas.j();
+        ChessCanvas.k();
     }
 
     public static void a(byte[] byArray) {
@@ -2714,29 +2717,29 @@ implements Runnable {
         x = i.nextInt() >>> 8 | 0x104;
         y = i.nextInt() >>> 8 | 0x402;
         W = 30000;
-        g.d();
+        ChessEngine.d();
         ab = null;
         n = 10;
         ak = 0;
         k = 0;
         U = 0;
-        l = c.bk == 2 ? (l == 1 ? -1 : 1) : 1;
+        l = ChessCanvas.bk == 2 ? (l == 1 ? -1 : 1) : 1;
         int n = 0;
         n = 0;
         while (n < 64) {
-            g.b[n] = byArray[n];
+            ChessEngine.b[n] = byArray[n];
             ++n;
         }
         m = byArray[64];
-        g.j();
-        g.A();
-        g.B();
+        ChessEngine.j();
+        ChessEngine.A();
+        ChessEngine.B();
         int n2 = 0;
         while (n2 < 8) {
-            g.w(n2);
+            ChessEngine.w(n2);
             ++n2;
         }
-        g.o();
+        ChessEngine.o();
     }
 }
 
