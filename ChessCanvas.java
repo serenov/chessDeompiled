@@ -629,11 +629,11 @@ implements Runnable {
                     nArrayArray[6] = new int[]{2, 151, 185};
                     this.y = nArrayArray;
                     try {
-                        d.O = this.b.c("anMapX");
-                        d.P = this.b.c("anMapY");
-                        d.Q = this.b.c("anMapCenterY");
-                        d.R = this.b.c("anMapEdgeY");
-                        d.S = this.b.c("anMapEdgeX");
+                        GameConfig.O = this.b.c("anMapX");
+                        GameConfig.P = this.b.c("anMapY");
+                        GameConfig.Q = this.b.c("anMapCenterY");
+                        GameConfig.R = this.b.c("anMapEdgeY");
+                        GameConfig.S = this.b.c("anMapEdgeX");
                     }
                     catch (Exception exception) {}
                     ChessR.m = new byte[64];
@@ -656,51 +656,58 @@ implements Runnable {
     }
 
     private void m() {
-        d.a = this.a.getAppProperty("Default-Logo").equals("ON") ? 0 : 1;
-        d.b = this.a.getAppProperty("More_Games").equals("ON");
-        d.c = this.a.getAppProperty("Download-URL");
-        d.g = this.a.getAppProperty("Default-Cheat").equals("ON");
+        GameConfig.a = this.a.getAppProperty("Default-Logo").equals("ON") ? 0 : 1;
+        GameConfig.b = this.a.getAppProperty("More_Games").equals("ON");
+        GameConfig.c = this.a.getAppProperty("Download-URL");
+        GameConfig.g = this.a.getAppProperty("Default-Cheat").equals("ON");
+
         int n = 0;
+
         n = this.a.getAppProperty("Default-Vendor-Key").equals("MOTO1") ? 1 : (this.a.getAppProperty("Default-Vendor-Key").equals("MOTO2") ? 2 : (this.a.getAppProperty("Default-Vendor-Key").equals("SIEMENS") ? 3 : (this.a.getAppProperty("Default-Vendor-Key").equals("SAGEM") ? 4 : (this.a.getAppProperty("Default-Vendor-Key").equals("LGT") ? 5 : 0))));
-        this.r = d.o[n][0];
-        this.t = d.o[n][1];
-        this.u = d.o[n][2];
-        this.n = d.o[n][3];
-        this.o = d.o[n][4];
-        this.p = d.o[n][5];
-        this.q = d.o[n][6];
-        d.e = this.a.getAppProperty("MIDlet-Version");
+
+        this.r = GameConfig.o[n][0];
+        this.t = GameConfig.o[n][1];
+        this.u = GameConfig.o[n][2];
+        this.n = GameConfig.o[n][3];
+        this.o = GameConfig.o[n][4];
+        this.p = GameConfig.o[n][5];
+        this.q = GameConfig.o[n][6];
+
+        GameConfig.e = this.a.getAppProperty("MIDlet-Version");
+
         if (this.a.getAppProperty("Force-Language").equals("EN")) {
-            d.d = 0;
+            GameConfig.d = 0;
             return;
         }
+
         if (this.a.getAppProperty("Force-Language").equals("DE")) {
-            d.d = 1;
+            GameConfig.d = 1;
             return;
         }
+
         if (this.a.getAppProperty("Force-Language").equals("FR")) {
-            d.d = 2;
+            GameConfig.d = 2;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("ES")) {
-            d.d = 3;
+            GameConfig.d = 3;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("IT")) {
-            d.d = 4;
+            GameConfig.d = 4;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("PT")) {
-            d.d = 5;
+            GameConfig.d = 5;
             return;
         }
-        d.d = 6;
+        GameConfig.d = 6;
     }
 
     private void b(Graphics graphics) {
-        c.V(graphics);
+        ChessCanvas.V(graphics);
         graphics.setColor(255, 255, 0);
-        graphics.fillRect(0, 58 + d.v * 15, bA, this.b.o[1] + 4);
+        graphics.fillRect(0, 58 + GameConfig.v * 15, bA, this.b.o[1] + 4);
         this.b.a(graphics, this.cf[0], by, 40, 17, 1);
         int n = 0;
         while (n < 6) {
@@ -713,7 +720,7 @@ implements Runnable {
     }
 
     private void c(Graphics graphics) {
-        c.V(graphics);
+        ChessCanvas.V(graphics);
         this.b.a(graphics, this.cf[0], by, bz, 17, 1);
         this.b.a(graphics, "?".getBytes(), by + 30, bz, 17, 1);
         graphics.setColor(0x555555);
@@ -723,41 +730,41 @@ implements Runnable {
     }
 
     private void d(Graphics graphics) {
-        c.U(graphics);
+        ChessCanvas.U(graphics);
         int n = this.bN;
         if (this.bN > 5 && this.bN <= 17) {
             n = 6;
         } else if (this.bN > 17 && this.bN <= 30) {
-            n = d.a == 0 ? 7 : 8;
+            n = GameConfig.a == 0 ? 7 : 8;
         } else if (this.bN > 30) {
             n = 8;
         }
         if (this.at != null && this.at[n] != null) {
             graphics.drawImage(this.at[n], by, bz, 3);
         }
-        if (d.a == 0) {
+        if (GameConfig.a == 0) {
             if (++this.bN > 45) {
                 this.at = null;
-                if (d.d == 6 && d.C == -1) {
-                    d.C = 0;
+                if (GameConfig.d == 6 && GameConfig.C == -1) {
+                    GameConfig.C = 0;
                     this.a(2, true);
                     return;
                 }
-                if (d.d != 6) {
-                    d.C = d.d;
+                if (GameConfig.d != 6) {
+                    GameConfig.C = GameConfig.d;
                 }
                 this.a(3, true);
-                d.v = d.C;
+                GameConfig.v = GameConfig.C;
                 return;
             }
         } else if (++this.bN > 30) {
             this.at = null;
-            if (d.d == 6) {
+            if (GameConfig.d == 6) {
                 this.a(2, true);
                 return;
             }
             this.a(3, true);
-            d.v = d.C;
+            GameConfig.v = GameConfig.C;
         }
     }
 
@@ -811,7 +818,7 @@ implements Runnable {
     }
 
     private void e(Graphics graphics) {
-        c.V(graphics);
+        ChessCanvas.V(graphics);
         bw = by - (this.m.getWidth() / 6 + this.m.getWidth() / 3);
         bx = bz - (this.m.getHeight() / 6 + this.m.getHeight() / 3);
         graphics.drawImage(this.m, by, bz, 3);
@@ -832,7 +839,7 @@ implements Runnable {
 
     private void q() {
         bu = 0;
-        this.bq = c.S(512);
+        this.bq = ChessCanvas.S(512);
         d = null;
         switch (this.br) {
             case 257: {
@@ -882,7 +889,7 @@ implements Runnable {
         this.bM = 0;
         this.bD();
         this.l = null;
-        d.L = false;
+        GameConfig.L = false;
     }
 
     private void f(Graphics graphics) {
@@ -908,7 +915,7 @@ implements Runnable {
                 n2 = 20;
                 b.a(graphics, -5, n, 140, 20, 0x575757, 0, 0, 1, 6);
             }
-            if (!d.b) {
+            if (!GameConfig.b) {
                 if (n3 == 5) {
                     this.b.a(graphics, this.cf[6], n2, n - 6, 20, 1);
                 } else {
@@ -928,8 +935,8 @@ implements Runnable {
         this.bQ = -4132;
         this.br = 257;
         this.bs = 257;
-        this.bq = c.S(this.br);
-        this.bp = d.D != 0 ? 1 : 0;
+        this.bq = ChessCanvas.S(this.br);
+        this.bp = GameConfig.D != 0 ? 1 : 0;
         this.ac(4);
         this.aa(17);
     }
@@ -995,7 +1002,7 @@ implements Runnable {
             this.b.a(graphics, this.cf[9], by + 5, n6 + 3, 20, 1);
         }
         graphics.setColor(0xDDDDDD);
-        d.T = 0;
+        GameConfig.T = 0;
         this.bZ = n2 -= 12;
         this.a(this.ce, this.cy, this.cx, this.co);
     }
@@ -1009,17 +1016,17 @@ implements Runnable {
         b.a(graphics, by, n3, 156, n4 - 4, 17);
         this.a(graphics, this.aq, by, n3, 160, n4, 17);
         graphics.setColor(0xDDDDDD);
-        d.T = 0;
+        GameConfig.T = 0;
         this.bZ = n2 -= 12;
         this.a(this.ce, this.cy, this.cx, this.co);
     }
 
     private void s() {
         this.br = 258;
-        this.bq = c.S(258);
+        this.bq = ChessCanvas.S(258);
         this.bp = 0;
         this.cI = false;
-        d.H = -4132;
+        GameConfig.H = -4132;
         this.aX();
     }
 
@@ -1043,9 +1050,9 @@ implements Runnable {
     private void t() {
         this.br = 272;
         this.bs = 272;
-        this.bq = c.S(272);
+        this.bq = ChessCanvas.S(272);
         this.bp = 0;
-        d.L = false;
+        GameConfig.L = false;
         this.ac(5);
     }
 
@@ -1077,7 +1084,7 @@ implements Runnable {
 
     private void u() {
         this.br = 273;
-        this.bq = c.S(273);
+        this.bq = ChessCanvas.S(273);
         this.bp = 0;
         this.ac(8);
         this.cO = -4132;
@@ -1259,7 +1266,7 @@ implements Runnable {
         b.a(graphics, by, n, 172, 23, 3);
         this.a(graphics, this.v[4], by, n, 176, 25, 3);
         this.b.a(graphics, this.cf[10], by, n - 5, 17, 1);
-        c.a(graphics, by, bz, 176, 220, 3);
+        ChessCanvas.a(graphics, by, bz, 176, 220, 3);
         int n2 = by - 88 + 19;
         b.a(graphics, this.cL, n2, bz - 110 + (aU ? 8 : 6), 36, 7, 0, 0, 20);
         b.a(graphics, this.cL, n2, bz + 110 - (aU ? 8 : 6), 36, 7, 0, 1, 36);
@@ -1327,11 +1334,11 @@ implements Runnable {
         if (n5 <= 3) {
             n3 = 186 * n5 * n5 / 9;
             n4 = n2 * n5 * n5 / 9;
-            c.a(graphics, by, n6, n3, n4, 17);
+            ChessCanvas.a(graphics, by, n6, n3, n4, 17);
             return;
         }
         if (n5 < 15) {
-            c.a(graphics, by, n6, 186, n2, 17);
+            ChessCanvas.a(graphics, by, n6, 186, n2, 17);
             graphics.setColor(0xFFFFFF);
             int n7 = 0;
             while (n7 < (this.cy != this.co - 1 ? this.cx : (this.ch % this.cx == 0 ? this.cx : this.ch % this.cx))) {
@@ -1345,7 +1352,7 @@ implements Runnable {
         }
         n3 = 186 * (18 - n5) * (18 - n5) / 9;
         n4 = n2 * (18 - n5) * (18 - n5) / 9;
-        c.a(graphics, by, n6, n3, n4, 17);
+        ChessCanvas.a(graphics, by, n6, n3, n4, 17);
     }
 
     private void x() {
@@ -1355,7 +1362,7 @@ implements Runnable {
 
     private void y() {
         this.br = bu == 200 ? 210 : 1280;
-        this.bq = c.S(1280);
+        this.bq = ChessCanvas.S(1280);
         this.bp = 1;
         this.g();
         this.b(0);
@@ -1379,17 +1386,17 @@ implements Runnable {
                     int n3 = bz - n2 / 2;
                     n = 0;
                     int n4 = 160;
-                    if (d.E != 1) {
+                    if (GameConfig.E != 1) {
                         ++n;
                         n4 -= 30;
                     }
-                    if (!d.L) {
+                    if (!GameConfig.L) {
                         ++n;
                         n4 -= 30;
                     }
-                    c.a(graphics, by, n3 - 40, 100, 30, 17);
+                    ChessCanvas.a(graphics, by, n3 - 40, 100, 30, 17);
                     this.b.a(graphics, this.cf[13], by, n3 - 30, 17, 1);
-                    c.a(graphics, by, n3, 176, n4 + 30, 17);
+                    ChessCanvas.a(graphics, by, n3, 176, n4 + 30, 17);
                     System.out.println("PlayStage.d_option() height = " + n4);
                     graphics.setColor(0, 0, 255);
                     graphics.fillRect(by - 88 + 6, n3 - 24 + 30 * this.bp, 164, 27);
@@ -1401,7 +1408,7 @@ implements Runnable {
                     n5 = 0;
                     while (n5 < 6 - n) {
                         if (n5 == this.bp - 1) {
-                            if (d.d == 6) {
+                            if (GameConfig.d == 6) {
                                 if (this.cE % 3 == 1) {
                                     this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
                                     this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
@@ -1410,7 +1417,7 @@ implements Runnable {
                                 this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
                                 this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                             }
-                        } else if (d.d == 6) {
+                        } else if (GameConfig.d == 6) {
                             this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
                             this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                         } else if (n5 != 0) {
@@ -1419,26 +1426,26 @@ implements Runnable {
                         }
                         ++n5;
                     }
-                    this.b.a(graphics, this.cf[14 + d.C], by + 20, bz - 60 + 0, 17, 1);
-                    this.b.a(graphics, this.cf[20 + d.A], by + 20, bz - 60 + 30, 17, 1);
-                    this.b.a(graphics, this.cf[6 + d.E], by + 20, bz - 60 + 60, 17, 1);
-                    this.b.a(graphics, this.cf[10 + d.B], by + 20, bz - 60 + 90, 17, 1);
-                    if (d.E != 1) break block22;
+                    this.b.a(graphics, this.cf[14 + GameConfig.C], by + 20, bz - 60 + 0, 17, 1);
+                    this.b.a(graphics, this.cf[20 + GameConfig.A], by + 20, bz - 60 + 30, 17, 1);
+                    this.b.a(graphics, this.cf[6 + GameConfig.E], by + 20, bz - 60 + 60, 17, 1);
+                    this.b.a(graphics, this.cf[10 + GameConfig.B], by + 20, bz - 60 + 90, 17, 1);
+                    if (GameConfig.E != 1) break block22;
                     this.b.a(graphics, this.cf[4], by - 70, bz - 70 + 120, 20, 1);
-                    this.b.a(graphics, this.cf[10 + d.F], by + 20, bz - 60 + 120, 17, 1);
-                    if (!d.L) break block23;
+                    this.b.a(graphics, this.cf[10 + GameConfig.F], by + 20, bz - 60 + 120, 17, 1);
+                    if (!GameConfig.L) break block23;
                     this.b.a(graphics, this.cf[5], by - 70, bz - 70 + 150, 20, 1);
                     if (this.bp == 6) break block24;
-                    this.b.a(graphics, this.cf[8 + d.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
+                    this.b.a(graphics, this.cf[8 + GameConfig.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
                     break block23;
                 }
-                if (!d.L) break block23;
+                if (!GameConfig.L) break block23;
                 this.b.a(graphics, this.cf[5], by - 70, bz - 70 + 120, 20, 1);
                 if (this.bp == 5) {
                     // empty if block
                 }
             }
-            this.b.a(graphics, this.cf[8 + d.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
+            this.b.a(graphics, this.cf[8 + GameConfig.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
         }
         graphics.setColor(0x555555);
         graphics.fillRect(0, bB - 12, bA, 12);
@@ -1446,8 +1453,8 @@ implements Runnable {
     }
 
     private void f(int n) {
-        d.w = n == -3 || n == 52 ? (d.w ^= 1) : (d.w ^= 1);
-        g.a(this.L());
+        GameConfig.w = n == -3 || n == 52 ? (GameConfig.w ^= 1) : (GameConfig.w ^= 1);
+        ChessEngine.a(this.L());
     }
 
     private void z() {
@@ -1458,7 +1465,7 @@ implements Runnable {
         this.br = bu == 200 ? 220 : 1536;
         this.cT = 0;
         this.bp = 0;
-        this.bq = c.S(1536);
+        this.bq = ChessCanvas.S(1536);
         this.ad(18);
         this.v = null;
     }
@@ -1468,7 +1475,7 @@ implements Runnable {
             if (this.ao == null) {
                 this.ao = Image.createImage((String)"/img/h_arrow.png");
             }
-            if (d.E == 0) {
+            if (GameConfig.E == 0) {
                 this.B();
                 return;
             }
@@ -1536,7 +1543,7 @@ implements Runnable {
     }
 
     private void E() {
-        this.bq = c.S(2);
+        this.bq = ChessCanvas.S(2);
         this.v = this.bp == 5 ? new Image[2] : new Image[3];
         try {
             this.a("help_show");
@@ -1557,7 +1564,7 @@ implements Runnable {
     private void F() {
         this.cU = false;
         this.bp = 0;
-        this.bq = c.S(3);
+        this.bq = ChessCanvas.S(3);
         this.cT = 3;
         this.V(3);
         this.ad(20);
@@ -1569,12 +1576,12 @@ implements Runnable {
         } else {
             this.D(graphics);
         }
-        int n = d.t;
+        int n = GameConfig.t;
         int n2 = bz;
         int n3 = bz - n2 / 2;
-        c.a(graphics, by, n3 - 40, 100, 30, 17);
+        ChessCanvas.a(graphics, by, n3 - 40, 100, 30, 17);
         this.b.a(graphics, this.cf[0], by, n3 - 30, 17, 1);
-        c.a(graphics, by, bz + 10, n, n2 + 30, 3);
+        ChessCanvas.a(graphics, by, bz + 10, n, n2 + 30, 3);
         int n4 = 0;
         int n5 = bz - 22;
         if (++this.cV > 75) {
@@ -1583,7 +1590,7 @@ implements Runnable {
         switch (this.cT) {
             case 0: {
                 int n6 = 0;
-                while (n6 < d.l + 1) {
+                while (n6 < GameConfig.l + 1) {
                     if (n6 == 1 && this.cf[2].length * 8 <= 150) {
                         this.b.a(graphics, this.cf[n6 + 1], by, n5 + n6 * 30, 17, 1);
                     } else {
@@ -1654,7 +1661,7 @@ implements Runnable {
             }
             case 2: {
                 n4 = n3 + 30;
-                if (d.E == 0) {
+                if (GameConfig.E == 0) {
                     this.aB[this.bp + 6].a(graphics, by, n4);
                 } else {
                     graphics.drawImage(this.aD[this.bp], by, n4 + 17, 33);
@@ -1754,9 +1761,9 @@ implements Runnable {
         int n = by;
         int n2 = bz - 100;
         this.e(graphics);
-        c.a(graphics, n, n2, 176, 220, 17);
+        ChessCanvas.a(graphics, n, n2, 176, 220, 17);
         this.bZ = n2 + 10;
-        d.T = 1;
+        GameConfig.T = 1;
         this.a(this.ce, this.cy, this.cx, this.co);
         graphics.setColor(0x555555);
         graphics.fillRect(0, bB - 12, bA, 12);
@@ -1764,7 +1771,7 @@ implements Runnable {
     }
 
     private void q(Graphics graphics) {
-        c.V(graphics);
+        ChessCanvas.V(graphics);
         graphics.setColor(0xFFFFFF);
         graphics.drawString("Inquiry", by, bz, 17);
     }
@@ -1774,13 +1781,13 @@ implements Runnable {
         this.bw();
         this.bD();
         this.n();
-        bi = d.E != 0;
+        bi = GameConfig.E != 0;
         this.aY = 1;
         this.g();
         this.b(3);
         this.c(1);
         this.d(41);
-        d.H = -4132;
+        GameConfig.H = -4132;
         bv = -4132;
         ChessR.j = -4132;
         bI = false;
@@ -1802,33 +1809,33 @@ implements Runnable {
             d = null;
             d = new ChessEngine();
             ChessR.k = 0;
-            g.h();
-            g.a(this.L());
+            ChessEngine.h();
+            ChessEngine.a(this.L());
             ba = 0;
             j = false;
         } else {
             if (this.l == null) {
                 this.l = new Vector();
             }
-            j = g.b(1);
+            j = ChessEngine.b(1);
         }
         ChessR.k = 0;
-        c.j();
-        c.k();
-        System.arraycopy(g.a, 0, ChessR.o, 0, 64);
+        ChessCanvas.j();
+        ChessCanvas.k();
+        System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         ChessR.k = 1;
         c.a();
         bb = -4132;
         this.ez = false;
         ChessR.r = 0;
         ChessR.s = 0;
-        d.G = 0;
+        GameConfig.G = 0;
         this.aF();
         ew = false;
         ChessR.e = 3;
         ChessR.f = 1;
         this.X();
-        if (d.L) {
+        if (GameConfig.L) {
             this.bm = 0;
         }
         this.W = false;
@@ -1836,7 +1843,7 @@ implements Runnable {
         this.dI = -4132;
         et = new Vector();
         this.dX = false;
-        d.f = false;
+        GameConfig.f = false;
         this.a(259, true);
     }
 
@@ -1886,7 +1893,7 @@ implements Runnable {
     }
 
     private void r(Graphics graphics) {
-        c.V(graphics);
+        ChessCanvas.V(graphics);
         int n = bz - 93 + 15;
         int n2 = n - 22;
         graphics.setColor(0x575757);
@@ -1933,13 +1940,13 @@ implements Runnable {
         this.g();
         this.b(0);
         this.q();
-        this.bq = c.S(512);
+        this.bq = ChessCanvas.S(512);
         this.bp = 0;
     }
 
     private int L() {
-        if (d.L) {
-            int n = this.Y[d.w + 1][this.U][this.ae];
+        if (GameConfig.L) {
+            int n = this.Y[GameConfig.w + 1][this.U][this.ae];
             this.E = n + 1;
             return n;
         }
@@ -1952,9 +1959,9 @@ implements Runnable {
         this.bu();
         this.bt();
         this.v();
-        d.M = false;
+        GameConfig.M = false;
         this.I();
-        d.G = 0;
+        GameConfig.G = 0;
         this.aS |= 4;
         System.out.println("3333333333333333333333333333333333");
     }
@@ -1988,7 +1995,7 @@ implements Runnable {
     }
 
     private void O() {
-        int n = c.N();
+        int n = ChessCanvas.N();
         System.out.println("PlayStage.EventAction()_event = " + n);
         switch (n) {
             case 666: {
@@ -2003,7 +2010,7 @@ implements Runnable {
                 return;
             }
             case 1000: {
-                if (d.L) {
+                if (GameConfig.L) {
                     this.c();
                 }
             }
@@ -2022,14 +2029,14 @@ implements Runnable {
             }
         }
         if (bL != 0 && bk != 2) {
-            c.h();
+            ChessCanvas.h();
         }
         ChessR.c();
     }
 
     private void P() {
         bu = 666;
-        if (d.E == 1 && d.F == 1) {
+        if (GameConfig.E == 1 && GameConfig.F == 1) {
             this.aF.b();
             this.aG.b();
         }
@@ -2040,7 +2047,7 @@ implements Runnable {
             this.da = new Image[3];
             this.db = 0;
             this.a("getitem");
-            this.cZ = d.C == 0 || d.C == 1 ? this.b.e(3) : this.b.e(3 + d.C - 1);
+            this.cZ = GameConfig.C == 0 || GameConfig.C == 1 ? this.b.e(3) : this.b.e(3 + GameConfig.C - 1);
             int n = 0;
             while (n < this.da.length) {
                 this.da[n] = this.b.e(n);
@@ -2213,13 +2220,13 @@ implements Runnable {
         if (ChessR.t) {
             return;
         }
-        g.d();
+        ChessEngine.d();
         bu = 2;
         this.ez = false;
     }
 
     private void X() {
-        LittleEndianInt[] iArray = c.i();
+        LittleEndianInt[] iArray = ChessCanvas.i();
         if (iArray == null) {
             return;
         }
@@ -2304,7 +2311,7 @@ implements Runnable {
     }
 
     private void v(Graphics graphics) {
-        if (g.d && bu >= 2 && bu <= 9 || bu == 158) {
+        if (ChessEngine.d && bu >= 2 && bu <= 9 || bu == 158) {
             graphics.drawImage(this.aZ[aT % 5], by, bz, 3);
         }
     }
@@ -2326,7 +2333,7 @@ implements Runnable {
     }
 
     private void w(Graphics graphics) {
-        c.a(graphics, this.aM);
+        ChessCanvas.a(graphics, this.aM);
         this.W(graphics);
         this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
     }
@@ -2334,7 +2341,7 @@ implements Runnable {
     private void x(Graphics graphics) {
         System.out.println("PlayStage.d_storyTalk()");
         if (this.cS == -4132) {
-            c.V(graphics);
+            ChessCanvas.V(graphics);
             return;
         }
         if (!this.dg) {
@@ -2496,9 +2503,9 @@ implements Runnable {
                 b.a(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
                 return;
             }
-            c.V(graphics);
+            ChessCanvas.V(graphics);
             this.ab();
-            d.f = true;
+            GameConfig.f = true;
             this.a(259, true);
             return;
         }
@@ -2517,8 +2524,8 @@ implements Runnable {
     }
 
     private void af() {
-        if (d.N != -4132 && ++d.N == 18) {
-            d.N = -4132;
+        if (GameConfig.N != -4132 && ++GameConfig.N == 18) {
+            GameConfig.N = -4132;
             this.M();
         }
     }
@@ -2541,13 +2548,13 @@ implements Runnable {
         if (n <= 3) {
             n8 = 156 * n * n / 9;
             n9 = n5 * n * n / 9;
-            c.a(graphics, by, n3, n8, n9, 3);
+            ChessCanvas.a(graphics, by, n3, n8, n9, 3);
         } else if (n < 15) {
-            c.a(graphics, by, n3, 156, n5, 3);
+            ChessCanvas.a(graphics, by, n3, 156, n5, 3);
             graphics.setColor(0xFFFFFF);
             int n10 = 0;
             n10 = bu == 888 || bu == 40 ? n7 + 0 + n6 + 4 : n7 + 0;
-            d.T = 0;
+            GameConfig.T = 0;
             this.bZ = n10 + 5;
             this.a(this.ce, this.cy, this.cx, this.co);
             if (bu == 888 || bu == 40) {
@@ -2567,7 +2574,7 @@ implements Runnable {
             }
             n8 = 156 * (18 - n) * (18 - n) / 9;
             n9 = n5 * (18 - n) * (18 - n) / 9;
-            c.a(graphics, by, n3, n8, n9, 3);
+            ChessCanvas.a(graphics, by, n3, n8, n9, 3);
         }
         return false;
     }
@@ -2578,11 +2585,11 @@ implements Runnable {
         if (n6 <= n4) {
             n7 = n2 * n6 * n6 / (n4 * n4);
             n8 = n3 * n6 * n6 / (n4 * n4);
-            c.a(graphics, by, n, n7, n8, 3);
+            ChessCanvas.a(graphics, by, n, n7, n8, 3);
             return 0;
         }
         if (n6 < n5 - n4) {
-            c.a(graphics, by, n, n2, n3, 3);
+            ChessCanvas.a(graphics, by, n, n2, n3, 3);
             return 1;
         }
         if (n6 >= n5) {
@@ -2590,21 +2597,21 @@ implements Runnable {
         }
         n7 = n2 * (n5 - n6) * (n5 - n6) / (n4 * n4);
         n8 = n3 * (n5 - n6) * (n5 - n6) / (n4 * n4);
-        c.a(graphics, by, n, n7, n8, 3);
+        ChessCanvas.a(graphics, by, n, n7, n8, 3);
         return 0;
     }
 
     private void z(Graphics graphics) {
         graphics.drawImage(this.df, by, bz + -60, 3);
         this.T(graphics);
-        if (d.N != -4132) {
-            this.a(graphics, d.N, 18);
+        if (GameConfig.N != -4132) {
+            this.a(graphics, GameConfig.N, 18);
         }
     }
 
     private void ag() {
         this.br = 595;
-        d.M = true;
+        GameConfig.M = true;
         this.ee = true;
         this.bm = 10;
         this.ef = 0;
@@ -2675,7 +2682,7 @@ implements Runnable {
             ++n2;
         }
         String[] stringArray = new String[]{"e_bg1"};
-        d.D = 0;
+        GameConfig.D = 0;
         this.bw();
         this.br();
         this.bu();
@@ -2719,7 +2726,7 @@ implements Runnable {
         this.a("ending");
         this.v[0] = this.b.e(2 + n);
         this.b.b();
-        c.V(graphics);
+        ChessCanvas.V(graphics);
     }
 
     private void B(Graphics graphics) {
@@ -2741,8 +2748,8 @@ implements Runnable {
             graphics.drawImage(this.v[n4], n, 0 + this.v[0].getHeight(), 36);
         }
         if (!eh) {
-            eh = c.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
-        } else if (!ei && this.dz && (ei = c.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
+            eh = ChessCanvas.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
+        } else if (!ei && this.dz && (ei = ChessCanvas.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
             if (this.U == 7) {
                 this.U = 0;
                 this.f();
@@ -2754,15 +2761,15 @@ implements Runnable {
                 this.a(graphics, this.dh);
             } else if (this.dh == 3) {
                 this.Z = 0;
-                d.x = false;
+                GameConfig.x = false;
                 this.n();
                 this.bw();
                 this.U = 7;
                 this.bm = 0;
-                d.f = true;
+                GameConfig.f = true;
                 this.a(259, true);
             }
-            c.V(graphics);
+            ChessCanvas.V(graphics);
             return;
         }
         if (eh && !this.dz) {
@@ -2889,11 +2896,11 @@ implements Runnable {
                 return;
             }
             case 10: {
-                this.h(c.am());
+                this.h(ChessCanvas.am());
                 return;
             }
             case 11: {
-                this.h(c.an());
+                this.h(ChessCanvas.an());
                 return;
             }
             case 12: {
@@ -2909,7 +2916,7 @@ implements Runnable {
                 return;
             }
             case 15: {
-                this.h(c.ar());
+                this.h(ChessCanvas.ar());
                 return;
             }
             case 16: {
@@ -2936,9 +2943,9 @@ implements Runnable {
             this.aF();
             this.dt = -4132;
             this.ak = new Image[2];
-            this.a(String.valueOf(d.C) + "_imgText");
-            this.ak[0] = this.b.e(d.Y);
-            this.ak[1] = this.b.e(d.Z);
+            this.a(String.valueOf(GameConfig.C) + "_imgText");
+            this.ak[0] = this.b.e(GameConfig.Y);
+            this.ak[1] = this.b.e(GameConfig.Z);
             this.b.b();
             this.b(24, false);
             this.a("ui_effect");
@@ -2980,7 +2987,7 @@ implements Runnable {
             n = nArray[n3];
             int n4 = 0;
             while (n4 < 64) {
-                if (n == g.a[n4]) {
+                if (n == ChessEngine.a[n4]) {
                     return false;
                 }
                 ++n4;
@@ -2999,7 +3006,7 @@ implements Runnable {
             n = nArray[n3];
             int n4 = 0;
             while (n4 < 64) {
-                if (n == g.a[n4]) {
+                if (n == ChessEngine.a[n4]) {
                     int n5 = n3;
                     nArray4[n5] = nArray4[n5] + 1;
                 }
@@ -3014,7 +3021,7 @@ implements Runnable {
             }
             ++n3;
         }
-        if (c.a(nArray3)) {
+        if (ChessCanvas.a(nArray3)) {
             return 0;
         }
         return -4132;
@@ -3023,7 +3030,7 @@ implements Runnable {
     private static boolean i(int n) {
         int n2 = 0;
         while (n2 < 64) {
-            if (n == g.a[n2]) {
+            if (n == ChessEngine.a[n2]) {
                 return true;
             }
             ++n2;
@@ -3039,12 +3046,12 @@ implements Runnable {
             if (ChessR.r == nArray[n3] && ChessR.s == n) {
                 return 0;
             }
-            if (c.i(nArray[n3])) {
+            if (ChessCanvas.i(nArray[n3])) {
                 bl = false;
             }
             ++n3;
         }
-        if (bl || !c.i(n)) {
+        if (bl || !ChessCanvas.i(n)) {
             return 1;
         }
         return -4132;
@@ -3080,7 +3087,7 @@ implements Runnable {
         int n = 0;
         int n2 = 0;
         while (n2 < 64) {
-            if (g.a[n2] < 0 && ++n > 2) break;
+            if (ChessEngine.a[n2] < 0 && ++n > 2) break;
             ++n2;
         }
         if (n < 3) {
@@ -3099,7 +3106,7 @@ implements Runnable {
             return 1;
         }
         int[] nArray = new int[]{-2};
-        if (c.a(nArray)) {
+        if (ChessCanvas.a(nArray)) {
             return 0;
         }
         return -4132;
@@ -3109,7 +3116,7 @@ implements Runnable {
         if (bu == 9) {
             return 0;
         }
-        if (!c.i(1)) {
+        if (!ChessCanvas.i(1)) {
             return 1;
         }
         return -4132;
@@ -3126,7 +3133,7 @@ implements Runnable {
     }
 
     private int as() {
-        if (!c.i(1)) {
+        if (!ChessCanvas.i(1)) {
             return 1;
         }
         if (dv == 0 && ChessR.r == 1) {
@@ -3143,7 +3150,7 @@ implements Runnable {
     private void at() {
         switch (bu) {
             case 0: {
-                if (!this.aG() || !d.L) break;
+                if (!this.aG() || !GameConfig.L) break;
                 this.aH();
                 return;
             }
@@ -3211,7 +3218,7 @@ implements Runnable {
                     this.bp = 2;
                     return;
                 }
-                if (d.H != 12) break;
+                if (GameConfig.H != 12) break;
                 this.f();
                 return;
             }
@@ -3227,9 +3234,9 @@ implements Runnable {
                 return;
             }
             case 444: {
-                if (this.aE.g || d.E == 0 || d.F == 0) {
+                if (this.aE.g || GameConfig.E == 0 || GameConfig.F == 0) {
                     this.O();
-                    c.k();
+                    ChessCanvas.k();
                     return;
                 }
                 this.aE.a();
@@ -3245,16 +3252,16 @@ implements Runnable {
                 }
                 if (d.E == 0 || d.F == 0) {
                     if (bL == 1 && bk != 2) {
-                        c.h();
+                        ChessCanvas.h();
                     }
                     ChessR.c();
-                    c.k();
+                    ChessCanvas.k();
                     bb = -4132;
                     return;
                 }
                 if (this.aF.g && this.aG.g) {
                     this.O();
-                    c.k();
+                    ChessCanvas.k();
                     bb = -4132;
                     return;
                 }
@@ -3428,13 +3435,13 @@ implements Runnable {
         int n3 = this.dA.getHeight();
         graphics.drawImage(this.dA, n, 0, 20);
         if (!eh) {
-            eh = c.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
-        } else if (!ei && this.dz && (ei = c.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
+            eh = ChessCanvas.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
+        } else if (!ei && this.dz && (ei = ChessCanvas.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
             if (++this.dy == 4) {
                 this.bD();
                 this.ay();
                 bG = false;
-                c.V(graphics);
+                ChessCanvas.V(graphics);
                 return;
             }
             this.ax();
@@ -3656,7 +3663,7 @@ implements Runnable {
         this.bt = bu;
         bu = 100;
         this.bp = bk == 2 ? 2 : 0;
-        this.bq = c.S(100);
+        this.bq = ChessCanvas.S(100);
         this.dD = 0;
         this.dC = true;
         this.dE = 0;
@@ -3728,7 +3735,7 @@ implements Runnable {
         int n;
         int n2 = bB - 70 - 5 - 24;
         n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += 70 / (this.dD + 1) - 24) : bB - 70 - 5 - 24;
-        c.a(graphics, by, n2, 170, 90, 17);
+        ChessCanvas.a(graphics, by, n2, 170, 90, 17);
         int n3 = by - 55;
         int n4 = n2 + 6;
         this.b.a(graphics, this.cf[this.bp], by, n4 + 6, 3, 1);
@@ -3785,16 +3792,16 @@ implements Runnable {
         this.b.a(graphics, this.al, n3 + 90 + 4 + 10 + 20, n4 + 6 + 20, this.aw[this.bp], 3);
         if (this.dB == -4132) {
             n7 = n5 + 14 * (this.bp * 2) - 2;
-            c.a(graphics, this.an[0], n7 + 20 + 4, n6, 2, 0, this.dE, 24);
-            c.a(graphics, this.an[1], n7, n6, 2, 1, this.dE, 24);
-            c.a(graphics, this.an[2], n7, n6 + 20 + 3, 2, 2, this.dE, 24);
-            c.a(graphics, this.an[3], n7 + 20 + 3, n6 + 20 + 4, 2, 3, this.dE, 24);
+            ChessCanvas.a(graphics, this.an[0], n7 + 20 + 4, n6, 2, 0, this.dE, 24);
+            ChessCanvas.a(graphics, this.an[1], n7, n6, 2, 1, this.dE, 24);
+            ChessCanvas.a(graphics, this.an[2], n7, n6 + 20 + 3, 2, 2, this.dE, 24);
+            ChessCanvas.a(graphics, this.an[3], n7 + 20 + 3, n6 + 20 + 4, 2, 3, this.dE, 24);
         }
         graphics.setColor(0);
         this.bZ = n6 + 20 + 8;
         this.a(this.cg[this.bp], this.cy, this.cx, this.co);
         if (d.H != -4132) {
-            int n8 = c.a(graphics, bz, 176, 40, 2, 16, d.H);
+            int n8 = ChessCanvas.a(graphics, bz, 176, 40, 2, 16, d.H);
             graphics.setColor(0xFFFFFF);
             if (n8 == 1) {
                 this.b.a(graphics, this.ce[0], by, bz - 8, 17, 0);
@@ -3809,12 +3816,12 @@ implements Runnable {
     }
 
     private void k(int n) {
-        c.bE();
+        ChessCanvas.bE();
         this.dH = b.d(1, 5);
-        g.d();
+        ChessEngine.d();
         au = true;
-        g.a(this.dH, n);
-        System.arraycopy(g.a, 0, ChessR.o, 0, 64);
+        ChessEngine.a(this.dH, n);
+        System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         bG = true;
         this.dI = 0;
         try {
@@ -3853,7 +3860,7 @@ implements Runnable {
         int n3 = 0;
         while (n3 < n) {
             this.dG = (ActionPair)this.l.elementAt(n3);
-            if (g.a[this.dG.b] == 0) {
+            if (ChessEngine.a[this.dG.b] == 0) {
                 nArray[n3] = 5;
                 ++n2;
             }
@@ -3861,7 +3868,7 @@ implements Runnable {
                 case 1: {
                     int n4 = 8;
                     while (n4 < 16) {
-                        if (g.a[n4] == 0) {
+                        if (ChessEngine.a[n4] == 0) {
                             ++n2;
                             int n5 = n3;
                             nArray[n5] = nArray[n5] + 1;
@@ -3872,43 +3879,43 @@ implements Runnable {
                     break;
                 }
                 case 2: {
-                    if (g.a[1] == 0) {
+                    if (ChessEngine.a[1] == 0) {
                         ++n2;
                         int n6 = n3;
                         nArray[n6] = nArray[n6] + 1;
                     }
-                    if (g.a[6] != 0) break;
+                    if (ChessEngine.a[6] != 0) break;
                     ++n2;
                     int n7 = n3;
                     nArray[n7] = nArray[n7] + 1;
                     break;
                 }
                 case 3: {
-                    if (g.a[2] == 0) {
+                    if (ChessEngine.a[2] == 0) {
                         ++n2;
                         int n8 = n3;
                         nArray[n8] = nArray[n8] + 1;
                     }
-                    if (g.a[5] != 0) break;
+                    if (ChessEngine.a[5] != 0) break;
                     ++n2;
                     int n9 = n3;
                     nArray[n9] = nArray[n9] + 1;
                     break;
                 }
                 case 4: {
-                    if (g.a[0] == 0) {
+                    if (ChessEngine.a[0] == 0) {
                         ++n2;
                         int n10 = n3;
                         nArray[n10] = nArray[n10] + 1;
                     }
-                    if (g.a[7] != 0) break;
+                    if (ChessEngine.a[7] != 0) break;
                     ++n2;
                     int n11 = n3;
                     nArray[n11] = nArray[n11] + 1;
                     break;
                 }
                 case 5: {
-                    if (g.a[3] != 0) break;
+                    if (ChessEngine.a[3] != 0) break;
                     ++n2;
                     int n12 = n3;
                     nArray[n12] = nArray[n12] + 1;
@@ -3942,7 +3949,7 @@ implements Runnable {
                 case 1: {
                     n3 = 8;
                     while (n3 < 16) {
-                        if (g.a[n3] == 0) {
+                        if (ChessEngine.a[n3] == 0) {
                             vector.addElement(String.valueOf(n3));
                             break block8;
                         }
@@ -3951,31 +3958,31 @@ implements Runnable {
                     break;
                 }
                 case 2: {
-                    if (g.a[1] == 0) {
+                    if (ChessEngine.a[1] == 0) {
                         vector.addElement("1");
                     }
-                    if (g.a[6] != 0) break;
+                    if (ChessEngine.a[6] != 0) break;
                     vector.addElement("6");
                     break;
                 }
                 case 3: {
-                    if (g.a[2] == 0) {
+                    if (ChessEngine.a[2] == 0) {
                         vector.addElement("2");
                     }
-                    if (g.a[5] != 0) break;
+                    if (ChessEngine.a[5] != 0) break;
                     vector.addElement("5");
                     break;
                 }
                 case 4: {
-                    if (g.a[0] == 0) {
+                    if (ChessEngine.a[0] == 0) {
                         vector.addElement("0");
                     }
-                    if (g.a[7] != 0) break;
+                    if (ChessEngine.a[7] != 0) break;
                     vector.addElement("7");
                     break;
                 }
                 case 5: {
-                    if (g.a[3] != 0) break;
+                    if (ChessEngine.a[3] != 0) break;
                     vector.addElement("3");
                 }
             }
@@ -3991,7 +3998,7 @@ implements Runnable {
             this.dL = 0;
             this.l(-5);
         }
-        System.arraycopy(g.a, 0, ChessR.o, 0, 64);
+        System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         try {
             this.dJ = Image.createImage((String)"/img/resurrection.png");
             if (bi) {
@@ -4015,7 +4022,7 @@ implements Runnable {
     private void I(Graphics graphics) {
         int n = bz - 30;
         int n2 = bA > 150 ? 176 : 96;
-        c.a(graphics, by, n, n2, 61, 17);
+        ChessCanvas.a(graphics, by, n, n2, 61, 17);
         graphics.setColor(0xDDDDDD);
         this.b.a(graphics, this.cf[14], by, (n += 5) + 5, 17, 1);
         this.b.a(graphics, this.cf[15], by, n + 26, 17, 1);
@@ -4026,7 +4033,7 @@ implements Runnable {
             case -5: 
             case 49: 
             case 50: {
-                c.bE();
+                ChessCanvas.bE();
                 if (n == 49 || n == -5) {
                     if (this.dL != 0) {
                         this.dG.b = this.eA;
@@ -4039,12 +4046,12 @@ implements Runnable {
                 int n2 = this.bp;
                 this.aw[n2] = this.aw[n2] - 1;
                 this.bJ = null;
-                g.a(this.dH, this.dG.b);
+                ChessEngine.a(this.dH, this.dG.b);
                 bG = true;
                 bu = 115;
                 this.dI = 0;
                 ++ba;
-                System.arraycopy(g.a, 0, ChessR.o, 0, 64);
+                System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
                 this.d(41);
             }
         }
@@ -4086,13 +4093,13 @@ implements Runnable {
 
     private void aC() {
         dK = false;
-        c.h();
+        ChessCanvas.h();
         bG = false;
         this.dI = -4132;
         this.dF = null;
         this.dJ = null;
         System.gc();
-        g.c = null;
+        ChessEngine.c = null;
         dM = true;
     }
 
@@ -4141,7 +4148,7 @@ implements Runnable {
         int n = this.dm != -4132 ? 27 : this.cg[this.dl + 4].length * 17 + 10;
         int n2 = bB - n - 5 - 12;
         n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += n / (this.dD + 1)) : bB - n - 5;
-        c.a(graphics, by, n2, 179, n + 20, 17);
+        ChessCanvas.a(graphics, by, n2, 179, n + 20, 17);
         this.b(graphics, n2);
         graphics.setColor(0x555555);
         graphics.fillRect(0, bB - 12, bA, 12);
@@ -4248,7 +4255,7 @@ implements Runnable {
             this.h(graphics);
             return;
         }
-        c.a(graphics, by, n3, 150, n2, 17);
+        ChessCanvas.a(graphics, by, n3, 150, n2, 17);
         graphics.setColor(0, 0, 255);
         graphics.fillRect(bA - (by + by / 2), n3 + 8 + 18 * this.bp, bA - by, 15);
         int n4 = 0;
@@ -4374,7 +4381,7 @@ implements Runnable {
         int n4 = this.x.getHeight() >> 1;
         b.a(graphics, this.x, this.dN, n2 - n4, n3, n4, 0, 0, 33);
         b.a(graphics, this.x, bA - this.dN, n2 - n4, n3, n4, 0, 1, 17);
-        c.a(graphics, by, n2, 179, n + 20, 17);
+        ChessCanvas.a(graphics, by, n2, 179, n + 20, 17);
         this.b(graphics, n2);
     }
 
@@ -4400,7 +4407,7 @@ implements Runnable {
         if (this.R >= 13) {
             this.R = -5;
         }
-        c.a(graphics, n3, n5, n2, n4, 20);
+        ChessCanvas.a(graphics, n3, n5, n2, n4, 20);
         if (!bi) {
             n = 0;
             while (n < 4) {
@@ -4612,7 +4619,7 @@ implements Runnable {
         try {
             LittleEndianInt[] iArray;
             while (true) {
-                iArray = g.a();
+                iArray = ChessEngine.a();
                 boolean bl = true;
                 if (iArray == null) continue;
                 int n = 0;
@@ -4789,7 +4796,7 @@ implements Runnable {
         if (this.g) {
             return;
         }
-        c.V(graphics);
+        ChessCanvas.V(graphics);
         switch (this.br) {
             case 0: {
                 this.l();
@@ -4943,7 +4950,7 @@ implements Runnable {
                 this.at();
             }
         }
-        c.ba();
+        ChessCanvas.ba();
         this.bb();
     }
 
@@ -5153,12 +5160,12 @@ implements Runnable {
                 case -1: 
                 case 50: {
                     if (--this.bp >= 0) return;
-                    this.bp = c.S(512);
+                    this.bp = ChessCanvas.S(512);
                     return;
                 }
                 case -2: 
                 case 56: {
-                    if (++this.bp <= c.S(512)) return;
+                    if (++this.bp <= ChessCanvas.S(512)) return;
                     this.bp = 0;
                     return;
                 }
@@ -5938,7 +5945,7 @@ implements Runnable {
                         d.f = false;
                         this.a(259, true);
                     }
-                    this.bq = c.S(200);
+                    this.bq = ChessCanvas.S(200);
                     this.bp = 1;
                 } else {
                     this.q();
@@ -5986,7 +5993,7 @@ implements Runnable {
                                 this.b(3);
                                 this.d(39);
                                 this.br = 768;
-                                this.bq = c.S(200);
+                                this.bq = ChessCanvas.S(200);
                                 this.bp = 3;
                                 return;
                             }
@@ -6165,14 +6172,14 @@ implements Runnable {
         this.bn();
         bu = 158;
         this.d(41);
-        g.d();
-        g.a(5);
+        ChessEngine.d();
+        ChessEngine.a(5);
         bG = true;
-        g.c = null;
+        ChessEngine.c = null;
         this.bJ = null;
         d.c();
-        while (g.c == null) {
-            c.ba();
+        while (ChessEngine.c == null) {
+            ChessCanvas.ba();
             this.repaint(0, 0, bA, bB);
             this.serviceRepaints();
             this.e(300);
@@ -6230,7 +6237,7 @@ implements Runnable {
         this.bt = bu;
         bu = 200;
         this.bp = 0;
-        this.bq = c.S(200);
+        this.bq = ChessCanvas.S(200);
         this.b(20, false);
         try {
             System.out.println("i_gmenui_gmenui_gmenu");
@@ -6511,7 +6518,7 @@ implements Runnable {
     private void aW() {
         this.bt = bu;
         bu = 2457;
-        this.bq = c.S(2457);
+        this.bq = ChessCanvas.S(2457);
         this.bp = 0;
         this.aX();
     }
@@ -6537,7 +6544,7 @@ implements Runnable {
         int n = bz - 67;
         if (!d.L) {
             int n2 = 0;
-            c.a(graphics, by, n - 5, 176, 159, 17);
+            ChessCanvas.a(graphics, by, n - 5, 176, 159, 17);
             int n3 = 0;
             while (n3 < 3) {
                 n2 = n + 45 * n3;
@@ -6563,7 +6570,7 @@ implements Runnable {
         }
         if (this.av != -4132) {
             String string = "\uc800\uc7a5 \ud30c\uc77c\uba85\uc744 \uc785\ub825\ud558\uc138\uc694.";
-            c.a(graphics, by, n - 15, 176, 27, 33);
+            ChessCanvas.a(graphics, by, n - 15, 176, 27, 33);
             graphics.setColor(0xFFFFFF);
             graphics.drawString(string, by, n - 19, 33);
         }
@@ -6660,7 +6667,7 @@ implements Runnable {
                 f2.a(graphics, bA - 35 - this.ed[n4][0], n2 - this.ed[n4][1], 20, true);
             }
         }
-        c.a(graphics, 0, n2 - 2, bA, n + 8 + 5, 20);
+        ChessCanvas.a(graphics, 0, n2 - 2, bA, n + 8 + 5, 20);
         this.bZ = n2 + 5;
         System.out.println("situation ====" + d.W);
         System.out.println("nStage=====" + this.U);
@@ -7153,7 +7160,7 @@ implements Runnable {
     }
 
     private byte[] bf() {
-        byte[] byArray = c.bg();
+        byte[] byArray = ChessCanvas.bg();
         return byArray;
     }
 
@@ -7161,10 +7168,10 @@ implements Runnable {
         byte[] byArray = new byte[65];
         int n = 0;
         while (n < 64) {
-            byArray[n] = g.a[n];
+            byArray[n] = ChessEngine.a[n];
             ++n;
         }
-        byArray[64] = (byte)g.m;
+        byArray[64] = (byte)ChessEngine.m;
         return byArray;
     }
 
@@ -7296,22 +7303,22 @@ implements Runnable {
     }
 
     private void b(byte[] byArray) {
-        g.a(byArray);
-        this.bn = g.e();
+        ChessEngine.a(byArray);
+        this.bn = ChessEngine.e();
         bL = this.bn == 1 ? 0 : 1;
-        System.arraycopy(g.a, 0, ChessR.o, 0, 64);
+        System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         ChessR.k = 0;
-        c.j();
-        c.k();
-        g.a(this.L());
+        ChessCanvas.j();
+        ChessCanvas.k();
+        ChessEngine.a(this.L());
         ChessR.k = 1;
     }
 
     private static boolean a(Graphics graphics, int n, int n2, int n3, boolean bl, int n4, int n5, int n6, int n7, boolean bl2) {
         bG = true;
-        int n8 = n6 / d.p + 1;
-        int n9 = n7 / d.q;
-        int n10 = n3 - (d.p - 1) * d.r;
+        int n8 = n6 / GameConfig.p + 1;
+        int n9 = n7 / GameConfig.q;
+        int n10 = n3 - (GameConfig.p - 1) * GameConfig.r;
         graphics.setColor(n);
         if (ej > n3) {
             if (!bl) {
@@ -7321,9 +7328,9 @@ implements Runnable {
             return true;
         }
         int n11 = 0;
-        while (n11 < d.p) {
+        while (n11 < GameConfig.p) {
             int n12;
-            int n13 = n2 - n11 * d.r;
+            int n13 = n2 - n11 * GameConfig.r;
             if (n13 < 0) {
                 n13 = 0;
             }
@@ -7335,7 +7342,7 @@ implements Runnable {
                 n12 = n11 * n8;
             }
             int n15 = 0;
-            while (n15 < d.q) {
+            while (n15 < GameConfig.q) {
                 if (bl2) {
                     graphics.fillRect(n4 + n12, n5, n14, n9);
                 } else {
@@ -7352,19 +7359,19 @@ implements Runnable {
         int n2 = 0;
         switch (n) {
             case 512: {
-                if (d.b) {
-                    n2 = d.h + 1;
+                if (GameConfig.b) {
+                    n2 = GameConfig.h + 1;
                     break;
                 }
                 n2 = d.h;
                 break;
             }
             case 9: {
-                n2 = d.i;
+                n2 = GameConfig.i;
                 break;
             }
             case 200: {
-                n2 = d.j;
+                n2 = GameConfig.j;
                 break;
             }
             case 257: {
@@ -7385,15 +7392,15 @@ implements Runnable {
                 break;
             }
             case 1280: {
-                n2 = d.k;
+                n2 = GameConfig.k;
                 break;
             }
             case 1536: {
-                n2 = d.l;
+                n2 = GameConfig.l;
                 break;
             }
             case 2: {
-                n2 = d.m;
+                n2 = GameConfig.m;
                 break;
             }
             case 3: {
@@ -7401,7 +7408,7 @@ implements Runnable {
                 break;
             }
             case 100: {
-                n2 = d.n;
+                n2 = GameConfig.n;
             }
         }
         return n2;
@@ -8296,7 +8303,7 @@ implements Runnable {
             dataInputStream.readByte();
             int n = 0;
             while (n < 64) {
-                g.b[n] = dataInputStream.readByte();
+                ChessEngine.b[n] = dataInputStream.readByte();
                 ++n;
             }
             dataInputStream.close();
@@ -8727,13 +8734,13 @@ implements Runnable {
         if (ChessR.t) {
             return;
         }
-        g.d();
-        c.aL();
+        ChessEngine.d();
+        ChessCanvas.aL();
         d.c();
     }
 
     public static LittleEndianInt[] i() {
-        return g.o;
+        return ChessEngine.o;
     }
 
     private void Y(Graphics graphics) {
@@ -8905,7 +8912,7 @@ implements Runnable {
                     System.out.println("PlayStage.paintPiece()1111");
                     if (this.dI != -4132 && n == (n8 & 7) && n2 == n8 >>> 3) {
                         if (this.dI < 1 || this.dI == 2) {
-                            c.V(graphics);
+                            ChessCanvas.V(graphics);
                         } else if (this.dI < 2 || this.dI == 3) {
                             c.U(graphics);
                         }
@@ -9000,12 +9007,12 @@ implements Runnable {
         if (ChessR.k != 0) {
             if (n == 4) {
                 dx = bu == 2 ? 0 : 1;
-                c.a(2000);
+                ChessCanvas.a(2000);
                 ew = true;
                 return;
             }
             if (n == 3) {
-                c.a(3000);
+                ChessCanvas.a(3000);
                 ew = true;
             }
         }
@@ -9014,8 +9021,8 @@ implements Runnable {
     public static void k() {
         int n = 0;
         while (n < ChessR.m.length) {
-            if (ChessR.n[n] != g.a[n]) {
-                ChessR.n[n] = g.a[n];
+            if (ChessR.n[n] != ChessEngine.a[n]) {
+                ChessR.n[n] = ChessEngine.a[n];
             }
             ++n;
         }
@@ -9066,9 +9073,9 @@ implements Runnable {
             }
             return;
         }
-        LittleEndianInt[] iArray = c.i();
+        LittleEndianInt[] iArray = ChessCanvas.i();
         int n = ChessR.g + ChessR.h * 8;
-        if (!g.d) {
+        if (!ChessEngine.d) {
             LittleEndianInt i2;
             int n6 = 0;
             while (n6 < iArray.length) {
@@ -9100,9 +9107,9 @@ implements Runnable {
             return;
         }
         byte by = 0;
-        LittleEndianInt[] iArray = c.i();
+        LittleEndianInt[] iArray = ChessCanvas.i();
         this.ey = 0;
-        if (!g.d) {
+        if (!ChessEngine.d) {
             LittleEndianInt i2;
             int n = 0;
             while (n < iArray.length) {
@@ -9138,39 +9145,39 @@ implements Runnable {
         }
         switch (n) {
             case 49: {
-                c.b(-this.bj, this.bj);
+                ChessCanvas.b(-this.bj, this.bj);
                 return;
             }
             case -1: 
             case 50: {
-                c.b(0, this.bj);
+                ChessCanvas.b(0, this.bj);
                 return;
             }
             case 51: {
-                c.b(this.bj, this.bj);
+                ChessCanvas.b(this.bj, this.bj);
                 return;
             }
             case -3: 
             case 52: {
-                c.b(-this.bj, 0);
+                ChessCanvas.b(-this.bj, 0);
                 return;
             }
             case -4: 
             case 54: {
-                c.b(this.bj, 0);
+                ChessCanvas.b(this.bj, 0);
                 return;
             }
             case 55: {
-                c.b(-this.bj, -this.bj);
+                ChessCanvas.b(-this.bj, -this.bj);
                 return;
             }
             case -2: 
             case 56: {
-                c.b(0, -this.bj);
+                ChessCanvas.b(0, -this.bj);
                 return;
             }
             case 57: {
-                c.b(this.bj, -this.bj);
+                ChessCanvas.b(this.bj, -this.bj);
                 return;
             }
             case -5: 
@@ -9179,15 +9186,15 @@ implements Runnable {
                     bK = false;
                     return;
                 }
-                if (!g.d && bK) {
-                    LittleEndianInt[] iArray = c.i();
+                if (!ChessEngine.d && bK) {
+                    LittleEndianInt[] iArray = ChessCanvas.i();
                     int n2 = 0;
                     while (n2 < iArray.length) {
                         if (iArray[n2].a == ChessR.g + ChessR.h * 8 && iArray[n2].b == ChessR.e + ChessR.f * 8) break;
                         ++n2;
                     }
                     if (n2 < iArray.length) {
-                        g.d();
+                        ChessEngine.d();
                         ++ba;
                         if (bk != 2) {
                             int n3 = ChessR.r - 1;
@@ -9259,9 +9266,9 @@ implements Runnable {
 
     private void b(LittleEndianInt i2) {
         if (d != null) {
-            g.d();
+            ChessEngine.d();
         }
-        c.bE();
+        ChessCanvas.bE();
         g.a(i2);
         LittleEndianInt[] iArray = c.i();
         c.j();
@@ -9289,8 +9296,8 @@ implements Runnable {
 
     private static void bE() {
         byte[] byArray = new byte[66];
-        System.arraycopy(g.a, 0, byArray, 0, 64);
-        byArray[64] = (byte)g.m;
+        System.arraycopy(ChessEngine.a, 0, byArray, 0, 64);
+        byArray[64] = (byte)ChessEngine.m;
         byArray[65] = (byte)(j ? 1 : 0);
         et.addElement(byArray);
     }
