@@ -4791,7 +4791,7 @@ implements Runnable {
     private void R(Graphics graphics) {
         graphics.setColor(0);
         graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
-        graphics.drawImage(ResourceManger.b("/" + GameConfig.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
+        graphics.drawImage(ResourceManger.GetImageByImagePath("/" + GameConfig.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
     }
 
     public final void paint(Graphics graphics) {

@@ -51,7 +51,7 @@ public final class ResourceManger {
         return image;
     }
 
-    public static Image b(String string) {
+    public static Image GetImageByImagePath(String string) {
         try {
             return Image.createImage((String)string);
         }
