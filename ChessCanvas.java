@@ -107,7 +107,7 @@ implements Runnable {
     public int[] ay;
     public Image[] az;
     public Image[] aA;
-    public f[] aB;
+    public GameSpritesManager[] aB;
     public Image[] aC;
     public Image[] aD;
     public e aE;
@@ -119,10 +119,10 @@ implements Runnable {
     public static Image aK;
     public int aL;
     public Image[] aM;
-    public f[] aN;
-    public f[] aO;
-    public f[] aP;
-    public f[] aQ;
+    public GameSpritesManager[] aN;
+    public GameSpritesManager[] aO;
+    public GameSpritesManager[] aP;
+    public GameSpritesManager[] aQ;
     public Image[][] aR;
     public int aS;
     public static int aT;
@@ -267,7 +267,7 @@ implements Runnable {
     public boolean dC;
     public int dD;
     public int dE;
-    public f dF;
+    public GameSpritesManager dF;
     public a dG;
     public int dH;
     public int dI;
@@ -415,7 +415,7 @@ implements Runnable {
         this.ay = new int[6];
         this.az = new Image[2];
         this.aA = new Image[2];
-        this.aB = new f[24];
+        this.aB = new GameSpritesManager[24];
         this.aM = null;
         this.aN = null;
         this.aO = null;
@@ -1500,7 +1500,7 @@ implements Runnable {
                     n = image.getWidth() >> 1;
                     n2 = image.getHeight() >> 1;
                 }
-                this.aB[n3] = new f(image, n, n2);
+                this.aB[n3] = new GameSpritesManager(image, n, n2);
             }
             System.gc();
             ++n3;
@@ -3821,7 +3821,7 @@ implements Runnable {
             this.dJ = Image.createImage((String)"/img/makepiece.png");
             if (bi) {
                 String string = "/date/" + this.dH + "w.dmg";
-                this.dF = new f("filename");
+                this.dF = new GameSpritesManager("filename");
                 DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
                 byte[] byArray = this.b(string);
                 dataInputStream.readInt();
@@ -3996,7 +3996,7 @@ implements Runnable {
             this.dJ = Image.createImage((String)"/img/resurrection.png");
             if (bi) {
                 String string = "/date/" + this.dH + "w.dmg";
-                this.dF = new f(string);
+                this.dF = new GameSpritesManager(string);
                 DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
                 byte[] byArray = this.b(string);
                 dataInputStream.readInt();
@@ -6651,7 +6651,7 @@ implements Runnable {
         }
         System.out.println("nStage = " + this.U);
         this.aN[n4].a(graphics, n3 == 1 ? 0 : bA, n2, n3 == 1 ? 20 : 24, n3 != 1);
-        f f2 = null;
+        GameSpritesManager f2 = null;
         f2 = by == 2 ? this.aP[n4] : (by == 3 ? this.aQ[n4] : this.aO[n4]);
         if (by != 1 || aU) {
             if (n3 == 1) {
@@ -7748,19 +7748,19 @@ implements Runnable {
         int n = nArray.length;
         System.out.println("len = " + n);
         this.bu();
-        this.aN = new f[9];
-        this.aP = new f[9];
-        this.aQ = new f[9];
-        this.aO = new f[9];
+        this.aN = new GameSpritesManager[9];
+        this.aP = new GameSpritesManager[9];
+        this.aQ = new GameSpritesManager[9];
+        this.aO = new GameSpritesManager[9];
         Image image = null;
         this.a("char_talk");
         int n2 = 0;
         while (n2 < n) {
             image = this.b.e(nArray[n2]);
-            this.aN[nArray[n2]] = new f(image, 0, image.getHeight());
-            this.aP[nArray[n2]] = new f(this.b.e(nArray[n2] + 27), 0, 0);
-            this.aQ[nArray[n2]] = new f(this.b.e(nArray[n2] + 9), 0, 0);
-            this.aO[nArray[n2]] = new f(this.b.e(nArray[n2] + 18), 0, 0);
+            this.aN[nArray[n2]] = new GameSpritesManager(image, 0, image.getHeight());
+            this.aP[nArray[n2]] = new GameSpritesManager(this.b.e(nArray[n2] + 27), 0, 0);
+            this.aQ[nArray[n2]] = new GameSpritesManager(this.b.e(nArray[n2] + 9), 0, 0);
+            this.aO[nArray[n2]] = new GameSpritesManager(this.b.e(nArray[n2] + 18), 0, 0);
             ++n2;
         }
         this.b.b();
@@ -7832,7 +7832,7 @@ implements Runnable {
                     n = image.getWidth() >> 1;
                     n2 = image.getHeight() >> 1;
                 }
-                this.aB[n4] = new f(image, n, n2);
+                this.aB[n4] = new GameSpritesManager(image, n, n2);
             }
             System.gc();
             ++n4;

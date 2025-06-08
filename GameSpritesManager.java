@@ -10,14 +10,14 @@ import java.io.InputStream;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class f {
+public final class GameSpritesManager {
     public Image a;
     public int b;
     public int c;
     public int d;
     public int e;
 
-    public f(String string) throws Exception {
+    public GameSpritesManager(String string) throws Exception {
         DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
         this.b = -dataInputStream.readInt();
         this.c = -dataInputStream.readInt();
@@ -56,7 +56,7 @@ public final class f {
         return byArray;
     }
 
-    public f(Image image, int n, int n2) {
+    public GameSpritesManager(Image image, int n, int n2) {
         this.a = image;
         this.d = image.getWidth();
         this.e = image.getHeight();
@@ -64,9 +64,9 @@ public final class f {
         this.c = -n2;
     }
 
-    public f(byte[] byArray) throws Exception {
-        this.b = -f.a(byArray, 0);
-        this.c = -f.a(byArray, 4);
+    public GameSpritesManager(byte[] byArray) throws Exception {
+        this.b = -GameSpritesManager.a(byArray, 0);
+        this.c = -GameSpritesManager.a(byArray, 4);
         this.a = Image.createImage((byte[])byArray, (int)8, (int)(byArray.length - 8));
         this.d = this.a.getWidth();
         this.e = this.a.getHeight();

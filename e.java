@@ -8,7 +8,7 @@ import java.io.DataInputStream;
 import javax.microedition.lcdui.Graphics;
 
 public final class e {
-    public f[] a;
+    public GameSpritesManager[] a;
     public int b = 0;
     public byte[][] c;
     public int[][] d;
@@ -22,7 +22,7 @@ public final class e {
         DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
         int n = dataInputStream.readByte();
         int n2 = dataInputStream.readByte();
-        this.a = new f[n];
+        this.a = new GameSpritesManager[n];
         this.c = new byte[n2][];
         this.d = new int[n2][];
         this.e = new int[n2][];
@@ -50,7 +50,7 @@ public final class e {
             l2 = dataInputStream.readLong();
             byte[] byArray = new byte[(int)l2];
             dataInputStream.read(byArray);
-            this.a[n6] = new f(byArray);
+            this.a[n6] = new GameSpritesManager(byArray);
             ++n6;
         }
         dataInputStream.close();
