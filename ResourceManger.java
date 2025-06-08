@@ -70,7 +70,7 @@ public final class ResourceManger {
         return byArray2;
     }
 
-    public static int a(byte[] byArray) {
+    public static int ConvertByteArrayToInt(byte[] byArray) {
         return (byArray[0] << 24) + (byArray[1] << 16) + (byArray[2] << 8) + (byArray[3] << 0);
     }
 

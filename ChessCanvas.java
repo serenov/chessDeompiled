@@ -7157,7 +7157,7 @@ implements Runnable {
         }
         byte[] byArray2 = new byte[4];
         System.arraycopy(byArray, n2, byArray2, 0, 4);
-        int n3 = ResourceManger.a(byArray2);
+        int n3 = ResourceManger.ConvertByteArrayToInt(byArray2);
         if (n3 == 768) {
             GameConfig.x = true;
             return;
