@@ -15,8 +15,9 @@ import javax.microedition.midlet.MIDlet;
 public class ChessR
 extends MIDlet {
     public Display a;
-    public static c b;
-    public static i c;
+
+    public static ChessCanvas b;
+    public static LittleEndianInt c;
     public static int d;
     public static int e;
     public static int f;
@@ -50,7 +51,7 @@ extends MIDlet {
     }
 
     public ChessR() {
-        b = new c(this);
+        b = new ChessCanvas(this);
     }
 
     public void startApp() {
@@ -95,7 +96,7 @@ extends MIDlet {
                 }
                 g.c = null;
                 g.f();
-                i[] iArray = c.e();
+                LittleEndianInt[] iArray = c.e();
                 if (g.a(iArray)) {
                     if (g.b(iArray) == 0) {
                         d.G = g.b() ? 2 : (g.g() >= 3 ? 1 : 0);

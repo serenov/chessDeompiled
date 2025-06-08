@@ -27,7 +27,7 @@ import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 
-public final class c
+public final class ChessCanvas
 extends Canvas
 implements Runnable {
     public ChessR a;
@@ -169,7 +169,7 @@ implements Runnable {
     public static boolean bG;
     public boolean bH;
     public static boolean bI;
-    public i bJ;
+    public LittleEndianInt bJ;
     public static boolean bK;
     public static int bL;
     public int bM;
@@ -350,7 +350,7 @@ implements Runnable {
         ex = 0;
     }
 
-    public c(ChessR chessR) {
+    public ChessCanvas(ChessR chessR) {
         int[] nArray = new int[7];
         nArray[1] = -80;
         nArray[2] = -80;
@@ -1966,7 +1966,7 @@ implements Runnable {
         if (P + 1 >= n2) {
             return;
         }
-        c.Q[c.P++] = n;
+        ChessCanvas.Q[ChessCanvas.P++] = n;
     }
 
     private static int N() {
@@ -1975,7 +1975,7 @@ implements Runnable {
             n = 0;
         } else {
             n = Q[--P];
-            c.Q[c.P] = 0;
+            ChessCanvas.Q[ChessCanvas.P] = 0;
         }
         return n;
     }
@@ -1983,7 +1983,7 @@ implements Runnable {
     public static void a() {
         int n = 0;
         while (n < Q.length) {
-            c.Q[n] = 0;
+            ChessCanvas.Q[n] = 0;
             ++n;
         }
         P = 0;
@@ -2221,7 +2221,7 @@ implements Runnable {
     }
 
     private void X() {
-        i[] iArray = c.i();
+        LittleEndianInt[] iArray = c.i();
         if (iArray == null) {
             return;
         }
@@ -4610,9 +4610,9 @@ implements Runnable {
         bu = 3;
     }
 
-    public static i[] e() {
+    public static LittleEndianInt[] e() {
         try {
-            i[] iArray;
+            LittleEndianInt[] iArray;
             while (true) {
                 iArray = g.a();
                 boolean bl = true;
@@ -4642,7 +4642,7 @@ implements Runnable {
         while (true) {
             try {
                 while (true) {
-                    c c2 = this;
+                    ChessCanvas c2 = this;
                     synchronized (c2) {
                         this.dU = System.currentTimeMillis();
                         if (this.dU - this.dT > this.dV) {
@@ -6273,12 +6273,12 @@ implements Runnable {
                     this.a(false);
                 }
                 int n2 = 5 - this.bo;
-                i[] iArray = c.i();
+                LittleEndianInt[] iArray = c.i();
                 byte by = 0;
                 int n3 = iArray.length;
                 int n4 = 0;
                 while (n4 < n3) {
-                    i i2 = iArray[n4];
+                    LittleEndianInt i2 = iArray[n4];
                     if (i2.a == ChessR.h * 8 + ChessR.g && i2.b == ChessR.f * 8 + ChessR.e && (i2.d == n2 || i2.d == -n2)) {
                         by = i2.b;
                         ChessR.r = (byte)n2;
@@ -8734,7 +8734,7 @@ implements Runnable {
         d.c();
     }
 
-    public static i[] i() {
+    public static LittleEndianInt[] i() {
         return g.o;
     }
 
@@ -9023,7 +9023,7 @@ implements Runnable {
         }
     }
 
-    private void a(Graphics graphics, i i2, int n) {
+    private void a(Graphics graphics, LittleEndianInt i2, int n) {
         if (i2 == null || i2.a == i2.b) {
             return;
         }
@@ -9068,10 +9068,10 @@ implements Runnable {
             }
             return;
         }
-        i[] iArray = c.i();
+        LittleEndianInt[] iArray = c.i();
         int n = ChessR.g + ChessR.h * 8;
         if (!g.d) {
-            i i2;
+            LittleEndianInt i2;
             int n6 = 0;
             while (n6 < iArray.length) {
                 i2 = iArray[n6];
@@ -9102,10 +9102,10 @@ implements Runnable {
             return;
         }
         byte by = 0;
-        i[] iArray = c.i();
+        LittleEndianInt[] iArray = c.i();
         this.ey = 0;
         if (!g.d) {
-            i i2;
+            LittleEndianInt i2;
             int n = 0;
             while (n < iArray.length) {
                 i2 = iArray[n];
@@ -9182,7 +9182,7 @@ implements Runnable {
                     return;
                 }
                 if (!g.d && bK) {
-                    i[] iArray = c.i();
+                    LittleEndianInt[] iArray = c.i();
                     int n2 = 0;
                     while (n2 < iArray.length) {
                         if (iArray[n2].a == ChessR.g + ChessR.h * 8 && iArray[n2].b == ChessR.e + ChessR.f * 8) break;
@@ -9259,13 +9259,13 @@ implements Runnable {
         }
     }
 
-    private void b(i i2) {
+    private void b(LittleEndianInt i2) {
         if (d != null) {
             g.d();
         }
         c.bE();
         g.a(i2);
-        i[] iArray = c.i();
+        LittleEndianInt[] iArray = c.i();
         c.j();
         this.a(i2);
         if (g.a(iArray)) {
@@ -9297,7 +9297,7 @@ implements Runnable {
         et.addElement(byArray);
     }
 
-    public final void a(i i2) {
+    public final void a(LittleEndianInt i2) {
         if ((i2.c & 0xC) == 0) {
             if (i2.d == 0) {
                 byte by = ChessR.m[i2.b];

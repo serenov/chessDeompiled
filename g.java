@@ -12,7 +12,7 @@ implements Runnable {
     public static byte[] a;
     public static byte[] b;
     private byte[] z = new byte[64];
-    public static volatile i c;
+    public static volatile LittleEndianInt c;
     public static volatile boolean d;
     public static int[] e;
     public static int f;
@@ -71,7 +71,7 @@ implements Runnable {
     private int at;
     public static int n;
     private int au;
-    public static i[] o;
+    public static LittleEndianInt[] o;
     private static final byte[] av;
     private static int aw;
     public static final byte[] p;
@@ -274,7 +274,7 @@ implements Runnable {
         R = nArrayArray[n][1];
     }
 
-    public static final void a(i i2) {
+    public static final void a(LittleEndianInt i2) {
         g.c(i2.a());
         g.o();
     }
@@ -460,8 +460,8 @@ implements Runnable {
         ++U;
     }
 
-    private static i d(int n) {
-        return new i(Y[n >>> 8][n & 0xFF] & 0xFF, Y[n >>> 8][n & 0xFF] >>> 8 & 0xFF, Y[n >>> 8][n & 0xFF] >>> 16 & 0xFF, Y[n >>> 8][n & 0xFF] >>> 24);
+    private static LittleEndianInt d(int n) {
+        return new LittleEndianInt(Y[n >>> 8][n & 0xFF] & 0xFF, Y[n >>> 8][n & 0xFF] >>> 8 & 0xFF, Y[n >>> 8][n & 0xFF] >>> 16 & 0xFF, Y[n >>> 8][n & 0xFF] >>> 24);
     }
 
     private static void j() {
@@ -1167,19 +1167,19 @@ implements Runnable {
         }
     }
 
-    public static final i[] a() {
+    public static final LittleEndianInt[] a() {
         return o;
     }
 
     private static void o() {
         int[] nArray = g.p();
-        o = new i[nArray.length];
+        o = new LittleEndianInt[nArray.length];
         int n = 0;
         int n2 = 0;
         while (n2 < 8) {
             int n3 = n2;
             while (n3 < nArray.length) {
-                g.o[n] = new i(nArray[n3] & 0xFF, nArray[n3] >>> 8 & 0xFF, nArray[n3] >>> 16 & 0xFF, nArray[n3] >>> 24);
+                g.o[n] = new LittleEndianInt(nArray[n3] & 0xFF, nArray[n3] >>> 8 & 0xFF, nArray[n3] >>> 16 & 0xFF, nArray[n3] >>> 24);
                 n3 += 8;
                 ++n;
             }
@@ -1588,7 +1588,7 @@ implements Runnable {
         return false;
     }
 
-    public static final boolean a(i[] iArray) {
+    public static final boolean a(LittleEndianInt[] iArray) {
         if (g.b() || k >= 100 || g.g() >= 3) {
             return true;
         }
@@ -1599,7 +1599,7 @@ implements Runnable {
         return H == 0 && I == 0 && g < 400 && h < 400;
     }
 
-    public static final int b(i[] iArray) {
+    public static final int b(LittleEndianInt[] iArray) {
         if (ao < 0) {
             return -1;
         }
@@ -1642,7 +1642,7 @@ implements Runnable {
         if (U > 0 && this.as == -1 && ab != null && (object = g.d(U - 1)) != null) {
             n = 0;
             while (n < ab.length) {
-                if (this.ac[n] != null && ab[n] == ((i)object).a()) {
+                if (this.ac[n] != null && ab[n] == ((LittleEndianInt)object).a()) {
                     this.P = this.ac[n];
                     n2 = this.ad[n];
                 }
@@ -1671,7 +1671,7 @@ implements Runnable {
                 this.c(-100000000, 100000000, n);
                 if (!j || !this.aj) {
                     this.aj = true;
-                    new i(this.at & 0xFF, this.at >>> 8 & 0xFF, this.at >>> 16 & 0xFF, this.at >>> 24);
+                    new LittleEndianInt(this.at & 0xFF, this.at >>> 8 & 0xFF, this.at >>> 16 & 0xFF, this.at >>> 24);
                     this.as = this.at;
                     this.P = this.O;
                 }
@@ -1718,7 +1718,7 @@ implements Runnable {
                 if (!j && ah) {
                     ah = false;
                     this.u();
-                    c = new i(this.as & 0xFF, this.as >>> 8 & 0xFF, this.as >>> 16 & 0xFF, this.as >>> 24);
+                    c = new LittleEndianInt(this.as & 0xFF, this.as >>> 8 & 0xFF, this.as >>> 16 & 0xFF, this.as >>> 24);
                 }
                 while (j || !ah && !ag) {
                     ChessR.a();
@@ -1807,7 +1807,7 @@ implements Runnable {
                 ++n5;
             }
             if (ab.length > 0) {
-                new i(ab[0] & 0xFF, ab[0] >>> 8 & 0xFF, ab[0] >>> 16 & 0xFF, ab[0] >>> 24);
+                new LittleEndianInt(ab[0] & 0xFF, ab[0] >>> 8 & 0xFF, ab[0] >>> 16 & 0xFF, ab[0] >>> 24);
                 n = this.ae[0];
             }
             ++n2;
