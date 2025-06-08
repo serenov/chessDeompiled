@@ -3250,7 +3250,7 @@ implements Runnable {
                         return;
                     }
                 }
-                if (d.E == 0 || d.F == 0) {
+                if (GameConfig.E == 0 || GameConfig.F == 0) {
                     if (bL == 1 && bk != 2) {
                         ChessCanvas.h();
                     }
@@ -3293,8 +3293,8 @@ implements Runnable {
 
     private void au() {
         this.x = null;
-        if (!d.L && bk != 2 && !this.dX) {
-            if (d.G == 20) {
+        if (!GameConfig.L && bk != 2 && !this.dX) {
+            if (GameConfig.G == 20) {
                 if (ba < this.A || this.A == 0) {
                     this.A = ba;
                 }
@@ -3302,12 +3302,12 @@ implements Runnable {
             } else {
                 ++this.H;
             }
-            this.F += this.b(d.G == 20);
+            this.F += this.b(GameConfig.G == 20);
             this.x();
         }
         this.bw();
-        if (d.L) {
-            if (this.U >= 6 && d.G == 20) {
+        if (GameConfig.L) {
+            if (this.U >= 6 && GameConfig.G == 20) {
                 if (this.U == 6) {
                     this.ah();
                 } else {
@@ -3495,18 +3495,18 @@ implements Runnable {
                 graphics.setColor(0x555555);
                 graphics.fillRect(0, bB - 12, bA, 12);
                 if (bk != 2) {
-                    if (!d.I) {
+                    if (!GameConfig.I) {
                         if (this.cE % 4 == 0) {
                             graphics.setColor(16729600);
                             graphics.fillTriangle(n, n2, n3, n4, n5, n6);
                         }
                         this.b.a(graphics, this.cf[10], 0, bB, 36, 1);
                     } else {
-                        if (d.L) {
+                        if (GameConfig.L) {
                             graphics.setColor(0x555555);
                             graphics.fillRect(bA - 72, bB - 43, 72, 38);
                             graphics.setColor(0xDDDDDD);
-                            graphics.fillRect(bA - 70, bB - 42 + 15 * d.J, 70, 13);
+                            graphics.fillRect(bA - 70, bB - 42 + 15 * GameConfig.J, 70, 13);
                             this.b.a(graphics, this.cf[6], bA - 67, bB - 15, 36, 1);
                             this.b.a(graphics, this.cf[7], bA - 67, bB - 30, 36, 1);
                         } else {
@@ -3521,12 +3521,12 @@ implements Runnable {
                     }
                 }
                 if (this.ey == 1) break;
-                int n7 = Math.abs(g.a[ChessR.e + ChessR.f * 8]);
+                int n7 = Math.abs(ChessEngine.a[ChessR.e + ChessR.f * 8]);
                 if (n7 != 0) {
                     this.b.a(graphics, this.cf[n7 - 1], by, bB - 30, 17, 1);
                     b.a(graphics);
                 }
-                if (d.I) break;
+                if (GameConfig.I) break;
                 this.b.a(graphics, this.cf[10], 0, bB, 36, 1);
             }
             case 3: {
@@ -3609,29 +3609,29 @@ implements Runnable {
 
     private void j(int n) {
         bu = n;
-        d.H = 0;
+        GameConfig.H = 0;
         int n2 = 0;
         switch (n) {
             case 1000: {
                 this.bD();
                 this.b(14, false);
-                n2 = d.ad;
+                n2 = GameConfig.ad;
                 break;
             }
             case 2000: {
                 this.bD();
                 this.b(15, false);
-                n2 = d.ae;
+                n2 = GameConfig.ae;
                 break;
             }
             case 3000: {
                 this.bD();
                 this.b(15, false);
-                n2 = d.af;
+                n2 = GameConfig.af;
             }
         }
         try {
-            this.a(String.valueOf(d.C) + "_imgText");
+            this.a(String.valueOf(GameConfig.C) + "_imgText");
             this.aj = this.b.e(n2);
             this.b.b();
             this.a("ui_effect");
@@ -3646,14 +3646,14 @@ implements Runnable {
     private void G(Graphics graphics) {
         int n = this.aj.getWidth();
         int n2 = this.aj.getHeight();
-        if (d.H < 4) {
-            n = n * d.H * d.H / 16;
-            n2 = n2 * d.H * d.H / 16;
+        if (GameConfig.H < 4) {
+            n = n * GameConfig.H * GameConfig.H / 16;
+            n2 = n2 * GameConfig.H * GameConfig.H / 16;
         }
         b.c(graphics, by, bz, n, n2, 3);
         graphics.drawImage(this.aj, by, bz, 3);
         b.a(graphics);
-        if (d.H >= 4) {
+        if (GameConfig.H >= 4) {
             b.a(graphics, this.ag, by - n / 2, bz - n2 / 2, this.ag.getWidth(), this.ag.getHeight() / 3, 0, aT % 3, 3);
             b.a(graphics, this.ah, n / 2 + by, bz - n2 / 2, this.ah.getWidth(), this.ah.getHeight() / 5, 0, aT % 5, 3);
         }
@@ -3686,8 +3686,8 @@ implements Runnable {
     }
 
     private void aA() {
-        if (d.H != -4132) {
-            ++d.H;
+        if (GameConfig.H != -4132) {
+            ++GameConfig.H;
         }
         if (this.dC) {
             if (this.dB == -4132) {
@@ -3740,7 +3740,7 @@ implements Runnable {
         int n4 = n2 + 6;
         this.b.a(graphics, this.cf[this.bp], by, n4 + 6, 3, 1);
         b.a(graphics, n3 + 90 + 4 + 20, n2 + 6 + 20, 20, 13, 0, 0x393939, 0x868686, 1);
-        int n5 = by - 14 * (d.n + 1);
+        int n5 = by - 14 * (GameConfig.n + 1);
         int n6 = n4 + 13 + 4;
         int n7 = 0;
         if (this.dB != -4132) {
@@ -3800,13 +3800,13 @@ implements Runnable {
         graphics.setColor(0);
         this.bZ = n6 + 20 + 8;
         this.a(this.cg[this.bp], this.cy, this.cx, this.co);
-        if (d.H != -4132) {
-            int n8 = ChessCanvas.a(graphics, bz, 176, 40, 2, 16, d.H);
+        if (GameConfig.H != -4132) {
+            int n8 = ChessCanvas.a(graphics, bz, 176, 40, 2, 16, GameConfig.H);
             graphics.setColor(0xFFFFFF);
             if (n8 == 1) {
                 this.b.a(graphics, this.ce[0], by, bz - 8, 17, 0);
             } else if (n8 == 2) {
-                d.H = -4132;
+                GameConfig.H = -4132;
             }
         }
         graphics.setColor(0x555555);
@@ -4065,7 +4065,7 @@ implements Runnable {
             n4 = this.dF.d;
             n5 = this.dF.e;
         }
-        if ((n3 = n5 - ++this.dI * 3) <= 0 || !bi || d.F != 1) {
+        if ((n3 = n5 - ++this.dI * 3) <= 0 || !bi || GameConfig.F != 1) {
             g.l = -1;
             bL = 1;
             if (bu == 1000) {
@@ -4122,14 +4122,14 @@ implements Runnable {
         if (n == -7 && this.dC) {
             this.dC = false;
             this.dD = 4;
-            d.I = false;
-            d.J = 0;
+            GameConfig.I = false;
+            GameConfig.J = 0;
         }
     }
 
     private void aE() {
-        if (d.H != -4132) {
-            ++d.H;
+        if (GameConfig.H != -4132) {
+            ++GameConfig.H;
         }
         if (this.dC) {
             ++this.dD;
@@ -4248,7 +4248,7 @@ implements Runnable {
         if (this.br != 768) {
             return;
         }
-        int n = d.j + 1;
+        int n = GameConfig.j + 1;
         int n2 = 16 + n * 18;
         int n3 = bz - n2 / 2;
         if (this.bS != -4132 || this.bT != -4132) {
@@ -4323,8 +4323,8 @@ implements Runnable {
         this.b(3);
         this.c(1);
         this.d(38);
-        this.a(String.valueOf(d.C) + "_imgText");
-        this.x = this.b.e(d.Y);
+        this.a(String.valueOf(GameConfig.C) + "_imgText");
+        this.x = this.b.e(GameConfig.Y);
         this.b.b();
         bu = 1;
     }
@@ -4443,15 +4443,15 @@ implements Runnable {
 
     public final void d() {
         try {
-            d.H = 0;
+            GameConfig.H = 0;
             bu = 44;
             this.bD();
-            switch (d.G) {
+            switch (GameConfig.G) {
                 case 0: {
                     this.W = true;
                     this.V = false;
-                    this.a(String.valueOf(d.C) + "_imgText");
-                    this.aj = this.b.e(d.ac);
+                    this.a(String.valueOf(GameConfig.C) + "_imgText");
+                    this.aj = this.b.e(GameConfig.ac);
                     this.b.b();
                     dS = 0;
                     this.b(16, false);
@@ -4460,8 +4460,8 @@ implements Runnable {
                 case 1: {
                     this.W = true;
                     this.V = false;
-                    this.a(String.valueOf(d.C) + "_imgText");
-                    this.aj = this.b.e(d.ac);
+                    this.a(String.valueOf(GameConfig.C) + "_imgText");
+                    this.aj = this.b.e(GameConfig.ac);
                     this.b.b();
                     dS = 1;
                     this.b(16, false);
@@ -4469,8 +4469,8 @@ implements Runnable {
                 }
                 case 2: {
                     this.W = true;
-                    this.a(String.valueOf(d.C) + "_imgText");
-                    this.aj = this.b.e(d.ac);
+                    this.a(String.valueOf(GameConfig.C) + "_imgText");
+                    this.aj = this.b.e(GameConfig.ac);
                     this.b.b();
                     this.V = false;
                     dS = 2;
@@ -4478,8 +4478,8 @@ implements Runnable {
                     break;
                 }
                 case 20: {
-                    this.a(String.valueOf(d.C) + "_imgText");
-                    this.aj = this.b.e(d.aa);
+                    this.a(String.valueOf(GameConfig.C) + "_imgText");
+                    this.aj = this.b.e(GameConfig.aa);
                     this.b.b();
                     this.V = true;
                     this.bm = 7;
@@ -4487,8 +4487,8 @@ implements Runnable {
                     break;
                 }
                 case 30: {
-                    this.a(String.valueOf(d.C) + "_imgText");
-                    this.aj = this.b.e(d.ab);
+                    this.a(String.valueOf(GameConfig.C) + "_imgText");
+                    this.aj = this.b.e(GameConfig.ab);
                     this.b.b();
                     this.V = false;
                     this.bm = 8;
@@ -4560,10 +4560,10 @@ implements Runnable {
             if (!bi) {
                 this.aB[n3 == 1 ? ((n + n2) % 2 == 0 ? 22 : 23) : ((n + n2) % 2 == 0 ? 20 : 21)].a(graphics, this.ae(n) + this.aL + be, this.ag(n2) + this.aL + bf);
             } else {
-                int[] nArray = new int[]{bg + d.S[n + n2 * 9], bg + d.S[n + n2 * 9 + 1], bg + d.S[n + (n2 + 1) * 9 + 1], bg + d.S[n + (n2 + 1) * 9]};
-                int[] nArray2 = new int[]{bh + d.R[n2], bh + d.R[n2], bh + d.R[n2 + 1], bh + d.R[n2 + 1]};
-                int[] nArray3 = new int[]{bg + d.S[n + n2 * 9] + 1, bg + d.S[n + n2 * 9 + 1] + 1, bg + d.S[n + (n2 + 1) * 9 + 1] + 1, bg + d.S[n + (n2 + 1) * 9] + 1};
-                int[] nArray4 = new int[]{bh + d.R[n2] - 1, bh + d.R[n2] - 1, bh + d.R[n2 + 1] - 1, bh + d.R[n2 + 1] - 1};
+                int[] nArray = new int[]{bg + GameConfig.S[n + n2 * 9], bg + GameConfig.S[n + n2 * 9 + 1], bg + GameConfig.S[n + (n2 + 1) * 9 + 1], bg + GameConfig.S[n + (n2 + 1) * 9]};
+                int[] nArray2 = new int[]{bh + GameConfig.R[n2], bh + GameConfig.R[n2], bh + GameConfig.R[n2 + 1], bh + GameConfig.R[n2 + 1]};
+                int[] nArray3 = new int[]{bg + GameConfig.S[n + n2 * 9] + 1, bg + GameConfig.S[n + n2 * 9 + 1] + 1, bg + GameConfig.S[n + (n2 + 1) * 9 + 1] + 1, bg + GameConfig.S[n + (n2 + 1) * 9] + 1};
+                int[] nArray4 = new int[]{bh + GameConfig.R[n2] - 1, bh + GameConfig.R[n2] - 1, bh + GameConfig.R[n2 + 1] - 1, bh + GameConfig.R[n2 + 1] - 1};
                 int n5 = 0;
                 if (n3 == 0) {
                     n5 = 0xF9FF94;
@@ -4754,13 +4754,13 @@ implements Runnable {
                     bG = true;
                     eh = true;
                     this.ee = true;
-                    d.M = false;
+                    GameConfig.M = false;
                     ej = 0;
                     this.ef = 0;
                     this.dg = false;
                     int n2 = this.U > 6 ? 6 : this.U;
                     this.T[n2] = 1;
-                    d.D = 1;
+                    GameConfig.D = 1;
                     this.f();
                     this.bd();
                     this.cS = 0;
@@ -4784,7 +4784,7 @@ implements Runnable {
     private void R(Graphics graphics) {
         graphics.setColor(0);
         graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
-        graphics.drawImage(b.b("/" + d.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
+        graphics.drawImage(b.b("/" + GameConfig.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
     }
 
     public final void paint(Graphics graphics) {
@@ -5093,20 +5093,20 @@ implements Runnable {
     private void p(int n) {
         switch (n) {
             case -2: {
-                if (d.v < 5) {
-                    ++d.v;
+                if (GameConfig.v < 5) {
+                    ++GameConfig.v;
                     return;
                 }
-                if (d.v < 5) break;
-                d.v = 0;
+                if (GameConfig.v < 5) break;
+                GameConfig.v = 0;
                 return;
             }
             case -1: {
-                if (d.v > 0) {
-                    --d.v;
+                if (GameConfig.v > 0) {
+                    --GameConfig.v;
                     return;
                 }
-                if (d.v > 0) break;
+                if (GameConfig.v > 0) break;
                 d.v = 5;
                 return;
             }
@@ -5709,14 +5709,14 @@ implements Runnable {
 
     private void G(int n) {
         if (n == 49) {
-            d.E = 1;
+            GameConfig.E = 1;
             bi = true;
             this.J();
             this.H();
             return;
         }
         if (n == 50) {
-            d.E = 0;
+            GameConfig.E = 0;
             bi = false;
             this.J();
             this.H();
@@ -5724,7 +5724,7 @@ implements Runnable {
     }
 
     private void H(int n) {
-        if (n == 48 && d.g) {
+        if (n == 48 && GameConfig.g) {
             this.bz();
         }
         block0 : switch (bu) {
@@ -5784,7 +5784,7 @@ implements Runnable {
                 return;
             }
             case 2: {
-                if (!d.I) {
+                if (!GameConfig.I) {
                     if (n == 48) {
                         this.Z();
                     }
@@ -5794,39 +5794,39 @@ implements Runnable {
                     if (n == 42 || n == 35) break;
                     if (n == -7) {
                         if (bk == 2) break;
-                        d.I = true;
+                        GameConfig.I = true;
                         return;
                     }
                     this.ai(n);
                     return;
                 }
                 if (n == -6 || n == -5) {
-                    switch (d.J) {
+                    switch (GameConfig.J) {
                         case 0: {
                             if (bk == 2) break block0;
                             this.az();
                             return;
                         }
                         case 1: {
-                            if (!d.L) break block0;
+                            if (!GameConfig.L) break block0;
                             this.aD();
                         }
                     }
                     return;
                 }
                 if (n == 50 || n == -1) {
-                    if (!d.L || --d.J >= 0) break;
-                    d.J = 1;
+                    if (!GameConfig.L || --GameConfig.J >= 0) break;
+                    GameConfig.J = 1;
                     return;
                 }
                 if (n == 56 || n == -2) {
-                    if (!d.L || ++d.J <= d.K) break;
-                    d.J = 0;
+                    if (!GameConfig.L || ++GameConfig.J <= GameConfig.K) break;
+                    GameConfig.J = 0;
                     return;
                 }
                 if (n != -7) break;
-                d.I = false;
-                d.J = 0;
+                GameConfig.I = false;
+                GameConfig.J = 0;
             }
         }
     }
@@ -5834,13 +5834,13 @@ implements Runnable {
     private boolean I(int n) {
         boolean bl = false;
         if (n == -5 || n == -6 || n == -7) {
-            if (this.ef < d.U[this.U][this.bm].length - 1 && n == -7) {
+            if (this.ef < GameConfig.U[this.U][this.bm].length - 1 && n == -7) {
                 this.ee = false;
                 bl = true;
             } else if (this.ef < d.U[this.U][this.bm].length - 1 || n == -6 || n == -5) {
                 ++this.ef;
             }
-            if (this.ef >= d.U[this.U][this.bm].length) {
+            if (this.ef >= GameConfig.U[this.U][this.bm].length) {
                 if (n == -6 || n == -5) {
                     this.ee = false;
                     bl = true;
@@ -5854,8 +5854,8 @@ implements Runnable {
 
     private void J(int n) {
         int n2;
-        int n3 = n2 = d.E == 1 ? 0 : 1;
-        if (d.L) {
+        int n3 = n2 = GameConfig.E == 1 ? 0 : 1;
+        if (GameConfig.L) {
             --n2;
         }
         block0 : switch (n) {
@@ -5877,49 +5877,49 @@ implements Runnable {
             case 54: {
                 switch (this.bp) {
                     case 1: {
-                        if (d.d != 6) break block0;
+                        if (GameConfig.d != 6) break block0;
                         if (n == -3 || n == 52) {
-                            if (--d.v < 0) {
-                                d.v = 5;
+                            if (--GameConfig.v < 0) {
+                                GameConfig.v = 5;
                             }
-                        } else if ((n == -4 || n == 54) && ++d.v > 5) {
-                            d.v = 0;
+                        } else if ((n == -4 || n == 54) && ++GameConfig.v > 5) {
+                            GameConfig.v = 0;
                         }
-                        this.bP[1] = d.v;
-                        d.C = this.bP[1];
+                        this.bP[1] = GameConfig.v;
+                        GameConfig.C = this.bP[1];
                         return;
                     }
                     case 2: {
                         if (n == -3 || n == 52) {
-                            if (--d.A < 0) {
-                                d.A = 2;
+                            if (--GameConfig.A < 0) {
+                                GameConfig.A = 2;
                             }
-                        } else if ((n == -4 || n == 54) && ++d.A > 2) {
-                            d.A = 0;
+                        } else if ((n == -4 || n == 54) && ++GameConfig.A > 2) {
+                            GameConfig.A = 0;
                         }
-                        this.bP[0] = d.A == 0 ? 0 : 1;
+                        this.bP[0] = GameConfig.A == 0 ? 0 : 1;
                         this.bD();
                         this.b(0, false);
                         return;
                     }
                     case 3: {
-                        d.E ^= 1;
+                        GameConfig.E ^= 1;
                         return;
                     }
                     case 4: {
-                        d.B ^= 1;
+                        GameConfig.B ^= 1;
                         return;
                     }
                     case 5: {
-                        if (d.E == 1) {
-                            d.F ^= 1;
+                        if (GameConfig.E == 1) {
+                            GameConfig.F ^= 1;
                             return;
                         }
                         if (n == -3 || n == 52) {
-                            d.w ^= 1;
+                            GameConfig.w ^= 1;
                             return;
                         }
-                        d.w ^= 1;
+                        GameConfig.w ^= 1;
                         return;
                     }
                     case 6: {
@@ -5939,10 +5939,10 @@ implements Runnable {
                     this.g();
                     this.b(3);
                     this.d(39);
-                    if (bi != (d.E == 1)) {
+                    if (bi != (GameConfig.E == 1)) {
                         this.aY = 1;
-                        bi = d.E == 1;
-                        d.f = false;
+                        bi = GameConfig.E == 1;
+                        GameConfig.f = false;
                         this.a(259, true);
                     }
                     this.bq = ChessCanvas.S(200);
@@ -6177,7 +6177,7 @@ implements Runnable {
         bG = true;
         ChessEngine.c = null;
         this.bJ = null;
-        d.c();
+        GameConfig.c();
         while (ChessEngine.c == null) {
             ChessCanvas.ba();
             this.repaint(0, 0, bA, bB);
@@ -6261,12 +6261,12 @@ implements Runnable {
             case -3: 
             case 52: {
                 if (--this.bo >= 0) break;
-                this.bo = d.i;
+                this.bo = GameConfig.i;
                 return;
             }
             case -4: 
             case 54: {
-                if (++this.bo <= d.i) break;
+                if (++this.bo <= GameConfig.i) break;
                 this.bo = 0;
                 return;
             }
@@ -6317,7 +6317,7 @@ implements Runnable {
     }
 
     private void M(int n) {
-        if (d.H != -4132 || this.dB != -4132) {
+        if (GameConfig.H != -4132 || this.dB != -4132) {
             return;
         }
         System.out.println("PlayStage.k_skillPopup()" + n);
@@ -6345,24 +6345,24 @@ implements Runnable {
             case -6: 
             case -5: {
                 if (this.aw[this.bp] <= 0) {
-                    d.H = 0;
-                    d.I = false;
-                    d.J = 0;
+                    GameConfig.H = 0;
+                    GameConfig.I = false;
+                    GameConfig.J = 0;
                     return;
                 }
                 this.dB = 0;
                 this.bD();
                 this.b(23, false);
-                d.I = false;
-                d.J = 0;
+                GameConfig.I = false;
+                GameConfig.J = 0;
                 return;
             }
         }
         if (-7 == n && this.dC) {
             this.dC = false;
             this.dD = 4;
-            d.I = false;
-            d.J = 0;
+            GameConfig.I = false;
+            GameConfig.J = 0;
             this.bD();
             this.b(17, false);
         }
@@ -6475,15 +6475,15 @@ implements Runnable {
     }
 
     private void aU() {
-        if (d.L) {
+        if (GameConfig.L) {
             bG = true;
             this.aW();
             this.aY();
             this.Q(100);
             this.f();
             this.bd();
-            d.D = 1;
-            d.H = 0;
+            GameConfig.D = 1;
+            GameConfig.H = 0;
             this.av = -4132;
             return;
         }
@@ -6492,10 +6492,10 @@ implements Runnable {
 
     private void aV() {
         bu = 44;
-        d.G = 30;
-        d.H = 0;
-        this.a(String.valueOf(d.C) + "_imgText");
-        this.aj = this.b.e(d.ab);
+        GameConfig.G = 30;
+        GameConfig.H = 0;
+        this.a(String.valueOf(GameConfig.C) + "_imgText");
+        this.aj = this.b.e(GameConfig.ab);
         this.b.b();
         this.a("ui_effect");
         this.ag = this.b.e(0);
@@ -6505,7 +6505,7 @@ implements Runnable {
         c.P(44);
         this.bD();
         this.b(16, false);
-        if (!d.L && bk != 2) {
+        if (!GameConfig.L && bk != 2) {
             this.dX = true;
             ++this.I;
             this.F -= 50;
@@ -6542,7 +6542,7 @@ implements Runnable {
 
     private void S(Graphics graphics) {
         int n = bz - 67;
-        if (!d.L) {
+        if (!GameConfig.L) {
             int n2 = 0;
             ChessCanvas.a(graphics, by, n - 5, 176, 159, 17);
             int n3 = 0;
@@ -6574,10 +6574,10 @@ implements Runnable {
             graphics.setColor(0xFFFFFF);
             graphics.drawString(string, by, n - 19, 33);
         }
-        if (d.H != -4132) {
+        if (GameConfig.H != -4132) {
             graphics.setColor(0);
             graphics.fillRect(0, bz - 3, bA, 20);
-            if (d.H < 15) {
+            if (GameConfig.H < 15) {
                 if (aT % 3 == 0) {
                     this.b.a(graphics, this.cf[10], by, bz, 17, 1);
                     return;
@@ -6616,7 +6616,7 @@ implements Runnable {
                     int[] nArray;
                     bG = true;
                     this.av = 0;
-                    if (!d.L) {
+                    if (!GameConfig.L) {
                         c.cJ[this.bp] = (byte)(this.E == 0 ? 1 : this.E + 1);
                     }
                     this.dY = (nArray = b.a())[0] + 1 < 10 ? "0" + (nArray[0] + 1) : "" + nArray[0];
@@ -6627,7 +6627,7 @@ implements Runnable {
                     c.ax[this.bp] = String.valueOf(this.dZ) + "/" + this.dY + "/" + this.ec + " " + this.ea + ":" + this.eb;
                     this.Q(this.bp);
                     this.f();
-                    d.H = 0;
+                    GameConfig.H = 0;
                     this.av = -4132;
                     return;
                 }
@@ -6643,16 +6643,16 @@ implements Runnable {
         if (!this.ee) {
             return true;
         }
-        int n = 19 * d.s + 14;
+        int n = 19 * GameConfig.s + 14;
         int n2 = bB - n;
         if (this.br != 768) {
             n2 -= 80;
         }
         int n3 = 0;
-        n3 = d.U[this.U][this.bm][this.ef] < 2 ? 1 : 2;
-        int n4 = d.U[this.U][this.bm][this.ef];
-        byte by = d.V[this.U][this.bm][this.ef];
-        if (d.L && (bu == 150 || bu == 99) && n4 != 0) {
+        n3 = GameConfig.U[this.U][this.bm][this.ef] < 2 ? 1 : 2;
+        int n4 = GameConfig.U[this.U][this.bm][this.ef];
+        byte by = GameConfig.V[this.U][this.bm][this.ef];
+        if (GameConfig.L && (bu == 150 || bu == 99) && n4 != 0) {
             int n5 = this.U > 6 ? 6 : this.U;
             n4 = this.X[n5][1];
         }
@@ -6669,14 +6669,14 @@ implements Runnable {
         }
         ChessCanvas.a(graphics, 0, n2 - 2, bA, n + 8 + 5, 20);
         this.bZ = n2 + 5;
-        System.out.println("situation ====" + d.W);
+        System.out.println("situation ====" + GameConfig.W);
         System.out.println("nStage=====" + this.U);
         System.out.println("_nSituation=====" + this.bm);
-        this.a(this.cg[d.W[this.U][this.bm] + this.ef], this.cy, this.cx, this.co);
+        this.a(this.cg[GameConfig.W[this.U][this.bm] + this.ef], this.cy, this.cx, this.co);
         if (this.bm != 10) {
             graphics.setColor(0x555555);
             graphics.fillRect(0, bB - 12, bA, 12);
-            if (this.ef < d.U[this.U][this.bm].length - 1) {
+            if (this.ef < GameConfig.U[this.U][this.bm].length - 1) {
                 this.b.a(graphics, this.cf[1], 0, bB, 36, 1);
                 this.b.a(graphics, this.cf[0], bA, bB, 40, 1);
             } else {
@@ -6692,12 +6692,12 @@ implements Runnable {
     }
 
     private boolean aZ() {
-        if (d.H != -4132 && ++d.H > 20) {
+        if (GameConfig.H != -4132 && ++GameConfig.H > 20) {
             this.aj = null;
             this.ag = null;
             this.ah = null;
             System.gc();
-            d.H = -4132;
+            GameConfig.H = -4132;
             bv = -4132;
             return true;
         }
@@ -6981,7 +6981,7 @@ implements Runnable {
             ByteArrayOutputStream byteArrayOutputStream;
             block29: {
                 bl = false;
-                String string = d.L ? "chrs" : "chr" + n;
+                String string = GameConfig.L ? "chrs" : "chr" + n;
                 byteArrayOutputStream = new ByteArrayOutputStream();
                 dataOutputStream = new DataOutputStream(byteArrayOutputStream);
                 recordStore = null;
@@ -7122,7 +7122,7 @@ implements Runnable {
     private void a(byte[] byArray) {
         int n;
         int n2 = 0;
-        d.y = 0;
+        GameConfig.y = 0;
         this.U = byArray[0];
         this.Z = byArray[1];
         this.dk = byArray[2] == 0;
@@ -7148,15 +7148,15 @@ implements Runnable {
         System.arraycopy(byArray, n2, byArray2, 0, 4);
         int n3 = b.a(byArray2);
         if (n3 == 768) {
-            d.x = true;
+            GameConfig.x = true;
             return;
         }
         if (n3 == 593) {
             this.br = 593;
             this.V = true;
-            d.y = 593;
+            GameConfig.y = 593;
         }
-        d.x = false;
+        GameConfig.x = false;
     }
 
     private byte[] bf() {
@@ -7188,7 +7188,7 @@ implements Runnable {
         block38: {
             block37: {
                 bl = false;
-                String string = d.L ? "chrs" : "chr" + n;
+                String string = GameConfig.L ? "chrs" : "chr" + n;
                 byteArrayInputStream = null;
                 filterInputStream = null;
                 recordStore = null;
@@ -7512,7 +7512,7 @@ implements Runnable {
 
     private void bh() {
         try {
-            if (d.f) {
+            if (GameConfig.f) {
                 switch (this.aY) {
                     case 1: {
                         this.b(this.X[this.U > 6 ? 6 : this.U]);
@@ -7611,7 +7611,7 @@ implements Runnable {
                     this.b(3);
                     if (bu != 200) {
                         this.c(1);
-                        if (d.L) {
+                        if (GameConfig.L) {
                             this.d(38);
                             break;
                         }
@@ -7681,8 +7681,8 @@ implements Runnable {
 
     private void bl() {
         try {
-            this.a(String.valueOf(d.C) + "_imgText");
-            this.ai = this.b.e(d.X);
+            this.a(String.valueOf(GameConfig.C) + "_imgText");
+            this.ai = this.b.e(GameConfig.X);
             this.b.b();
             return;
         }
@@ -7892,10 +7892,10 @@ implements Runnable {
     private String bx() {
         int n = 0;
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(String.valueOf(d.A) + "*");
-        stringBuffer.append(String.valueOf(d.C) + "*");
-        stringBuffer.append(String.valueOf(d.E) + "*");
-        stringBuffer.append(String.valueOf(d.F) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.A) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.C) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.E) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.F) + "*");
         n = this.aw.length;
         int n2 = 0;
         while (n2 < n) {
@@ -7914,10 +7914,10 @@ implements Runnable {
             ++n2;
         }
         stringBuffer.append(String.valueOf(this.S) + "*");
-        stringBuffer.append(String.valueOf(d.B) + "*");
-        stringBuffer.append(String.valueOf(d.z) + "*");
-        stringBuffer.append(String.valueOf(d.D) + "*");
-        stringBuffer.append(String.valueOf(d.w) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.B) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.z) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.D) + "*");
+        stringBuffer.append(String.valueOf(GameConfig.w) + "*");
         stringBuffer.append(String.valueOf(this.F) + "*");
         stringBuffer.append(String.valueOf(this.G) + "*");
         stringBuffer.append(String.valueOf(this.H) + "*");
@@ -8057,7 +8057,7 @@ implements Runnable {
                         if (!recordEnumeration.hasNextElement()) {
                             bl = false;
                             this.f();
-                            this.c.a(d.A);
+                            this.c.a(GameConfig.A);
                         } else {
                             int n = 0;
                             while (recordEnumeration.hasNextElement()) {
@@ -8066,16 +8066,16 @@ implements Runnable {
                                 filterInputStream = new DataInputStream(byteArrayInputStream);
                                 string = ((DataInputStream)filterInputStream).readUTF();
                                 n = string.indexOf("*", 0);
-                                d.A = Integer.parseInt(string.substring(0, n));
+                                GameConfig.A = Integer.parseInt(string.substring(0, n));
                                 int n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                d.C = Integer.parseInt(string.substring(n3 + 1, n));
+                                GameConfig.C = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
-                                d.E = Integer.parseInt(string.substring(n3 + 1, n = string.indexOf(42, n3 + 1)));
-                                bi = d.E == 1;
+                                GameConfig.E = Integer.parseInt(string.substring(n3 + 1, n = string.indexOf(42, n3 + 1)));
+                                bi = GameConfig.E == 1;
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                d.F = Integer.parseInt(string.substring(n3 + 1, n));
+                                GameConfig.F = Integer.parseInt(string.substring(n3 + 1, n));
                                 int n4 = this.aw.length;
                                 n2 = 0;
                                 while (n2 < n4) {
@@ -8107,17 +8107,17 @@ implements Runnable {
                                 this.S = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                d.B = Integer.parseInt(string.substring(n3 + 1, n));
+                                GameConfig.B = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                d.z = Integer.parseInt(string.substring(n3 + 1, n));
+                                GameConfig.z = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                d.D = Integer.parseInt(string.substring(n3 + 1, n));
-                                System.out.println("PlayStage.LoadOption() Constants.nFirstStory = " + d.D);
+                                GameConfig.D = Integer.parseInt(string.substring(n3 + 1, n));
+                                System.out.println("PlayStage.LoadOption() Constants.nFirstStory = " + GameConfig.D);
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                d.w = Integer.parseInt(string.substring(n3 + 1, n));
+                                GameConfig.w = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
                                 this.F = Integer.parseInt(string.substring(n3 + 1, n));
@@ -8292,7 +8292,7 @@ implements Runnable {
     }
 
     private void bz() {
-        d.G = 20;
+        GameConfig.G = 20;
         bu = 44;
         this.d();
     }
@@ -8342,7 +8342,7 @@ implements Runnable {
 
     public final void b(int n) {
         this.b.a(1, 5000, 1);
-        this.bY = d.C;
+        this.bY = GameConfig.C;
         this.a(this.bY, n);
     }
 
@@ -8361,7 +8361,7 @@ implements Runnable {
     private void V(int n) {
         int n2 = 0;
         int n3 = 0;
-        d.T = 0;
+        GameConfig.T = 0;
         this.cg = new byte[50][][];
         switch (n) {
             case 1: {
@@ -8425,14 +8425,14 @@ implements Runnable {
             case 0: {
                 this.cx = 20;
                 n2 = 4;
-                d.T = 1;
+                GameConfig.T = 1;
             }
         }
         int n3 = 0;
         while (n3 < 0 + n2) {
             this.cd = this.U(n3);
             this.b.a(';');
-            this.cg[n3] = this.b.a(this.cd, bA - this.b.n[d.T] * 2, (this.b.o[d.T] + this.b.o[d.T] / 2) * this.cx, this.b.n[d.T], this.b.o[d.T], this.b.o[d.T] / 2);
+            this.cg[n3] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 2, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
             if (n3 == 0) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[0].length;
@@ -8463,57 +8463,57 @@ implements Runnable {
         switch (n) {
             case 0: {
                 this.cx = 8;
-                n4 = d.W[this.U][0];
-                n3 = d.U[this.U][0].length;
-                d.T = 0;
+                n4 = GameConfig.W[this.U][0];
+                n3 = GameConfig.U[this.U][0].length;
+                GameConfig.T = 0;
                 break;
             }
             case 1: {
                 n2 = 1;
                 while (n2 < 7) {
-                    n5 += d.U[this.U][n2].length;
+                    n5 += GameConfig.U[this.U][n2].length;
                     ++n2;
                 }
                 System.out.println("WhoFaceLenght = " + n5);
                 this.cx = 8;
-                n4 = d.W[this.U][1];
+                n4 = GameConfig.W[this.U][1];
                 n3 = n5;
-                d.T = 0;
+                GameConfig.T = 0;
                 break;
             }
             case 2: {
                 n2 = 7;
                 while (n2 < 9) {
-                    n5 += d.U[this.U][n2].length;
+                    n5 += GameConfig.U[this.U][n2].length;
                     ++n2;
                 }
                 this.cx = 8;
-                n4 = d.W[this.U][7];
+                n4 = GameConfig.W[this.U][7];
                 n3 = n5;
                 System.out.println("bufferLoad_start = " + n4);
                 System.out.println("bufferLoad = " + n3);
-                d.T = 0;
+                GameConfig.T = 0;
                 break;
             }
             case 3: {
                 this.cx = 5;
-                n4 = d.W[this.U][9];
+                n4 = GameConfig.W[this.U][9];
                 n3 = 1;
-                d.T = 0;
+                GameConfig.T = 0;
                 break;
             }
             case 4: {
                 this.cx = 5;
-                n4 = d.W[this.U][10];
+                n4 = GameConfig.W[this.U][10];
                 n3 = 1;
-                d.T = 1;
+                GameConfig.T = 1;
                 break;
             }
             case 5: {
                 this.cx = 5;
                 n4 = 39;
                 n3 = 3;
-                d.T = 1;
+                GameConfig.T = 1;
             }
         }
         n2 = n4;
@@ -8521,7 +8521,7 @@ implements Runnable {
             System.out.println("PlayStage.dateLong_StageText() = " + n2);
             this.cd = this.U(n2);
             this.b.a(';');
-            this.cg[n2] = this.b.a(this.cd, bA - this.b.n[d.T] * 2, (this.b.o[d.T] + this.b.o[d.T] / 2) * this.cx, this.b.n[d.T], this.b.o[d.T], this.b.o[d.T] / 2);
+            this.cg[n2] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 2, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
             if (n2 == n4) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n4].length;
@@ -8552,21 +8552,21 @@ implements Runnable {
                 this.cx = 5;
                 n3 = 0;
                 n2 = 4;
-                d.T = 0;
+                GameConfig.T = 0;
                 break;
             }
             case 1: {
                 this.cx = 6;
                 n3 = 4;
                 n2 = 17;
-                d.T = 0;
+                GameConfig.T = 0;
             }
         }
         int n4 = n3;
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
             this.b.a(';');
-            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[d.T] * 16, (this.b.o[d.T] + this.b.o[d.T] / 2) * this.cx, this.b.n[d.T], this.b.o[d.T], this.b.o[d.T] / 2);
+            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 16, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
             if (n4 == n3) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n3].length;
@@ -8596,21 +8596,21 @@ implements Runnable {
                 this.cx = 20;
                 n3 = 30;
                 n2 = 3;
-                d.T = 1;
+                GameConfig.T = 1;
                 break;
             }
             case 7: {
                 this.cx = 20;
                 n3 = 33;
                 n2 = 1;
-                d.T = 1;
+                GameConfig.T = 1;
             }
         }
         int n4 = n3;
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
             this.b.a(';');
-            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[d.T] * 2, (this.b.o[d.T] + this.b.o[d.T] / 2) * this.cx, this.b.n[d.T], this.b.o[d.T], this.b.o[d.T] / 2);
+            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 2, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
             if (n4 == n3) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n3].length;
@@ -8634,7 +8634,7 @@ implements Runnable {
     private void Z(int n) {
         this.cx = 15;
         this.cb = this.U(22);
-        this.eu = d.e.getBytes();
+        this.eu = GameConfig.e.getBytes();
         this.ev = this.U(n);
         this.cc = new byte[this.cb.length + this.eu.length + this.ev.length];
         System.arraycopy(this.cb, 0, this.cc, 0, this.cb.length);
@@ -8696,7 +8696,7 @@ implements Runnable {
         if (byArray.length <= n2) {
             int n4 = 0;
             while (n4 < byArray.length) {
-                this.b.a(this.e, byArray[n4], by, this.bZ + n4 * (this.b.o[d.T] + 2), 17, d.T);
+                this.b.a(this.e, byArray[n4], by, this.bZ + n4 * (this.b.o[GameConfig.T] + 2), 17, GameConfig.T);
                 ++n4;
             }
             return;
@@ -8746,7 +8746,7 @@ implements Runnable {
     private void Y(Graphics graphics) {
         int n;
         this.Q(graphics);
-        if (d.B == 1) {
+        if (GameConfig.B == 1) {
             this.Z(graphics);
         } else if (bu == 110) {
             graphics.setColor(0x555555);
@@ -8758,7 +8758,7 @@ implements Runnable {
         if (this.bJ != null && !bi) {
             this.a(graphics, this.bJ, 0xFF6600);
         }
-        if (bi && d.B == 1) {
+        if (bi && GameConfig.B == 1) {
             this.aa(graphics);
         }
         if (this.bJ != null && bi && bu != 110) {
@@ -8774,14 +8774,14 @@ implements Runnable {
             }
             --n2;
         }
-        if (d.E == 1 && d.F == 1) {
+        if (GameConfig.E == 1 && GameConfig.F == 1) {
             if (bu == 444) {
                 if (!bi) {
                     n2 = be + this.af(ChessR.p & 7);
                     n = bf + this.ah(ChessR.p >>> 3);
                 } else {
-                    n2 = bg + d.O[ChessR.p];
-                    n = bh + d.Q[ChessR.p >>> 3];
+                    n2 = bg + GameConfig.O[ChessR.p];
+                    n = bh + GameConfig.Q[ChessR.p >>> 3];
                 }
                 if (!(ew || au || bI)) {
                     this.aE.a(graphics, n2, n);
@@ -8837,8 +8837,8 @@ implements Runnable {
         int n7 = 0;
         if (bi) {
             n6 = n + n2 * 8;
-            n4 = bg + d.O[n6];
-            n5 = bh + d.P[n2];
+            n4 = bg + GameConfig.O[n6];
+            n5 = bh + GameConfig.P[n2];
         } else {
             n4 = this.ae(n);
             n5 = this.ag(n2);
@@ -9036,10 +9036,10 @@ implements Runnable {
         int n3 = i2.a >>> 3;
         int n4 = i2.b & 7;
         int n5 = i2.b >>> 3;
-        int n6 = bi ? d.O[i2.a] : this.ae(n2) + this.bc / 2;
-        int n7 = bi ? d.Q[n3] : this.ag(n3) + this.bc / 2;
-        int n8 = bi ? d.O[i2.b] : this.ae(n4) + this.bc / 2;
-        int n9 = bi ? d.Q[n5] : this.ag(n5) + this.bc / 2;
+        int n6 = bi ? GameConfig.O[i2.a] : this.ae(n2) + this.bc / 2;
+        int n7 = bi ? GameConfig.Q[n3] : this.ag(n3) + this.bc / 2;
+        int n8 = bi ? GameConfig.O[i2.b] : this.ae(n4) + this.bc / 2;
+        int n9 = bi ? GameConfig.Q[n5] : this.ag(n5) + this.bc / 2;
         graphics.setColor(n);
         int n10 = bi ? bg + n6 : be + n6;
         int n11 = bi ? bh + n7 : bf + n7;
@@ -9217,7 +9217,7 @@ implements Runnable {
                         bK = false;
                         ChessR.h = -1;
                         ChessR.g = -1;
-                        if (g.b(g.l) && !bI && d.G == 0) {
+                        if (g.b(g.l) && !bI && GameConfig.G == 0) {
                             dv = 0;
                             c.a(1000);
                         }
@@ -9276,14 +9276,14 @@ implements Runnable {
         if (g.a(iArray)) {
             bI = true;
             if (g.b(iArray) == 0) {
-                d.G = g.b() ? 2 : (g.g() >= 3 ? 1 : 0);
+                GameConfig.G = g.b() ? 2 : (g.g() >= 3 ? 1 : 0);
                 c.a(44);
             } else {
-                d.G = g.b(iArray) == 1 ? 20 : 30;
+                GameConfig.G = g.b(iArray) == 1 ? 20 : 30;
                 c.a(44);
             }
         } else {
-            if (d.L) {
+            if (GameConfig.L) {
                 this.c();
             }
             int n = bL = bL == 0 ? 1 : 0;
@@ -9312,10 +9312,10 @@ implements Runnable {
                     if (bu == 2) {
                         ChessR.s = ChessR.o[ChessR.q];
                     }
-                    if (d.E == 0 || d.F == 0) {
+                    if (GameConfig.E == 0 || GameConfig.F == 0) {
                         bb = 0;
                     }
-                    if (d.F == 0 || d.E == 0) {
+                    if (GameConfig.F == 0 || GameConfig.E == 0) {
                         this.b(3, false);
                     }
                 }

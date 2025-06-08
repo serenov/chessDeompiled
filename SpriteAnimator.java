@@ -42,7 +42,7 @@ public final class SpriteAnimator {
             }
             ++n4;
         }
-        long l = 0L;
+        // long l = 0L;
         long l2 = 0L;
         int n6 = 0;
         while (n6 < n) {

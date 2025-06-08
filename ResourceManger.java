@@ -129,7 +129,7 @@ public final class ResourceManger {
             n5 += 4;
             int n7 = 0;
             while (n7 < 4) {
-                n4 = b.a(byArray[n5 + n7], n4);
+                n4 = ResourceManger.a(byArray[n5 + n7], n4);
                 ++n7;
             }
             n7 = n5 += 4;
@@ -179,9 +179,9 @@ public final class ResourceManger {
                     byArray[n7 + 1] = (byte)n13;
                     byArray[n7 + 2] = (byte)n14;
                 }
-                n4 = b.a(byArray[n7], n4);
-                n4 = b.a(byArray[n7 + 1], n4);
-                n4 = b.a(byArray[n7 + 2], n4);
+                n4 = ResourceManger.a(byArray[n7], n4);
+                n4 = ResourceManger.a(byArray[n7 + 1], n4);
+                n4 = ResourceManger.a(byArray[n7 + 2], n4);
                 n7 += 3;
             }
             n7 = n3 + 8 + n6;
@@ -208,7 +208,7 @@ public final class ResourceManger {
     public static Image a(byte[] byArray, int[][] nArray, int[][] nArray2, int n, int n2) {
         byte[] byArray2 = new byte[byArray.length];
         System.arraycopy(byArray, 0, byArray2, 0, byArray.length);
-        b.b(byArray2, nArray, nArray2, n, n2);
+        ResourceManger.b(byArray2, nArray, nArray2, n, n2);
         byArray = byArray2;
         Image image = Image.createImage((byte[])byArray2, (int)0, (int)byArray.length);
         System.gc();
@@ -245,6 +245,7 @@ public final class ResourceManger {
      * Unable to fully structure code
      */
     public final int a(int var1_1, int var2_2) {
+        return 0;
 //         var3_3 = 0;
 //         var4_4 = 0;
 //         while (var4_4 < this.g[var2_2]) {
@@ -454,13 +455,13 @@ public final class ResourceManger {
 
     public final int d(String string) {
         this.p = this.e(string);
-        int n = b.a(this.p, 0);
+        int n = ResourceManger.a(this.p, 0);
         this.q = new int[n];
         this.r = new int[n];
         int n2 = 0;
         while (n2 < n) {
-            this.q[n2] = b.a(this.p, 4 + n2 * 8);
-            this.r[n2] = b.a(this.p, 8 + n2 * 8);
+            this.q[n2] = ResourceManger.a(this.p, 4 + n2 * 8);
+            this.r[n2] = ResourceManger.a(this.p, 8 + n2 * 8);
             ++n2;
         }
         return n;
@@ -530,7 +531,7 @@ public final class ResourceManger {
                 continue;
             }
             if ((n4 >= 10000 ? n4 - 10000 : n4) > this.t && n2 == 0) {
-                int n7 = n4 = n4 >= 10000 ? n4 - 10000 : n4;
+                // int n7 = n4 = n4 >= 10000 ? n4 - 10000 : n4;
                 if (bl) {
                     this.k[n3] = new byte[this.t];
                     System.arraycopy(byArray, n, this.k[n3++], 0, this.t);
@@ -598,11 +599,11 @@ public final class ResourceManger {
 
     public static void a(Graphics graphics, int n, int n2, int n3, int n4, int n5, int n6, int n7, int n8) {
         graphics.setColor(n6);
-        b.a(graphics, n, n2, n3, n4);
+        ResourceManger.a(graphics, n, n2, n3, n4);
         graphics.setColor(n7);
-        b.a(graphics, n + n8, n2 + n8, n3 - n8, n4 - n8);
+        ResourceManger.a(graphics, n + n8, n2 + n8, n3 - n8, n4 - n8);
         graphics.setColor(n5);
-        b.a(graphics, n + n8, n2 + n8, n3 - n8 * 2, n4 - n8 * 2);
+        ResourceManger.a(graphics, n + n8, n2 + n8, n3 - n8 * 2, n4 - n8 * 2);
     }
 
     public static void a(Graphics graphics, int n, int n2, int n3, int n4, int n5, int n6, int n7, int n8, int n9) {
@@ -616,11 +617,11 @@ public final class ResourceManger {
         } else if ((n9 & 2) != 0) {
             n2 -= n4 >> 1;
         }
-        b.a(graphics, n, n2, n3, n4, n5, n6, n7, n8);
+        ResourceManger.a(graphics, n, n2, n3, n4, n5, n6, n7, n8);
     }
 
     public static boolean c(int n, int n2) {
-        int n3 = b.d(0, n);
+        int n3 = ResourceManger.d(0, n);
         return n3 <= n2;
     }
 
@@ -629,7 +630,7 @@ public final class ResourceManger {
     }
 
     public final void a(Graphics graphics, Image image, int n, int n2, int n3, int n4, int n5, int n6) {
-        b.a(graphics, image, n, n2, n3, n4, n5, n6, 20);
+        ResourceManger.a(graphics, image, n, n2, n3, n4, n5, n6, 20);
     }
 
     public static void a(Graphics graphics, Image image, int n, int n2, int n3, int n4, int n5, int n6, int n7) {
@@ -645,7 +646,7 @@ public final class ResourceManger {
         }
         graphics.setClip(n, n2, n3, n4);
         graphics.drawImage(image, n - n5 * n3, n2 - n6 * n4, 20);
-        graphics.setClip(0, 0, c.bA, c.bB);
+        graphics.setClip(0, 0, ChessCanvas.bA, ChessCanvas.bB);
     }
 
     public static void b(Graphics graphics, int n, int n2, int n3, int n4, int n5, int n6, int n7, int n8) {
@@ -730,7 +731,7 @@ public final class ResourceManger {
     }
 
     public static void a(Graphics graphics) {
-        graphics.setClip(0, 0, c.bA, c.bB);
+        graphics.setClip(0, 0, ChessCanvas.bA, ChessCanvas.bB);
     }
 
     public static void c(Graphics graphics, int n, int n2, int n3, int n4, int n5) {

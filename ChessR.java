@@ -78,72 +78,72 @@ extends MIDlet {
             return;
         }
         j = 12;
-        if (g.d && c.bu == 3) {
-            if (g.c != null) {
-                c = g.c;
+        if (ChessEngine.d && ChessCanvas.bu == 3) {
+            if (ChessEngine.c != null) {
+                c = ChessEngine.c;
                 i = 0;
-                g.j = false;
-                g.d = false;
+                ChessEngine.j = false;
+                ChessEngine.d = false;
                 if (ChessR.c.d == 0) {
                     r = o[ChessR.c.a];
                     s = o[ChessR.c.b];
                 }
-                c.j();
+                ChessCanvas.j();
                 b.a(c);
                 if (ChessR.c.d == 0) {
                     r = o[ChessR.c.a];
                     s = o[ChessR.c.b];
                 }
-                g.c = null;
-                g.f();
-                LittleEndianInt[] iArray = c.e();
-                if (g.a(iArray)) {
-                    if (g.b(iArray) == 0) {
-                        d.G = g.b() ? 2 : (g.g() >= 3 ? 1 : 0);
-                        if (c.dM) {
-                            c.dM = false;
+                ChessEngine.c = null;
+                ChessEngine.f();
+                LittleEndianInt[] iArray = ChessCanvas.e();
+                if (ChessEngine.a(iArray)) {
+                    if (ChessEngine.b(iArray) == 0) {
+                        GameConfig.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
+                        if (ChessCanvas.dM) {
+                            ChessCanvas.dM = false;
                             b.d();
                         } else {
-                            c.a(44);
+                            ChessCanvas.a(44);
                             ChessR.b();
                         }
                         t = true;
                     } else {
-                        d.G = g.b(iArray) == 1 ? 20 : 30;
-                        c.a(44);
+                        GameConfig.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
+                        ChessCanvas.a(44);
                         t = true;
                         ChessR.b();
                     }
                 } else {
-                    c.au = false;
-                    if (g.b(g.l) && !c.bI) {
-                        c.j = true;
-                        if (c.bv != 44) {
-                            c.dv = 1;
-                            c.a(1000);
+                    ChessCanvas.au = false;
+                    if (ChessEngine.b(ChessEngine.l) && !ChessCanvas.bI) {
+                        ChessCanvas.j = true;
+                        if (ChessCanvas.bv != 44) {
+                            ChessCanvas.dv = 1;
+                            ChessCanvas.a(1000);
                         }
                     }
-                    int n = c.bL = c.bL == 0 ? 1 : 0;
-                    if (c.bk == 1) {
-                        c.h();
+                    // int n = ChessCanvas.bL = ChessCanvas.bL == 0 ? 1 : 0;
+                    if (ChessCanvas.bk == 1) {
+                        ChessCanvas.h();
                     } else {
                         b.b();
-                        g.d();
-                        c.af = true;
+                        ChessEngine.d();
+                        ChessCanvas.af = true;
                         ChessR.b();
                     }
-                    if (d.L) {
+                    if (GameConfig.L) {
                         b.c();
                     }
                 }
             }
-        } else if (c.bk == 1 && c.bu == 2) {
-            g.d();
-            c.bL = c.bL == 0 ? 1 : 0;
-            c.h();
+        } else if (ChessCanvas.bk == 1 && ChessCanvas.bu == 2) {
+            ChessEngine.d();
+            ChessCanvas.bL = ChessCanvas.bL == 0 ? 1 : 0;
+            ChessCanvas.h();
         }
         ++d;
-        if (g.d) {
+        if (ChessEngine.d) {
             if (d >= 3) {
                 d = -1;
             }
@@ -153,23 +153,24 @@ extends MIDlet {
         j = 0;
     }
 
+    @SuppressWarnings("unchecked")
     public static void b() {
-        if (c.ba <= 0) {
+        if (ChessCanvas.ba <= 0) {
             return;
         }
-        c.bG = true;
-        c.bu = 444;
+        ChessCanvas.bG = true;
+        ChessCanvas.bu = 444;
         int n = Math.abs(r);
         int n2 = Math.abs(s);
-        if (c.bk != 2 && r != 0 && s != 0) {
-            if (c.af) {
+        if (ChessCanvas.bk != 2 && r != 0 && s != 0) {
+            if (ChessCanvas.af) {
                 ChessR.b.l.addElement(new ActionPair(s, q));
             }
-            if (!c.af && b.c(23, n2)) {
-                c.a(888);
+            if (!ChessCanvas.af && ResourceManger.c(23, n2)) {
+                ChessCanvas.a(888);
             }
         }
-        if (d.E == 1 && d.F == 1) {
+        if (GameConfig.E == 1 && GameConfig.F == 1) {
             ChessR.b.aE.b();
             if (r != 0 && s != 0) {
                 try {
@@ -178,8 +179,8 @@ extends MIDlet {
                     ChessR.b.aG = new SpriteAnimator("/ed_" + n2 + ".dpr");
                     Runtime.getRuntime().gc();
                     l = ChessR.b.aG.a[0].d;
-                    c.a(666);
-                    c.aK = Image.createImage((String)"/img/effect_bg.png");
+                    ChessCanvas.a(666);
+                    ChessCanvas.aK = Image.createImage((String)"/img/effect_bg.png");
                     if (n == 3 || n == 6 || n == 5) {
                         ChessR.b.aH = new SpriteAnimator("/" + n + "effect.dpr");
                     }
@@ -187,15 +188,15 @@ extends MIDlet {
                 catch (Throwable throwable) {}
                 Runtime.getRuntime().gc();
             }
-            if (c.ew) {
+            if (ChessCanvas.ew) {
                 ChessR.b.aE.g = true;
             }
         }
     }
 
     public static void c() {
-        int n = c.bu = c.bL == 0 ? 2 : 3;
-        if (c.bu == 2) {
+        // int n = ChessCanvas.bu = ChessCanvas.bL == 0 ? 2 : 3;
+        if (ChessCanvas.bu == 2) {
             b.g();
             b.b(3);
             b.c(1);
@@ -204,18 +205,18 @@ extends MIDlet {
         ChessR.b.aF = null;
         ChessR.b.aG = null;
         ChessR.b.aH = null;
-        c.aK = null;
+        ChessCanvas.aK = null;
         Runtime.getRuntime().gc();
         s = 0;
         r = 0;
-        c.ew = false;
-        c.a();
-        if (c.bk == 2) {
-            c.af = (c.bl ^= 1) == 1;
+        ChessCanvas.ew = false;
+        ChessCanvas.a();
+        if (ChessCanvas.bk == 2) {
+            ChessCanvas.af = (ChessCanvas.bl ^= 1) == 1;
             b.b();
         }
-        System.arraycopy(g.a, 0, o, 0, 64);
-        c.bG = false;
+        System.arraycopy(ChessEngine.a, 0, o, 0, 64);
+        ChessCanvas.bG = false;
     }
 }
 
