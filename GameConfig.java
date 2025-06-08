@@ -1,7 +1,7 @@
 /*
  * Decompiled with CFR 0.152.
  */
-public final class d {
+public final class GameConfig {
     public static int a;
     public static boolean b;
     public static String c;
