@@ -74,7 +74,7 @@ public final class ResourceManger {
         return (byArray[0] << 24) + (byArray[1] << 16) + (byArray[2] << 8) + (byArray[3] << 0);
     }
 
-    public static int[] a() {
+    public static int[] GetCurrentDateTimeParts() {
         int[] nArray = new int[5];
         Calendar calendar = Calendar.getInstance();
         nArray[0] = calendar.get(2);

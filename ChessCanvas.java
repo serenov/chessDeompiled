@@ -6624,7 +6624,7 @@ implements Runnable {
                     if (!GameConfig.L) {
                         ChessCanvas.cJ[this.bp] = (byte)(this.E == 0 ? 1 : this.E + 1);
                     }
-                    this.dY = (nArray = ResourceManger.a())[0] + 1 < 10 ? "0" + (nArray[0] + 1) : "" + nArray[0];
+                    this.dY = (nArray = ResourceManger.GetCurrentDateTimeParts())[0] + 1 < 10 ? "0" + (nArray[0] + 1) : "" + nArray[0];
                     this.dZ = nArray[1] < 10 ? "0" + nArray[1] : "" + nArray[1];
                     this.ea = nArray[2] < 10 ? "0" + nArray[2] : "" + nArray[2];
                     this.eb = nArray[3] < 10 ? "0" + nArray[3] : "" + nArray[3];
