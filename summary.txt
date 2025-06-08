@@ -18,6 +18,12 @@ aN()
   Handled duff style switch with additional control
 
 
-c -> ChessCanvas
-i -> LittleEndianInt
+a -> ActionPair
 b -> ResourceManager
+c -> ChessCanvas
+d -> GameConfig
+e -> SpriteAnimator
+f -> GameSpritesManager
+g -> ChessEngine
+h -> AudioManager
+i -> LittleEndianInt
