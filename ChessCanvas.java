@@ -631,11 +631,11 @@ implements Runnable {
                     nArrayArray[6] = new int[]{2, 151, 185};
                     this.y = nArrayArray;
                     try {
-                        GameConfig.O = this.b.c("anMapX");
-                        GameConfig.P = this.b.c("anMapY");
-                        GameConfig.Q = this.b.c("anMapCenterY");
-                        GameConfig.R = this.b.c("anMapEdgeY");
-                        GameConfig.S = this.b.c("anMapEdgeX");
+                        GameConfig.O = this.b.loadGameDataById("anMapX");
+                        GameConfig.P = this.b.loadGameDataById("anMapY");
+                        GameConfig.Q = this.b.loadGameDataById("anMapCenterY");
+                        GameConfig.R = this.b.loadGameDataById("anMapEdgeY");
+                        GameConfig.S = this.b.loadGameDataById("anMapEdgeX");
                     }
                     catch (Exception exception) {}
                     ChessR.m = new byte[64];

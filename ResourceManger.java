@@ -85,7 +85,7 @@ public final class ResourceManger {
         return nArray;
     }
 
-    public final int[] c(String string) {
+    public final int[] loadGameDataById(String string) {
         int[] nArray = null;
         DataInputStream dataInputStream = null;
         try {
