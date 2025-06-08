@@ -139,7 +139,7 @@ public final class ResourceManger {
             n5 += 4;
             int n7 = 0;
             while (n7 < 4) {
-                n4 = ResourceManger.a(byArray[n5 + n7], n4);
+                n4 = ResourceManger.updateCrc32WithByte(byArray[n5 + n7], n4);
                 ++n7;
             }
             n7 = n5 += 4;
@@ -189,9 +189,9 @@ public final class ResourceManger {
                     byArray[n7 + 1] = (byte)n13;
                     byArray[n7 + 2] = (byte)n14;
                 }
-                n4 = ResourceManger.a(byArray[n7], n4);
-                n4 = ResourceManger.a(byArray[n7 + 1], n4);
-                n4 = ResourceManger.a(byArray[n7 + 2], n4);
+                n4 = ResourceManger.updateCrc32WithByte(byArray[n7], n4);
+                n4 = ResourceManger.updateCrc32WithByte(byArray[n7 + 1], n4);
+                n4 = ResourceManger.updateCrc32WithByte(byArray[n7 + 2], n4);
                 n7 += 3;
             }
             n7 = n3 + 8 + n6;
@@ -204,16 +204,31 @@ public final class ResourceManger {
         return byArray;
     }
 
-    private static int a(byte by, int n) {
-        int n2 = by & 0xFF;
-        n ^= n2;
-        int n3 = 0;
-        while (n3 < 8) {
-            n = (n & 1) != 0 ? n >>> 1 ^ 0xEDB88320 : (n >>>= 1);
-            ++n3;
+    private static int updateCrc32WithByte(byte inputByte, int currentCrc) {
+        int unsignedByte = inputByte & 0xFF; // Convert signed byte to unsigned
+        int crc = currentCrc ^ unsignedByte; // XOR byte with current CRC
+
+        for (int i = 0; i < 8; i++) { // Process each of the 8 bits
+            if ((crc & 1) != 0) {
+                crc = (crc >>> 1) ^ 0xEDB88320; // If LSB is 1, apply polynomial
+            } else {
+                crc >>>= 1; // Otherwise, just shift
+            }
         }
-        return n;
+
+        return crc;
     }
+
+    // private static int updateCrc32WithByte(byte by, int n) {
+    //     int n2 = by & 0xFF;
+    //     n ^= n2;
+    //     int n3 = 0;
+    //     while (n3 < 8) {
+    //         n = (n & 1) != 0 ? n >>> 1 ^ 0xEDB88320 : (n >>>= 1);
+    //         ++n3;
+    //     }
+    //     return n;
+    // }
 
     public static Image a(byte[] byArray, int[][] nArray, int[][] nArray2, int n, int n2) {
         byte[] byArray2 = new byte[byArray.length];
