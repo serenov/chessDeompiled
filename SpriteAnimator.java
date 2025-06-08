@@ -7,7 +7,7 @@
 import java.io.DataInputStream;
 import javax.microedition.lcdui.Graphics;
 
-public final class e {
+public final class SpriteAnimator {
     public GameSpritesManager[] a;
     public int b = 0;
     public byte[][] c;
@@ -18,7 +18,7 @@ public final class e {
     public int h;
     public boolean i = true;
 
-    public e(String string) throws Exception {
+    public SpriteAnimator(String string) throws Exception {
         DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
         int n = dataInputStream.readByte();
         int n2 = dataInputStream.readByte();

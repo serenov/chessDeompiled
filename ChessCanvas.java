@@ -110,10 +110,10 @@ implements Runnable {
     public GameSpritesManager[] aB;
     public Image[] aC;
     public Image[] aD;
-    public e aE;
-    public e aF;
-    public e aG;
-    public e aH;
+    public SpriteAnimator aE;
+    public SpriteAnimator aF;
+    public SpriteAnimator aG;
+    public SpriteAnimator aH;
     public Image[] aI;
     public Image aJ;
     public static Image aK;
@@ -233,7 +233,7 @@ implements Runnable {
     public boolean cU;
     public int cV;
     public int cW;
-    public e cX;
+    public SpriteAnimator cX;
     public Image[] cY;
     public Image cZ;
     public Image[] da;
@@ -1845,9 +1845,9 @@ implements Runnable {
         try {
             this.R = b.d(1, 6);
             this.R = 3;
-            this.cX = new e("/ea_" + this.R + ".dpr");
+            this.cX = new SpriteAnimator("/ea_" + this.R + ".dpr");
             if (this.R == 3 || this.R == 6 || this.R == 5) {
-                this.aH = new e("/" + this.R + "effect.dpr");
+                this.aH = new SpriteAnimator("/" + this.R + "effect.dpr");
             }
             int n = this.cX.d.length - 1;
             int n2 = 0;
@@ -7553,7 +7553,7 @@ implements Runnable {
                         break;
                     }
                     case 5: {
-                        this.aE = new e("/me.dpr");
+                        this.aE = new SpriteAnimator("/me.dpr");
                         break;
                     }
                     default: {
@@ -7626,7 +7626,7 @@ implements Runnable {
                 case 8: {
                     this.bl();
                     this.bo();
-                    this.aE = new e("/me.dpr");
+                    this.aE = new SpriteAnimator("/me.dpr");
                     break;
                 }
                 case 9: {
