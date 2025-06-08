@@ -576,7 +576,7 @@ implements Runnable {
     }
 
     private void a(Graphics graphics) {
-        c.V(graphics);
+        ChessCanvas.V(graphics);
         this.b.a(graphics, this.cf[0], by, bz, 17, 1);
         graphics.setColor(0xFFFFFF);
         graphics.fillRect(0, bz + this.cf[0].length + 9, bA, 10);
