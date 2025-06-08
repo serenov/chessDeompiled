@@ -30,7 +30,7 @@ extends Canvas
 implements Runnable {
     public ChessR a;
     public ResourceManger b;
-    public h c;
+    public AudioManager c;
     public static g d;
     public Graphics e;
     public Thread f;
@@ -534,7 +534,7 @@ implements Runnable {
         this.a = chessR;
         this.setFullScreenMode(true);
         this.b = new ResourceManger();
-        this.c = new h();
+        this.c = new AudioManager();
         bA = this.getWidth();
         bB = this.getHeight();
         this.m();

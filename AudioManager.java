@@ -13,7 +13,7 @@ import javax.microedition.media.Player;
 import javax.microedition.media.PlayerListener;
 import javax.microedition.media.control.VolumeControl;
 
-public final class h
+public final class AudioManager
 extends Thread
 implements PlayerListener {
     public Player a;
@@ -23,7 +23,7 @@ implements PlayerListener {
     public int d = 0;
     private int f;
 
-    public h() {
+    public AudioManager() {
         this.b();
     }
 
@@ -37,7 +37,7 @@ implements PlayerListener {
      */
     public final void run() {
         while (true) {
-            h h2 = this;
+            AudioManager h2 = this;
             synchronized (h2) {
                 try {
                     while (!this.b) {
