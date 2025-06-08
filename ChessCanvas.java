@@ -2365,7 +2365,7 @@ implements Runnable {
             n = 70 + this.cS * 6;
             graphics.fillRect(0, 0, bA, n);
             graphics.fillRect(0, bB - n, bA, n);
-            ResourceManger.a(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+            ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
             return;
         }
         if (this.cS < 4) {
@@ -2374,7 +2374,7 @@ implements Runnable {
             graphics.setColor(0);
             graphics.fillRect(0, 0, bA, n);
             graphics.fillRect(0, bB - n, bA, n);
-            ResourceManger.a(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+            ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
             return;
         }
         if (this.cS == 4 && !this.dg) {
@@ -2496,7 +2496,7 @@ implements Runnable {
                 n = 70 + this.cS * 6;
                 graphics.fillRect(0, 0, bA, n);
                 graphics.fillRect(0, bB - n, bA, n);
-                ResourceManger.a(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+                ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
                 return;
             }
             if (this.cS < 4) {
@@ -2504,7 +2504,7 @@ implements Runnable {
                 graphics.setColor(0);
                 graphics.fillRect(0, 0, bA, n);
                 graphics.fillRect(0, bB - n, bA, n);
-                ResourceManger.a(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+                ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
                 return;
             }
             ChessCanvas.V(graphics);

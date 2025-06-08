@@ -86,6 +86,7 @@ public final class ResourceManger {
     }
 
     public final int[] loadGameDataById(String string) {
+        // FIXME: Name this function properly... Not sure what data it loads.
         int[] nArray = null;
         DataInputStream dataInputStream = null;
         try {
@@ -103,12 +104,21 @@ public final class ResourceManger {
         return nArray;
     }
 
-    public static void a(Graphics graphics, int n, int n2, int n3, int n4, int n5, int n6) {
-        graphics.setColor(n);
-        graphics.fillRect(n2, n3, n4, n6);
-        graphics.fillRect(n2 + n4 - n6, n3, n6, n5);
-        graphics.fillRect(n2, n3 + n5 - n6, n4, n6);
-        graphics.fillRect(n2, n3, n6, n5);
+    public static void DrawRectBorder(Graphics g, int color, int x, int y, int width, int height, int thickness) {
+
+        g.setColor(color);
+
+        // Top border
+        g.fillRect(x, y, width, thickness);
+
+        // Right border
+        g.fillRect(x + width - thickness, y, thickness, height);
+
+        // Bottom border
+        g.fillRect(x, y + height - thickness, width, thickness);
+
+        // Left border
+        g.fillRect(x, y, thickness, height);
     }
 
     private static byte[] b(byte[] byArray, int[][] nArray, int[][] nArray2, int n, int n2) {
