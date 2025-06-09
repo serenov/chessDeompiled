@@ -17,24 +17,30 @@ public final class GameSpritesManager {
     public int width;
     public int height;
 
-    public GameSpritesManager(String string) throws Exception {
-        DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
+    public GameSpritesManager(String spritePath) throws Exception {
+        DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(spritePath));
+
         this.offsetX = -dataInputStream.readInt();
         this.offsetY = -dataInputStream.readInt();
-        byte[] byArray = this.a(string);
+
+        byte[] byArray = this.loadSpriteIntoByteArray(spritePath);
+
         dataInputStream.readFully(byArray);
+
         this.spriteImage = Image.createImage((byte[])byArray, (int)0, (int)byArray.length);
+
         this.width = this.spriteImage.getWidth();
         this.height = this.spriteImage.getHeight();
+
         dataInputStream.close();
     }
 
-    private byte[] a(String string) {
+    private byte[] loadSpriteIntoByteArray(String spritePath) {
         byte[] byArray = null;
         int n = 0;
         int n2 = 0;
         try {
-            InputStream inputStream = this.getClass().getResourceAsStream(string);
+            InputStream inputStream = this.getClass().getResourceAsStream(spritePath);
             byte[] byArray2 = new byte[4096];
             while ((n2 = inputStream.read(byArray2)) > 0) {
                 n += n2;
@@ -65,15 +71,18 @@ public final class GameSpritesManager {
     }
 
     public GameSpritesManager(byte[] byArray) throws Exception {
-        this.offsetX = -GameSpritesManager.a(byArray, 0);
-        this.offsetY = -GameSpritesManager.a(byArray, 4);
+        this.offsetX = -GameSpritesManager.convertFourBytesToInt(byArray, 0);
+        this.offsetY = -GameSpritesManager.convertFourBytesToInt(byArray, 4);
+
         this.spriteImage = Image.createImage((byte[])byArray, (int)8, (int)(byArray.length - 8));
+
         this.width = this.spriteImage.getWidth();
         this.height = this.spriteImage.getHeight();
     }
 
-    private static int a(byte[] byArray, int n) {
+    private static int convertFourBytesToInt(byte[] byArray, int n) {
         int n2 = (byArray[n++] << 24) + (byArray[n++] << 16) + (byArray[n++] << 8) + (byArray[n] << 0);
+
         return n2;
     }
 
