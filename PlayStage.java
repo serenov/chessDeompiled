@@ -1430,7 +1430,7 @@ implements Runnable {
                         ++n5;
                     }
                     this.b.a(graphics, this.cf[14 + Constants.C], by + 20, bz - 60 + 0, 17, 1);
-                    this.b.a(graphics, this.cf[20 + Constants.A], by + 20, bz - 60 + 30, 17, 1);
+                    this.b.a(graphics, this.cf[20 + Constants.soundVolumeLevel], by + 20, bz - 60 + 30, 17, 1);
                     this.b.a(graphics, this.cf[6 + Constants.E], by + 20, bz - 60 + 60, 17, 1);
                     this.b.a(graphics, this.cf[10 + Constants.B], by + 20, bz - 60 + 90, 17, 1);
                     if (Constants.E != 1) break block22;
@@ -5134,7 +5134,7 @@ implements Runnable {
                 return;
             }
             case -7: {
-                Constants.A = 0;
+                Constants.soundVolumeLevel = 0;
                 this.bP[0] = 0;
                 this.a(4, true);
             }
@@ -5896,13 +5896,13 @@ implements Runnable {
                     }
                     case 2: {
                         if (n == -3 || n == 52) {
-                            if (--Constants.A < 0) {
-                                Constants.A = 2;
+                            if (--Constants.soundVolumeLevel < 0) {
+                                Constants.soundVolumeLevel = 2;
                             }
-                        } else if ((n == -4 || n == 54) && ++Constants.A > 2) {
-                            Constants.A = 0;
+                        } else if ((n == -4 || n == 54) && ++Constants.soundVolumeLevel > 2) {
+                            Constants.soundVolumeLevel = 0;
                         }
-                        this.bP[0] = Constants.A == 0 ? 0 : 1;
+                        this.bP[0] = Constants.soundVolumeLevel == 0 ? 0 : 1;
                         this.bD();
                         this.b(0, false);
                         return;
@@ -7904,7 +7904,7 @@ implements Runnable {
     private String bx() {
         int n = 0;
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(String.valueOf(Constants.A) + "*");
+        stringBuffer.append(String.valueOf(Constants.soundVolumeLevel) + "*");
         stringBuffer.append(String.valueOf(Constants.C) + "*");
         stringBuffer.append(String.valueOf(Constants.E) + "*");
         stringBuffer.append(String.valueOf(Constants.F) + "*");
@@ -8069,7 +8069,7 @@ implements Runnable {
                         if (!recordEnumeration.hasNextElement()) {
                             bl = false;
                             this.f();
-                            this.c.setVolumeLevel(Constants.A);
+                            this.c.setVolumeLevel(Constants.soundVolumeLevel);
                         } else {
                             int n = 0;
                             while (recordEnumeration.hasNextElement()) {
@@ -8078,7 +8078,7 @@ implements Runnable {
                                 filterInputStream = new DataInputStream(byteArrayInputStream);
                                 string = ((DataInputStream)filterInputStream).readUTF();
                                 n = string.indexOf("*", 0);
-                                Constants.A = Integer.parseInt(string.substring(0, n));
+                                Constants.soundVolumeLevel = Integer.parseInt(string.substring(0, n));
                                 int n3 = n;
                                 n = string.indexOf(42, n3 + 1);
                                 Constants.C = Integer.parseInt(string.substring(n3 + 1, n));

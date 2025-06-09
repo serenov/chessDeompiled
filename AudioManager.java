@@ -51,7 +51,7 @@ implements PlayerListener {
                 synchronized (h2) {
                     this.isResourceAvailable = false;
                     if (this.soundPlayer != null) {
-                        this.setVolumeLevel(Constants.A);
+                        this.setVolumeLevel(Constants.soundVolumeLevel);
                         this.soundPlayer.setLoopCount(this.loopCount);
                         this.soundPlayer.prefetch();
                         this.soundPlayer.start();

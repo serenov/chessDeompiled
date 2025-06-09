@@ -28,7 +28,7 @@ public final class Constants {
     public static boolean x;
     public static int y;
     public static int z;
-    public static int A;
+    public static int soundVolumeLevel;
     public static int B;
     public static int C;
     public static int D;
@@ -84,7 +84,7 @@ public final class Constants {
         @SuppressWarnings("unused")
         int[] nArray = new int[]{100, 120, 140};
         z = 1;
-        A = 1;
+        soundVolumeLevel = 1;
         B = 1;
         C = -1;
         D = 0;
