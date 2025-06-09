@@ -542,7 +542,7 @@ implements Runnable {
         this.m();
         d = new ChessEngine();
         this.T = new byte[9];
-        this.by();
+        this.LoadOption();
         this.br = 0;
         this.aM();
     }
@@ -631,11 +631,11 @@ implements Runnable {
                     nArrayArray[6] = new int[]{2, 151, 185};
                     this.y = nArrayArray;
                     try {
-                        GameConfig.O = this.b.loadGameDataById("anMapX");
-                        GameConfig.P = this.b.loadGameDataById("anMapY");
-                        GameConfig.Q = this.b.loadGameDataById("anMapCenterY");
-                        GameConfig.R = this.b.loadGameDataById("anMapEdgeY");
-                        GameConfig.S = this.b.loadGameDataById("anMapEdgeX");
+                        Constants.O = this.b.loadGameDataById("anMapX");
+                        Constants.P = this.b.loadGameDataById("anMapY");
+                        Constants.Q = this.b.loadGameDataById("anMapCenterY");
+                        Constants.R = this.b.loadGameDataById("anMapEdgeY");
+                        Constants.S = this.b.loadGameDataById("anMapEdgeX");
                     }
                     catch (Exception exception) {}
                     ChessR.m = new byte[64];
@@ -658,58 +658,58 @@ implements Runnable {
     }
 
     private void m() {
-        GameConfig.a = this.a.getAppProperty("Default-Logo").equals("ON") ? 0 : 1;
-        GameConfig.b = this.a.getAppProperty("More_Games").equals("ON");
-        GameConfig.c = this.a.getAppProperty("Download-URL");
-        GameConfig.g = this.a.getAppProperty("Default-Cheat").equals("ON");
+        Constants.a = this.a.getAppProperty("Default-Logo").equals("ON") ? 0 : 1;
+        Constants.b = this.a.getAppProperty("More_Games").equals("ON");
+        Constants.c = this.a.getAppProperty("Download-URL");
+        Constants.g = this.a.getAppProperty("Default-Cheat").equals("ON");
 
         int n = 0;
 
         n = this.a.getAppProperty("Default-Vendor-Key").equals("MOTO1") ? 1 : (this.a.getAppProperty("Default-Vendor-Key").equals("MOTO2") ? 2 : (this.a.getAppProperty("Default-Vendor-Key").equals("SIEMENS") ? 3 : (this.a.getAppProperty("Default-Vendor-Key").equals("SAGEM") ? 4 : (this.a.getAppProperty("Default-Vendor-Key").equals("LGT") ? 5 : 0))));
 
-        this.r = GameConfig.o[n][0];
-        this.t = GameConfig.o[n][1];
-        this.u = GameConfig.o[n][2];
-        this.n = GameConfig.o[n][3];
-        this.o = GameConfig.o[n][4];
-        this.p = GameConfig.o[n][5];
-        this.q = GameConfig.o[n][6];
+        this.r = Constants.o[n][0];
+        this.t = Constants.o[n][1];
+        this.u = Constants.o[n][2];
+        this.n = Constants.o[n][3];
+        this.o = Constants.o[n][4];
+        this.p = Constants.o[n][5];
+        this.q = Constants.o[n][6];
 
-        GameConfig.e = this.a.getAppProperty("MIDlet-Version");
+        Constants.e = this.a.getAppProperty("MIDlet-Version");
 
         if (this.a.getAppProperty("Force-Language").equals("EN")) {
-            GameConfig.d = 0;
+            Constants.d = 0;
             return;
         }
 
         if (this.a.getAppProperty("Force-Language").equals("DE")) {
-            GameConfig.d = 1;
+            Constants.d = 1;
             return;
         }
 
         if (this.a.getAppProperty("Force-Language").equals("FR")) {
-            GameConfig.d = 2;
+            Constants.d = 2;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("ES")) {
-            GameConfig.d = 3;
+            Constants.d = 3;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("IT")) {
-            GameConfig.d = 4;
+            Constants.d = 4;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("PT")) {
-            GameConfig.d = 5;
+            Constants.d = 5;
             return;
         }
-        GameConfig.d = 6;
+        Constants.d = 6;
     }
 
     private void b(Graphics graphics) {
         PlayStage.V(graphics);
         graphics.setColor(255, 255, 0);
-        graphics.fillRect(0, 58 + GameConfig.v * 15, bA, this.b.o[1] + 4);
+        graphics.fillRect(0, 58 + Constants.v * 15, bA, this.b.o[1] + 4);
         this.b.a(graphics, this.cf[0], by, 40, 17, 1);
         int n = 0;
         while (n < 6) {
@@ -737,36 +737,36 @@ implements Runnable {
         if (this.bN > 5 && this.bN <= 17) {
             n = 6;
         } else if (this.bN > 17 && this.bN <= 30) {
-            n = GameConfig.a == 0 ? 7 : 8;
+            n = Constants.a == 0 ? 7 : 8;
         } else if (this.bN > 30) {
             n = 8;
         }
         if (this.at != null && this.at[n] != null) {
             graphics.drawImage(this.at[n], by, bz, 3);
         }
-        if (GameConfig.a == 0) {
+        if (Constants.a == 0) {
             if (++this.bN > 45) {
                 this.at = null;
-                if (GameConfig.d == 6 && GameConfig.C == -1) {
-                    GameConfig.C = 0;
+                if (Constants.d == 6 && Constants.C == -1) {
+                    Constants.C = 0;
                     this.a(2, true);
                     return;
                 }
-                if (GameConfig.d != 6) {
-                    GameConfig.C = GameConfig.d;
+                if (Constants.d != 6) {
+                    Constants.C = Constants.d;
                 }
                 this.a(3, true);
-                GameConfig.v = GameConfig.C;
+                Constants.v = Constants.C;
                 return;
             }
         } else if (++this.bN > 30) {
             this.at = null;
-            if (GameConfig.d == 6) {
+            if (Constants.d == 6) {
                 this.a(2, true);
                 return;
             }
             this.a(3, true);
-            GameConfig.v = GameConfig.C;
+            Constants.v = Constants.C;
         }
     }
 
@@ -892,7 +892,7 @@ implements Runnable {
         this.bM = 0;
         this.bD();
         this.l = null;
-        GameConfig.L = false;
+        Constants.L = false;
     }
 
     private void f(Graphics graphics) {
@@ -918,7 +918,7 @@ implements Runnable {
                 n2 = 20;
                 ResourceManger.a(graphics, -5, n, 140, 20, 0x575757, 0, 0, 1, 6);
             }
-            if (!GameConfig.b) {
+            if (!Constants.b) {
                 if (n3 == 5) {
                     this.b.a(graphics, this.cf[6], n2, n - 6, 20, 1);
                 } else {
@@ -939,7 +939,7 @@ implements Runnable {
         this.br = 257;
         this.bs = 257;
         this.bq = PlayStage.S(this.br);
-        this.bp = GameConfig.D != 0 ? 1 : 0;
+        this.bp = Constants.D != 0 ? 1 : 0;
         this.ac(4);
         this.aa(17);
     }
@@ -1005,7 +1005,7 @@ implements Runnable {
             this.b.a(graphics, this.cf[9], by + 5, n6 + 3, 20, 1);
         }
         graphics.setColor(0xDDDDDD);
-        GameConfig.T = 0;
+        Constants.T = 0;
         this.bZ = n2 -= 12;
         this.a(this.ce, this.cy, this.cx, this.co);
     }
@@ -1019,7 +1019,7 @@ implements Runnable {
         ResourceManger.a(graphics, by, n3, 156, n4 - 4, 17);
         this.a(graphics, this.aq, by, n3, 160, n4, 17);
         graphics.setColor(0xDDDDDD);
-        GameConfig.T = 0;
+        Constants.T = 0;
         this.bZ = n2 -= 12;
         this.a(this.ce, this.cy, this.cx, this.co);
     }
@@ -1029,7 +1029,7 @@ implements Runnable {
         this.bq = PlayStage.S(258);
         this.bp = 0;
         this.cI = false;
-        GameConfig.H = -4132;
+        Constants.H = -4132;
         this.aX();
     }
 
@@ -1055,7 +1055,7 @@ implements Runnable {
         this.bs = 272;
         this.bq = PlayStage.S(272);
         this.bp = 0;
-        GameConfig.L = false;
+        Constants.L = false;
         this.ac(5);
     }
 
@@ -1389,11 +1389,11 @@ implements Runnable {
                     int n3 = bz - n2 / 2;
                     n = 0;
                     int n4 = 160;
-                    if (GameConfig.E != 1) {
+                    if (Constants.E != 1) {
                         ++n;
                         n4 -= 30;
                     }
-                    if (!GameConfig.L) {
+                    if (!Constants.L) {
                         ++n;
                         n4 -= 30;
                     }
@@ -1411,7 +1411,7 @@ implements Runnable {
                     n5 = 0;
                     while (n5 < 6 - n) {
                         if (n5 == this.bp - 1) {
-                            if (GameConfig.d == 6) {
+                            if (Constants.d == 6) {
                                 if (this.cE % 3 == 1) {
                                     this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
                                     this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
@@ -1420,7 +1420,7 @@ implements Runnable {
                                 this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
                                 this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                             }
-                        } else if (GameConfig.d == 6) {
+                        } else if (Constants.d == 6) {
                             this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
                             this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                         } else if (n5 != 0) {
@@ -1429,26 +1429,26 @@ implements Runnable {
                         }
                         ++n5;
                     }
-                    this.b.a(graphics, this.cf[14 + GameConfig.C], by + 20, bz - 60 + 0, 17, 1);
-                    this.b.a(graphics, this.cf[20 + GameConfig.A], by + 20, bz - 60 + 30, 17, 1);
-                    this.b.a(graphics, this.cf[6 + GameConfig.E], by + 20, bz - 60 + 60, 17, 1);
-                    this.b.a(graphics, this.cf[10 + GameConfig.B], by + 20, bz - 60 + 90, 17, 1);
-                    if (GameConfig.E != 1) break block22;
+                    this.b.a(graphics, this.cf[14 + Constants.C], by + 20, bz - 60 + 0, 17, 1);
+                    this.b.a(graphics, this.cf[20 + Constants.A], by + 20, bz - 60 + 30, 17, 1);
+                    this.b.a(graphics, this.cf[6 + Constants.E], by + 20, bz - 60 + 60, 17, 1);
+                    this.b.a(graphics, this.cf[10 + Constants.B], by + 20, bz - 60 + 90, 17, 1);
+                    if (Constants.E != 1) break block22;
                     this.b.a(graphics, this.cf[4], by - 70, bz - 70 + 120, 20, 1);
-                    this.b.a(graphics, this.cf[10 + GameConfig.F], by + 20, bz - 60 + 120, 17, 1);
-                    if (!GameConfig.L) break block23;
+                    this.b.a(graphics, this.cf[10 + Constants.F], by + 20, bz - 60 + 120, 17, 1);
+                    if (!Constants.L) break block23;
                     this.b.a(graphics, this.cf[5], by - 70, bz - 70 + 150, 20, 1);
                     if (this.bp == 6) break block24;
-                    this.b.a(graphics, this.cf[8 + GameConfig.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
+                    this.b.a(graphics, this.cf[8 + Constants.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
                     break block23;
                 }
-                if (!GameConfig.L) break block23;
+                if (!Constants.L) break block23;
                 this.b.a(graphics, this.cf[5], by - 70, bz - 70 + 120, 20, 1);
                 if (this.bp == 5) {
                     // empty if block
                 }
             }
-            this.b.a(graphics, this.cf[8 + GameConfig.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
+            this.b.a(graphics, this.cf[8 + Constants.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
         }
         graphics.setColor(0x555555);
         graphics.fillRect(0, bB - 12, bA, 12);
@@ -1456,7 +1456,7 @@ implements Runnable {
     }
 
     private void f(int n) {
-        GameConfig.w = n == -3 || n == 52 ? (GameConfig.w ^= 1) : (GameConfig.w ^= 1);
+        Constants.w = n == -3 || n == 52 ? (Constants.w ^= 1) : (Constants.w ^= 1);
         ChessEngine.a(this.L());
     }
 
@@ -1478,7 +1478,7 @@ implements Runnable {
             if (this.ao == null) {
                 this.ao = Image.createImage((String)"/img/h_arrow.png");
             }
-            if (GameConfig.E == 0) {
+            if (Constants.E == 0) {
                 this.B();
                 return;
             }
@@ -1579,7 +1579,7 @@ implements Runnable {
         } else {
             this.D(graphics);
         }
-        int n = GameConfig.t;
+        int n = Constants.t;
         int n2 = bz;
         int n3 = bz - n2 / 2;
         PlayStage.a(graphics, by, n3 - 40, 100, 30, 17);
@@ -1593,7 +1593,7 @@ implements Runnable {
         switch (this.cT) {
             case 0: {
                 int n6 = 0;
-                while (n6 < GameConfig.l + 1) {
+                while (n6 < Constants.l + 1) {
                     if (n6 == 1 && this.cf[2].length * 8 <= 150) {
                         this.b.a(graphics, this.cf[n6 + 1], by, n5 + n6 * 30, 17, 1);
                     } else {
@@ -1664,7 +1664,7 @@ implements Runnable {
             }
             case 2: {
                 n4 = n3 + 30;
-                if (GameConfig.E == 0) {
+                if (Constants.E == 0) {
                     this.aB[this.bp + 6].a(graphics, by, n4);
                 } else {
                     graphics.drawImage(this.aD[this.bp], by, n4 + 17, 33);
@@ -1766,7 +1766,7 @@ implements Runnable {
         this.e(graphics);
         PlayStage.a(graphics, n, n2, 176, 220, 17);
         this.bZ = n2 + 10;
-        GameConfig.T = 1;
+        Constants.T = 1;
         this.a(this.ce, this.cy, this.cx, this.co);
         graphics.setColor(0x555555);
         graphics.fillRect(0, bB - 12, bA, 12);
@@ -1784,13 +1784,13 @@ implements Runnable {
         this.bw();
         this.bD();
         this.n();
-        bi = GameConfig.E != 0;
+        bi = Constants.E != 0;
         this.aY = 1;
         this.g();
         this.b(3);
         this.c(1);
         this.d(41);
-        GameConfig.H = -4132;
+        Constants.H = -4132;
         bv = -4132;
         ChessR.j = -4132;
         bI = false;
@@ -1832,13 +1832,13 @@ implements Runnable {
         this.ez = false;
         ChessR.r = 0;
         ChessR.s = 0;
-        GameConfig.G = 0;
+        Constants.G = 0;
         this.aF();
         ew = false;
         ChessR.e = 3;
         ChessR.f = 1;
         this.X();
-        if (GameConfig.L) {
+        if (Constants.L) {
             this.bm = 0;
         }
         this.W = false;
@@ -1846,7 +1846,7 @@ implements Runnable {
         this.dI = -4132;
         et = new Vector();
         this.dX = false;
-        GameConfig.f = false;
+        Constants.f = false;
         this.a(259, true);
     }
 
@@ -1948,8 +1948,8 @@ implements Runnable {
     }
 
     private int L() {
-        if (GameConfig.L) {
-            int n = this.Y[GameConfig.w + 1][this.U][this.ae];
+        if (Constants.L) {
+            int n = this.Y[Constants.w + 1][this.U][this.ae];
             this.E = n + 1;
             return n;
         }
@@ -1962,9 +1962,9 @@ implements Runnable {
         this.bu();
         this.bt();
         this.v();
-        GameConfig.M = false;
+        Constants.M = false;
         this.I();
-        GameConfig.G = 0;
+        Constants.G = 0;
         this.aS |= 4;
         System.out.println("3333333333333333333333333333333333");
     }
@@ -2013,7 +2013,7 @@ implements Runnable {
                 return;
             }
             case 1000: {
-                if (GameConfig.L) {
+                if (Constants.L) {
                     this.c();
                 }
             }
@@ -2039,7 +2039,7 @@ implements Runnable {
 
     private void P() {
         bu = 666;
-        if (GameConfig.E == 1 && GameConfig.F == 1) {
+        if (Constants.E == 1 && Constants.F == 1) {
             this.aF.b();
             this.aG.b();
         }
@@ -2050,7 +2050,7 @@ implements Runnable {
             this.da = new Image[3];
             this.db = 0;
             this.a("getitem");
-            this.cZ = GameConfig.C == 0 || GameConfig.C == 1 ? this.b.e(3) : this.b.e(3 + GameConfig.C - 1);
+            this.cZ = Constants.C == 0 || Constants.C == 1 ? this.b.e(3) : this.b.e(3 + Constants.C - 1);
             int n = 0;
             while (n < this.da.length) {
                 this.da[n] = this.b.e(n);
@@ -2509,7 +2509,7 @@ implements Runnable {
             }
             PlayStage.V(graphics);
             this.ab();
-            GameConfig.f = true;
+            Constants.f = true;
             this.a(259, true);
             return;
         }
@@ -2528,8 +2528,8 @@ implements Runnable {
     }
 
     private void af() {
-        if (GameConfig.N != -4132 && ++GameConfig.N == 18) {
-            GameConfig.N = -4132;
+        if (Constants.N != -4132 && ++Constants.N == 18) {
+            Constants.N = -4132;
             this.M();
         }
     }
@@ -2558,7 +2558,7 @@ implements Runnable {
             graphics.setColor(0xFFFFFF);
             int n10 = 0;
             n10 = bu == 888 || bu == 40 ? n7 + 0 + n6 + 4 : n7 + 0;
-            GameConfig.T = 0;
+            Constants.T = 0;
             this.bZ = n10 + 5;
             this.a(this.ce, this.cy, this.cx, this.co);
             if (bu == 888 || bu == 40) {
@@ -2608,14 +2608,14 @@ implements Runnable {
     private void z(Graphics graphics) {
         graphics.drawImage(this.df, by, bz + -60, 3);
         this.T(graphics);
-        if (GameConfig.N != -4132) {
-            this.a(graphics, GameConfig.N, 18);
+        if (Constants.N != -4132) {
+            this.a(graphics, Constants.N, 18);
         }
     }
 
     private void ag() {
         this.br = 595;
-        GameConfig.M = true;
+        Constants.M = true;
         this.ee = true;
         this.bm = 10;
         this.ef = 0;
@@ -2686,7 +2686,7 @@ implements Runnable {
             ++n2;
         }
         String[] stringArray = new String[]{"e_bg1"};
-        GameConfig.D = 0;
+        Constants.D = 0;
         this.bw();
         this.br();
         this.bu();
@@ -2765,12 +2765,12 @@ implements Runnable {
                 this.a(graphics, this.dh);
             } else if (this.dh == 3) {
                 this.Z = 0;
-                GameConfig.x = false;
+                Constants.x = false;
                 this.n();
                 this.bw();
                 this.U = 7;
                 this.bm = 0;
-                GameConfig.f = true;
+                Constants.f = true;
                 this.a(259, true);
             }
             PlayStage.V(graphics);
@@ -2947,9 +2947,9 @@ implements Runnable {
             this.aF();
             this.dt = -4132;
             this.ak = new Image[2];
-            this.a(String.valueOf(GameConfig.C) + "_imgText");
-            this.ak[0] = this.b.e(GameConfig.Y);
-            this.ak[1] = this.b.e(GameConfig.Z);
+            this.a(String.valueOf(Constants.C) + "_imgText");
+            this.ak[0] = this.b.e(Constants.Y);
+            this.ak[1] = this.b.e(Constants.Z);
             this.b.b();
             this.b(24, false);
             this.a("ui_effect");
@@ -3154,7 +3154,7 @@ implements Runnable {
     private void at() {
         switch (bu) {
             case 0: {
-                if (!this.aG() || !GameConfig.L) break;
+                if (!this.aG() || !Constants.L) break;
                 this.aH();
                 return;
             }
@@ -3222,7 +3222,7 @@ implements Runnable {
                     this.bp = 2;
                     return;
                 }
-                if (GameConfig.H != 12) break;
+                if (Constants.H != 12) break;
                 this.f();
                 return;
             }
@@ -3238,7 +3238,7 @@ implements Runnable {
                 return;
             }
             case 444: {
-                if (this.aE.g || GameConfig.E == 0 || GameConfig.F == 0) {
+                if (this.aE.g || Constants.E == 0 || Constants.F == 0) {
                     this.O();
                     PlayStage.k();
                     return;
@@ -3254,7 +3254,7 @@ implements Runnable {
                         return;
                     }
                 }
-                if (GameConfig.E == 0 || GameConfig.F == 0) {
+                if (Constants.E == 0 || Constants.F == 0) {
                     if (bL == 1 && bk != 2) {
                         PlayStage.h();
                     }
@@ -3297,8 +3297,8 @@ implements Runnable {
 
     private void au() {
         this.x = null;
-        if (!GameConfig.L && bk != 2 && !this.dX) {
-            if (GameConfig.G == 20) {
+        if (!Constants.L && bk != 2 && !this.dX) {
+            if (Constants.G == 20) {
                 if (ba < this.A || this.A == 0) {
                     this.A = ba;
                 }
@@ -3306,12 +3306,12 @@ implements Runnable {
             } else {
                 ++this.H;
             }
-            this.F += this.b(GameConfig.G == 20);
+            this.F += this.b(Constants.G == 20);
             this.x();
         }
         this.bw();
-        if (GameConfig.L) {
-            if (this.U >= 6 && GameConfig.G == 20) {
+        if (Constants.L) {
+            if (this.U >= 6 && Constants.G == 20) {
                 if (this.U == 6) {
                     this.ah();
                 } else {
@@ -3499,18 +3499,18 @@ implements Runnable {
                 graphics.setColor(0x555555);
                 graphics.fillRect(0, bB - 12, bA, 12);
                 if (bk != 2) {
-                    if (!GameConfig.I) {
+                    if (!Constants.I) {
                         if (this.cE % 4 == 0) {
                             graphics.setColor(16729600);
                             graphics.fillTriangle(n, n2, n3, n4, n5, n6);
                         }
                         this.b.a(graphics, this.cf[10], 0, bB, 36, 1);
                     } else {
-                        if (GameConfig.L) {
+                        if (Constants.L) {
                             graphics.setColor(0x555555);
                             graphics.fillRect(bA - 72, bB - 43, 72, 38);
                             graphics.setColor(0xDDDDDD);
-                            graphics.fillRect(bA - 70, bB - 42 + 15 * GameConfig.J, 70, 13);
+                            graphics.fillRect(bA - 70, bB - 42 + 15 * Constants.J, 70, 13);
                             this.b.a(graphics, this.cf[6], bA - 67, bB - 15, 36, 1);
                             this.b.a(graphics, this.cf[7], bA - 67, bB - 30, 36, 1);
                         } else {
@@ -3530,7 +3530,7 @@ implements Runnable {
                     this.b.a(graphics, this.cf[n7 - 1], by, bB - 30, 17, 1);
                     ResourceManger.a(graphics);
                 }
-                if (GameConfig.I) break;
+                if (Constants.I) break;
                 this.b.a(graphics, this.cf[10], 0, bB, 36, 1);
             }
             case 3: {
@@ -3613,29 +3613,29 @@ implements Runnable {
 
     private void j(int n) {
         bu = n;
-        GameConfig.H = 0;
+        Constants.H = 0;
         int n2 = 0;
         switch (n) {
             case 1000: {
                 this.bD();
                 this.b(14, false);
-                n2 = GameConfig.ad;
+                n2 = Constants.ad;
                 break;
             }
             case 2000: {
                 this.bD();
                 this.b(15, false);
-                n2 = GameConfig.ae;
+                n2 = Constants.ae;
                 break;
             }
             case 3000: {
                 this.bD();
                 this.b(15, false);
-                n2 = GameConfig.af;
+                n2 = Constants.af;
             }
         }
         try {
-            this.a(String.valueOf(GameConfig.C) + "_imgText");
+            this.a(String.valueOf(Constants.C) + "_imgText");
             this.aj = this.b.e(n2);
             this.b.b();
             this.a("ui_effect");
@@ -3650,14 +3650,14 @@ implements Runnable {
     private void G(Graphics graphics) {
         int n = this.aj.getWidth();
         int n2 = this.aj.getHeight();
-        if (GameConfig.H < 4) {
-            n = n * GameConfig.H * GameConfig.H / 16;
-            n2 = n2 * GameConfig.H * GameConfig.H / 16;
+        if (Constants.H < 4) {
+            n = n * Constants.H * Constants.H / 16;
+            n2 = n2 * Constants.H * Constants.H / 16;
         }
         ResourceManger.c(graphics, by, bz, n, n2, 3);
         graphics.drawImage(this.aj, by, bz, 3);
         ResourceManger.a(graphics);
-        if (GameConfig.H >= 4) {
+        if (Constants.H >= 4) {
             ResourceManger.a(graphics, this.ag, by - n / 2, bz - n2 / 2, this.ag.getWidth(), this.ag.getHeight() / 3, 0, aT % 3, 3);
             ResourceManger.a(graphics, this.ah, n / 2 + by, bz - n2 / 2, this.ah.getWidth(), this.ah.getHeight() / 5, 0, aT % 5, 3);
         }
@@ -3690,8 +3690,8 @@ implements Runnable {
     }
 
     private void aA() {
-        if (GameConfig.H != -4132) {
-            ++GameConfig.H;
+        if (Constants.H != -4132) {
+            ++Constants.H;
         }
         if (this.dC) {
             if (this.dB == -4132) {
@@ -3744,7 +3744,7 @@ implements Runnable {
         int n4 = n2 + 6;
         this.b.a(graphics, this.cf[this.bp], by, n4 + 6, 3, 1);
         ResourceManger.a(graphics, n3 + 90 + 4 + 20, n2 + 6 + 20, 20, 13, 0, 0x393939, 0x868686, 1);
-        int n5 = by - 14 * (GameConfig.n + 1);
+        int n5 = by - 14 * (Constants.n + 1);
         int n6 = n4 + 13 + 4;
         int n7 = 0;
         if (this.dB != -4132) {
@@ -3790,7 +3790,7 @@ implements Runnable {
         n = bk == 2 ? 2 : 0;
 
         // FIXME: GameConfig.n and ChessEngine.n both are contesting...
-        while (n < GameConfig.n + 1) {
+        while (n < Constants.n + 1) {
             ResourceManger.b(graphics, n5 + 14 * (n * 2) - 2, n6, 24, 24, 0, 0x393939, 0x868686, 1);
             graphics.drawImage(this.am[n], n5 + 10 + 14 * (n * 2), n6 + 2 + 10, 3);
             ++n;
@@ -3806,13 +3806,13 @@ implements Runnable {
         graphics.setColor(0);
         this.bZ = n6 + 20 + 8;
         this.a(this.cg[this.bp], this.cy, this.cx, this.co);
-        if (GameConfig.H != -4132) {
-            int n8 = PlayStage.a(graphics, bz, 176, 40, 2, 16, GameConfig.H);
+        if (Constants.H != -4132) {
+            int n8 = PlayStage.a(graphics, bz, 176, 40, 2, 16, Constants.H);
             graphics.setColor(0xFFFFFF);
             if (n8 == 1) {
                 this.b.a(graphics, this.ce[0], by, bz - 8, 17, 0);
             } else if (n8 == 2) {
-                GameConfig.H = -4132;
+                Constants.H = -4132;
             }
         }
         graphics.setColor(0x555555);
@@ -4071,7 +4071,7 @@ implements Runnable {
             n4 = this.dF.d;
             n5 = this.dF.e;
         }
-        if ((n3 = n5 - ++this.dI * 3) <= 0 || !bi || GameConfig.F != 1) {
+        if ((n3 = n5 - ++this.dI * 3) <= 0 || !bi || Constants.F != 1) {
             ChessEngine.l = -1;
             bL = 1;
             if (bu == 1000) {
@@ -4128,14 +4128,14 @@ implements Runnable {
         if (n == -7 && this.dC) {
             this.dC = false;
             this.dD = 4;
-            GameConfig.I = false;
-            GameConfig.J = 0;
+            Constants.I = false;
+            Constants.J = 0;
         }
     }
 
     private void aE() {
-        if (GameConfig.H != -4132) {
-            ++GameConfig.H;
+        if (Constants.H != -4132) {
+            ++Constants.H;
         }
         if (this.dC) {
             ++this.dD;
@@ -4254,7 +4254,7 @@ implements Runnable {
         if (this.br != 768) {
             return;
         }
-        int n = GameConfig.j + 1;
+        int n = Constants.j + 1;
         int n2 = 16 + n * 18;
         int n3 = bz - n2 / 2;
         if (this.bS != -4132 || this.bT != -4132) {
@@ -4329,8 +4329,8 @@ implements Runnable {
         this.b(3);
         this.c(1);
         this.d(38);
-        this.a(String.valueOf(GameConfig.C) + "_imgText");
-        this.x = this.b.e(GameConfig.Y);
+        this.a(String.valueOf(Constants.C) + "_imgText");
+        this.x = this.b.e(Constants.Y);
         this.b.b();
         bu = 1;
     }
@@ -4449,15 +4449,15 @@ implements Runnable {
 
     public final void d() {
         try {
-            GameConfig.H = 0;
+            Constants.H = 0;
             bu = 44;
             this.bD();
-            switch (GameConfig.G) {
+            switch (Constants.G) {
                 case 0: {
                     this.W = true;
                     this.V = false;
-                    this.a(String.valueOf(GameConfig.C) + "_imgText");
-                    this.aj = this.b.e(GameConfig.ac);
+                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.aj = this.b.e(Constants.ac);
                     this.b.b();
                     dS = 0;
                     this.b(16, false);
@@ -4466,8 +4466,8 @@ implements Runnable {
                 case 1: {
                     this.W = true;
                     this.V = false;
-                    this.a(String.valueOf(GameConfig.C) + "_imgText");
-                    this.aj = this.b.e(GameConfig.ac);
+                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.aj = this.b.e(Constants.ac);
                     this.b.b();
                     dS = 1;
                     this.b(16, false);
@@ -4475,8 +4475,8 @@ implements Runnable {
                 }
                 case 2: {
                     this.W = true;
-                    this.a(String.valueOf(GameConfig.C) + "_imgText");
-                    this.aj = this.b.e(GameConfig.ac);
+                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.aj = this.b.e(Constants.ac);
                     this.b.b();
                     this.V = false;
                     dS = 2;
@@ -4484,8 +4484,8 @@ implements Runnable {
                     break;
                 }
                 case 20: {
-                    this.a(String.valueOf(GameConfig.C) + "_imgText");
-                    this.aj = this.b.e(GameConfig.aa);
+                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.aj = this.b.e(Constants.aa);
                     this.b.b();
                     this.V = true;
                     this.bm = 7;
@@ -4493,8 +4493,8 @@ implements Runnable {
                     break;
                 }
                 case 30: {
-                    this.a(String.valueOf(GameConfig.C) + "_imgText");
-                    this.aj = this.b.e(GameConfig.ab);
+                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.aj = this.b.e(Constants.ab);
                     this.b.b();
                     this.V = false;
                     this.bm = 8;
@@ -4566,10 +4566,10 @@ implements Runnable {
             if (!bi) {
                 this.aB[n3 == 1 ? ((n + n2) % 2 == 0 ? 22 : 23) : ((n + n2) % 2 == 0 ? 20 : 21)].a(graphics, this.ae(n) + this.aL + be, this.ag(n2) + this.aL + bf);
             } else {
-                int[] nArray = new int[]{bg + GameConfig.S[n + n2 * 9], bg + GameConfig.S[n + n2 * 9 + 1], bg + GameConfig.S[n + (n2 + 1) * 9 + 1], bg + GameConfig.S[n + (n2 + 1) * 9]};
-                int[] nArray2 = new int[]{bh + GameConfig.R[n2], bh + GameConfig.R[n2], bh + GameConfig.R[n2 + 1], bh + GameConfig.R[n2 + 1]};
-                int[] nArray3 = new int[]{bg + GameConfig.S[n + n2 * 9] + 1, bg + GameConfig.S[n + n2 * 9 + 1] + 1, bg + GameConfig.S[n + (n2 + 1) * 9 + 1] + 1, bg + GameConfig.S[n + (n2 + 1) * 9] + 1};
-                int[] nArray4 = new int[]{bh + GameConfig.R[n2] - 1, bh + GameConfig.R[n2] - 1, bh + GameConfig.R[n2 + 1] - 1, bh + GameConfig.R[n2 + 1] - 1};
+                int[] nArray = new int[]{bg + Constants.S[n + n2 * 9], bg + Constants.S[n + n2 * 9 + 1], bg + Constants.S[n + (n2 + 1) * 9 + 1], bg + Constants.S[n + (n2 + 1) * 9]};
+                int[] nArray2 = new int[]{bh + Constants.R[n2], bh + Constants.R[n2], bh + Constants.R[n2 + 1], bh + Constants.R[n2 + 1]};
+                int[] nArray3 = new int[]{bg + Constants.S[n + n2 * 9] + 1, bg + Constants.S[n + n2 * 9 + 1] + 1, bg + Constants.S[n + (n2 + 1) * 9 + 1] + 1, bg + Constants.S[n + (n2 + 1) * 9] + 1};
+                int[] nArray4 = new int[]{bh + Constants.R[n2] - 1, bh + Constants.R[n2] - 1, bh + Constants.R[n2 + 1] - 1, bh + Constants.R[n2 + 1] - 1};
                 int n5 = 0;
                 if (n3 == 0) {
                     n5 = 0xF9FF94;
@@ -4666,7 +4666,7 @@ implements Runnable {
                                 this.bE = false;
                                 this.bF = false;
                             }
-                            this.aN();
+                            this.i_storyTalk();
                             this.bC();
                             this.aO();
                             this.repaint();
@@ -4703,7 +4703,7 @@ implements Runnable {
      * Handled duff style switch with additional control
      * Enabled aggressive block sorting
      */
-    private void aN() {
+    private void i_storyTalk() {
         if (!this.g) {
             return;
         }
@@ -4761,13 +4761,13 @@ implements Runnable {
                     bG = true;
                     eh = true;
                     this.ee = true;
-                    GameConfig.M = false;
+                    Constants.M = false;
                     ej = 0;
                     this.ef = 0;
                     this.dg = false;
                     int n2 = this.U > 6 ? 6 : this.U;
                     this.T[n2] = 1;
-                    GameConfig.D = 1;
+                    Constants.D = 1;
                     this.f();
                     this.bd();
                     this.cS = 0;
@@ -4791,7 +4791,7 @@ implements Runnable {
     private void R(Graphics graphics) {
         graphics.setColor(0);
         graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
-        graphics.drawImage(ResourceManger.GetImageByImagePath("/" + GameConfig.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
+        graphics.drawImage(ResourceManger.GetImageByImagePath("/" + Constants.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
     }
 
     public final void paint(Graphics graphics) {
@@ -4862,7 +4862,7 @@ implements Runnable {
                 return;
             }
             case 259: {
-                this.bh();
+                this.d_LoadResource();
                 return;
             }
             case 592: {
@@ -5018,7 +5018,7 @@ implements Runnable {
                 return;
             }
             case 257: {
-                this.t(n);
+                this.k_fmStory(n);
                 return;
             }
             case 258: {
@@ -5100,27 +5100,27 @@ implements Runnable {
     private void p(int n) {
         switch (n) {
             case -2: {
-                if (GameConfig.v < 5) {
-                    ++GameConfig.v;
+                if (Constants.v < 5) {
+                    ++Constants.v;
                     return;
                 }
-                if (GameConfig.v < 5) break;
-                GameConfig.v = 0;
+                if (Constants.v < 5) break;
+                Constants.v = 0;
                 return;
             }
             case -1: {
-                if (GameConfig.v > 0) {
-                    --GameConfig.v;
+                if (Constants.v > 0) {
+                    --Constants.v;
                     return;
                 }
-                if (GameConfig.v > 0) break;
-                GameConfig.v = 5;
+                if (Constants.v > 0) break;
+                Constants.v = 5;
                 return;
             }
             case -6: 
             case -5: {
-                this.bP[1] = GameConfig.v;
-                GameConfig.C = this.bP[1];
+                this.bP[1] = Constants.v;
+                Constants.C = this.bP[1];
                 this.a(3, true);
             }
         }
@@ -5134,7 +5134,7 @@ implements Runnable {
                 return;
             }
             case -7: {
-                GameConfig.A = 0;
+                Constants.A = 0;
                 this.bP[0] = 0;
                 this.a(4, true);
             }
@@ -5217,7 +5217,7 @@ implements Runnable {
                             return;
                         }
                         case 5: {
-                            if (!GameConfig.b) {
+                            if (!Constants.b) {
                                 this.bR = 0;
                                 this.aa(18);
                                 this.d(4);
@@ -5234,7 +5234,7 @@ implements Runnable {
                             }
                         }
                         case 6: {
-                            if (!GameConfig.b) return;
+                            if (!Constants.b) return;
                             this.bR = 0;
                             this.aa(18);
                             this.d(4);
@@ -5258,7 +5258,7 @@ implements Runnable {
         }
     }
 
-    private void t(int n) {
+    private void k_fmStory(int n) {
         block25: {
             block24: {
                 if (this.bQ != -4132) break block24;
@@ -5289,11 +5289,11 @@ implements Runnable {
                     }
                     case -6: 
                     case -5: {
-                        GameConfig.L = true;
+                        Constants.L = true;
                         bk = 0;
                         if (this.bp == 0) {
                             this.h = false;
-                            if (GameConfig.D == 0) {
+                            if (Constants.D == 0) {
                                 this.aw();
                                 return;
                             }
@@ -5303,27 +5303,27 @@ implements Runnable {
                         if (this.bp == 1) {
                             this.bc();
                             System.out.println("PlayStage.k_fmStory() _nSituation = " + this.bm);
-                            if (GameConfig.x) {
+                            if (Constants.x) {
                                 this.h = true;
                                 this.aY();
                                 this.I();
                                 this.R(100);
                                 this.bc();
                                 this.bU = true;
-                            } else if (GameConfig.y == 593) {
+                            } else if (Constants.y == 593) {
                                 this.h = false;
                                 this.aY();
                                 this.ac();
-                            } else if (GameConfig.D == 0) {
+                            } else if (Constants.D == 0) {
                                 this.aa(16);
                                 this.bM = 0;
                                 bG = true;
                                 this.cH = true;
                             } else {
-                                GameConfig.f = true;
+                                Constants.f = true;
                                 this.a(259, true);
                             }
-                            GameConfig.L = true;
+                            Constants.L = true;
                             return;
                         }
                         break block25;
@@ -5484,7 +5484,7 @@ implements Runnable {
             case -5: {
                 if (this.T[this.bp] == 1) {
                     System.out.println("111111111111111111");
-                    GameConfig.L = false;
+                    Constants.L = false;
                     this.E = this.bp;
                     this.h = false;
                     this.M();
@@ -5636,7 +5636,7 @@ implements Runnable {
         if (this.dg) {
             return;
         }
-        if (this.I(n) || GameConfig.M) {
+        if (this.I(n) || Constants.M) {
             if (!this.V) {
                 this.ag();
                 return;
@@ -5665,7 +5665,7 @@ implements Runnable {
             } else {
                 this.M();
             }
-            GameConfig.M = false;
+            Constants.M = false;
             return;
         }
         if (n == 50) {
@@ -5677,7 +5677,7 @@ implements Runnable {
         if (!eh) {
             return;
         }
-        if (this.I(n) && GameConfig.N == -4132) {
+        if (this.I(n) && Constants.N == -4132) {
             this.h = false;
             this.M();
         }
@@ -5713,14 +5713,14 @@ implements Runnable {
 
     private void G(int n) {
         if (n == 49) {
-            GameConfig.E = 1;
+            Constants.E = 1;
             bi = true;
             this.J();
             this.H();
             return;
         }
         if (n == 50) {
-            GameConfig.E = 0;
+            Constants.E = 0;
             bi = false;
             this.J();
             this.H();
@@ -5728,7 +5728,7 @@ implements Runnable {
     }
 
     private void H(int n) {
-        if (n == 48 && GameConfig.g) {
+        if (n == 48 && Constants.g) {
             this.bz();
         }
         block0 : switch (bu) {
@@ -5755,7 +5755,7 @@ implements Runnable {
                 return;
             }
             case 100: {
-                this.M(n);
+                this.k_skillPopup(n);
                 return;
             }
             case 101: {
@@ -5788,7 +5788,7 @@ implements Runnable {
                 return;
             }
             case 2: {
-                if (!GameConfig.I) {
+                if (!Constants.I) {
                     if (n == 48) {
                         this.Z();
                     }
@@ -5798,39 +5798,39 @@ implements Runnable {
                     if (n == 42 || n == 35) break;
                     if (n == -7) {
                         if (bk == 2) break;
-                        GameConfig.I = true;
+                        Constants.I = true;
                         return;
                     }
                     this.ai(n);
                     return;
                 }
                 if (n == -6 || n == -5) {
-                    switch (GameConfig.J) {
+                    switch (Constants.J) {
                         case 0: {
                             if (bk == 2) break block0;
                             this.az();
                             return;
                         }
                         case 1: {
-                            if (!GameConfig.L) break block0;
+                            if (!Constants.L) break block0;
                             this.aD();
                         }
                     }
                     return;
                 }
                 if (n == 50 || n == -1) {
-                    if (!GameConfig.L || --GameConfig.J >= 0) break;
-                    GameConfig.J = 1;
+                    if (!Constants.L || --Constants.J >= 0) break;
+                    Constants.J = 1;
                     return;
                 }
                 if (n == 56 || n == -2) {
-                    if (!GameConfig.L || ++GameConfig.J <= GameConfig.K) break;
-                    GameConfig.J = 0;
+                    if (!Constants.L || ++Constants.J <= Constants.K) break;
+                    Constants.J = 0;
                     return;
                 }
                 if (n != -7) break;
-                GameConfig.I = false;
-                GameConfig.J = 0;
+                Constants.I = false;
+                Constants.J = 0;
             }
         }
     }
@@ -5838,13 +5838,13 @@ implements Runnable {
     private boolean I(int n) {
         boolean bl = false;
         if (n == -5 || n == -6 || n == -7) {
-            if (this.ef < GameConfig.U[this.U][this.bm].length - 1 && n == -7) {
+            if (this.ef < Constants.U[this.U][this.bm].length - 1 && n == -7) {
                 this.ee = false;
                 bl = true;
-            } else if (this.ef < GameConfig.U[this.U][this.bm].length - 1 || n == -6 || n == -5) {
+            } else if (this.ef < Constants.U[this.U][this.bm].length - 1 || n == -6 || n == -5) {
                 ++this.ef;
             }
-            if (this.ef >= GameConfig.U[this.U][this.bm].length) {
+            if (this.ef >= Constants.U[this.U][this.bm].length) {
                 if (n == -6 || n == -5) {
                     this.ee = false;
                     bl = true;
@@ -5859,8 +5859,8 @@ implements Runnable {
     private void J(int n) {
         int n2;
         @SuppressWarnings("unused")
-        int n3 = n2 = GameConfig.E == 1 ? 0 : 1;
-        if (GameConfig.L) {
+        int n3 = n2 = Constants.E == 1 ? 0 : 1;
+        if (Constants.L) {
             --n2;
         }
         block0 : switch (n) {
@@ -5882,49 +5882,49 @@ implements Runnable {
             case 54: {
                 switch (this.bp) {
                     case 1: {
-                        if (GameConfig.d != 6) break block0;
+                        if (Constants.d != 6) break block0;
                         if (n == -3 || n == 52) {
-                            if (--GameConfig.v < 0) {
-                                GameConfig.v = 5;
+                            if (--Constants.v < 0) {
+                                Constants.v = 5;
                             }
-                        } else if ((n == -4 || n == 54) && ++GameConfig.v > 5) {
-                            GameConfig.v = 0;
+                        } else if ((n == -4 || n == 54) && ++Constants.v > 5) {
+                            Constants.v = 0;
                         }
-                        this.bP[1] = GameConfig.v;
-                        GameConfig.C = this.bP[1];
+                        this.bP[1] = Constants.v;
+                        Constants.C = this.bP[1];
                         return;
                     }
                     case 2: {
                         if (n == -3 || n == 52) {
-                            if (--GameConfig.A < 0) {
-                                GameConfig.A = 2;
+                            if (--Constants.A < 0) {
+                                Constants.A = 2;
                             }
-                        } else if ((n == -4 || n == 54) && ++GameConfig.A > 2) {
-                            GameConfig.A = 0;
+                        } else if ((n == -4 || n == 54) && ++Constants.A > 2) {
+                            Constants.A = 0;
                         }
-                        this.bP[0] = GameConfig.A == 0 ? 0 : 1;
+                        this.bP[0] = Constants.A == 0 ? 0 : 1;
                         this.bD();
                         this.b(0, false);
                         return;
                     }
                     case 3: {
-                        GameConfig.E ^= 1;
+                        Constants.E ^= 1;
                         return;
                     }
                     case 4: {
-                        GameConfig.B ^= 1;
+                        Constants.B ^= 1;
                         return;
                     }
                     case 5: {
-                        if (GameConfig.E == 1) {
-                            GameConfig.F ^= 1;
+                        if (Constants.E == 1) {
+                            Constants.F ^= 1;
                             return;
                         }
                         if (n == -3 || n == 52) {
-                            GameConfig.w ^= 1;
+                            Constants.w ^= 1;
                             return;
                         }
-                        GameConfig.w ^= 1;
+                        Constants.w ^= 1;
                         return;
                     }
                     case 6: {
@@ -5944,10 +5944,10 @@ implements Runnable {
                     this.g();
                     this.b(3);
                     this.d(39);
-                    if (bi != (GameConfig.E == 1)) {
+                    if (bi != (Constants.E == 1)) {
                         this.aY = 1;
-                        bi = GameConfig.E == 1;
-                        GameConfig.f = false;
+                        bi = Constants.E == 1;
+                        Constants.f = false;
                         this.a(259, true);
                     }
                     this.bq = PlayStage.S(200);
@@ -6266,12 +6266,12 @@ implements Runnable {
             case -3: 
             case 52: {
                 if (--this.bo >= 0) break;
-                this.bo = GameConfig.i;
+                this.bo = Constants.i;
                 return;
             }
             case -4: 
             case 54: {
-                if (++this.bo <= GameConfig.i) break;
+                if (++this.bo <= Constants.i) break;
                 this.bo = 0;
                 return;
             }
@@ -6321,8 +6321,8 @@ implements Runnable {
         }
     }
 
-    private void M(int n) {
-        if (GameConfig.H != -4132 || this.dB != -4132) {
+    private void k_skillPopup(int n) {
+        if (Constants.H != -4132 || this.dB != -4132) {
             return;
         }
         System.out.println("PlayStage.k_skillPopup()" + n);
@@ -6350,24 +6350,24 @@ implements Runnable {
             case -6: 
             case -5: {
                 if (this.aw[this.bp] <= 0) {
-                    GameConfig.H = 0;
-                    GameConfig.I = false;
-                    GameConfig.J = 0;
+                    Constants.H = 0;
+                    Constants.I = false;
+                    Constants.J = 0;
                     return;
                 }
                 this.dB = 0;
                 this.bD();
                 this.b(23, false);
-                GameConfig.I = false;
-                GameConfig.J = 0;
+                Constants.I = false;
+                Constants.J = 0;
                 return;
             }
         }
         if (-7 == n && this.dC) {
             this.dC = false;
             this.dD = 4;
-            GameConfig.I = false;
-            GameConfig.J = 0;
+            Constants.I = false;
+            Constants.J = 0;
             this.bD();
             this.b(17, false);
         }
@@ -6480,15 +6480,15 @@ implements Runnable {
     }
 
     private void aU() {
-        if (GameConfig.L) {
+        if (Constants.L) {
             bG = true;
             this.aW();
             this.aY();
             this.Q(100);
             this.f();
             this.bd();
-            GameConfig.D = 1;
-            GameConfig.H = 0;
+            Constants.D = 1;
+            Constants.H = 0;
             this.av = -4132;
             return;
         }
@@ -6497,10 +6497,10 @@ implements Runnable {
 
     private void aV() {
         bu = 44;
-        GameConfig.G = 30;
-        GameConfig.H = 0;
-        this.a(String.valueOf(GameConfig.C) + "_imgText");
-        this.aj = this.b.e(GameConfig.ab);
+        Constants.G = 30;
+        Constants.H = 0;
+        this.a(String.valueOf(Constants.C) + "_imgText");
+        this.aj = this.b.e(Constants.ab);
         this.b.b();
         this.a("ui_effect");
         this.ag = this.b.e(0);
@@ -6510,7 +6510,7 @@ implements Runnable {
         PlayStage.P(44);
         this.bD();
         this.b(16, false);
-        if (!GameConfig.L && bk != 2) {
+        if (!Constants.L && bk != 2) {
             this.dX = true;
             ++this.I;
             this.F -= 50;
@@ -6547,7 +6547,7 @@ implements Runnable {
 
     private void S(Graphics graphics) {
         int n = bz - 67;
-        if (!GameConfig.L) {
+        if (!Constants.L) {
             int n2 = 0;
             PlayStage.a(graphics, by, n - 5, 176, 159, 17);
             int n3 = 0;
@@ -6579,10 +6579,10 @@ implements Runnable {
             graphics.setColor(0xFFFFFF);
             graphics.drawString(string, by, n - 19, 33);
         }
-        if (GameConfig.H != -4132) {
+        if (Constants.H != -4132) {
             graphics.setColor(0);
             graphics.fillRect(0, bz - 3, bA, 20);
-            if (GameConfig.H < 15) {
+            if (Constants.H < 15) {
                 if (aT % 3 == 0) {
                     this.b.a(graphics, this.cf[10], by, bz, 17, 1);
                     return;
@@ -6621,7 +6621,7 @@ implements Runnable {
                     int[] nArray;
                     bG = true;
                     this.av = 0;
-                    if (!GameConfig.L) {
+                    if (!Constants.L) {
                         PlayStage.cJ[this.bp] = (byte)(this.E == 0 ? 1 : this.E + 1);
                     }
                     this.dY = (nArray = ResourceManger.GetCurrentDateTimeParts())[0] + 1 < 10 ? "0" + (nArray[0] + 1) : "" + nArray[0];
@@ -6632,7 +6632,7 @@ implements Runnable {
                     PlayStage.ax[this.bp] = String.valueOf(this.dZ) + "/" + this.dY + "/" + this.ec + " " + this.ea + ":" + this.eb;
                     this.Q(this.bp);
                     this.f();
-                    GameConfig.H = 0;
+                    Constants.H = 0;
                     this.av = -4132;
                     return;
                 }
@@ -6648,16 +6648,16 @@ implements Runnable {
         if (!this.ee) {
             return true;
         }
-        int n = 19 * GameConfig.s + 14;
+        int n = 19 * Constants.s + 14;
         int n2 = bB - n;
         if (this.br != 768) {
             n2 -= 80;
         }
         int n3 = 0;
-        n3 = GameConfig.U[this.U][this.bm][this.ef] < 2 ? 1 : 2;
-        int n4 = GameConfig.U[this.U][this.bm][this.ef];
-        byte by = GameConfig.V[this.U][this.bm][this.ef];
-        if (GameConfig.L && (bu == 150 || bu == 99) && n4 != 0) {
+        n3 = Constants.U[this.U][this.bm][this.ef] < 2 ? 1 : 2;
+        int n4 = Constants.U[this.U][this.bm][this.ef];
+        byte by = Constants.V[this.U][this.bm][this.ef];
+        if (Constants.L && (bu == 150 || bu == 99) && n4 != 0) {
             int n5 = this.U > 6 ? 6 : this.U;
             n4 = this.X[n5][1];
         }
@@ -6674,14 +6674,14 @@ implements Runnable {
         }
         PlayStage.a(graphics, 0, n2 - 2, bA, n + 8 + 5, 20);
         this.bZ = n2 + 5;
-        System.out.println("situation ====" + GameConfig.W);
+        System.out.println("situation ====" + Constants.W);
         System.out.println("nStage=====" + this.U);
         System.out.println("_nSituation=====" + this.bm);
-        this.a(this.cg[GameConfig.W[this.U][this.bm] + this.ef], this.cy, this.cx, this.co);
+        this.a(this.cg[Constants.W[this.U][this.bm] + this.ef], this.cy, this.cx, this.co);
         if (this.bm != 10) {
             graphics.setColor(0x555555);
             graphics.fillRect(0, bB - 12, bA, 12);
-            if (this.ef < GameConfig.U[this.U][this.bm].length - 1) {
+            if (this.ef < Constants.U[this.U][this.bm].length - 1) {
                 this.b.a(graphics, this.cf[1], 0, bB, 36, 1);
                 this.b.a(graphics, this.cf[0], bA, bB, 40, 1);
             } else {
@@ -6697,12 +6697,12 @@ implements Runnable {
     }
 
     private boolean aZ() {
-        if (GameConfig.H != -4132 && ++GameConfig.H > 20) {
+        if (Constants.H != -4132 && ++Constants.H > 20) {
             this.aj = null;
             this.ag = null;
             this.ah = null;
             System.gc();
-            GameConfig.H = -4132;
+            Constants.H = -4132;
             bv = -4132;
             return true;
         }
@@ -6992,7 +6992,7 @@ implements Runnable {
             ByteArrayOutputStream byteArrayOutputStream;
             block29: {
                 bl = false;
-                String string = GameConfig.L ? "chrs" : "chr" + n;
+                String string = Constants.L ? "chrs" : "chr" + n;
                 byteArrayOutputStream = new ByteArrayOutputStream();
                 dataOutputStream = new DataOutputStream(byteArrayOutputStream);
                 recordStore = null;
@@ -7133,7 +7133,7 @@ implements Runnable {
     private void a(byte[] byArray) {
         int n;
         int n2 = 0;
-        GameConfig.y = 0;
+        Constants.y = 0;
         this.U = byArray[0];
         this.Z = byArray[1];
         this.dk = byArray[2] == 0;
@@ -7159,15 +7159,15 @@ implements Runnable {
         System.arraycopy(byArray, n2, byArray2, 0, 4);
         int n3 = ResourceManger.ConvertByteArrayToInt(byArray2);
         if (n3 == 768) {
-            GameConfig.x = true;
+            Constants.x = true;
             return;
         }
         if (n3 == 593) {
             this.br = 593;
             this.V = true;
-            GameConfig.y = 593;
+            Constants.y = 593;
         }
-        GameConfig.x = false;
+        Constants.x = false;
     }
 
     private byte[] bf() {
@@ -7199,7 +7199,7 @@ implements Runnable {
         block38: {
             block37: {
                 bl = false;
-                String string = GameConfig.L ? "chrs" : "chr" + n;
+                String string = Constants.L ? "chrs" : "chr" + n;
                 byteArrayInputStream = null;
                 filterInputStream = null;
                 recordStore = null;
@@ -7327,9 +7327,9 @@ implements Runnable {
 
     private static boolean a(Graphics graphics, int n, int n2, int n3, boolean bl, int n4, int n5, int n6, int n7, boolean bl2) {
         bG = true;
-        int n8 = n6 / GameConfig.p + 1;
-        int n9 = n7 / GameConfig.q;
-        int n10 = n3 - (GameConfig.p - 1) * GameConfig.r;
+        int n8 = n6 / Constants.p + 1;
+        int n9 = n7 / Constants.q;
+        int n10 = n3 - (Constants.p - 1) * Constants.r;
         graphics.setColor(n);
         if (ej > n3) {
             if (!bl) {
@@ -7339,9 +7339,9 @@ implements Runnable {
             return true;
         }
         int n11 = 0;
-        while (n11 < GameConfig.p) {
+        while (n11 < Constants.p) {
             int n12;
-            int n13 = n2 - n11 * GameConfig.r;
+            int n13 = n2 - n11 * Constants.r;
             if (n13 < 0) {
                 n13 = 0;
             }
@@ -7353,7 +7353,7 @@ implements Runnable {
                 n12 = n11 * n8;
             }
             int n15 = 0;
-            while (n15 < GameConfig.q) {
+            while (n15 < Constants.q) {
                 if (bl2) {
                     graphics.fillRect(n4 + n12, n5, n14, n9);
                 } else {
@@ -7370,19 +7370,19 @@ implements Runnable {
         int n2 = 0;
         switch (n) {
             case 512: {
-                if (GameConfig.b) {
-                    n2 = GameConfig.h + 1;
+                if (Constants.b) {
+                    n2 = Constants.h + 1;
                     break;
                 }
-                n2 = GameConfig.h;
+                n2 = Constants.h;
                 break;
             }
             case 9: {
-                n2 = GameConfig.i;
+                n2 = Constants.i;
                 break;
             }
             case 200: {
-                n2 = GameConfig.j;
+                n2 = Constants.j;
                 break;
             }
             case 257: {
@@ -7403,15 +7403,15 @@ implements Runnable {
                 break;
             }
             case 1280: {
-                n2 = GameConfig.k;
+                n2 = Constants.k;
                 break;
             }
             case 1536: {
-                n2 = GameConfig.l;
+                n2 = Constants.l;
                 break;
             }
             case 2: {
-                n2 = GameConfig.m;
+                n2 = Constants.m;
                 break;
             }
             case 3: {
@@ -7419,7 +7419,7 @@ implements Runnable {
                 break;
             }
             case 100: {
-                n2 = GameConfig.n;
+                n2 = Constants.n;
             }
         }
         return n2;
@@ -7521,9 +7521,9 @@ implements Runnable {
         graphics.fillRect(n + n6, n2 + n6, n3 - n7, n4 - n7);
     }
 
-    private void bh() {
+    private void d_LoadResource() {
         try {
-            if (GameConfig.f) {
+            if (Constants.f) {
                 switch (this.aY) {
                     case 1: {
                         this.b(this.X[this.U > 6 ? 6 : this.U]);
@@ -7622,7 +7622,7 @@ implements Runnable {
                     this.b(3);
                     if (bu != 200) {
                         this.c(1);
-                        if (GameConfig.L) {
+                        if (Constants.L) {
                             this.d(38);
                             break;
                         }
@@ -7692,8 +7692,8 @@ implements Runnable {
 
     private void bl() {
         try {
-            this.a(String.valueOf(GameConfig.C) + "_imgText");
-            this.ai = this.b.e(GameConfig.X);
+            this.a(String.valueOf(Constants.C) + "_imgText");
+            this.ai = this.b.e(Constants.X);
             this.b.b();
             return;
         }
@@ -7904,10 +7904,10 @@ implements Runnable {
     private String bx() {
         int n = 0;
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(String.valueOf(GameConfig.A) + "*");
-        stringBuffer.append(String.valueOf(GameConfig.C) + "*");
-        stringBuffer.append(String.valueOf(GameConfig.E) + "*");
-        stringBuffer.append(String.valueOf(GameConfig.F) + "*");
+        stringBuffer.append(String.valueOf(Constants.A) + "*");
+        stringBuffer.append(String.valueOf(Constants.C) + "*");
+        stringBuffer.append(String.valueOf(Constants.E) + "*");
+        stringBuffer.append(String.valueOf(Constants.F) + "*");
         n = this.aw.length;
         int n2 = 0;
         while (n2 < n) {
@@ -7926,10 +7926,10 @@ implements Runnable {
             ++n2;
         }
         stringBuffer.append(String.valueOf(this.S) + "*");
-        stringBuffer.append(String.valueOf(GameConfig.B) + "*");
-        stringBuffer.append(String.valueOf(GameConfig.z) + "*");
-        stringBuffer.append(String.valueOf(GameConfig.D) + "*");
-        stringBuffer.append(String.valueOf(GameConfig.w) + "*");
+        stringBuffer.append(String.valueOf(Constants.B) + "*");
+        stringBuffer.append(String.valueOf(Constants.z) + "*");
+        stringBuffer.append(String.valueOf(Constants.D) + "*");
+        stringBuffer.append(String.valueOf(Constants.w) + "*");
         stringBuffer.append(String.valueOf(this.F) + "*");
         stringBuffer.append(String.valueOf(this.G) + "*");
         stringBuffer.append(String.valueOf(this.H) + "*");
@@ -8050,7 +8050,7 @@ implements Runnable {
         return bl;
     }
 
-    private boolean by() {
+    private boolean LoadOption() {
         boolean bl;
         block41: {
             RecordStore recordStore;
@@ -8069,7 +8069,7 @@ implements Runnable {
                         if (!recordEnumeration.hasNextElement()) {
                             bl = false;
                             this.f();
-                            this.c.a(GameConfig.A);
+                            this.c.a(Constants.A);
                         } else {
                             int n = 0;
                             while (recordEnumeration.hasNextElement()) {
@@ -8078,16 +8078,16 @@ implements Runnable {
                                 filterInputStream = new DataInputStream(byteArrayInputStream);
                                 string = ((DataInputStream)filterInputStream).readUTF();
                                 n = string.indexOf("*", 0);
-                                GameConfig.A = Integer.parseInt(string.substring(0, n));
+                                Constants.A = Integer.parseInt(string.substring(0, n));
                                 int n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                GameConfig.C = Integer.parseInt(string.substring(n3 + 1, n));
+                                Constants.C = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
-                                GameConfig.E = Integer.parseInt(string.substring(n3 + 1, n = string.indexOf(42, n3 + 1)));
-                                bi = GameConfig.E == 1;
+                                Constants.E = Integer.parseInt(string.substring(n3 + 1, n = string.indexOf(42, n3 + 1)));
+                                bi = Constants.E == 1;
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                GameConfig.F = Integer.parseInt(string.substring(n3 + 1, n));
+                                Constants.F = Integer.parseInt(string.substring(n3 + 1, n));
                                 int n4 = this.aw.length;
                                 n2 = 0;
                                 while (n2 < n4) {
@@ -8119,17 +8119,17 @@ implements Runnable {
                                 this.S = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                GameConfig.B = Integer.parseInt(string.substring(n3 + 1, n));
+                                Constants.B = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                GameConfig.z = Integer.parseInt(string.substring(n3 + 1, n));
+                                Constants.z = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                GameConfig.D = Integer.parseInt(string.substring(n3 + 1, n));
-                                System.out.println("PlayStage.LoadOption() Constants.nFirstStory = " + GameConfig.D);
+                                Constants.D = Integer.parseInt(string.substring(n3 + 1, n));
+                                System.out.println("PlayStage.LoadOption() Constants.nFirstStory = " + Constants.D);
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                GameConfig.w = Integer.parseInt(string.substring(n3 + 1, n));
+                                Constants.w = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
                                 this.F = Integer.parseInt(string.substring(n3 + 1, n));
@@ -8304,7 +8304,7 @@ implements Runnable {
     }
 
     private void bz() {
-        GameConfig.G = 20;
+        Constants.G = 20;
         bu = 44;
         this.d();
     }
@@ -8354,7 +8354,7 @@ implements Runnable {
 
     public final void b(int n) {
         this.b.a(1, 5000, 1);
-        this.bY = GameConfig.C;
+        this.bY = Constants.C;
         this.a(this.bY, n);
     }
 
@@ -8373,7 +8373,7 @@ implements Runnable {
     private void V(int n) {
         int n2 = 0;
         int n3 = 0;
-        GameConfig.T = 0;
+        Constants.T = 0;
         this.cg = new byte[50][][];
         switch (n) {
             case 1: {
@@ -8437,14 +8437,14 @@ implements Runnable {
             case 0: {
                 this.cx = 20;
                 n2 = 4;
-                GameConfig.T = 1;
+                Constants.T = 1;
             }
         }
         int n3 = 0;
         while (n3 < 0 + n2) {
             this.cd = this.U(n3);
             this.b.a(';');
-            this.cg[n3] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 2, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
+            this.cg[n3] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n3 == 0) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[0].length;
@@ -8475,57 +8475,57 @@ implements Runnable {
         switch (n) {
             case 0: {
                 this.cx = 8;
-                n4 = GameConfig.W[this.U][0];
-                n3 = GameConfig.U[this.U][0].length;
-                GameConfig.T = 0;
+                n4 = Constants.W[this.U][0];
+                n3 = Constants.U[this.U][0].length;
+                Constants.T = 0;
                 break;
             }
             case 1: {
                 n2 = 1;
                 while (n2 < 7) {
-                    n5 += GameConfig.U[this.U][n2].length;
+                    n5 += Constants.U[this.U][n2].length;
                     ++n2;
                 }
                 System.out.println("WhoFaceLenght = " + n5);
                 this.cx = 8;
-                n4 = GameConfig.W[this.U][1];
+                n4 = Constants.W[this.U][1];
                 n3 = n5;
-                GameConfig.T = 0;
+                Constants.T = 0;
                 break;
             }
             case 2: {
                 n2 = 7;
                 while (n2 < 9) {
-                    n5 += GameConfig.U[this.U][n2].length;
+                    n5 += Constants.U[this.U][n2].length;
                     ++n2;
                 }
                 this.cx = 8;
-                n4 = GameConfig.W[this.U][7];
+                n4 = Constants.W[this.U][7];
                 n3 = n5;
                 System.out.println("bufferLoad_start = " + n4);
                 System.out.println("bufferLoad = " + n3);
-                GameConfig.T = 0;
+                Constants.T = 0;
                 break;
             }
             case 3: {
                 this.cx = 5;
-                n4 = GameConfig.W[this.U][9];
+                n4 = Constants.W[this.U][9];
                 n3 = 1;
-                GameConfig.T = 0;
+                Constants.T = 0;
                 break;
             }
             case 4: {
                 this.cx = 5;
-                n4 = GameConfig.W[this.U][10];
+                n4 = Constants.W[this.U][10];
                 n3 = 1;
-                GameConfig.T = 1;
+                Constants.T = 1;
                 break;
             }
             case 5: {
                 this.cx = 5;
                 n4 = 39;
                 n3 = 3;
-                GameConfig.T = 1;
+                Constants.T = 1;
             }
         }
         n2 = n4;
@@ -8533,7 +8533,7 @@ implements Runnable {
             System.out.println("PlayStage.dateLong_StageText() = " + n2);
             this.cd = this.U(n2);
             this.b.a(';');
-            this.cg[n2] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 2, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
+            this.cg[n2] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n2 == n4) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n4].length;
@@ -8564,21 +8564,21 @@ implements Runnable {
                 this.cx = 5;
                 n3 = 0;
                 n2 = 4;
-                GameConfig.T = 0;
+                Constants.T = 0;
                 break;
             }
             case 1: {
                 this.cx = 6;
                 n3 = 4;
                 n2 = 17;
-                GameConfig.T = 0;
+                Constants.T = 0;
             }
         }
         int n4 = n3;
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
             this.b.a(';');
-            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 16, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
+            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 16, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n4 == n3) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n3].length;
@@ -8608,21 +8608,21 @@ implements Runnable {
                 this.cx = 20;
                 n3 = 30;
                 n2 = 3;
-                GameConfig.T = 1;
+                Constants.T = 1;
                 break;
             }
             case 7: {
                 this.cx = 20;
                 n3 = 33;
                 n2 = 1;
-                GameConfig.T = 1;
+                Constants.T = 1;
             }
         }
         int n4 = n3;
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
             this.b.a(';');
-            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[GameConfig.T] * 2, (this.b.o[GameConfig.T] + this.b.o[GameConfig.T] / 2) * this.cx, this.b.n[GameConfig.T], this.b.o[GameConfig.T], this.b.o[GameConfig.T] / 2);
+            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n4 == n3) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n3].length;
@@ -8646,7 +8646,7 @@ implements Runnable {
     private void Z(int n) {
         this.cx = 15;
         this.cb = this.U(22);
-        this.eu = GameConfig.e.getBytes();
+        this.eu = Constants.e.getBytes();
         this.ev = this.U(n);
         this.cc = new byte[this.cb.length + this.eu.length + this.ev.length];
         System.arraycopy(this.cb, 0, this.cc, 0, this.cb.length);
@@ -8708,7 +8708,7 @@ implements Runnable {
         if (byArray.length <= n2) {
             int n4 = 0;
             while (n4 < byArray.length) {
-                this.b.a(this.e, byArray[n4], by, this.bZ + n4 * (this.b.o[GameConfig.T] + 2), 17, GameConfig.T);
+                this.b.a(this.e, byArray[n4], by, this.bZ + n4 * (this.b.o[Constants.T] + 2), 17, Constants.T);
                 ++n4;
             }
             return;
@@ -8758,7 +8758,7 @@ implements Runnable {
     private void Y(Graphics graphics) {
         int n;
         this.Q(graphics);
-        if (GameConfig.B == 1) {
+        if (Constants.B == 1) {
             this.Z(graphics);
         } else if (bu == 110) {
             graphics.setColor(0x555555);
@@ -8770,7 +8770,7 @@ implements Runnable {
         if (this.bJ != null && !bi) {
             this.a(graphics, this.bJ, 0xFF6600);
         }
-        if (bi && GameConfig.B == 1) {
+        if (bi && Constants.B == 1) {
             this.aa(graphics);
         }
         if (this.bJ != null && bi && bu != 110) {
@@ -8786,14 +8786,14 @@ implements Runnable {
             }
             --n2;
         }
-        if (GameConfig.E == 1 && GameConfig.F == 1) {
+        if (Constants.E == 1 && Constants.F == 1) {
             if (bu == 444) {
                 if (!bi) {
                     n2 = be + this.af(ChessR.p & 7);
                     n = bf + this.ah(ChessR.p >>> 3);
                 } else {
-                    n2 = bg + GameConfig.O[ChessR.p];
-                    n = bh + GameConfig.Q[ChessR.p >>> 3];
+                    n2 = bg + Constants.O[ChessR.p];
+                    n = bh + Constants.Q[ChessR.p >>> 3];
                 }
                 if (!(ew || au || bI)) {
                     this.aE.a(graphics, n2, n);
@@ -8849,8 +8849,8 @@ implements Runnable {
         int n7 = 0;
         if (bi) {
             n6 = n + n2 * 8;
-            n4 = bg + GameConfig.O[n6];
-            n5 = bh + GameConfig.P[n2];
+            n4 = bg + Constants.O[n6];
+            n5 = bh + Constants.P[n2];
         } else {
             n4 = this.ae(n);
             n5 = this.ag(n2);
@@ -9048,10 +9048,10 @@ implements Runnable {
         int n3 = i2.a >>> 3;
         int n4 = i2.b & 7;
         int n5 = i2.b >>> 3;
-        int n6 = bi ? GameConfig.O[i2.a] : this.ae(n2) + this.bc / 2;
-        int n7 = bi ? GameConfig.Q[n3] : this.ag(n3) + this.bc / 2;
-        int n8 = bi ? GameConfig.O[i2.b] : this.ae(n4) + this.bc / 2;
-        int n9 = bi ? GameConfig.Q[n5] : this.ag(n5) + this.bc / 2;
+        int n6 = bi ? Constants.O[i2.a] : this.ae(n2) + this.bc / 2;
+        int n7 = bi ? Constants.Q[n3] : this.ag(n3) + this.bc / 2;
+        int n8 = bi ? Constants.O[i2.b] : this.ae(n4) + this.bc / 2;
+        int n9 = bi ? Constants.Q[n5] : this.ag(n5) + this.bc / 2;
         graphics.setColor(n);
         int n10 = bi ? bg + n6 : be + n6;
         int n11 = bi ? bh + n7 : bf + n7;
@@ -9229,7 +9229,7 @@ implements Runnable {
                         bK = false;
                         ChessR.h = -1;
                         ChessR.g = -1;
-                        if (ChessEngine.b(ChessEngine.l) && !bI && GameConfig.G == 0) {
+                        if (ChessEngine.b(ChessEngine.l) && !bI && Constants.G == 0) {
                             dv = 0;
                             c.a(1000);
                         }
@@ -9288,14 +9288,14 @@ implements Runnable {
         if (ChessEngine.a(iArray)) {
             bI = true;
             if (ChessEngine.b(iArray) == 0) {
-                GameConfig.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
+                Constants.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
                 c.a(44);
             } else {
-                GameConfig.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
+                Constants.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
                 c.a(44);
             }
         } else {
-            if (GameConfig.L) {
+            if (Constants.L) {
                 this.c();
             }
             @SuppressWarnings("unused")
@@ -9326,10 +9326,10 @@ implements Runnable {
                     if (bu == 2) {
                         ChessR.s = ChessR.o[ChessR.q];
                     }
-                    if (GameConfig.E == 0 || GameConfig.F == 0) {
+                    if (Constants.E == 0 || Constants.F == 0) {
                         bb = 0;
                     }
-                    if (GameConfig.F == 0 || GameConfig.E == 0) {
+                    if (Constants.F == 0 || Constants.E == 0) {
                         this.b(3, false);
                     }
                 }

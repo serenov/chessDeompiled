@@ -51,7 +51,7 @@ implements PlayerListener {
                 synchronized (h2) {
                     this.b = false;
                     if (this.a != null) {
-                        this.a(GameConfig.A);
+                        this.a(Constants.A);
                         this.a.setLoopCount(this.f);
                         this.a.prefetch();
                         this.a.start();

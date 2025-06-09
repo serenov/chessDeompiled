@@ -99,7 +99,7 @@ extends MIDlet {
                 LittleEndianInt[] iArray = PlayStage.e();
                 if (ChessEngine.a(iArray)) {
                     if (ChessEngine.b(iArray) == 0) {
-                        GameConfig.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
+                        Constants.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
                         if (PlayStage.dM) {
                             PlayStage.dM = false;
                             b.d();
@@ -109,7 +109,7 @@ extends MIDlet {
                         }
                         t = true;
                     } else {
-                        GameConfig.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
+                        Constants.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
                         PlayStage.a(44);
                         t = true;
                         ChessR.b();
@@ -132,7 +132,7 @@ extends MIDlet {
                         PlayStage.af = true;
                         ChessR.b();
                     }
-                    if (GameConfig.L) {
+                    if (Constants.L) {
                         b.c();
                     }
                 }
@@ -170,7 +170,7 @@ extends MIDlet {
                 PlayStage.a(888);
             }
         }
-        if (GameConfig.E == 1 && GameConfig.F == 1) {
+        if (Constants.E == 1 && Constants.F == 1) {
             ChessR.b.aE.b();
             if (r != 0 && s != 0) {
                 try {
