@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+More_Games: OFF
+MIDlet-Name: Chess Chronicles by ROMZES
+MIDlet-1: Chess Chronicles,/icon.png,ChessR
+Nokia-MIDlet-Category: Game
+Default-Vendor-Key: NOKIA
+MicroEdition-Configuration: CLDC-1.0
+MIDlet-Icon: /icon.png
+Download-URL: http://www.samsungmobile.com
+MIDlet-Vendor: eFusion
+Default-Cheat: OFF
+MIDlet-Version: 1.0.0
+MicroEdition-Profile: MIDP-2.0
+Default-Logo: ON
+Force-Language: NONE
+
