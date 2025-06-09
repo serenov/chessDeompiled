@@ -2488,7 +2488,7 @@ implements Runnable {
         k = 0;
         U = 0;
         l = 1;
-        if (!ChessCanvas.i) {
+        if (!PlayStage.i) {
             n = 63;
             while (n >= 0) {
                 ChessEngine.b[n] = 0;
@@ -2711,8 +2711,8 @@ implements Runnable {
             ++n3;
         }
         ChessEngine.o();
-        ChessCanvas.j();
-        ChessCanvas.k();
+        PlayStage.j();
+        PlayStage.k();
     }
 
     public static void a(byte[] byArray) {
@@ -2726,7 +2726,7 @@ implements Runnable {
         ak = 0;
         k = 0;
         U = 0;
-        l = ChessCanvas.bk == 2 ? (l == 1 ? -1 : 1) : 1;
+        l = PlayStage.bk == 2 ? (l == 1 ? -1 : 1) : 1;
         int n = 0;
         n = 0;
         while (n < 64) {

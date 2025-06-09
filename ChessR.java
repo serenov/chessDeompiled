@@ -16,7 +16,7 @@ public class ChessR
 extends MIDlet {
     public Display a;
 
-    public static ChessCanvas b;
+    public static PlayStage b;
     public static LittleEndianInt c;
     public static int d;
     public static int e;
@@ -51,7 +51,7 @@ extends MIDlet {
     }
 
     public ChessR() {
-        b = new ChessCanvas(this);
+        b = new PlayStage(this);
     }
 
     public void startApp() {
@@ -78,7 +78,7 @@ extends MIDlet {
             return;
         }
         j = 12;
-        if (ChessEngine.d && ChessCanvas.bu == 3) {
+        if (ChessEngine.d && PlayStage.bu == 3) {
             if (ChessEngine.c != null) {
                 c = ChessEngine.c;
                 i = 0;
@@ -88,7 +88,7 @@ extends MIDlet {
                     r = o[ChessR.c.a];
                     s = o[ChessR.c.b];
                 }
-                ChessCanvas.j();
+                PlayStage.j();
                 b.a(c);
                 if (ChessR.c.d == 0) {
                     r = o[ChessR.c.a];
@@ -96,40 +96,40 @@ extends MIDlet {
                 }
                 ChessEngine.c = null;
                 ChessEngine.f();
-                LittleEndianInt[] iArray = ChessCanvas.e();
+                LittleEndianInt[] iArray = PlayStage.e();
                 if (ChessEngine.a(iArray)) {
                     if (ChessEngine.b(iArray) == 0) {
                         GameConfig.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
-                        if (ChessCanvas.dM) {
-                            ChessCanvas.dM = false;
+                        if (PlayStage.dM) {
+                            PlayStage.dM = false;
                             b.d();
                         } else {
-                            ChessCanvas.a(44);
+                            PlayStage.a(44);
                             ChessR.b();
                         }
                         t = true;
                     } else {
                         GameConfig.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
-                        ChessCanvas.a(44);
+                        PlayStage.a(44);
                         t = true;
                         ChessR.b();
                     }
                 } else {
-                    ChessCanvas.au = false;
-                    if (ChessEngine.b(ChessEngine.l) && !ChessCanvas.bI) {
-                        ChessCanvas.j = true;
-                        if (ChessCanvas.bv != 44) {
-                            ChessCanvas.dv = 1;
-                            ChessCanvas.a(1000);
+                    PlayStage.au = false;
+                    if (ChessEngine.b(ChessEngine.l) && !PlayStage.bI) {
+                        PlayStage.j = true;
+                        if (PlayStage.bv != 44) {
+                            PlayStage.dv = 1;
+                            PlayStage.a(1000);
                         }
                     }
                     // int n = ChessCanvas.bL = ChessCanvas.bL == 0 ? 1 : 0;
-                    if (ChessCanvas.bk == 1) {
-                        ChessCanvas.h();
+                    if (PlayStage.bk == 1) {
+                        PlayStage.h();
                     } else {
                         b.b();
                         ChessEngine.d();
-                        ChessCanvas.af = true;
+                        PlayStage.af = true;
                         ChessR.b();
                     }
                     if (GameConfig.L) {
@@ -137,10 +137,10 @@ extends MIDlet {
                     }
                 }
             }
-        } else if (ChessCanvas.bk == 1 && ChessCanvas.bu == 2) {
+        } else if (PlayStage.bk == 1 && PlayStage.bu == 2) {
             ChessEngine.d();
-            ChessCanvas.bL = ChessCanvas.bL == 0 ? 1 : 0;
-            ChessCanvas.h();
+            PlayStage.bL = PlayStage.bL == 0 ? 1 : 0;
+            PlayStage.h();
         }
         ++d;
         if (ChessEngine.d) {
@@ -155,19 +155,19 @@ extends MIDlet {
 
     @SuppressWarnings("unchecked")
     public static void b() {
-        if (ChessCanvas.ba <= 0) {
+        if (PlayStage.ba <= 0) {
             return;
         }
-        ChessCanvas.bG = true;
-        ChessCanvas.bu = 444;
+        PlayStage.bG = true;
+        PlayStage.bu = 444;
         int n = Math.abs(r);
         int n2 = Math.abs(s);
-        if (ChessCanvas.bk != 2 && r != 0 && s != 0) {
-            if (ChessCanvas.af) {
+        if (PlayStage.bk != 2 && r != 0 && s != 0) {
+            if (PlayStage.af) {
                 ChessR.b.l.addElement(new ActionPair(s, q));
             }
-            if (!ChessCanvas.af && ResourceManger.c(23, n2)) {
-                ChessCanvas.a(888);
+            if (!PlayStage.af && ResourceManger.c(23, n2)) {
+                PlayStage.a(888);
             }
         }
         if (GameConfig.E == 1 && GameConfig.F == 1) {
@@ -179,8 +179,8 @@ extends MIDlet {
                     ChessR.b.aG = new SpriteAnimator("/ed_" + n2 + ".dpr");
                     Runtime.getRuntime().gc();
                     l = ChessR.b.aG.a[0].d;
-                    ChessCanvas.a(666);
-                    ChessCanvas.aK = Image.createImage((String)"/img/effect_bg.png");
+                    PlayStage.a(666);
+                    PlayStage.aK = Image.createImage((String)"/img/effect_bg.png");
                     if (n == 3 || n == 6 || n == 5) {
                         ChessR.b.aH = new SpriteAnimator("/" + n + "effect.dpr");
                     }
@@ -188,7 +188,7 @@ extends MIDlet {
                 catch (Throwable throwable) {}
                 Runtime.getRuntime().gc();
             }
-            if (ChessCanvas.ew) {
+            if (PlayStage.ew) {
                 ChessR.b.aE.g = true;
             }
         }
@@ -196,7 +196,7 @@ extends MIDlet {
 
     public static void c() {
         // int n = ChessCanvas.bu = ChessCanvas.bL == 0 ? 2 : 3;
-        if (ChessCanvas.bu == 2) {
+        if (PlayStage.bu == 2) {
             b.g();
             b.b(3);
             b.c(1);
@@ -205,18 +205,18 @@ extends MIDlet {
         ChessR.b.aF = null;
         ChessR.b.aG = null;
         ChessR.b.aH = null;
-        ChessCanvas.aK = null;
+        PlayStage.aK = null;
         Runtime.getRuntime().gc();
         s = 0;
         r = 0;
-        ChessCanvas.ew = false;
-        ChessCanvas.a();
-        if (ChessCanvas.bk == 2) {
-            ChessCanvas.af = (ChessCanvas.bl ^= 1) == 1;
+        PlayStage.ew = false;
+        PlayStage.a();
+        if (PlayStage.bk == 2) {
+            PlayStage.af = (PlayStage.bl ^= 1) == 1;
             b.b();
         }
         System.arraycopy(ChessEngine.a, 0, o, 0, 64);
-        ChessCanvas.bG = false;
+        PlayStage.bG = false;
     }
 }
 

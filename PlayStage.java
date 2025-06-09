@@ -26,7 +26,7 @@ import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 
 @SuppressWarnings("rawtypes")
-public final class ChessCanvas
+public final class PlayStage
 extends Canvas
 implements Runnable {
     public ChessR a;
@@ -350,7 +350,7 @@ implements Runnable {
         ex = 0;
     }
 
-    public ChessCanvas(ChessR chessR) {
+    public PlayStage(ChessR chessR) {
         int[] nArray = new int[7];
         nArray[1] = -80;
         nArray[2] = -80;
@@ -578,7 +578,7 @@ implements Runnable {
     }
 
     private void a(Graphics graphics) {
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
         this.b.a(graphics, this.cf[0], by, bz, 17, 1);
         graphics.setColor(0xFFFFFF);
         graphics.fillRect(0, bz + this.cf[0].length + 9, bA, 10);
@@ -707,7 +707,7 @@ implements Runnable {
     }
 
     private void b(Graphics graphics) {
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
         graphics.setColor(255, 255, 0);
         graphics.fillRect(0, 58 + GameConfig.v * 15, bA, this.b.o[1] + 4);
         this.b.a(graphics, this.cf[0], by, 40, 17, 1);
@@ -722,7 +722,7 @@ implements Runnable {
     }
 
     private void c(Graphics graphics) {
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
         this.b.a(graphics, this.cf[0], by, bz, 17, 1);
         this.b.a(graphics, "?".getBytes(), by + 30, bz, 17, 1);
         graphics.setColor(0x555555);
@@ -732,7 +732,7 @@ implements Runnable {
     }
 
     private void d(Graphics graphics) {
-        ChessCanvas.U(graphics);
+        PlayStage.U(graphics);
         int n = this.bN;
         if (this.bN > 5 && this.bN <= 17) {
             n = 6;
@@ -820,7 +820,7 @@ implements Runnable {
     }
 
     private void e(Graphics graphics) {
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
         bw = by - (this.m.getWidth() / 6 + this.m.getWidth() / 3);
         bx = bz - (this.m.getHeight() / 6 + this.m.getHeight() / 3);
         graphics.drawImage(this.m, by, bz, 3);
@@ -842,7 +842,7 @@ implements Runnable {
 
     private void q() {
         bu = 0;
-        this.bq = ChessCanvas.S(512);
+        this.bq = PlayStage.S(512);
         d = null;
         switch (this.br) {
             case 257: {
@@ -938,7 +938,7 @@ implements Runnable {
         this.bQ = -4132;
         this.br = 257;
         this.bs = 257;
-        this.bq = ChessCanvas.S(this.br);
+        this.bq = PlayStage.S(this.br);
         this.bp = GameConfig.D != 0 ? 1 : 0;
         this.ac(4);
         this.aa(17);
@@ -1026,7 +1026,7 @@ implements Runnable {
 
     private void s() {
         this.br = 258;
-        this.bq = ChessCanvas.S(258);
+        this.bq = PlayStage.S(258);
         this.bp = 0;
         this.cI = false;
         GameConfig.H = -4132;
@@ -1053,7 +1053,7 @@ implements Runnable {
     private void t() {
         this.br = 272;
         this.bs = 272;
-        this.bq = ChessCanvas.S(272);
+        this.bq = PlayStage.S(272);
         this.bp = 0;
         GameConfig.L = false;
         this.ac(5);
@@ -1087,7 +1087,7 @@ implements Runnable {
 
     private void u() {
         this.br = 273;
-        this.bq = ChessCanvas.S(273);
+        this.bq = PlayStage.S(273);
         this.bp = 0;
         this.ac(8);
         this.cO = -4132;
@@ -1269,7 +1269,7 @@ implements Runnable {
         ResourceManger.a(graphics, by, n, 172, 23, 3);
         this.a(graphics, this.v[4], by, n, 176, 25, 3);
         this.b.a(graphics, this.cf[10], by, n - 5, 17, 1);
-        ChessCanvas.a(graphics, by, bz, 176, 220, 3);
+        PlayStage.a(graphics, by, bz, 176, 220, 3);
         int n2 = by - 88 + 19;
         ResourceManger.a(graphics, this.cL, n2, bz - 110 + (aU ? 8 : 6), 36, 7, 0, 0, 20);
         ResourceManger.a(graphics, this.cL, n2, bz + 110 - (aU ? 8 : 6), 36, 7, 0, 1, 36);
@@ -1337,11 +1337,11 @@ implements Runnable {
         if (n5 <= 3) {
             n3 = 186 * n5 * n5 / 9;
             n4 = n2 * n5 * n5 / 9;
-            ChessCanvas.a(graphics, by, n6, n3, n4, 17);
+            PlayStage.a(graphics, by, n6, n3, n4, 17);
             return;
         }
         if (n5 < 15) {
-            ChessCanvas.a(graphics, by, n6, 186, n2, 17);
+            PlayStage.a(graphics, by, n6, 186, n2, 17);
             graphics.setColor(0xFFFFFF);
             int n7 = 0;
             while (n7 < (this.cy != this.co - 1 ? this.cx : (this.ch % this.cx == 0 ? this.cx : this.ch % this.cx))) {
@@ -1355,7 +1355,7 @@ implements Runnable {
         }
         n3 = 186 * (18 - n5) * (18 - n5) / 9;
         n4 = n2 * (18 - n5) * (18 - n5) / 9;
-        ChessCanvas.a(graphics, by, n6, n3, n4, 17);
+        PlayStage.a(graphics, by, n6, n3, n4, 17);
     }
 
     private void x() {
@@ -1365,7 +1365,7 @@ implements Runnable {
 
     private void y() {
         this.br = bu == 200 ? 210 : 1280;
-        this.bq = ChessCanvas.S(1280);
+        this.bq = PlayStage.S(1280);
         this.bp = 1;
         this.g();
         this.b(0);
@@ -1397,9 +1397,9 @@ implements Runnable {
                         ++n;
                         n4 -= 30;
                     }
-                    ChessCanvas.a(graphics, by, n3 - 40, 100, 30, 17);
+                    PlayStage.a(graphics, by, n3 - 40, 100, 30, 17);
                     this.b.a(graphics, this.cf[13], by, n3 - 30, 17, 1);
-                    ChessCanvas.a(graphics, by, n3, 176, n4 + 30, 17);
+                    PlayStage.a(graphics, by, n3, 176, n4 + 30, 17);
                     System.out.println("PlayStage.d_option() height = " + n4);
                     graphics.setColor(0, 0, 255);
                     graphics.fillRect(by - 88 + 6, n3 - 24 + 30 * this.bp, 164, 27);
@@ -1468,7 +1468,7 @@ implements Runnable {
         this.br = bu == 200 ? 220 : 1536;
         this.cT = 0;
         this.bp = 0;
-        this.bq = ChessCanvas.S(1536);
+        this.bq = PlayStage.S(1536);
         this.ad(18);
         this.v = null;
     }
@@ -1546,7 +1546,7 @@ implements Runnable {
     }
 
     private void E() {
-        this.bq = ChessCanvas.S(2);
+        this.bq = PlayStage.S(2);
         this.v = this.bp == 5 ? new Image[2] : new Image[3];
         try {
             this.a("help_show");
@@ -1567,7 +1567,7 @@ implements Runnable {
     private void F() {
         this.cU = false;
         this.bp = 0;
-        this.bq = ChessCanvas.S(3);
+        this.bq = PlayStage.S(3);
         this.cT = 3;
         this.V(3);
         this.ad(20);
@@ -1582,9 +1582,9 @@ implements Runnable {
         int n = GameConfig.t;
         int n2 = bz;
         int n3 = bz - n2 / 2;
-        ChessCanvas.a(graphics, by, n3 - 40, 100, 30, 17);
+        PlayStage.a(graphics, by, n3 - 40, 100, 30, 17);
         this.b.a(graphics, this.cf[0], by, n3 - 30, 17, 1);
-        ChessCanvas.a(graphics, by, bz + 10, n, n2 + 30, 3);
+        PlayStage.a(graphics, by, bz + 10, n, n2 + 30, 3);
         int n4 = 0;
         int n5 = bz - 22;
         if (++this.cV > 75) {
@@ -1764,7 +1764,7 @@ implements Runnable {
         int n = by;
         int n2 = bz - 100;
         this.e(graphics);
-        ChessCanvas.a(graphics, n, n2, 176, 220, 17);
+        PlayStage.a(graphics, n, n2, 176, 220, 17);
         this.bZ = n2 + 10;
         GameConfig.T = 1;
         this.a(this.ce, this.cy, this.cx, this.co);
@@ -1774,7 +1774,7 @@ implements Runnable {
     }
 
     private void q(Graphics graphics) {
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
         graphics.setColor(0xFFFFFF);
         graphics.drawString("Inquiry", by, bz, 17);
     }
@@ -1823,8 +1823,8 @@ implements Runnable {
             j = ChessEngine.b(1);
         }
         ChessR.k = 0;
-        ChessCanvas.j();
-        ChessCanvas.k();
+        PlayStage.j();
+        PlayStage.k();
         System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         ChessR.k = 1;
         c.a();
@@ -1896,7 +1896,7 @@ implements Runnable {
     }
 
     private void r(Graphics graphics) {
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
         int n = bz - 93 + 15;
         int n2 = n - 22;
         graphics.setColor(0x575757);
@@ -1943,7 +1943,7 @@ implements Runnable {
         this.g();
         this.b(0);
         this.q();
-        this.bq = ChessCanvas.S(512);
+        this.bq = PlayStage.S(512);
         this.bp = 0;
     }
 
@@ -1974,7 +1974,7 @@ implements Runnable {
         if (P + 1 >= n2) {
             return;
         }
-        ChessCanvas.Q[ChessCanvas.P++] = n;
+        PlayStage.Q[PlayStage.P++] = n;
     }
 
     private static int N() {
@@ -1983,7 +1983,7 @@ implements Runnable {
             n = 0;
         } else {
             n = Q[--P];
-            ChessCanvas.Q[ChessCanvas.P] = 0;
+            PlayStage.Q[PlayStage.P] = 0;
         }
         return n;
     }
@@ -1991,14 +1991,14 @@ implements Runnable {
     public static void a() {
         int n = 0;
         while (n < Q.length) {
-            ChessCanvas.Q[n] = 0;
+            PlayStage.Q[n] = 0;
             ++n;
         }
         P = 0;
     }
 
     private void O() {
-        int n = ChessCanvas.N();
+        int n = PlayStage.N();
         System.out.println("PlayStage.EventAction()_event = " + n);
         switch (n) {
             case 666: {
@@ -2032,7 +2032,7 @@ implements Runnable {
             }
         }
         if (bL != 0 && bk != 2) {
-            ChessCanvas.h();
+            PlayStage.h();
         }
         ChessR.c();
     }
@@ -2230,7 +2230,7 @@ implements Runnable {
     }
 
     private void X() {
-        LittleEndianInt[] iArray = ChessCanvas.i();
+        LittleEndianInt[] iArray = PlayStage.i();
         if (iArray == null) {
             return;
         }
@@ -2337,7 +2337,7 @@ implements Runnable {
     }
 
     private void w(Graphics graphics) {
-        ChessCanvas.a(graphics, this.aM);
+        PlayStage.a(graphics, this.aM);
         this.W(graphics);
         this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
     }
@@ -2345,7 +2345,7 @@ implements Runnable {
     private void x(Graphics graphics) {
         System.out.println("PlayStage.d_storyTalk()");
         if (this.cS == -4132) {
-            ChessCanvas.V(graphics);
+            PlayStage.V(graphics);
             return;
         }
         if (!this.dg) {
@@ -2507,7 +2507,7 @@ implements Runnable {
                 ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
                 return;
             }
-            ChessCanvas.V(graphics);
+            PlayStage.V(graphics);
             this.ab();
             GameConfig.f = true;
             this.a(259, true);
@@ -2552,9 +2552,9 @@ implements Runnable {
         if (n <= 3) {
             n8 = 156 * n * n / 9;
             n9 = n5 * n * n / 9;
-            ChessCanvas.a(graphics, by, n3, n8, n9, 3);
+            PlayStage.a(graphics, by, n3, n8, n9, 3);
         } else if (n < 15) {
-            ChessCanvas.a(graphics, by, n3, 156, n5, 3);
+            PlayStage.a(graphics, by, n3, 156, n5, 3);
             graphics.setColor(0xFFFFFF);
             int n10 = 0;
             n10 = bu == 888 || bu == 40 ? n7 + 0 + n6 + 4 : n7 + 0;
@@ -2578,7 +2578,7 @@ implements Runnable {
             }
             n8 = 156 * (18 - n) * (18 - n) / 9;
             n9 = n5 * (18 - n) * (18 - n) / 9;
-            ChessCanvas.a(graphics, by, n3, n8, n9, 3);
+            PlayStage.a(graphics, by, n3, n8, n9, 3);
         }
         return false;
     }
@@ -2589,11 +2589,11 @@ implements Runnable {
         if (n6 <= n4) {
             n7 = n2 * n6 * n6 / (n4 * n4);
             n8 = n3 * n6 * n6 / (n4 * n4);
-            ChessCanvas.a(graphics, by, n, n7, n8, 3);
+            PlayStage.a(graphics, by, n, n7, n8, 3);
             return 0;
         }
         if (n6 < n5 - n4) {
-            ChessCanvas.a(graphics, by, n, n2, n3, 3);
+            PlayStage.a(graphics, by, n, n2, n3, 3);
             return 1;
         }
         if (n6 >= n5) {
@@ -2601,7 +2601,7 @@ implements Runnable {
         }
         n7 = n2 * (n5 - n6) * (n5 - n6) / (n4 * n4);
         n8 = n3 * (n5 - n6) * (n5 - n6) / (n4 * n4);
-        ChessCanvas.a(graphics, by, n, n7, n8, 3);
+        PlayStage.a(graphics, by, n, n7, n8, 3);
         return 0;
     }
 
@@ -2730,7 +2730,7 @@ implements Runnable {
         this.a("ending");
         this.v[0] = this.b.e(2 + n);
         this.b.b();
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
     }
 
     private void B(Graphics graphics) {
@@ -2752,8 +2752,8 @@ implements Runnable {
             graphics.drawImage(this.v[n4], n, 0 + this.v[0].getHeight(), 36);
         }
         if (!eh) {
-            eh = ChessCanvas.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
-        } else if (!ei && this.dz && (ei = ChessCanvas.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
+            eh = PlayStage.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
+        } else if (!ei && this.dz && (ei = PlayStage.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
             if (this.U == 7) {
                 this.U = 0;
                 this.f();
@@ -2773,7 +2773,7 @@ implements Runnable {
                 GameConfig.f = true;
                 this.a(259, true);
             }
-            ChessCanvas.V(graphics);
+            PlayStage.V(graphics);
             return;
         }
         if (eh && !this.dz) {
@@ -2900,11 +2900,11 @@ implements Runnable {
                 return;
             }
             case 10: {
-                this.h(ChessCanvas.am());
+                this.h(PlayStage.am());
                 return;
             }
             case 11: {
-                this.h(ChessCanvas.an());
+                this.h(PlayStage.an());
                 return;
             }
             case 12: {
@@ -2920,7 +2920,7 @@ implements Runnable {
                 return;
             }
             case 15: {
-                this.h(ChessCanvas.ar());
+                this.h(PlayStage.ar());
                 return;
             }
             case 16: {
@@ -3025,7 +3025,7 @@ implements Runnable {
             }
             ++n3;
         }
-        if (ChessCanvas.a(nArray3)) {
+        if (PlayStage.a(nArray3)) {
             return 0;
         }
         return -4132;
@@ -3050,12 +3050,12 @@ implements Runnable {
             if (ChessR.r == nArray[n3] && ChessR.s == n) {
                 return 0;
             }
-            if (ChessCanvas.i(nArray[n3])) {
+            if (PlayStage.i(nArray[n3])) {
                 bl = false;
             }
             ++n3;
         }
-        if (bl || !ChessCanvas.i(n)) {
+        if (bl || !PlayStage.i(n)) {
             return 1;
         }
         return -4132;
@@ -3110,7 +3110,7 @@ implements Runnable {
             return 1;
         }
         int[] nArray = new int[]{-2};
-        if (ChessCanvas.a(nArray)) {
+        if (PlayStage.a(nArray)) {
             return 0;
         }
         return -4132;
@@ -3120,7 +3120,7 @@ implements Runnable {
         if (bu == 9) {
             return 0;
         }
-        if (!ChessCanvas.i(1)) {
+        if (!PlayStage.i(1)) {
             return 1;
         }
         return -4132;
@@ -3137,7 +3137,7 @@ implements Runnable {
     }
 
     private int as() {
-        if (!ChessCanvas.i(1)) {
+        if (!PlayStage.i(1)) {
             return 1;
         }
         if (dv == 0 && ChessR.r == 1) {
@@ -3240,7 +3240,7 @@ implements Runnable {
             case 444: {
                 if (this.aE.g || GameConfig.E == 0 || GameConfig.F == 0) {
                     this.O();
-                    ChessCanvas.k();
+                    PlayStage.k();
                     return;
                 }
                 this.aE.a();
@@ -3256,16 +3256,16 @@ implements Runnable {
                 }
                 if (GameConfig.E == 0 || GameConfig.F == 0) {
                     if (bL == 1 && bk != 2) {
-                        ChessCanvas.h();
+                        PlayStage.h();
                     }
                     ChessR.c();
-                    ChessCanvas.k();
+                    PlayStage.k();
                     bb = -4132;
                     return;
                 }
                 if (this.aF.g && this.aG.g) {
                     this.O();
-                    ChessCanvas.k();
+                    PlayStage.k();
                     bb = -4132;
                     return;
                 }
@@ -3439,13 +3439,13 @@ implements Runnable {
         int n3 = this.dA.getHeight();
         graphics.drawImage(this.dA, n, 0, 20);
         if (!eh) {
-            eh = ChessCanvas.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
-        } else if (!ei && this.dz && (ei = ChessCanvas.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
+            eh = PlayStage.a(graphics, 0, ej++, 18, true, n, 0, n2, n3, true);
+        } else if (!ei && this.dz && (ei = PlayStage.a(graphics, 0, ej++, 17, false, n, 0, n2, n3, false))) {
             if (++this.dy == 4) {
                 this.bD();
                 this.ay();
                 bG = false;
-                ChessCanvas.V(graphics);
+                PlayStage.V(graphics);
                 return;
             }
             this.ax();
@@ -3667,7 +3667,7 @@ implements Runnable {
         this.bt = bu;
         bu = 100;
         this.bp = bk == 2 ? 2 : 0;
-        this.bq = ChessCanvas.S(100);
+        this.bq = PlayStage.S(100);
         this.dD = 0;
         this.dC = true;
         this.dE = 0;
@@ -3739,7 +3739,7 @@ implements Runnable {
         int n;
         int n2 = bB - 70 - 5 - 24;
         n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += 70 / (this.dD + 1) - 24) : bB - 70 - 5 - 24;
-        ChessCanvas.a(graphics, by, n2, 170, 90, 17);
+        PlayStage.a(graphics, by, n2, 170, 90, 17);
         int n3 = by - 55;
         int n4 = n2 + 6;
         this.b.a(graphics, this.cf[this.bp], by, n4 + 6, 3, 1);
@@ -3798,16 +3798,16 @@ implements Runnable {
         this.b.a(graphics, this.al, n3 + 90 + 4 + 10 + 20, n4 + 6 + 20, this.aw[this.bp], 3);
         if (this.dB == -4132) {
             n7 = n5 + 14 * (this.bp * 2) - 2;
-            ChessCanvas.a(graphics, this.an[0], n7 + 20 + 4, n6, 2, 0, this.dE, 24);
-            ChessCanvas.a(graphics, this.an[1], n7, n6, 2, 1, this.dE, 24);
-            ChessCanvas.a(graphics, this.an[2], n7, n6 + 20 + 3, 2, 2, this.dE, 24);
-            ChessCanvas.a(graphics, this.an[3], n7 + 20 + 3, n6 + 20 + 4, 2, 3, this.dE, 24);
+            PlayStage.a(graphics, this.an[0], n7 + 20 + 4, n6, 2, 0, this.dE, 24);
+            PlayStage.a(graphics, this.an[1], n7, n6, 2, 1, this.dE, 24);
+            PlayStage.a(graphics, this.an[2], n7, n6 + 20 + 3, 2, 2, this.dE, 24);
+            PlayStage.a(graphics, this.an[3], n7 + 20 + 3, n6 + 20 + 4, 2, 3, this.dE, 24);
         }
         graphics.setColor(0);
         this.bZ = n6 + 20 + 8;
         this.a(this.cg[this.bp], this.cy, this.cx, this.co);
         if (GameConfig.H != -4132) {
-            int n8 = ChessCanvas.a(graphics, bz, 176, 40, 2, 16, GameConfig.H);
+            int n8 = PlayStage.a(graphics, bz, 176, 40, 2, 16, GameConfig.H);
             graphics.setColor(0xFFFFFF);
             if (n8 == 1) {
                 this.b.a(graphics, this.ce[0], by, bz - 8, 17, 0);
@@ -3822,7 +3822,7 @@ implements Runnable {
     }
 
     private void k(int n) {
-        ChessCanvas.bE();
+        PlayStage.bE();
         this.dH = ResourceManger.d(1, 5);
         ChessEngine.d();
         au = true;
@@ -4028,7 +4028,7 @@ implements Runnable {
     private void I(Graphics graphics) {
         int n = bz - 30;
         int n2 = bA > 150 ? 176 : 96;
-        ChessCanvas.a(graphics, by, n, n2, 61, 17);
+        PlayStage.a(graphics, by, n, n2, 61, 17);
         graphics.setColor(0xDDDDDD);
         this.b.a(graphics, this.cf[14], by, (n += 5) + 5, 17, 1);
         this.b.a(graphics, this.cf[15], by, n + 26, 17, 1);
@@ -4039,7 +4039,7 @@ implements Runnable {
             case -5: 
             case 49: 
             case 50: {
-                ChessCanvas.bE();
+                PlayStage.bE();
                 if (n == 49 || n == -5) {
                     if (this.dL != 0) {
                         this.dG.b = this.eA;
@@ -4099,7 +4099,7 @@ implements Runnable {
 
     private void aC() {
         dK = false;
-        ChessCanvas.h();
+        PlayStage.h();
         bG = false;
         this.dI = -4132;
         this.dF = null;
@@ -4154,7 +4154,7 @@ implements Runnable {
         int n = this.dm != -4132 ? 27 : this.cg[this.dl + 4].length * 17 + 10;
         int n2 = bB - n - 5 - 12;
         n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += n / (this.dD + 1)) : bB - n - 5;
-        ChessCanvas.a(graphics, by, n2, 179, n + 20, 17);
+        PlayStage.a(graphics, by, n2, 179, n + 20, 17);
         this.b(graphics, n2);
         graphics.setColor(0x555555);
         graphics.fillRect(0, bB - 12, bA, 12);
@@ -4261,7 +4261,7 @@ implements Runnable {
             this.h(graphics);
             return;
         }
-        ChessCanvas.a(graphics, by, n3, 150, n2, 17);
+        PlayStage.a(graphics, by, n3, 150, n2, 17);
         graphics.setColor(0, 0, 255);
         graphics.fillRect(bA - (by + by / 2), n3 + 8 + 18 * this.bp, bA - by, 15);
         int n4 = 0;
@@ -4387,7 +4387,7 @@ implements Runnable {
         int n4 = this.x.getHeight() >> 1;
         ResourceManger.a(graphics, this.x, this.dN, n2 - n4, n3, n4, 0, 0, 33);
         ResourceManger.a(graphics, this.x, bA - this.dN, n2 - n4, n3, n4, 0, 1, 17);
-        ChessCanvas.a(graphics, by, n2, 179, n + 20, 17);
+        PlayStage.a(graphics, by, n2, 179, n + 20, 17);
         this.b(graphics, n2);
     }
 
@@ -4413,7 +4413,7 @@ implements Runnable {
         if (this.R >= 13) {
             this.R = -5;
         }
-        ChessCanvas.a(graphics, n3, n5, n2, n4, 20);
+        PlayStage.a(graphics, n3, n5, n2, n4, 20);
         if (!bi) {
             n = 0;
             while (n < 4) {
@@ -4653,7 +4653,7 @@ implements Runnable {
         while (true) {
             try {
                 while (true) {
-                    ChessCanvas c2 = this;
+                    PlayStage c2 = this;
                     synchronized (c2) {
                         this.dU = System.currentTimeMillis();
                         if (this.dU - this.dT > this.dV) {
@@ -4803,7 +4803,7 @@ implements Runnable {
         if (this.g) {
             return;
         }
-        ChessCanvas.V(graphics);
+        PlayStage.V(graphics);
         switch (this.br) {
             case 0: {
                 this.l();
@@ -4957,7 +4957,7 @@ implements Runnable {
                 this.at();
             }
         }
-        ChessCanvas.ba();
+        PlayStage.ba();
         this.bb();
     }
 
@@ -5167,12 +5167,12 @@ implements Runnable {
                 case -1: 
                 case 50: {
                     if (--this.bp >= 0) return;
-                    this.bp = ChessCanvas.S(512);
+                    this.bp = PlayStage.S(512);
                     return;
                 }
                 case -2: 
                 case 56: {
-                    if (++this.bp <= ChessCanvas.S(512)) return;
+                    if (++this.bp <= PlayStage.S(512)) return;
                     this.bp = 0;
                     return;
                 }
@@ -5950,7 +5950,7 @@ implements Runnable {
                         GameConfig.f = false;
                         this.a(259, true);
                     }
-                    this.bq = ChessCanvas.S(200);
+                    this.bq = PlayStage.S(200);
                     this.bp = 1;
                 } else {
                     this.q();
@@ -5998,7 +5998,7 @@ implements Runnable {
                                 this.b(3);
                                 this.d(39);
                                 this.br = 768;
-                                this.bq = ChessCanvas.S(200);
+                                this.bq = PlayStage.S(200);
                                 this.bp = 3;
                                 return;
                             }
@@ -6184,7 +6184,7 @@ implements Runnable {
         this.bJ = null;
         d.c();
         while (ChessEngine.c == null) {
-            ChessCanvas.ba();
+            PlayStage.ba();
             this.repaint(0, 0, bA, bB);
             this.serviceRepaints();
             this.e(300);
@@ -6242,7 +6242,7 @@ implements Runnable {
         this.bt = bu;
         bu = 200;
         this.bp = 0;
-        this.bq = ChessCanvas.S(200);
+        this.bq = PlayStage.S(200);
         this.b(20, false);
         try {
             System.out.println("i_gmenui_gmenui_gmenu");
@@ -6283,7 +6283,7 @@ implements Runnable {
                     this.a(false);
                 }
                 int n2 = 5 - this.bo;
-                LittleEndianInt[] iArray = ChessCanvas.i();
+                LittleEndianInt[] iArray = PlayStage.i();
                 byte by = 0;
                 int n3 = iArray.length;
                 int n4 = 0;
@@ -6507,7 +6507,7 @@ implements Runnable {
         this.ah = this.b.e(2);
         this.b.b();
         this.V = false;
-        ChessCanvas.P(44);
+        PlayStage.P(44);
         this.bD();
         this.b(16, false);
         if (!GameConfig.L && bk != 2) {
@@ -6523,7 +6523,7 @@ implements Runnable {
     private void aW() {
         this.bt = bu;
         bu = 2457;
-        this.bq = ChessCanvas.S(2457);
+        this.bq = PlayStage.S(2457);
         this.bp = 0;
         this.aX();
     }
@@ -6549,7 +6549,7 @@ implements Runnable {
         int n = bz - 67;
         if (!GameConfig.L) {
             int n2 = 0;
-            ChessCanvas.a(graphics, by, n - 5, 176, 159, 17);
+            PlayStage.a(graphics, by, n - 5, 176, 159, 17);
             int n3 = 0;
             while (n3 < 3) {
                 n2 = n + 45 * n3;
@@ -6560,7 +6560,7 @@ implements Runnable {
                     }
                     this.a(graphics, this.as[this.bp == n3 ? 0 : 1], by, n2, 166, 45, 17);
                     if (ax[n3] == null) {
-                        ChessCanvas.ax[n3] = " - ";
+                        PlayStage.ax[n3] = " - ";
                     }
                     this.b.a(graphics, ax[n3].getBytes(), by, n2 + 22 - 8, 17, 0);
                 }
@@ -6575,7 +6575,7 @@ implements Runnable {
         }
         if (this.av != -4132) {
             String string = "\uc800\uc7a5 \ud30c\uc77c\uba85\uc744 \uc785\ub825\ud558\uc138\uc694.";
-            ChessCanvas.a(graphics, by, n - 15, 176, 27, 33);
+            PlayStage.a(graphics, by, n - 15, 176, 27, 33);
             graphics.setColor(0xFFFFFF);
             graphics.drawString(string, by, n - 19, 33);
         }
@@ -6622,14 +6622,14 @@ implements Runnable {
                     bG = true;
                     this.av = 0;
                     if (!GameConfig.L) {
-                        ChessCanvas.cJ[this.bp] = (byte)(this.E == 0 ? 1 : this.E + 1);
+                        PlayStage.cJ[this.bp] = (byte)(this.E == 0 ? 1 : this.E + 1);
                     }
                     this.dY = (nArray = ResourceManger.GetCurrentDateTimeParts())[0] + 1 < 10 ? "0" + (nArray[0] + 1) : "" + nArray[0];
                     this.dZ = nArray[1] < 10 ? "0" + nArray[1] : "" + nArray[1];
                     this.ea = nArray[2] < 10 ? "0" + nArray[2] : "" + nArray[2];
                     this.eb = nArray[3] < 10 ? "0" + nArray[3] : "" + nArray[3];
                     this.ec = "" + nArray[4];
-                    ChessCanvas.ax[this.bp] = String.valueOf(this.dZ) + "/" + this.dY + "/" + this.ec + " " + this.ea + ":" + this.eb;
+                    PlayStage.ax[this.bp] = String.valueOf(this.dZ) + "/" + this.dY + "/" + this.ec + " " + this.ea + ":" + this.eb;
                     this.Q(this.bp);
                     this.f();
                     GameConfig.H = 0;
@@ -6672,7 +6672,7 @@ implements Runnable {
                 f2.a(graphics, bA - 35 - this.ed[n4][0], n2 - this.ed[n4][1], 20, true);
             }
         }
-        ChessCanvas.a(graphics, 0, n2 - 2, bA, n + 8 + 5, 20);
+        PlayStage.a(graphics, 0, n2 - 2, bA, n + 8 + 5, 20);
         this.bZ = n2 + 5;
         System.out.println("situation ====" + GameConfig.W);
         System.out.println("nStage=====" + this.U);
@@ -7005,7 +7005,7 @@ implements Runnable {
                             byte[] byArray = this.bf();
                             dataOutputStream.writeInt(bk);
                             if (bk == 2) {
-                                dataOutputStream.writeInt(ChessCanvas.bl);
+                                dataOutputStream.writeInt(PlayStage.bl);
                             }
                             dataOutputStream.writeInt(bL);
                             dataOutputStream.writeInt(ba);
@@ -7021,7 +7021,7 @@ implements Runnable {
                             byte[] byArray = this.bf();
                             dataOutputStream.writeInt(bk);
                             if (bk == 2) {
-                                dataOutputStream.writeInt(ChessCanvas.bl);
+                                dataOutputStream.writeInt(PlayStage.bl);
                             }
                             dataOutputStream.writeInt(bL);
                             dataOutputStream.writeInt(ba);
@@ -7171,7 +7171,7 @@ implements Runnable {
     }
 
     private byte[] bf() {
-        byte[] byArray = ChessCanvas.bg();
+        byte[] byArray = PlayStage.bg();
         return byArray;
     }
 
@@ -7221,8 +7221,8 @@ implements Runnable {
                             filterInputStream = new DataInputStream(byteArrayInputStream);
                             bk = ((DataInputStream)filterInputStream).readInt();
                             if (bk == 2) {
-                                ChessCanvas.bl = ((DataInputStream)filterInputStream).readInt();
-                                af = ChessCanvas.bl == 1;
+                                PlayStage.bl = ((DataInputStream)filterInputStream).readInt();
+                                af = PlayStage.bl == 1;
                             }
                             bL = ((DataInputStream)filterInputStream).readInt();
                             ba = ((DataInputStream)filterInputStream).readInt();
@@ -7319,8 +7319,8 @@ implements Runnable {
         bL = this.bn == 1 ? 0 : 1;
         System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         ChessR.k = 0;
-        ChessCanvas.j();
-        ChessCanvas.k();
+        PlayStage.j();
+        PlayStage.k();
         ChessEngine.a(this.L());
         ChessR.k = 1;
     }
@@ -8103,7 +8103,7 @@ implements Runnable {
                                     if (string2.equals("null")) {
                                         string2 = " - ";
                                     }
-                                    ChessCanvas.ax[n2] = string2;
+                                    PlayStage.ax[n2] = string2;
                                     ++n2;
                                 }
                                 n4 = this.T.length;
@@ -8176,7 +8176,7 @@ implements Runnable {
                                 while (n2 < 3) {
                                     n3 = n;
                                     n = string.indexOf(42, n3 + 1);
-                                    ChessCanvas.cJ[n2] = Byte.parseByte(string.substring(n3 + 1, n));
+                                    PlayStage.cJ[n2] = Byte.parseByte(string.substring(n3 + 1, n));
                                     ++n2;
                                 }
                                 n3 = n;
@@ -8747,7 +8747,7 @@ implements Runnable {
             return;
         }
         ChessEngine.d();
-        ChessCanvas.aL();
+        PlayStage.aL();
         d.c();
     }
 
@@ -8924,9 +8924,9 @@ implements Runnable {
                     System.out.println("PlayStage.paintPiece()1111");
                     if (this.dI != -4132 && n == (n8 & 7) && n2 == n8 >>> 3) {
                         if (this.dI < 1 || this.dI == 2) {
-                            ChessCanvas.V(graphics);
+                            PlayStage.V(graphics);
                         } else if (this.dI < 2 || this.dI == 3) {
-                            ChessCanvas.U(graphics);
+                            PlayStage.U(graphics);
                         }
                         this.b(graphics, n4, n5);
                         System.out.println("PlayStage.paintPiece()22222");
@@ -8935,9 +8935,9 @@ implements Runnable {
                 } else if (bu == 115 && n == (this.dG.b & 7) && n2 == this.dG.b >>> 3) {
                     ResourceManger.a(graphics, this.dJ, n4, n5 + n7, 33, 25, 0, aT % 4, 3);
                     if (this.dI < 1 || this.dI == 2) {
-                        ChessCanvas.V(graphics);
+                        PlayStage.V(graphics);
                     } else if (this.dI < 2 || this.dI == 3) {
-                        ChessCanvas.U(graphics);
+                        PlayStage.U(graphics);
                     }
                     this.b(graphics, n4, n5);
                     return;
@@ -9019,12 +9019,12 @@ implements Runnable {
         if (ChessR.k != 0) {
             if (n == 4) {
                 dx = bu == 2 ? 0 : 1;
-                ChessCanvas.a(2000);
+                PlayStage.a(2000);
                 ew = true;
                 return;
             }
             if (n == 3) {
-                ChessCanvas.a(3000);
+                PlayStage.a(3000);
                 ew = true;
             }
         }
@@ -9085,7 +9085,7 @@ implements Runnable {
             }
             return;
         }
-        LittleEndianInt[] iArray = ChessCanvas.i();
+        LittleEndianInt[] iArray = PlayStage.i();
         int n = ChessR.g + ChessR.h * 8;
         if (!ChessEngine.d) {
             LittleEndianInt i2;
@@ -9119,7 +9119,7 @@ implements Runnable {
             return;
         }
         byte by = 0;
-        LittleEndianInt[] iArray = ChessCanvas.i();
+        LittleEndianInt[] iArray = PlayStage.i();
         this.ey = 0;
         if (!ChessEngine.d) {
             LittleEndianInt i2;
@@ -9157,39 +9157,39 @@ implements Runnable {
         }
         switch (n) {
             case 49: {
-                ChessCanvas.b(-this.bj, this.bj);
+                PlayStage.b(-this.bj, this.bj);
                 return;
             }
             case -1: 
             case 50: {
-                ChessCanvas.b(0, this.bj);
+                PlayStage.b(0, this.bj);
                 return;
             }
             case 51: {
-                ChessCanvas.b(this.bj, this.bj);
+                PlayStage.b(this.bj, this.bj);
                 return;
             }
             case -3: 
             case 52: {
-                ChessCanvas.b(-this.bj, 0);
+                PlayStage.b(-this.bj, 0);
                 return;
             }
             case -4: 
             case 54: {
-                ChessCanvas.b(this.bj, 0);
+                PlayStage.b(this.bj, 0);
                 return;
             }
             case 55: {
-                ChessCanvas.b(-this.bj, -this.bj);
+                PlayStage.b(-this.bj, -this.bj);
                 return;
             }
             case -2: 
             case 56: {
-                ChessCanvas.b(0, -this.bj);
+                PlayStage.b(0, -this.bj);
                 return;
             }
             case 57: {
-                ChessCanvas.b(this.bj, -this.bj);
+                PlayStage.b(this.bj, -this.bj);
                 return;
             }
             case -5: 
@@ -9199,7 +9199,7 @@ implements Runnable {
                     return;
                 }
                 if (!ChessEngine.d && bK) {
-                    LittleEndianInt[] iArray = ChessCanvas.i();
+                    LittleEndianInt[] iArray = PlayStage.i();
                     int n2 = 0;
                     while (n2 < iArray.length) {
                         if (iArray[n2].a == ChessR.g + ChessR.h * 8 && iArray[n2].b == ChessR.e + ChessR.f * 8) break;
@@ -9280,10 +9280,10 @@ implements Runnable {
         if (d != null) {
             ChessEngine.d();
         }
-        ChessCanvas.bE();
+        PlayStage.bE();
         ChessEngine.a(i2);
-        LittleEndianInt[] iArray = ChessCanvas.i();
-        ChessCanvas.j();
+        LittleEndianInt[] iArray = PlayStage.i();
+        PlayStage.j();
         this.a(i2);
         if (ChessEngine.a(iArray)) {
             bI = true;

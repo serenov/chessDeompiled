@@ -673,7 +673,7 @@ public final class ResourceManger {
         }
         graphics.setClip(n, n2, n3, n4);
         graphics.drawImage(image, n - n5 * n3, n2 - n6 * n4, 20);
-        graphics.setClip(0, 0, ChessCanvas.bA, ChessCanvas.bB);
+        graphics.setClip(0, 0, PlayStage.bA, PlayStage.bB);
     }
 
     public static void b(Graphics graphics, int n, int n2, int n3, int n4, int n5, int n6, int n7, int n8) {
@@ -758,7 +758,7 @@ public final class ResourceManger {
     }
 
     public static void a(Graphics graphics) {
-        graphics.setClip(0, 0, ChessCanvas.bA, ChessCanvas.bB);
+        graphics.setClip(0, 0, PlayStage.bA, PlayStage.bB);
     }
 
     public static void c(Graphics graphics, int n, int n2, int n3, int n4, int n5) {
