@@ -270,7 +270,7 @@ implements Runnable {
     public int dE;
     public GameSpritesManager dF;
     public ActionPair dG;
-    public int dH;
+    public int spriteId;
     public int dI;
     private int eA;
     public Image dJ;
@@ -499,7 +499,7 @@ implements Runnable {
         this.dC = false;
         this.dF = null;
         this.dG = null;
-        this.dH = 0;
+        this.spriteId = 0;
         this.dI = -4132;
         this.eA = 0;
         this.dJ = null;
@@ -3823,24 +3823,24 @@ implements Runnable {
 
     private void k(int n) {
         PlayStage.bE();
-        this.dH = Util.d(1, 5);
+        this.spriteId = Util.d(1, 5);
         ChessEngine.d();
         au = true;
-        ChessEngine.a(this.dH, n);
+        ChessEngine.a(this.spriteId, n);
         System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         bG = true;
         this.dI = 0;
         try {
             this.dJ = Image.createImage((String)"/img/makepiece.png");
             if (bi) {
-                String string = "/date/" + this.dH + "w.dmg";
+                String string = "/date/" + this.spriteId + "w.dmg";
                 this.dF = new GameSpritesManager("filename");
                 DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
                 byte[] byArray = this.b(string);
                 dataInputStream.readInt();
                 dataInputStream.readInt();
                 dataInputStream.read(byArray, 0, byArray.length);
-                this.dF.a = Util.a(byArray, null, null, 16, 255);
+                this.dF.spriteImage = Util.a(byArray, null, null, 16, 255);
                 dataInputStream.close();
             }
         }
@@ -3949,9 +3949,9 @@ implements Runnable {
         }
         this.dG = (ActionPair)this.l.elementAt(n2);
         this.l.removeElementAt(n2);
-        this.dH = this.dG.a;
+        this.spriteId = this.dG.a;
         if (nArray[n2] <= 2) {
-            block8 : switch (this.dH) {
+            block8 : switch (this.spriteId) {
                 case 1: {
                     n3 = 8;
                     while (n3 < 16) {
@@ -4008,14 +4008,14 @@ implements Runnable {
         try {
             this.dJ = Image.createImage((String)"/img/resurrection.png");
             if (bi) {
-                String string = "/date/" + this.dH + "w.dmg";
+                String string = "/date/" + this.spriteId + "w.dmg";
                 this.dF = new GameSpritesManager(string);
                 DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
                 byte[] byArray = this.b(string);
                 dataInputStream.readInt();
                 dataInputStream.readInt();
                 dataInputStream.read(byArray, 0, byArray.length);
-                this.dF.a = Util.a(byArray, null, null, 4, 0);
+                this.dF.spriteImage = Util.a(byArray, null, null, 4, 0);
                 dataInputStream.close();
             }
         }
@@ -4052,7 +4052,7 @@ implements Runnable {
                 int n2 = this.bp;
                 this.aw[n2] = this.aw[n2] - 1;
                 this.bJ = null;
-                ChessEngine.a(this.dH, this.dG.b);
+                ChessEngine.a(this.spriteId, this.dG.b);
                 bG = true;
                 bu = 115;
                 this.dI = 0;
@@ -4068,8 +4068,8 @@ implements Runnable {
         int n4 = 0;
         int n5 = 0;
         if (this.dF != null) {
-            n4 = this.dF.d;
-            n5 = this.dF.e;
+            n4 = this.dF.width;
+            n5 = this.dF.height;
         }
         if ((n3 = n5 - ++this.dI * 3) <= 0 || !bi || Constants.F != 1) {
             ChessEngine.l = -1;
@@ -4090,7 +4090,7 @@ implements Runnable {
                 return false;
             }
         } else {
-            graphics.setClip(n + this.dF.b, n2 + this.dF.c, n4, n3);
+            graphics.setClip(n + this.dF.offsetX, n2 + this.dF.offsetY, n4, n3);
             this.dF.a(graphics, n, n2);
             Util.a(graphics);
         }
@@ -4596,8 +4596,8 @@ implements Runnable {
         if (!bi) {
             this.aB[0].a(graphics, be, bf, 36);
             this.aB[1].a(graphics, be, bf + (this.bc << 3));
-            this.aB[2].a(graphics, be - this.aB[2].d, bf - this.aB[0].e);
-            this.aB[3].a(graphics, be + (this.bc << 3), bf - this.aB[0].e);
+            this.aB[2].a(graphics, be - this.aB[2].width, bf - this.aB[0].height);
+            this.aB[3].a(graphics, be + (this.bc << 3), bf - this.aB[0].height);
             int n = 0;
             while (n < 8) {
                 int n2 = 0;
@@ -8834,7 +8834,7 @@ implements Runnable {
                             n9 = -14;
                             n10 = -12;
                         }
-                        graphics.drawImage(this.aI[this.aF.h - n8], by + n5 - (!af ? this.aG.a[0].d : -this.aG.a[0].d) + n9, n - 20 + n10, 20);
+                        graphics.drawImage(this.aI[this.aF.h - n8], by + n5 - (!af ? this.aG.a[0].width : -this.aG.a[0].width) + n9, n - 20 + n10, 20);
                     }
                 }
             }

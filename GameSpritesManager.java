@@ -11,21 +11,21 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 public final class GameSpritesManager {
-    public Image a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
+    public Image spriteImage;
+    public int offsetX;
+    public int offsetY;
+    public int width;
+    public int height;
 
     public GameSpritesManager(String string) throws Exception {
         DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
-        this.b = -dataInputStream.readInt();
-        this.c = -dataInputStream.readInt();
+        this.offsetX = -dataInputStream.readInt();
+        this.offsetY = -dataInputStream.readInt();
         byte[] byArray = this.a(string);
         dataInputStream.readFully(byArray);
-        this.a = Image.createImage((byte[])byArray, (int)0, (int)byArray.length);
-        this.d = this.a.getWidth();
-        this.e = this.a.getHeight();
+        this.spriteImage = Image.createImage((byte[])byArray, (int)0, (int)byArray.length);
+        this.width = this.spriteImage.getWidth();
+        this.height = this.spriteImage.getHeight();
         dataInputStream.close();
     }
 
@@ -57,19 +57,19 @@ public final class GameSpritesManager {
     }
 
     public GameSpritesManager(Image image, int n, int n2) {
-        this.a = image;
-        this.d = image.getWidth();
-        this.e = image.getHeight();
-        this.b = -n;
-        this.c = -n2;
+        this.spriteImage = image;
+        this.width = image.getWidth();
+        this.height = image.getHeight();
+        this.offsetX = -n;
+        this.offsetY = -n2;
     }
 
     public GameSpritesManager(byte[] byArray) throws Exception {
-        this.b = -GameSpritesManager.a(byArray, 0);
-        this.c = -GameSpritesManager.a(byArray, 4);
-        this.a = Image.createImage((byte[])byArray, (int)8, (int)(byArray.length - 8));
-        this.d = this.a.getWidth();
-        this.e = this.a.getHeight();
+        this.offsetX = -GameSpritesManager.a(byArray, 0);
+        this.offsetY = -GameSpritesManager.a(byArray, 4);
+        this.spriteImage = Image.createImage((byte[])byArray, (int)8, (int)(byArray.length - 8));
+        this.width = this.spriteImage.getWidth();
+        this.height = this.spriteImage.getHeight();
     }
 
     private static int a(byte[] byArray, int n) {
@@ -89,36 +89,36 @@ public final class GameSpritesManager {
         int n4 = n;
         int n5 = n2;
         if ((n3 & 8) != 0) {
-            n -= this.d;
+            n -= this.width;
         } else if ((n3 & 1) != 0) {
-            n -= this.d >> 1;
+            n -= this.width >> 1;
         }
         if ((n3 & 0x20) != 0) {
-            n2 -= this.e;
+            n2 -= this.height;
         } else if ((n3 & 2) != 0) {
-            n2 -= this.e >> 1;
+            n2 -= this.height >> 1;
         }
         if (bl) {
             n4 = n;
             n5 = n2;
             byte by = 0;
-            if (this.b != 0) {
-                by = (byte)((this.d - Math.abs(this.b)) * -1);
+            if (this.offsetX != 0) {
+                by = (byte)((this.width - Math.abs(this.offsetX)) * -1);
             }
             int n6 = graphics.getClipX();
             int n7 = graphics.getClipY();
             int n8 = graphics.getClipWidth();
             int n9 = graphics.getClipHeight();
             int n10 = 0;
-            while (n10 < this.d) {
-                graphics.setClip(n4 + n10 + by, n5 + this.c, 1, this.e);
-                graphics.drawImage(this.a, n4 - (this.d - 1 - n10 * 2) + by, n5 + this.c, 0);
+            while (n10 < this.width) {
+                graphics.setClip(n4 + n10 + by, n5 + this.offsetY, 1, this.height);
+                graphics.drawImage(this.spriteImage, n4 - (this.width - 1 - n10 * 2) + by, n5 + this.offsetY, 0);
                 ++n10;
             }
             graphics.setClip(n6, n7, n8, n9);
             return;
         }
-        graphics.drawImage(this.a, n4 + this.b, n5 + this.c, n3);
+        graphics.drawImage(this.spriteImage, n4 + this.offsetX, n5 + this.offsetY, n3);
     }
 }
 

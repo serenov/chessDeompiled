@@ -178,7 +178,7 @@ extends MIDlet {
                     Runtime.getRuntime().gc();
                     ChessR.b.aG = new SpriteAnimator("/ed_" + n2 + ".dpr");
                     Runtime.getRuntime().gc();
-                    l = ChessR.b.aG.a[0].d;
+                    l = ChessR.b.aG.a[0].width;
                     PlayStage.a(666);
                     PlayStage.aK = Image.createImage((String)"/img/effect_bg.png");
                     if (n == 3 || n == 6 || n == 5) {
