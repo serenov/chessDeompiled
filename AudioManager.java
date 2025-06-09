@@ -20,7 +20,7 @@ implements PlayerListener {
     public boolean isResourceAvailable = false; // Mutex lock for thread synchronization
     public Thread audioThread;
     private VolumeControl volumeController;
-    public int d = 0;
+    public int soundLevelScaled = 0;
     private int loopCount; 
 
     public AudioManager() {
@@ -110,14 +110,14 @@ implements PlayerListener {
             if (this.volumeController != null) {
 
                 this.volumeController.setLevel(level);
-                this.d = 30 * level;
+                this.soundLevelScaled = 30 * level;
 
-                if (this.d > 99) {
+                if (this.soundLevelScaled > 99) {
 
-                    this.d = 0;
+                    this.soundLevelScaled = 0;
                 }
 
-                this.d = this.volumeController.setLevel(this.d);
+                this.soundLevelScaled = this.volumeController.setLevel(this.soundLevelScaled);
 
                 return;
             }
