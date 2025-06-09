@@ -30,7 +30,7 @@ public final class PlayStage
 extends Canvas
 implements Runnable {
     public ChessR a;
-    public ResourceManger b;
+    public Util b;
     public AudioManager c;
     public static ChessEngine d;
     public Graphics e;
@@ -535,7 +535,7 @@ implements Runnable {
         this.ey = 0;
         this.a = chessR;
         this.setFullScreenMode(true);
-        this.b = new ResourceManger();
+        this.b = new Util();
         this.c = new AudioManager();
         bA = this.getWidth();
         bB = this.getHeight();
@@ -912,11 +912,11 @@ implements Runnable {
             if (this.bp == n3) {
                 graphics.setColor(0x8D8D8D);
                 n2 = 40;
-                ResourceManger.a(graphics, -5, n, 160, 20, 0x8D8D8D, 0, 0, 1, 6);
+                Util.a(graphics, -5, n, 160, 20, 0x8D8D8D, 0, 0, 1, 6);
             } else {
                 graphics.setColor(0x575757);
                 n2 = 20;
-                ResourceManger.a(graphics, -5, n, 140, 20, 0x575757, 0, 0, 1, 6);
+                Util.a(graphics, -5, n, 140, 20, 0x575757, 0, 0, 1, 6);
             }
             if (!Constants.b) {
                 if (n3 == 5) {
@@ -956,10 +956,10 @@ implements Runnable {
             n = 100 + n3 * 25;
             if (this.bp == n3) {
                 n2 = 40;
-                ResourceManger.a(graphics, -5, n, 150, 20, 0x8D8D8D, 0, 0, 1, 6);
+                Util.a(graphics, -5, n, 150, 20, 0x8D8D8D, 0, 0, 1, 6);
             } else {
                 n2 = 20;
-                ResourceManger.a(graphics, -5, n, 130, 20, 0x575757, 0, 0, 1, 6);
+                Util.a(graphics, -5, n, 130, 20, 0x575757, 0, 0, 1, 6);
             }
             this.b.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
             ++n3;
@@ -991,12 +991,12 @@ implements Runnable {
         int n3 = n2 - 22;
         int n4 = 22 + (8 + 17 * n);
         graphics.setColor(0x575757);
-        ResourceManger.a(graphics, by, n3, 156, n4 - 4, 17);
+        Util.a(graphics, by, n3, 156, n4 - 4, 17);
         this.a(graphics, this.aq, by, n3, 160, n4, 17);
         int n5 = by - 80 + 3;
         int n6 = n3 + n4 - 22;
         graphics.setColor(0x212020);
-        ResourceManger.a(graphics, n5, n6, 152, 19, 20);
+        Util.a(graphics, n5, n6, 152, 19, 20);
         if (this.br != 768) {
             this.b.a(graphics, this.cf[4], by - 75, n6 + 3, 20, 1);
             this.b.a(graphics, this.cf[5], by + 5, n6 + 3, 20, 1);
@@ -1016,7 +1016,7 @@ implements Runnable {
         int n3 = n2 - 22;
         int n4 = 22 + 17 * n;
         graphics.setColor(0x575757);
-        ResourceManger.a(graphics, by, n3, 156, n4 - 4, 17);
+        Util.a(graphics, by, n3, 156, n4 - 4, 17);
         this.a(graphics, this.aq, by, n3, 160, n4, 17);
         graphics.setColor(0xDDDDDD);
         Constants.T = 0;
@@ -1037,7 +1037,7 @@ implements Runnable {
         this.e(graphics);
         int n = bz - 95;
         graphics.setColor(0x212020);
-        ResourceManger.a(graphics, by, n, 96, 19, 3);
+        Util.a(graphics, by, n, 96, 19, 3);
         this.a(graphics, this.v[4], by, n, 100, 21, 3);
         this.b.a(graphics, this.cf[2], by, n, 3, 1);
         this.S(graphics);
@@ -1071,10 +1071,10 @@ implements Runnable {
             n = 100 + n3 * 25;
             if (this.bp == n3) {
                 n2 = 30;
-                ResourceManger.a(graphics, -5, n, 190, 20, 0x8D8D8D, 0, 0, 1, 6);
+                Util.a(graphics, -5, n, 190, 20, 0x8D8D8D, 0, 0, 1, 6);
             } else {
                 n2 = 10;
-                ResourceManger.a(graphics, -5, n, 170, 20, 0x575757, 0, 0, 1, 6);
+                Util.a(graphics, -5, n, 170, 20, 0x575757, 0, 0, 1, 6);
             }
             this.b.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
             ++n3;
@@ -1266,32 +1266,32 @@ implements Runnable {
         this.e(graphics);
         int n = bz - 125;
         graphics.setColor(0x212020);
-        ResourceManger.a(graphics, by, n, 172, 23, 3);
+        Util.a(graphics, by, n, 172, 23, 3);
         this.a(graphics, this.v[4], by, n, 176, 25, 3);
         this.b.a(graphics, this.cf[10], by, n - 5, 17, 1);
         PlayStage.a(graphics, by, bz, 176, 220, 3);
         int n2 = by - 88 + 19;
-        ResourceManger.a(graphics, this.cL, n2, bz - 110 + (aU ? 8 : 6), 36, 7, 0, 0, 20);
-        ResourceManger.a(graphics, this.cL, n2, bz + 110 - (aU ? 8 : 6), 36, 7, 0, 1, 36);
+        Util.a(graphics, this.cL, n2, bz - 110 + (aU ? 8 : 6), 36, 7, 0, 0, 20);
+        Util.a(graphics, this.cL, n2, bz + 110 - (aU ? 8 : 6), 36, 7, 0, 1, 36);
         int n3 = bz - 110 + 46;
         int n4 = by - 88 + 38;
         this.a(graphics, this.ap, by, n3 + 63 + 1, 160, 64, 3);
         graphics.setColor(0x373737);
-        ResourceManger.a(graphics, by, n3 + 63, 156, 61, 3);
+        Util.a(graphics, by, n3 + 63, 156, 61, 3);
         int n5 = this.bp - 1;
         int n6 = 0;
         int n7 = 0;
         n7 = this.bp == 6 ? 9 : (this.bp == 7 ? 2 : (this.bp == 8 ? 1 : 8 - this.bp));
         int n8 = 0;
         while (n8 < 3) {
-            ResourceManger.c(graphics, by, bz, 160, 190, 3);
+            Util.c(graphics, by, bz, 160, 190, 3);
             graphics.setColor(0xFFFFFF);
             int n9 = n3 + n8 * 63 + this.cR[n8];
-            ResourceManger.a(graphics, n4, n9, 55, 55, 3);
+            Util.a(graphics, n4, n9, 55, 55, 3);
             graphics.setColor(n8 == 1 ? 0x373737 : 0);
-            ResourceManger.a(graphics, n4, n9, 53, 53, 3);
+            Util.a(graphics, n4, n9, 53, 53, 3);
             n6 = n5 < 0 ? this.cN - 1 : (n5 >= this.cN ? 0 : n5);
-            ResourceManger.c(graphics, n4, n9, 53, 53, 3);
+            Util.c(graphics, n4, n9, 53, 53, 3);
             if (this.T[n6] == 0) {
                 graphics.drawImage(this.cK[n6], n4, n9, 3);
                 graphics.drawImage(this.cM, n4, n9, 3);
@@ -1601,8 +1601,8 @@ implements Runnable {
                     }
                     ++n6;
                 }
-                ResourceManger.a(graphics, this.ao, aU ? by - by / 2 - 20 : by - by / 2 + 2 - 20, n5 + this.bp * 30, 10, 12, 0, 1, 20);
-                ResourceManger.a(graphics, this.ao, aU ? by + by / 2 + 20 : by + by / 2 - 2 + 20, n5 + this.bp * 30, 10, 12, 0, 0, 24);
+                Util.a(graphics, this.ao, aU ? by - by / 2 - 20 : by - by / 2 + 2 - 20, n5 + this.bp * 30, 10, 12, 0, 1, 20);
+                Util.a(graphics, this.ao, aU ? by + by / 2 + 20 : by + by / 2 - 2 + 20, n5 + this.bp * 30, 10, 12, 0, 0, 24);
                 graphics.setColor(0xFFFFFF);
                 graphics.drawLine(by - by / 2, n5 + this.bp * 30 + 15, by + by / 2, n5 + this.bp * 30 + 15);
                 graphics.setColor(0x555555);
@@ -1649,12 +1649,12 @@ implements Runnable {
                     }
                 }
                 if (this.cz == 0) {
-                    ResourceManger.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, this.bZ - 15, 10, 12, 0, 1, 20);
+                    Util.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, this.bZ - 15, 10, 12, 0, 1, 20);
                 } else if (this.cz == this.cA - 1) {
-                    ResourceManger.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, this.bZ - 15, 10, 12, 0, 0, 24);
+                    Util.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, this.bZ - 15, 10, 12, 0, 0, 24);
                 } else {
-                    ResourceManger.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, this.bZ - 15, 10, 12, 0, 1, 20);
-                    ResourceManger.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, this.bZ - 15, 10, 12, 0, 0, 24);
+                    Util.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, this.bZ - 15, 10, 12, 0, 1, 20);
+                    Util.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, this.bZ - 15, 10, 12, 0, 0, 24);
                 }
                 graphics.setColor(0x555555);
                 graphics.fillRect(0, bB - 12, bA, 12);
@@ -1709,12 +1709,12 @@ implements Runnable {
                     }
                 }
                 if (this.cz == 0) {
-                    ResourceManger.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, n4, 10, 12, 0, 1, 20);
+                    Util.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, n4, 10, 12, 0, 1, 20);
                 } else if (this.cz == 5) {
-                    ResourceManger.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, n4, 10, 12, 0, 0, 24);
+                    Util.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, n4, 10, 12, 0, 0, 24);
                 } else {
-                    ResourceManger.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, n4, 10, 12, 0, 1, 20);
-                    ResourceManger.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, n4, 10, 12, 0, 0, 24);
+                    Util.a(graphics, this.ao, aU ? by + by / 2 : by + by / 2 - 2, n4, 10, 12, 0, 1, 20);
+                    Util.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, n4, 10, 12, 0, 0, 24);
                 }
                 graphics.setColor(0x555555);
                 graphics.fillRect(0, bB - 12, bA, 12);
@@ -1730,8 +1730,8 @@ implements Runnable {
                         this.b.a(graphics, this.cf[n18 + 1], by, n5 + 20 * n18, 17, 1);
                         ++n18;
                     }
-                    ResourceManger.a(graphics, this.ao, aU ? by - by / 2 - 20 : by - by / 2 + 2 - 20, n5 + this.bp * 20, 10, 12, 0, 1, 20);
-                    ResourceManger.a(graphics, this.ao, aU ? by + by / 2 + 20 : by + by / 2 - 2 + 20, n5 + this.bp * 20, 10, 12, 0, 0, 24);
+                    Util.a(graphics, this.ao, aU ? by - by / 2 - 20 : by - by / 2 + 2 - 20, n5 + this.bp * 20, 10, 12, 0, 1, 20);
+                    Util.a(graphics, this.ao, aU ? by + by / 2 + 20 : by + by / 2 - 2 + 20, n5 + this.bp * 20, 10, 12, 0, 0, 24);
                     graphics.setColor(0xFFFFFF);
                     graphics.drawLine(by - by / 2, n5 + this.bp * 20 + 15, by + by / 2, n5 + this.bp * 20 + 15);
                     graphics.setColor(0x555555);
@@ -1853,7 +1853,7 @@ implements Runnable {
     private void I() {
         this.br = 624;
         try {
-            this.R = ResourceManger.d(1, 6);
+            this.R = Util.d(1, 6);
             this.R = 3;
             this.cX = new SpriteAnimator("/ea_" + this.R + ".dpr");
             if (this.R == 3 || this.R == 6 || this.R == 5) {
@@ -1873,7 +1873,7 @@ implements Runnable {
             this.a("boardPiece");
             n2 = 0;
             while (n2 < n) {
-                this.cY[n2] = this.b.e(ResourceManger.d(0, 8) + 6);
+                this.cY[n2] = this.b.e(Util.d(0, 8) + 6);
                 ++n2;
             }
             this.b.b();
@@ -1900,14 +1900,14 @@ implements Runnable {
         int n = bz - 93 + 15;
         int n2 = n - 22;
         graphics.setColor(0x575757);
-        ResourceManger.a(graphics, by, n2, 156, 111 + this.ar.getHeight() + 10, 17);
+        Util.a(graphics, by, n2, 156, 111 + this.ar.getHeight() + 10, 17);
         this.a(graphics, this.aq, by, n2, 160, 115 + this.ar.getHeight() + 10, 17);
         int n3 = by - 80 + 3;
         int n4 = n2 + 115 - 22;
         graphics.setColor(0x212020);
-        ResourceManger.a(graphics, n3, n4, 152, 17, 20);
+        Util.a(graphics, n3, n4, 152, 17, 20);
         this.a(graphics, this.ar, n3, n4, 154, 20, 20);
-        ResourceManger.a(graphics, n3, n4 + 21, 152, 17, 20);
+        Util.a(graphics, n3, n4 + 21, 152, 17, 20);
         this.a(graphics, this.ar, n3, n4 + 21, 154, 20, 20);
         int n5 = n2 + 57;
         graphics.drawImage(this.cY[1], by + 40 - 10, n5, 3);
@@ -1932,7 +1932,7 @@ implements Runnable {
         graphics.fillRect(n6, n2, bA - n6, 115);
         graphics.fillRect(0, n2, bA - n6, 115);
         graphics.setColor(0x212020);
-        ResourceManger.a(graphics, by, n2 - 5, 76, 19, 33);
+        Util.a(graphics, by, n2 - 5, 76, 19, 33);
         this.a(graphics, this.x, by, n2 - 5, 80, 21, 33);
         this.b.a(graphics, this.cf[0], by, n2 - 22, 17, 1);
     }
@@ -2059,7 +2059,7 @@ implements Runnable {
             this.b.b();
             this.data_Text(21);
             if (!this.du) {
-                n = ResourceManger.d(0, 100);
+                n = Util.d(0, 100);
                 this.dc = n < 10 ? 0 : (n < 20 ? 1 : (n < 60 ? 2 : 3));
             }
             this.v = new Image[2];
@@ -2148,7 +2148,7 @@ implements Runnable {
             this.W();
             return;
         }
-        this.dJ = ResourceManger.GetImageByAssetName("makepiece");
+        this.dJ = Util.GetImageByAssetName("makepiece");
     }
 
     private void V() {
@@ -2365,7 +2365,7 @@ implements Runnable {
             n = 70 + this.cS * 6;
             graphics.fillRect(0, 0, bA, n);
             graphics.fillRect(0, bB - n, bA, n);
-            ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+            Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
             return;
         }
         if (this.cS < 4) {
@@ -2374,7 +2374,7 @@ implements Runnable {
             graphics.setColor(0);
             graphics.fillRect(0, 0, bA, n);
             graphics.fillRect(0, bB - n, bA, n);
-            ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+            Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
             return;
         }
         if (this.cS == 4 && !this.dg) {
@@ -2496,7 +2496,7 @@ implements Runnable {
                 n = 70 + this.cS * 6;
                 graphics.fillRect(0, 0, bA, n);
                 graphics.fillRect(0, bB - n, bA, n);
-                ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+                Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
                 return;
             }
             if (this.cS < 4) {
@@ -2504,7 +2504,7 @@ implements Runnable {
                 graphics.setColor(0);
                 graphics.fillRect(0, 0, bA, n);
                 graphics.fillRect(0, bB - n, bA, n);
-                ResourceManger.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+                Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
                 return;
             }
             PlayStage.V(graphics);
@@ -2817,7 +2817,7 @@ implements Runnable {
         this.f();
         dv = -4132;
         this.dm = -4132;
-        this.dl = ResourceManger.d(0, 14);
+        this.dl = Util.d(0, 14);
         switch (this.dl) {
             case 0: {
                 this.dn = new int[]{4};
@@ -2956,12 +2956,12 @@ implements Runnable {
             this.ag = this.b.e(0);
             this.ah = this.b.e(2);
             this.b.b();
-            int n = ResourceManger.d(0, 100);
+            int n = Util.d(0, 100);
             this.dc = n < 10 ? 0 : (n < 20 ? 1 : (n < 60 ? 2 : 3));
             this.du = true;
             this.Q();
             this.du = false;
-            this.ds = ResourceManger.d(1, 5);
+            this.ds = Util.d(1, 5);
             int n2 = this.dc;
             this.aw[n2] = this.aw[n2] + this.ds;
             return;
@@ -3528,7 +3528,7 @@ implements Runnable {
                 int n7 = Math.abs(ChessEngine.a[ChessR.e + ChessR.f * 8]);
                 if (n7 != 0) {
                     this.b.a(graphics, this.cf[n7 - 1], by, bB - 30, 17, 1);
-                    ResourceManger.a(graphics);
+                    Util.a(graphics);
                 }
                 if (Constants.I) break;
                 this.b.a(graphics, this.cf[10], 0, bB, 36, 1);
@@ -3654,12 +3654,12 @@ implements Runnable {
             n = n * Constants.H * Constants.H / 16;
             n2 = n2 * Constants.H * Constants.H / 16;
         }
-        ResourceManger.c(graphics, by, bz, n, n2, 3);
+        Util.c(graphics, by, bz, n, n2, 3);
         graphics.drawImage(this.aj, by, bz, 3);
-        ResourceManger.a(graphics);
+        Util.a(graphics);
         if (Constants.H >= 4) {
-            ResourceManger.a(graphics, this.ag, by - n / 2, bz - n2 / 2, this.ag.getWidth(), this.ag.getHeight() / 3, 0, aT % 3, 3);
-            ResourceManger.a(graphics, this.ah, n / 2 + by, bz - n2 / 2, this.ah.getWidth(), this.ah.getHeight() / 5, 0, aT % 5, 3);
+            Util.a(graphics, this.ag, by - n / 2, bz - n2 / 2, this.ag.getWidth(), this.ag.getHeight() / 3, 0, aT % 3, 3);
+            Util.a(graphics, this.ah, n / 2 + by, bz - n2 / 2, this.ah.getWidth(), this.ah.getHeight() / 5, 0, aT % 5, 3);
         }
     }
 
@@ -3743,7 +3743,7 @@ implements Runnable {
         int n3 = by - 55;
         int n4 = n2 + 6;
         this.b.a(graphics, this.cf[this.bp], by, n4 + 6, 3, 1);
-        ResourceManger.a(graphics, n3 + 90 + 4 + 20, n2 + 6 + 20, 20, 13, 0, 0x393939, 0x868686, 1);
+        Util.a(graphics, n3 + 90 + 4 + 20, n2 + 6 + 20, 20, 13, 0, 0x393939, 0x868686, 1);
         int n5 = by - 14 * (Constants.n + 1);
         int n6 = n4 + 13 + 4;
         int n7 = 0;
@@ -3753,34 +3753,34 @@ implements Runnable {
             switch (aT % 4) {
                 case 3: {
                     graphics.setColor(5525760);
-                    ResourceManger.b(graphics, n7, n, 28, 28, 3);
+                    Util.b(graphics, n7, n, 28, 28, 3);
                     graphics.setColor(9801729);
-                    ResourceManger.b(graphics, n7, n, 26, 26, 3);
+                    Util.b(graphics, n7, n, 26, 26, 3);
                     graphics.setColor(0xFFF600);
-                    ResourceManger.b(graphics, n7, n, 24, 24, 3);
+                    Util.b(graphics, n7, n, 24, 24, 3);
                     graphics.setColor(16776085);
-                    ResourceManger.b(graphics, n7, n, 22, 22, 3);
+                    Util.b(graphics, n7, n, 22, 22, 3);
                     break;
                 }
                 case 2: {
                     graphics.setColor(9801729);
-                    ResourceManger.b(graphics, n7, n, 28, 28, 3);
+                    Util.b(graphics, n7, n, 28, 28, 3);
                     graphics.setColor(0xFFF600);
-                    ResourceManger.b(graphics, n7, n, 26, 26, 3);
+                    Util.b(graphics, n7, n, 26, 26, 3);
                     graphics.setColor(16776085);
-                    ResourceManger.b(graphics, n7, n, 24, 24, 3);
+                    Util.b(graphics, n7, n, 24, 24, 3);
                     break;
                 }
                 case 1: {
                     graphics.setColor(0xFFF600);
-                    ResourceManger.b(graphics, n7, n, 28, 28, 3);
+                    Util.b(graphics, n7, n, 28, 28, 3);
                     graphics.setColor(16776085);
-                    ResourceManger.b(graphics, n7, n, 26, 26, 3);
+                    Util.b(graphics, n7, n, 26, 26, 3);
                     break;
                 }
                 case 0: {
                     graphics.setColor(16776085);
-                    ResourceManger.b(graphics, n7, n, 28, 28, 3);
+                    Util.b(graphics, n7, n, 28, 28, 3);
                 }
             }
         }
@@ -3791,7 +3791,7 @@ implements Runnable {
 
         // FIXME: GameConfig.n and ChessEngine.n both are contesting...
         while (n < Constants.n + 1) {
-            ResourceManger.b(graphics, n5 + 14 * (n * 2) - 2, n6, 24, 24, 0, 0x393939, 0x868686, 1);
+            Util.b(graphics, n5 + 14 * (n * 2) - 2, n6, 24, 24, 0, 0x393939, 0x868686, 1);
             graphics.drawImage(this.am[n], n5 + 10 + 14 * (n * 2), n6 + 2 + 10, 3);
             ++n;
         }
@@ -3823,7 +3823,7 @@ implements Runnable {
 
     private void k(int n) {
         PlayStage.bE();
-        this.dH = ResourceManger.d(1, 5);
+        this.dH = Util.d(1, 5);
         ChessEngine.d();
         au = true;
         ChessEngine.a(this.dH, n);
@@ -3840,7 +3840,7 @@ implements Runnable {
                 dataInputStream.readInt();
                 dataInputStream.readInt();
                 dataInputStream.read(byArray, 0, byArray.length);
-                this.dF.a = ResourceManger.a(byArray, null, null, 16, 255);
+                this.dF.a = Util.a(byArray, null, null, 16, 255);
                 dataInputStream.close();
             }
         }
@@ -3936,7 +3936,7 @@ implements Runnable {
             return;
         }
         n2 = 0;
-        n3 = ResourceManger.d(0, n - 1);
+        n3 = Util.d(0, n - 1);
         while (n3 <= n) {
             if (n3 == n) {
                 n3 = 0;
@@ -3992,7 +3992,7 @@ implements Runnable {
                     vector.addElement("3");
                 }
             }
-            this.eA = Integer.parseInt(vector.elementAt(ResourceManger.d(0, vector.size() - 1)).toString());
+            this.eA = Integer.parseInt(vector.elementAt(Util.d(0, vector.size() - 1)).toString());
         }
         if (nArray[n2] >= 6) {
             this.dL = 0;
@@ -4015,7 +4015,7 @@ implements Runnable {
                 dataInputStream.readInt();
                 dataInputStream.readInt();
                 dataInputStream.read(byArray, 0, byArray.length);
-                this.dF.a = ResourceManger.a(byArray, null, null, 4, 0);
+                this.dF.a = Util.a(byArray, null, null, 4, 0);
                 dataInputStream.close();
             }
         }
@@ -4092,7 +4092,7 @@ implements Runnable {
         } else {
             graphics.setClip(n + this.dF.b, n2 + this.dF.c, n4, n3);
             this.dF.a(graphics, n, n2);
-            ResourceManger.a(graphics);
+            Util.a(graphics);
         }
         return false;
     }
@@ -4193,24 +4193,24 @@ implements Runnable {
             block14: do {
                 switch (n9 == Integer.MIN_VALUE ? n4 : n9) {
                     case 0: {
-                        ResourceManger.c(graphics, n, n2, n6, image.getHeight(), 24);
+                        Util.c(graphics, n, n2, n6, image.getHeight(), 24);
                         n9 = 5;
                         continue block14;
                     }
                     case 1: {
-                        ResourceManger.c(graphics, n, n2, image.getWidth(), n6, 20);
+                        Util.c(graphics, n, n2, image.getWidth(), n6, 20);
                         graphics.drawImage(image, n, n2 + n8, 36);
                         graphics.drawImage(image, n, n2 + n8 % n6, 36);
                         break;
                     }
                     case 2: {
-                        ResourceManger.c(graphics, n, n2, n6, image.getHeight(), 20);
+                        Util.c(graphics, n, n2, n6, image.getHeight(), 20);
                         graphics.drawImage(image, n + n8, n2, 24);
                         graphics.drawImage(image, n + n8 % n6, n2, 24);
                         break;
                     }
                     case 3: {
-                        ResourceManger.c(graphics, n, n2, image.getWidth(), n6, 36);
+                        Util.c(graphics, n, n2, image.getWidth(), n6, 36);
                         graphics.drawImage(image, n, n2 - n8, 20);
                         graphics.drawImage(image, n, n2 - n8 % n6, 20);
                         break;
@@ -4223,7 +4223,7 @@ implements Runnable {
                 }
                 break;
             } while (true);
-            ResourceManger.a(graphics);
+            Util.a(graphics);
             return;
         }
         switch (n4) {
@@ -4314,8 +4314,8 @@ implements Runnable {
     private void M(Graphics graphics) {
         int n = this.ai.getWidth();
         int n2 = this.ai.getHeight() >> 1;
-        ResourceManger.a(graphics, this.ai, this.dN, bz, n, n2, 0, 0, 33);
-        ResourceManger.a(graphics, this.ai, bA - this.dN, bz, n, n2, 0, 1, 17);
+        Util.a(graphics, this.ai, this.dN, bz, n, n2, 0, 0, 33);
+        Util.a(graphics, this.ai, bA - this.dN, bz, n, n2, 0, 1, 17);
     }
 
     private void aH() {
@@ -4385,8 +4385,8 @@ implements Runnable {
         int n2 = bz - n / 2;
         int n3 = this.x.getWidth();
         int n4 = this.x.getHeight() >> 1;
-        ResourceManger.a(graphics, this.x, this.dN, n2 - n4, n3, n4, 0, 0, 33);
-        ResourceManger.a(graphics, this.x, bA - this.dN, n2 - n4, n3, n4, 0, 1, 17);
+        Util.a(graphics, this.x, this.dN, n2 - n4, n3, n4, 0, 0, 33);
+        Util.a(graphics, this.x, bA - this.dN, n2 - n4, n3, n4, 0, 1, 17);
         PlayStage.a(graphics, by, n2, 179, n + 20, 17);
         this.b(graphics, n2);
     }
@@ -4582,8 +4582,8 @@ implements Runnable {
                 if (bu == 110 || n4 != 0) {
                     n5 = 0xFF6600;
                 }
-                ResourceManger.a(graphics, nArray, nArray2, n5);
-                ResourceManger.a(graphics, nArray3, nArray4, n5);
+                Util.a(graphics, nArray, nArray2, n5);
+                Util.a(graphics, nArray3, nArray4, n5);
             }
             graphics.setColor(0x555555);
             graphics.fillRect(0, bB - 12, bA, 12);
@@ -4791,7 +4791,7 @@ implements Runnable {
     private void R(Graphics graphics) {
         graphics.setColor(0);
         graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
-        graphics.drawImage(ResourceManger.GetImageByImagePath("/" + Constants.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
+        graphics.drawImage(Util.GetImageByImagePath("/" + Constants.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
     }
 
     public final void paint(Graphics graphics) {
@@ -6556,7 +6556,7 @@ implements Runnable {
                 if (n2 + 45 < bB) {
                     if (this.bp == n3) {
                         graphics.setColor(0xC8C8C8);
-                        ResourceManger.a(graphics, by, n2 + 1, 164, 43, 17);
+                        Util.a(graphics, by, n2 + 1, 164, 43, 17);
                     }
                     this.a(graphics, this.as[this.bp == n3 ? 0 : 1], by, n2, 166, 45, 17);
                     if (ax[n3] == null) {
@@ -6624,7 +6624,7 @@ implements Runnable {
                     if (!Constants.L) {
                         PlayStage.cJ[this.bp] = (byte)(this.E == 0 ? 1 : this.E + 1);
                     }
-                    this.dY = (nArray = ResourceManger.GetCurrentDateTimeParts())[0] + 1 < 10 ? "0" + (nArray[0] + 1) : "" + nArray[0];
+                    this.dY = (nArray = Util.GetCurrentDateTimeParts())[0] + 1 < 10 ? "0" + (nArray[0] + 1) : "" + nArray[0];
                     this.dZ = nArray[1] < 10 ? "0" + nArray[1] : "" + nArray[1];
                     this.ea = nArray[2] < 10 ? "0" + nArray[2] : "" + nArray[2];
                     this.eb = nArray[3] < 10 ? "0" + nArray[3] : "" + nArray[3];
@@ -6688,7 +6688,7 @@ implements Runnable {
                 this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
             }
         }
-        ResourceManger.a(graphics);
+        Util.a(graphics);
         return false;
     }
 
@@ -7125,7 +7125,7 @@ implements Runnable {
                 ++n;
             }
         }
-        byte[] byArray3 = ResourceManger.ConvertIntToByteArray(this.br);
+        byte[] byArray3 = Util.ConvertIntToByteArray(this.br);
         System.arraycopy(byArray3, 0, byArray2, n2, 4);
         return byArray2;
     }
@@ -7157,7 +7157,7 @@ implements Runnable {
         }
         byte[] byArray2 = new byte[4];
         System.arraycopy(byArray, n2, byArray2, 0, 4);
-        int n3 = ResourceManger.ConvertByteArrayToInt(byArray2);
+        int n3 = Util.ConvertByteArrayToInt(byArray2);
         if (n3 == 768) {
             Constants.x = true;
             return;
@@ -8401,7 +8401,7 @@ implements Runnable {
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
             this.b.a(';');
-            this.cg[n4] = this.b.a(this.cd, this.b.n[0] * 27, (this.b.o[0] + this.b.o[0] / 2) * this.cx, this.b.n[0], this.b.o[0], this.b.o[0] / 2);
+            this.cg[n4] = this.b.stringParser(this.cd, this.b.n[0] * 27, (this.b.o[0] + this.b.o[0] / 2) * this.cx, this.b.n[0], this.b.o[0], this.b.o[0] / 2);
             if (n4 == n3) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n3].length;
@@ -8444,7 +8444,7 @@ implements Runnable {
         while (n3 < 0 + n2) {
             this.cd = this.U(n3);
             this.b.a(';');
-            this.cg[n3] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.cg[n3] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n3 == 0) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[0].length;
@@ -8533,7 +8533,7 @@ implements Runnable {
             System.out.println("PlayStage.dateLong_StageText() = " + n2);
             this.cd = this.U(n2);
             this.b.a(';');
-            this.cg[n2] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.cg[n2] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n2 == n4) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n4].length;
@@ -8578,7 +8578,7 @@ implements Runnable {
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
             this.b.a(';');
-            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 16, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.cg[n4] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 16, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n4 == n3) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n3].length;
@@ -8622,7 +8622,7 @@ implements Runnable {
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
             this.b.a(';');
-            this.cg[n4] = this.b.a(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.cg[n4] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
             if (n4 == n3) {
                 this.cp = this.b.f(this.cx);
                 this.ci = this.cg[n3].length;
@@ -8653,7 +8653,7 @@ implements Runnable {
         System.arraycopy(this.eu, 0, this.cc, this.cb.length, this.eu.length);
         System.arraycopy(this.ev, 0, this.cc, this.cb.length + this.eu.length, this.ev.length);
         this.b.a(';');
-        this.ce = this.b.a(this.cc, bA - this.b.n[1] * 10, (this.b.o[1] + this.b.o[1] / 2) * this.cx, this.b.n[1], this.b.o[1], this.b.o[1] / 2);
+        this.ce = this.b.stringParser(this.cc, bA - this.b.n[1] * 10, (this.b.o[1] + this.b.o[1] / 2) * this.cx, this.b.n[1], this.b.o[1], this.b.o[1] / 2);
         this.ch = this.ce.length;
         this.co = this.b.f(this.cx);
     }
@@ -8664,7 +8664,7 @@ implements Runnable {
         this.bZ = bB - 13 - this.ca - this.b.o[0] / 2 * 3 * 3;
         this.cb = this.U(n);
         this.b.a(';');
-        this.ce = this.b.a(this.cb, bA - this.b.n[0] * 16, (this.b.o[0] + this.b.o[0] / 2) * this.cx, this.b.n[0], this.b.o[0], this.b.o[0] / 2);
+        this.ce = this.b.stringParser(this.cb, bA - this.b.n[0] * 16, (this.b.o[0] + this.b.o[0] / 2) * this.cx, this.b.n[0], this.b.o[0], this.b.o[0] / 2);
         this.ch = this.ce.length;
         System.out.println("PlayStage.data_Text() str2DimensionCount = " + this.ch);
         this.co = this.b.f(this.cx);
@@ -8801,7 +8801,7 @@ implements Runnable {
                 this.paintPiece(graphics, ChessR.p & 7, ChessR.p >>> 3, ChessR.n[ChessR.p]);
             } else if (bu == 666) {
                 n = bz - 25;
-                ResourceManger.a(graphics, aK, by, n, bA, 50, 0, aT % 3, 17);
+                Util.a(graphics, aK, by, n, bA, 50, 0, aT % 3, 17);
                 int n3 = Math.abs(ChessR.r);
                 int n4 = this.J[n3];
                 int n5 = this.K[n3] - ChessR.l;
@@ -8919,7 +8919,7 @@ implements Runnable {
                 if (bu == 110) {
                     int n8 = Integer.parseInt(dd.elementAt(de).toString());
                     if (n == (n8 & 7) && n2 == n8 >>> 3) {
-                        ResourceManger.a(graphics, this.dJ, n4, n5 - 10, 31, 24, 0, aT % 4, 3);
+                        Util.a(graphics, this.dJ, n4, n5 - 10, 31, 24, 0, aT % 4, 3);
                     }
                     System.out.println("PlayStage.paintPiece()1111");
                     if (this.dI != -4132 && n == (n8 & 7) && n2 == n8 >>> 3) {
@@ -8933,7 +8933,7 @@ implements Runnable {
                         return;
                     }
                 } else if (bu == 115 && n == (this.dG.b & 7) && n2 == this.dG.b >>> 3) {
-                    ResourceManger.a(graphics, this.dJ, n4, n5 + n7, 33, 25, 0, aT % 4, 3);
+                    Util.a(graphics, this.dJ, n4, n5 + n7, 33, 25, 0, aT % 4, 3);
                     if (this.dI < 1 || this.dI == 2) {
                         PlayStage.V(graphics);
                     } else if (this.dI < 2 || this.dI == 3) {

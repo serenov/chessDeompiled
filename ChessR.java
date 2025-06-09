@@ -166,7 +166,7 @@ extends MIDlet {
             if (PlayStage.af) {
                 ChessR.b.l.addElement(new ActionPair(s, q));
             }
-            if (!PlayStage.af && ResourceManger.c(23, n2)) {
+            if (!PlayStage.af && Util.c(23, n2)) {
                 PlayStage.a(888);
             }
         }

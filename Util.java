@@ -12,7 +12,7 @@ import java.util.Random;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class ResourceManger {
+public final class Util {
     public int a;
     public int b;
     public byte[][] c;
@@ -139,7 +139,7 @@ public final class ResourceManger {
             n5 += 4;
             int n7 = 0;
             while (n7 < 4) {
-                n4 = ResourceManger.updateCrc32WithByte(byArray[n5 + n7], n4);
+                n4 = Util.updateCrc32WithByte(byArray[n5 + n7], n4);
                 ++n7;
             }
             n7 = n5 += 4;
@@ -189,9 +189,9 @@ public final class ResourceManger {
                     byArray[n7 + 1] = (byte)n13;
                     byArray[n7 + 2] = (byte)n14;
                 }
-                n4 = ResourceManger.updateCrc32WithByte(byArray[n7], n4);
-                n4 = ResourceManger.updateCrc32WithByte(byArray[n7 + 1], n4);
-                n4 = ResourceManger.updateCrc32WithByte(byArray[n7 + 2], n4);
+                n4 = Util.updateCrc32WithByte(byArray[n7], n4);
+                n4 = Util.updateCrc32WithByte(byArray[n7 + 1], n4);
+                n4 = Util.updateCrc32WithByte(byArray[n7 + 2], n4);
                 n7 += 3;
             }
             n7 = n3 + 8 + n6;
@@ -233,7 +233,7 @@ public final class ResourceManger {
     public static Image a(byte[] byArray, int[][] nArray, int[][] nArray2, int n, int n2) {
         byte[] byArray2 = new byte[byArray.length];
         System.arraycopy(byArray, 0, byArray2, 0, byArray.length);
-        ResourceManger.b(byArray2, nArray, nArray2, n, n2);
+        Util.b(byArray2, nArray, nArray2, n, n2);
         byArray = byArray2;
         Image image = Image.createImage((byte[])byArray2, (int)0, (int)byArray.length);
         System.gc();
@@ -482,13 +482,13 @@ public final class ResourceManger {
 
     public final int d(String string) {
         this.p = this.e(string);
-        int n = ResourceManger.a(this.p, 0);
+        int n = Util.a(this.p, 0);
         this.q = new int[n];
         this.r = new int[n];
         int n2 = 0;
         while (n2 < n) {
-            this.q[n2] = ResourceManger.a(this.p, 4 + n2 * 8);
-            this.r[n2] = ResourceManger.a(this.p, 8 + n2 * 8);
+            this.q[n2] = Util.a(this.p, 4 + n2 * 8);
+            this.r[n2] = Util.a(this.p, 8 + n2 * 8);
             ++n2;
         }
         return n;
@@ -522,7 +522,7 @@ public final class ResourceManger {
         return this.u / n + (this.u % n > 0 ? 1 : 0);
     }
 
-    public final byte[][] a(byte[] byArray, int n, int n2, int n3, int n4, int n5) {
+    public final byte[][] stringParser(byte[] byArray, int n, int n2, int n3, int n4, int n5) {
         this.l = n2 / (n4 + n5);
         System.out.println("Util.stringParser() onePageYLineCount = " + this.l);
         System.out.println("Util.stringParser() maxLineWordCntX = " + this.t);
@@ -626,11 +626,11 @@ public final class ResourceManger {
 
     public static void a(Graphics graphics, int n, int n2, int n3, int n4, int n5, int n6, int n7, int n8) {
         graphics.setColor(n6);
-        ResourceManger.a(graphics, n, n2, n3, n4);
+        Util.a(graphics, n, n2, n3, n4);
         graphics.setColor(n7);
-        ResourceManger.a(graphics, n + n8, n2 + n8, n3 - n8, n4 - n8);
+        Util.a(graphics, n + n8, n2 + n8, n3 - n8, n4 - n8);
         graphics.setColor(n5);
-        ResourceManger.a(graphics, n + n8, n2 + n8, n3 - n8 * 2, n4 - n8 * 2);
+        Util.a(graphics, n + n8, n2 + n8, n3 - n8 * 2, n4 - n8 * 2);
     }
 
     public static void a(Graphics graphics, int n, int n2, int n3, int n4, int n5, int n6, int n7, int n8, int n9) {
@@ -644,11 +644,11 @@ public final class ResourceManger {
         } else if ((n9 & 2) != 0) {
             n2 -= n4 >> 1;
         }
-        ResourceManger.a(graphics, n, n2, n3, n4, n5, n6, n7, n8);
+        Util.a(graphics, n, n2, n3, n4, n5, n6, n7, n8);
     }
 
     public static boolean c(int n, int n2) {
-        int n3 = ResourceManger.d(0, n);
+        int n3 = Util.d(0, n);
         return n3 <= n2;
     }
 
@@ -657,7 +657,7 @@ public final class ResourceManger {
     }
 
     public final void a(Graphics graphics, Image image, int n, int n2, int n3, int n4, int n5, int n6) {
-        ResourceManger.a(graphics, image, n, n2, n3, n4, n5, n6, 20);
+        Util.a(graphics, image, n, n2, n3, n4, n5, n6, 20);
     }
 
     public static void a(Graphics graphics, Image image, int n, int n2, int n3, int n4, int n5, int n6, int n7) {
