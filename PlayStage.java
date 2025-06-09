@@ -1372,7 +1372,7 @@ implements Runnable {
         this.ac(12);
     }
 
-    private void n(Graphics graphics) {
+    private void d_option(Graphics graphics) {
         block23: {
             int n;
             block24: {
@@ -4903,7 +4903,7 @@ implements Runnable {
             }
             case 210: 
             case 1280: {
-                this.n(graphics);
+                this.d_option(graphics);
                 return;
             }
             case 220: 
