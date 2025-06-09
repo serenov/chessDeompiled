@@ -2159,7 +2159,7 @@ implements Runnable {
         System.gc();
     }
 
-    private void g(int n) {
+    private void k_makePiece(int n) {
         int n2 = dd.size();
         System.out.println("PlayStage.k_makePiece() length =" + n2);
         switch (n) {
@@ -5747,7 +5747,7 @@ implements Runnable {
                 return;
             }
             case 110: {
-                this.g(n);
+                this.k_makePiece(n);
                 return;
             }
             case 114: {
