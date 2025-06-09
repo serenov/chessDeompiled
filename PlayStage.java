@@ -941,7 +941,7 @@ implements Runnable {
         this.bq = PlayStage.S(this.br);
         this.bp = Constants.D != 0 ? 1 : 0;
         this.ac(4);
-        this.aa(17);
+        this.data_Text(17);
     }
 
     private void g(Graphics graphics) {
@@ -1537,7 +1537,7 @@ implements Runnable {
 
     private void D() {
         this.cT = 1;
-        this.V(1);
+        this.dateLong_HelpText(1);
         this.ad(19);
         this.bq = this.cf.length - 1;
         this.cU = true;
@@ -1558,7 +1558,7 @@ implements Runnable {
             this.b.b();
         }
         catch (Exception exception) {}
-        this.V(2);
+        this.dateLong_HelpText(2);
         this.cT = 2;
         this.bM = 0;
         this.bp = 0;
@@ -1569,7 +1569,7 @@ implements Runnable {
         this.bp = 0;
         this.bq = PlayStage.S(3);
         this.cT = 3;
-        this.V(3);
+        this.dateLong_HelpText(3);
         this.ad(20);
     }
 
@@ -2057,7 +2057,7 @@ implements Runnable {
                 ++n;
             }
             this.b.b();
-            this.aa(21);
+            this.data_Text(21);
             if (!this.du) {
                 n = ResourceManger.d(0, 100);
                 this.dc = n < 10 ? 0 : (n < 20 ? 1 : (n < 60 ? 2 : 3));
@@ -2140,9 +2140,9 @@ implements Runnable {
             dd = null;
             bu = 2;
             if (j) {
-                this.aa(25);
+                this.data_Text(25);
             } else {
-                this.aa(24);
+                this.data_Text(24);
             }
             this.d(41);
             this.W();
@@ -2412,7 +2412,7 @@ implements Runnable {
             this.bm = 11 + dS;
             this.g();
             this.b(4 + this.U);
-            this.X(5);
+            this.dateLong_StageText(5);
             this.d(42);
             return;
         }
@@ -2422,14 +2422,14 @@ implements Runnable {
             System.out.println("PlayStage.i_storyEndTalk() nStage = " + this.U);
             this.g();
             this.b(4 + this.U);
-            this.X(2);
+            this.dateLong_StageText(2);
             this.d(42);
         } else {
             this.bm = 7;
             this.ef = 0;
             this.g();
             this.b(4 + this.U);
-            this.X(2);
+            this.dateLong_StageText(2);
             this.d(42);
         }
         if (this.V) {
@@ -2456,7 +2456,7 @@ implements Runnable {
             System.out.println("PlayStage.i_storyEndAni() nStage = " + this.U);
             this.g();
             this.b(4 + this.U);
-            this.X(0);
+            this.dateLong_StageText(0);
             this.d(42);
             int[][] nArrayArray = new int[7][];
             nArrayArray[0] = new int[]{115, 223};
@@ -2621,7 +2621,7 @@ implements Runnable {
         this.ef = 0;
         this.g();
         this.b(4 + this.U);
-        this.X(4);
+        this.dateLong_StageText(4);
         this.d(42);
     }
 
@@ -3681,7 +3681,7 @@ implements Runnable {
             this.b(3);
             this.c(0);
             this.d(37);
-            this.aa(22);
+            this.data_Text(22);
             return;
         }
         catch (Throwable throwable) {
@@ -3855,9 +3855,9 @@ implements Runnable {
         if (n < 1 || j) {
             bu = 2;
             if (j) {
-                this.aa(25);
+                this.data_Text(25);
             } else {
-                this.aa(27);
+                this.data_Text(27);
             }
             this.W();
             return;
@@ -3931,7 +3931,7 @@ implements Runnable {
         }
         if (n2 == 0) {
             bu = 2;
-            this.aa(23);
+            this.data_Text(23);
             this.W();
             return;
         }
@@ -4371,7 +4371,7 @@ implements Runnable {
         catch (Throwable throwable) {}
         this.g();
         this.b(4 + this.U);
-        this.X(3);
+        this.dateLong_StageText(3);
         this.d(42);
         this.bm = 9;
         this.ef = 0;
@@ -4744,7 +4744,7 @@ implements Runnable {
                     this.bM = -4132;
                     @SuppressWarnings("unused")
                     int[][] nArrayArray = new int[][]{{26, 173}, {26, 180}, {26, 192}, {28, 211}, {35, 230}, {61, 244}};
-                    this.aa(2);
+                    this.data_Text(2);
                     n = 768;
                     continue block10;
                 }
@@ -5219,7 +5219,7 @@ implements Runnable {
                         case 5: {
                             if (!Constants.b) {
                                 this.bR = 0;
-                                this.aa(18);
+                                this.data_Text(18);
                                 this.d(4);
                                 return;
                             }
@@ -5236,7 +5236,7 @@ implements Runnable {
                         case 6: {
                             if (!Constants.b) return;
                             this.bR = 0;
-                            this.aa(18);
+                            this.data_Text(18);
                             this.d(4);
                         }
                     }
@@ -5315,7 +5315,7 @@ implements Runnable {
                                 this.aY();
                                 this.ac();
                             } else if (Constants.D == 0) {
-                                this.aa(16);
+                                this.data_Text(16);
                                 this.bM = 0;
                                 bG = true;
                                 this.cH = true;
@@ -5370,7 +5370,7 @@ implements Runnable {
             case -6: 
             case -5: {
                 if (cJ[this.bp] == 0) {
-                    this.aa(16);
+                    this.data_Text(16);
                     this.cI = true;
                 } else {
                     this.h = true;
@@ -5489,7 +5489,7 @@ implements Runnable {
                     this.h = false;
                     this.M();
                 } else {
-                    this.aa(15);
+                    this.data_Text(15);
                     this.cP = 0;
                 }
                 this.bD();
@@ -6204,7 +6204,7 @@ implements Runnable {
         this.bn();
         if (!this.aR()) {
             bu = 2;
-            this.aa(26);
+            this.data_Text(26);
             this.W();
             return;
         }
@@ -6435,14 +6435,14 @@ implements Runnable {
                             case 4: {
                                 this.bD();
                                 this.b(20, false);
-                                this.aa(33);
+                                this.data_Text(33);
                                 this.bT = 0;
                                 return;
                             }
                             case 5: {
                                 this.bD();
                                 this.b(20, false);
-                                this.aa(32);
+                                this.data_Text(32);
                                 this.bS = 0;
                             }
                         }
@@ -7538,7 +7538,7 @@ implements Runnable {
                         System.out.println("PlayStage.d_LoadResource() nStage = " + this.U);
                         this.g();
                         this.b(4 + this.U);
-                        this.X(0);
+                        this.dateLong_StageText(0);
                         this.d(42);
                         break;
                     }
@@ -8370,7 +8370,7 @@ implements Runnable {
         return byArray;
     }
 
-    private void V(int n) {
+    private void dateLong_HelpText(int n) {
         int n2 = 0;
         int n3 = 0;
         Constants.T = 0;
@@ -8465,7 +8465,7 @@ implements Runnable {
         }
     }
 
-    private void X(int n) {
+    private void dateLong_StageText(int n) {
         int n2;
         int n3 = 0;
         int n4 = 0;
@@ -8658,7 +8658,7 @@ implements Runnable {
         this.co = this.b.f(this.cx);
     }
 
-    private void aa(int n) {
+    private void data_Text(int n) {
         this.cx = 5;
         this.ca = (bB - 64 - 15) / 2;
         this.bZ = bB - 13 - this.ca - this.b.o[0] / 2 * 3 * 3;
@@ -8781,7 +8781,7 @@ implements Runnable {
         while (n2 >= 0) {
             n = 7;
             while (n >= 0) {
-                this.b(graphics, n, n2, ChessR.n[n + n2 * 8]);
+                this.paintPiece(graphics, n, n2, ChessR.n[n + n2 * 8]);
                 --n;
             }
             --n2;
@@ -8798,7 +8798,7 @@ implements Runnable {
                 if (!(ew || au || bI)) {
                     this.aE.a(graphics, n2, n);
                 }
-                this.b(graphics, ChessR.p & 7, ChessR.p >>> 3, ChessR.n[ChessR.p]);
+                this.paintPiece(graphics, ChessR.p & 7, ChessR.p >>> 3, ChessR.n[ChessR.p]);
             } else if (bu == 666) {
                 n = bz - 25;
                 ResourceManger.a(graphics, aK, by, n, bA, 50, 0, aT % 3, 17);
@@ -8842,7 +8842,7 @@ implements Runnable {
         this.v(graphics);
     }
 
-    private void b(Graphics graphics, int n, int n2, int n3) {
+    private void paintPiece(Graphics graphics, int n, int n2, int n3) {
         int n4 = 0;
         int n5 = 0;
         int n6 = 0;
