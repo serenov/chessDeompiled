@@ -16,20 +16,20 @@ import javax.microedition.media.control.VolumeControl;
 public final class AudioManager
 extends Thread
 implements PlayerListener {
-    public Player a;
-    public boolean b = false;
-    public Thread c;
-    private VolumeControl e;
+    public Player soundPlayer;
+    public boolean isResourceAvailable = false; // Mutex lock for thread synchronization
+    public Thread audioThread;
+    private VolumeControl volumeController;
     public int d = 0;
-    private int f;
+    private int loopCount; 
 
     public AudioManager() {
-        this.b();
+        this.startAudioThread();
     }
 
-    private void b() {
-        this.c = new Thread(this);
-        this.c.start();
+    private void startAudioThread() {
+        this.audioThread = new Thread(this);
+        this.audioThread.start();
     }
 
     /*
@@ -40,7 +40,7 @@ implements PlayerListener {
             AudioManager h2 = this;
             synchronized (h2) {
                 try {
-                    while (!this.b) {
+                    while (!this.isResourceAvailable) {
                         this.wait();
                     }
                 }
@@ -49,12 +49,12 @@ implements PlayerListener {
             try {
                 h2 = this;
                 synchronized (h2) {
-                    this.b = false;
-                    if (this.a != null) {
-                        this.a(Constants.A);
-                        this.a.setLoopCount(this.f);
-                        this.a.prefetch();
-                        this.a.start();
+                    this.isResourceAvailable = false;
+                    if (this.soundPlayer != null) {
+                        this.setVolumeLevel(Constants.A);
+                        this.soundPlayer.setLoopCount(this.loopCount);
+                        this.soundPlayer.prefetch();
+                        this.soundPlayer.start();
                     }
                     continue;
                 }
@@ -68,19 +68,20 @@ implements PlayerListener {
     public final void playerUpdate(Player player, String string, Object object) {
     }
 
-    private void b(int n) {
-        if (n == -1) {
+    private void loadSoundById(int soundSerialId) {
+        if (soundSerialId == -1) {
             return;
         }
         try {
-            if (this.a != null) {
-                this.a.close();
-                this.a = null;
+            if (this.soundPlayer != null) {
+                this.soundPlayer.close();
+                this.soundPlayer = null;
             }
-            InputStream inputStream = null;
-            inputStream = this.getClass().getResourceAsStream("/snd/" + n);
-            this.a = Manager.createPlayer((InputStream)inputStream, (String)"audio/midi");
-            this.a.realize();
+
+            InputStream inputStream = this.getClass().getResourceAsStream("/snd/" + soundSerialId);
+            this.soundPlayer = Manager.createPlayer(inputStream, "audio/midi");
+            this.soundPlayer.realize();
+
             return;
         }
         catch (Exception exception) {
@@ -88,12 +89,12 @@ implements PlayerListener {
         }
     }
 
-    public final synchronized void a(int n, boolean bl) {
-        this.f = bl ? -1 : 1;
+    public final synchronized void a(int soundSerialId, boolean loopSound) {
+        this.loopCount = loopSound ? -1 : 1;
         try {
-            this.a();
-            this.b(n);
-            this.b = true;
+            this.stopSound();
+            this.loadSoundById(soundSerialId);
+            this.isResourceAvailable = true;
             this.notify();
             return;
         }
@@ -102,26 +103,32 @@ implements PlayerListener {
         }
     }
 
-    public final void a(int n) {
+    public final void setVolumeLevel(int level) {
         try {
-            this.e = (VolumeControl)this.a.getControl("VolumeControl");
-            if (this.e != null) {
-                this.e.setLevel(n);
-                this.d = 30 * n;
+            this.volumeController = (VolumeControl)this.soundPlayer.getControl("VolumeControl");
+
+            if (this.volumeController != null) {
+
+                this.volumeController.setLevel(level);
+                this.d = 30 * level;
+
                 if (this.d > 99) {
+
                     this.d = 0;
                 }
-                this.d = this.e.setLevel(this.d);
+
+                this.d = this.volumeController.setLevel(this.d);
+
                 return;
             }
         }
         catch (Exception exception) {}
     }
 
-    public final void a() {
+    public final void stopSound() {
         try {
-            if (this.a != null) {
-                this.a.stop();
+            if (this.soundPlayer != null) {
+                this.soundPlayer.stop();
                 return;
             }
         }

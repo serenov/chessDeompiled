@@ -1827,7 +1827,7 @@ implements Runnable {
         PlayStage.k();
         System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         ChessR.k = 1;
-        c.a();
+        c.stopSound();
         bb = -4132;
         this.ez = false;
         ChessR.r = 0;
@@ -2932,7 +2932,7 @@ implements Runnable {
     private void h(int n) {
         if (n == 0) {
             this.dm = 0;
-            c.a(40);
+            c.setVolumeLevel(40);
             return;
         }
         if (n != -4132) {
@@ -6312,7 +6312,7 @@ implements Runnable {
                 }
                 if (ChessEngine.b(ChessEngine.l) && !bI) {
                     dv = 0;
-                    c.a(1000);
+                    c.setVolumeLevel(1000);
                 }
                 ChessR.b();
                 if (bk == 2) break;
@@ -8069,7 +8069,7 @@ implements Runnable {
                         if (!recordEnumeration.hasNextElement()) {
                             bl = false;
                             this.f();
-                            this.c.a(Constants.A);
+                            this.c.setVolumeLevel(Constants.A);
                         } else {
                             int n = 0;
                             while (recordEnumeration.hasNextElement()) {
@@ -8737,7 +8737,7 @@ implements Runnable {
     }
 
     private void bD() {
-        this.c.a();
+        this.c.stopSound();
         this.bW = -1;
         this.bX = false;
     }
@@ -9231,7 +9231,7 @@ implements Runnable {
                         ChessR.g = -1;
                         if (ChessEngine.b(ChessEngine.l) && !bI && Constants.G == 0) {
                             dv = 0;
-                            c.a(1000);
+                            c.setVolumeLevel(1000);
                         }
                         ChessR.b();
                         return;
@@ -9289,10 +9289,10 @@ implements Runnable {
             bI = true;
             if (ChessEngine.b(iArray) == 0) {
                 Constants.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
-                c.a(44);
+                c.setVolumeLevel(44);
             } else {
                 Constants.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
-                c.a(44);
+                c.setVolumeLevel(44);
             }
         } else {
             if (Constants.L) {
