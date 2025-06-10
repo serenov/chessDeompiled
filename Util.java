@@ -384,30 +384,30 @@ public final class Util {
         return -1;
     }
 
-    private byte[] e(String string) {
-        byte[] byArray = null;
-        int n = 0;
-        int n2 = 0;
+    private byte[] getFileBytesByFilePath(String filepath) {
+        byte[] totalFileBuffer = null;
+        int currentTotalSize = 0;
+        int bytesRead = 0;
         try {
-            InputStream inputStream = this.getClass().getResourceAsStream(string);
-            byte[] byArray2 = new byte[4096];
-            while ((n2 = inputStream.read(byArray2)) > 0) {
-                n += n2;
-                if (byArray != null) {
-                    byte[] byArray3 = new byte[byArray.length];
-                    System.arraycopy(byArray, 0, byArray3, 0, byArray.length);
-                    byArray = null;
-                    byArray = new byte[n];
-                    System.arraycopy(byArray3, 0, byArray, 0, byArray3.length);
-                    System.arraycopy(byArray2, 0, byArray, n - n2, n2);
+            InputStream inputStream = this.getClass().getResourceAsStream(filepath);
+            byte[] fileBuffer = new byte[4096];
+            while ((bytesRead = inputStream.read(fileBuffer)) > 0) {
+                currentTotalSize += bytesRead;
+                if (totalFileBuffer != null) {
+                    byte[] auxiliaryBuffer = new byte[totalFileBuffer.length];
+                    System.arraycopy(totalFileBuffer, 0, auxiliaryBuffer, 0, totalFileBuffer.length);
+                    totalFileBuffer = null;
+                    totalFileBuffer = new byte[currentTotalSize];
+                    System.arraycopy(auxiliaryBuffer, 0, totalFileBuffer, 0, auxiliaryBuffer.length);
+                    System.arraycopy(fileBuffer, 0, totalFileBuffer, currentTotalSize - bytesRead, bytesRead);
                     continue;
                 }
-                byArray = new byte[n2];
-                System.arraycopy(byArray2, 0, byArray, 0, byArray.length);
+                totalFileBuffer = new byte[bytesRead];
+                System.arraycopy(fileBuffer, 0, totalFileBuffer, 0, totalFileBuffer.length);
             }
         }
         catch (Exception exception) {}
-        return byArray;
+        return totalFileBuffer;
     }
 
     public final void d(int n) {
@@ -481,14 +481,14 @@ public final class Util {
     }
 
     public final int d(String string) {
-        this.p = this.e(string);
-        int n = Util.a(this.p, 0);
+        this.p = this.getFileBytesByFilePath(string);
+        int n = Util.getIntFromByteArray(this.p, 0);
         this.q = new int[n];
         this.r = new int[n];
         int n2 = 0;
         while (n2 < n) {
-            this.q[n2] = Util.a(this.p, 4 + n2 * 8);
-            this.r[n2] = Util.a(this.p, 8 + n2 * 8);
+            this.q[n2] = Util.getIntFromByteArray(this.p, 4 + n2 * 8);
+            this.r[n2] = Util.getIntFromByteArray(this.p, 8 + n2 * 8);
             ++n2;
         }
         return n;
@@ -500,7 +500,7 @@ public final class Util {
         this.r = null;
     }
 
-    private static int a(byte[] byArray, int n) {
+    private static int getIntFromByteArray(byte[] byArray, int n) {
         int n2 = 0;
         n2 = (byArray[n + 3] & 0xFF) << 24;
         n2 += (byArray[n + 2] & 0xFF) << 16;
