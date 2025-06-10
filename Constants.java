@@ -6,7 +6,7 @@ public final class Constants {
     public static boolean b;
     public static String c;
     public static int d;
-    public static String e;
+    public static String midletVersion;
     public static boolean f;
     public static boolean g;
     public static int h;

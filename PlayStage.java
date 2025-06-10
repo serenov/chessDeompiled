@@ -675,7 +675,7 @@ implements Runnable {
         this.p = Constants.o[n][5];
         this.q = Constants.o[n][6];
 
-        Constants.e = this.a.getAppProperty("MIDlet-Version");
+        Constants.midletVersion = this.a.getAppProperty("MIDlet-Version");
 
         if (this.a.getAppProperty("Force-Language").equals("EN")) {
             Constants.d = 0;
@@ -8646,7 +8646,7 @@ implements Runnable {
     private void Z(int n) {
         this.cx = 15;
         this.cb = this.U(22);
-        this.eu = Constants.e.getBytes();
+        this.eu = Constants.midletVersion.getBytes();
         this.ev = this.U(n);
         this.cc = new byte[this.cb.length + this.eu.length + this.ev.length];
         System.arraycopy(this.cb, 0, this.cc, 0, this.cb.length);
