@@ -30,9 +30,9 @@ public final class PlayStage
 extends Canvas
 implements Runnable {
     public ChessR a;
-    public Util b;
-    public AudioManager c;
-    public static ChessEngine d;
+    public Util utilService;
+    public AudioManager audioService;
+    public static ChessEngine chessEngine;
     public Graphics e;
     public Thread f;
     public boolean g;
@@ -159,8 +159,8 @@ implements Runnable {
     public static int bx;
     public static int by;
     public static int bz;
-    public static int bA;
-    public static int bB;
+    public static int canvasWidth;
+    public static int canvasHeight;
     public int bC;
     public int bD;
     public boolean bE;
@@ -534,22 +534,30 @@ implements Runnable {
         this.ev = null;
         this.ey = 0;
         this.a = chessR;
+
         this.setFullScreenMode(true);
-        this.b = new Util();
-        this.c = new AudioManager();
-        bA = this.getWidth();
-        bB = this.getHeight();
-        this.m();
-        d = new ChessEngine();
+
+        this.utilService = new Util();
+        this.audioService = new AudioManager();
+
+        canvasWidth = this.getWidth();
+        canvasHeight = this.getHeight();
+
+        this.initManifestAttributes();
+
+        chessEngine = new ChessEngine();
+
         this.T = new byte[9];
+
         this.LoadOption();
+
         this.br = 0;
-        this.aM();
+        this.startGameThread();
     }
 
     private void l() {
-        by = bA >> 1;
-        bz = bB >> 1;
+        by = canvasWidth >> 1;
+        bz = canvasHeight >> 1;
         this.g = true;
         bG = true;
         bg = by - 121;
@@ -559,54 +567,54 @@ implements Runnable {
         this.bP = new int[2];
         this.bP[0] = 1;
         this.bP[1] = 0;
-        this.b.a(bA, bB, 2, -1000);
-        this.b.d(2);
+        this.utilService.a(canvasWidth, canvasHeight, 2, -1000);
+        this.utilService.d(2);
         this.a("font");
-        this.b.a(this.b.e(0), 0, 6);
-        this.b.a(this.b.e(1), 1, 6);
-        this.b.b();
+        this.utilService.a(this.utilService.e(0), 0, 6);
+        this.utilService.a(this.utilService.e(1), 1, 6);
+        this.utilService.b();
         this.bV = -1;
         this.at = new Image[9];
         this.a("logo");
         int n = 0;
         while (n < this.at.length) {
-            this.at[n] = this.b.e(n);
+            this.at[n] = this.utilService.e(n);
             ++n;
         }
-        this.b.b();
+        this.utilService.b();
         this.br = 6;
     }
 
     private void a(Graphics graphics) {
         PlayStage.V(graphics);
-        this.b.a(graphics, this.cf[0], by, bz, 17, 1);
+        this.utilService.a(graphics, this.cf[0], by, bz, 17, 1);
         graphics.setColor(0xFFFFFF);
-        graphics.fillRect(0, bz + this.cf[0].length + 9, bA, 10);
+        graphics.fillRect(0, bz + this.cf[0].length + 9, canvasWidth, 10);
         graphics.setColor(0);
-        graphics.fillRect(2, bz + this.cf[0].length + 11, this.cE * bA / 6 - 4, 6);
+        graphics.fillRect(2, bz + this.cf[0].length + 11, this.cE * canvasWidth / 6 - 4, 6);
         if (this.cD) {
             try {
                 if (this.cE == 1) {
                     this.w = new Image[2];
                     this.a("ui_effect");
-                    this.w[0] = this.b.e(1);
-                    this.w[1] = this.b.e(2);
-                    this.b.b();
+                    this.w[0] = this.utilService.e(1);
+                    this.w[1] = this.utilService.e(2);
+                    this.utilService.b();
                     this.o();
                     this.v = new Image[8];
                     this.a("loading_0");
-                    this.ap = this.b.e(0);
-                    this.aq = this.b.e(1);
-                    this.ar = this.b.e(2);
-                    this.b.b();
+                    this.ap = this.utilService.e(0);
+                    this.aq = this.utilService.e(1);
+                    this.ar = this.utilService.e(2);
+                    this.utilService.b();
                     this.bO = 0;
                     this.a("boardPiece");
                     int n = 0;
                     while (n < 18) {
-                        this.aR[this.bO][n] = this.b.e(n);
+                        this.aR[this.bO][n] = this.utilService.e(n);
                         ++n;
                     }
-                    this.b.b();
+                    this.utilService.b();
                     this.bc = this.aR[this.bO][4].getHeight();
                     this.bd = this.aR[this.bO][0] == null ? this.aR[this.bO][1].getHeight() : this.aR[this.bO][0].getHeight();
                     this.aL = this.bc >> 1;
@@ -631,11 +639,11 @@ implements Runnable {
                     nArrayArray[6] = new int[]{2, 151, 185};
                     this.y = nArrayArray;
                     try {
-                        Constants.O = this.b.loadGameDataById("anMapX");
-                        Constants.P = this.b.loadGameDataById("anMapY");
-                        Constants.Q = this.b.loadGameDataById("anMapCenterY");
-                        Constants.R = this.b.loadGameDataById("anMapEdgeY");
-                        Constants.S = this.b.loadGameDataById("anMapEdgeX");
+                        Constants.O = this.utilService.loadGameDataById("anMapX");
+                        Constants.P = this.utilService.loadGameDataById("anMapY");
+                        Constants.Q = this.utilService.loadGameDataById("anMapCenterY");
+                        Constants.R = this.utilService.loadGameDataById("anMapEdgeY");
+                        Constants.S = this.utilService.loadGameDataById("anMapEdgeX");
                     }
                     catch (Exception exception) {}
                     ChessR.m = new byte[64];
@@ -657,15 +665,13 @@ implements Runnable {
         }
     }
 
-    private void m() {
+    private void initManifestAttributes() {
         Constants.a = this.a.getAppProperty("Default-Logo").equals("ON") ? 0 : 1;
-        Constants.b = this.a.getAppProperty("More_Games").equals("ON");
-        Constants.c = this.a.getAppProperty("Download-URL");
-        Constants.g = this.a.getAppProperty("Default-Cheat").equals("ON");
+        Constants.isMoreGamesOn = this.a.getAppProperty("More_Games").equals("ON");
+        Constants.downloadUrl = this.a.getAppProperty("Download-URL");
+        Constants.isCheatModeOn = this.a.getAppProperty("Default-Cheat").equals("ON");
 
-        int n = 0;
-
-        n = this.a.getAppProperty("Default-Vendor-Key").equals("MOTO1") ? 1 : (this.a.getAppProperty("Default-Vendor-Key").equals("MOTO2") ? 2 : (this.a.getAppProperty("Default-Vendor-Key").equals("SIEMENS") ? 3 : (this.a.getAppProperty("Default-Vendor-Key").equals("SAGEM") ? 4 : (this.a.getAppProperty("Default-Vendor-Key").equals("LGT") ? 5 : 0))));
+        int n = this.a.getAppProperty("Default-Vendor-Key").equals("MOTO1") ? 1 : (this.a.getAppProperty("Default-Vendor-Key").equals("MOTO2") ? 2 : (this.a.getAppProperty("Default-Vendor-Key").equals("SIEMENS") ? 3 : (this.a.getAppProperty("Default-Vendor-Key").equals("SAGEM") ? 4 : (this.a.getAppProperty("Default-Vendor-Key").equals("LGT") ? 5 : 0))));
 
         this.r = Constants.o[n][0];
         this.t = Constants.o[n][1];
@@ -678,57 +684,57 @@ implements Runnable {
         Constants.midletVersion = this.a.getAppProperty("MIDlet-Version");
 
         if (this.a.getAppProperty("Force-Language").equals("EN")) {
-            Constants.d = 0;
+            Constants.forcedLocaleLanguageCode = 0;
             return;
         }
 
         if (this.a.getAppProperty("Force-Language").equals("DE")) {
-            Constants.d = 1;
+            Constants.forcedLocaleLanguageCode = 1;
             return;
         }
 
         if (this.a.getAppProperty("Force-Language").equals("FR")) {
-            Constants.d = 2;
+            Constants.forcedLocaleLanguageCode = 2;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("ES")) {
-            Constants.d = 3;
+            Constants.forcedLocaleLanguageCode = 3;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("IT")) {
-            Constants.d = 4;
+            Constants.forcedLocaleLanguageCode = 4;
             return;
         }
         if (this.a.getAppProperty("Force-Language").equals("PT")) {
-            Constants.d = 5;
+            Constants.forcedLocaleLanguageCode = 5;
             return;
         }
-        Constants.d = 6;
+        Constants.forcedLocaleLanguageCode = 6;
     }
 
     private void b(Graphics graphics) {
         PlayStage.V(graphics);
         graphics.setColor(255, 255, 0);
-        graphics.fillRect(0, 58 + Constants.v * 15, bA, this.b.o[1] + 4);
-        this.b.a(graphics, this.cf[0], by, 40, 17, 1);
+        graphics.fillRect(0, 58 + Constants.v * 15, canvasWidth, this.utilService.o[1] + 4);
+        this.utilService.a(graphics, this.cf[0], by, 40, 17, 1);
         int n = 0;
         while (n < 6) {
-            this.b.a(graphics, this.cf[1 + n], by, 60 + 15 * n, 17, 1);
+            this.utilService.a(graphics, this.cf[1 + n], by, 60 + 15 * n, 17, 1);
             ++n;
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[7], 0, bB, 36, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[7], 0, canvasHeight, 36, 1);
     }
 
     private void c(Graphics graphics) {
         PlayStage.V(graphics);
-        this.b.a(graphics, this.cf[0], by, bz, 17, 1);
-        this.b.a(graphics, "?".getBytes(), by + 30, bz, 17, 1);
+        this.utilService.a(graphics, this.cf[0], by, bz, 17, 1);
+        this.utilService.a(graphics, "?".getBytes(), by + 30, bz, 17, 1);
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[1], 0, bB, 36, 1);
-        this.b.a(graphics, this.cf[2], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[1], 0, canvasHeight, 36, 1);
+        this.utilService.a(graphics, this.cf[2], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void d(Graphics graphics) {
@@ -747,13 +753,13 @@ implements Runnable {
         if (Constants.a == 0) {
             if (++this.bN > 45) {
                 this.at = null;
-                if (Constants.d == 6 && Constants.C == -1) {
+                if (Constants.forcedLocaleLanguageCode == 6 && Constants.C == -1) {
                     Constants.C = 0;
                     this.a(2, true);
                     return;
                 }
-                if (Constants.d != 6) {
-                    Constants.C = Constants.d;
+                if (Constants.forcedLocaleLanguageCode != 6) {
+                    Constants.C = Constants.forcedLocaleLanguageCode;
                 }
                 this.a(3, true);
                 Constants.v = Constants.C;
@@ -761,7 +767,7 @@ implements Runnable {
             }
         } else if (++this.bN > 30) {
             this.at = null;
-            if (Constants.d == 6) {
+            if (Constants.forcedLocaleLanguageCode == 6) {
                 this.a(2, true);
                 return;
             }
@@ -831,7 +837,7 @@ implements Runnable {
                 this.R = 0;
             }
             if ((n = this.R) % 2 == 0) {
-                this.b.a(graphics, this.ce[0], by, bB - 20, 33, 1);
+                this.utilService.a(graphics, this.ce[0], by, canvasHeight - 20, 33, 1);
             }
             if (this.bM != -4132 && ++this.bM > 7) {
                 this.q();
@@ -843,7 +849,7 @@ implements Runnable {
     private void q() {
         bu = 0;
         this.bq = PlayStage.S(512);
-        d = null;
+        chessEngine = null;
         switch (this.br) {
             case 257: {
                 this.bp = 0;
@@ -880,11 +886,11 @@ implements Runnable {
         this.v = null;
         this.v = new Image[5];
         this.a("fm_0");
-        this.v[0] = this.b.e(0);
-        this.v[1] = this.b.e(1);
-        this.v[3] = this.b.e(2);
-        this.v[4] = this.b.e(3);
-        this.b.b();
+        this.v[0] = this.utilService.e(0);
+        this.v[1] = this.utilService.e(1);
+        this.v[3] = this.utilService.e(2);
+        this.v[4] = this.utilService.e(3);
+        this.utilService.b();
         this.g();
         this.b(0);
         this.ac(3);
@@ -918,18 +924,18 @@ implements Runnable {
                 n2 = 20;
                 Util.a(graphics, -5, n, 140, 20, 0x575757, 0, 0, 1, 6);
             }
-            if (!Constants.b) {
+            if (!Constants.isMoreGamesOn) {
                 if (n3 == 5) {
-                    this.b.a(graphics, this.cf[6], n2, n - 6, 20, 1);
+                    this.utilService.a(graphics, this.cf[6], n2, n - 6, 20, 1);
                 } else {
-                    this.b.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
+                    this.utilService.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
                 }
             } else {
-                this.b.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
+                this.utilService.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
             }
             graphics.setColor(0x555555);
-            graphics.fillRect(0, bB - 12, bA, 12);
-            this.b.a(graphics, this.cf[7], 0, bB, 36, 1);
+            graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+            this.utilService.a(graphics, this.cf[7], 0, canvasHeight, 36, 1);
             ++n3;
         }
     }
@@ -961,7 +967,7 @@ implements Runnable {
                 n2 = 20;
                 Util.a(graphics, -5, n, 130, 20, 0x575757, 0, 0, 1, 6);
             }
-            this.b.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
+            this.utilService.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
             ++n3;
         }
         if (this.bQ == 1) {
@@ -978,10 +984,10 @@ implements Runnable {
             return;
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
         if (this.bQ != 1) {
-            this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
-            this.b.a(graphics, this.cf[3], bA, bB, 40, 1);
+            this.utilService.a(graphics, this.cf[2], 0, canvasHeight, 36, 1);
+            this.utilService.a(graphics, this.cf[3], canvasWidth, canvasHeight, 40, 1);
         }
     }
 
@@ -998,11 +1004,11 @@ implements Runnable {
         graphics.setColor(0x212020);
         Util.a(graphics, n5, n6, 152, 19, 20);
         if (this.br != 768) {
-            this.b.a(graphics, this.cf[4], by - 75, n6 + 3, 20, 1);
-            this.b.a(graphics, this.cf[5], by + 5, n6 + 3, 20, 1);
+            this.utilService.a(graphics, this.cf[4], by - 75, n6 + 3, 20, 1);
+            this.utilService.a(graphics, this.cf[5], by + 5, n6 + 3, 20, 1);
         } else {
-            this.b.a(graphics, this.cf[8], by - 75, n6 + 3, 20, 1);
-            this.b.a(graphics, this.cf[9], by + 5, n6 + 3, 20, 1);
+            this.utilService.a(graphics, this.cf[8], by - 75, n6 + 3, 20, 1);
+            this.utilService.a(graphics, this.cf[9], by + 5, n6 + 3, 20, 1);
         }
         graphics.setColor(0xDDDDDD);
         Constants.T = 0;
@@ -1039,15 +1045,15 @@ implements Runnable {
         graphics.setColor(0x212020);
         Util.a(graphics, by, n, 96, 19, 3);
         this.a(graphics, this.v[4], by, n, 100, 21, 3);
-        this.b.a(graphics, this.cf[2], by, n, 3, 1);
+        this.utilService.a(graphics, this.cf[2], by, n, 3, 1);
         this.S(graphics);
         if (this.cI) {
             this.a(graphics, 9, 18);
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[4], 0, bB, 36, 1);
-        this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[4], 0, canvasHeight, 36, 1);
+        this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void t() {
@@ -1076,13 +1082,13 @@ implements Runnable {
                 n2 = 10;
                 Util.a(graphics, -5, n, 170, 20, 0x575757, 0, 0, 1, 6);
             }
-            this.b.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
+            this.utilService.a(graphics, this.cf[n3], n2, n - 6, 20, 1);
             ++n3;
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[4], 0, bB, 36, 1);
-        this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[4], 0, canvasHeight, 36, 1);
+        this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void u() {
@@ -1129,8 +1135,8 @@ implements Runnable {
                             n = 8;
                         }
                     }
-                    this.cK[n2] = this.b.e(n);
-                    this.b.b();
+                    this.cK[n2] = this.utilService.e(n);
+                    this.utilService.b();
                 } else {
                     this.a("char_talk");
                     switch (n2) {
@@ -1162,8 +1168,8 @@ implements Runnable {
                             n = 8;
                         }
                     }
-                    this.cK[n2] = this.b.e(n);
-                    this.b.b();
+                    this.cK[n2] = this.utilService.e(n);
+                    this.utilService.b();
                     this.cM = Image.createImage((String)"/img/vs_grid.png");
                 }
                 ++n2;
@@ -1268,7 +1274,7 @@ implements Runnable {
         graphics.setColor(0x212020);
         Util.a(graphics, by, n, 172, 23, 3);
         this.a(graphics, this.v[4], by, n, 176, 25, 3);
-        this.b.a(graphics, this.cf[10], by, n - 5, 17, 1);
+        this.utilService.a(graphics, this.cf[10], by, n - 5, 17, 1);
         PlayStage.a(graphics, by, bz, 176, 220, 3);
         int n2 = by - 88 + 19;
         Util.a(graphics, this.cL, n2, bz - 110 + (aU ? 8 : 6), 36, 7, 0, 0, 20);
@@ -1302,24 +1308,24 @@ implements Runnable {
             String string = "   " + n10;
             if (this.cO == -4132 && n8 == 1) {
                 if (this.T[n6] == 1) {
-                    this.b.a(graphics, this.cf[n7 - 1], by + 22, n9 - 3, 33, 1);
-                    this.b.a(graphics, this.cf[9], by + 22 - 5, n9 + 3, 17, 1);
-                    this.b.a(graphics, string.getBytes(), by + 22 + this.cf[9].length, n9 + 3, 17, 1);
+                    this.utilService.a(graphics, this.cf[n7 - 1], by + 22, n9 - 3, 33, 1);
+                    this.utilService.a(graphics, this.cf[9], by + 22 - 5, n9 + 3, 17, 1);
+                    this.utilService.a(graphics, string.getBytes(), by + 22 + this.cf[9].length, n9 + 3, 17, 1);
                 } else {
-                    this.b.a(graphics, "???".getBytes(), by + 22, n9 - 3, 33, 1);
-                    this.b.a(graphics, this.cf[9], by + 22 - 5, n9 + 3, 17, 1);
-                    this.b.a(graphics, "   ?".getBytes(), by + 22 + this.cf[9].length, n9 + 3, 17, 1);
+                    this.utilService.a(graphics, "???".getBytes(), by + 22, n9 - 3, 33, 1);
+                    this.utilService.a(graphics, this.cf[9], by + 22 - 5, n9 + 3, 17, 1);
+                    this.utilService.a(graphics, "   ?".getBytes(), by + 22 + this.cf[9].length, n9 + 3, 17, 1);
                 }
             }
             ++n5;
             ++n8;
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
         graphics.setColor(150, 200, 200);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[11], 0, bB, 36, 1);
-        this.b.a(graphics, this.cf[12], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[11], 0, canvasHeight, 36, 1);
+        this.utilService.a(graphics, this.cf[12], canvasWidth, canvasHeight, 40, 1);
         if (this.cP != -4132) {
             this.m(graphics);
         }
@@ -1345,7 +1351,7 @@ implements Runnable {
             graphics.setColor(0xFFFFFF);
             int n7 = 0;
             while (n7 < (this.cy != this.co - 1 ? this.cx : (this.ch % this.cx == 0 ? this.cx : this.ch % this.cx))) {
-                this.b.a(graphics, this.ce[n7], by, n6 + 10 + n7 * (this.b.o[0] + 2), 17, 0);
+                this.utilService.a(graphics, this.ce[n7], by, n6 + 10 + n7 * (this.utilService.o[0] + 2), 17, 0);
                 ++n7;
             }
             return;
@@ -1398,61 +1404,61 @@ implements Runnable {
                         n4 -= 30;
                     }
                     PlayStage.a(graphics, by, n3 - 40, 100, 30, 17);
-                    this.b.a(graphics, this.cf[13], by, n3 - 30, 17, 1);
+                    this.utilService.a(graphics, this.cf[13], by, n3 - 30, 17, 1);
                     PlayStage.a(graphics, by, n3, 176, n4 + 30, 17);
                     System.out.println("PlayStage.d_option() height = " + n4);
                     graphics.setColor(0, 0, 255);
                     graphics.fillRect(by - 88 + 6, n3 - 24 + 30 * this.bp, 164, 27);
                     int n5 = 0;
                     while (n5 < 4) {
-                        this.b.a(graphics, this.cf[n5], by - 70, bz - 70 + 30 * n5, 20, 1);
+                        this.utilService.a(graphics, this.cf[n5], by - 70, bz - 70 + 30 * n5, 20, 1);
                         ++n5;
                     }
                     n5 = 0;
                     while (n5 < 6 - n) {
                         if (n5 == this.bp - 1) {
-                            if (Constants.d == 6) {
+                            if (Constants.forcedLocaleLanguageCode == 6) {
                                 if (this.cE % 3 == 1) {
-                                    this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
-                                    this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
+                                    this.utilService.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
+                                    this.utilService.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                                 }
                             } else if (this.cE % 3 == 1 && n5 != 0) {
-                                this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
-                                this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
+                                this.utilService.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
+                                this.utilService.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                             }
-                        } else if (Constants.d == 6) {
-                            this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
-                            this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
+                        } else if (Constants.forcedLocaleLanguageCode == 6) {
+                            this.utilService.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
+                            this.utilService.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                         } else if (n5 != 0) {
-                            this.b.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
-                            this.b.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
+                            this.utilService.a(graphics, "<<".getBytes(), by - 40, bz - 60 + 30 * n5, 20, 1);
+                            this.utilService.a(graphics, ">>".getBytes(), by + 80, bz - 60 + 30 * n5, 24, 1);
                         }
                         ++n5;
                     }
-                    this.b.a(graphics, this.cf[14 + Constants.C], by + 20, bz - 60 + 0, 17, 1);
-                    this.b.a(graphics, this.cf[20 + Constants.soundVolumeLevel], by + 20, bz - 60 + 30, 17, 1);
-                    this.b.a(graphics, this.cf[6 + Constants.E], by + 20, bz - 60 + 60, 17, 1);
-                    this.b.a(graphics, this.cf[10 + Constants.B], by + 20, bz - 60 + 90, 17, 1);
+                    this.utilService.a(graphics, this.cf[14 + Constants.C], by + 20, bz - 60 + 0, 17, 1);
+                    this.utilService.a(graphics, this.cf[20 + Constants.soundVolumeLevel], by + 20, bz - 60 + 30, 17, 1);
+                    this.utilService.a(graphics, this.cf[6 + Constants.E], by + 20, bz - 60 + 60, 17, 1);
+                    this.utilService.a(graphics, this.cf[10 + Constants.B], by + 20, bz - 60 + 90, 17, 1);
                     if (Constants.E != 1) break block22;
-                    this.b.a(graphics, this.cf[4], by - 70, bz - 70 + 120, 20, 1);
-                    this.b.a(graphics, this.cf[10 + Constants.F], by + 20, bz - 60 + 120, 17, 1);
+                    this.utilService.a(graphics, this.cf[4], by - 70, bz - 70 + 120, 20, 1);
+                    this.utilService.a(graphics, this.cf[10 + Constants.F], by + 20, bz - 60 + 120, 17, 1);
                     if (!Constants.L) break block23;
-                    this.b.a(graphics, this.cf[5], by - 70, bz - 70 + 150, 20, 1);
+                    this.utilService.a(graphics, this.cf[5], by - 70, bz - 70 + 150, 20, 1);
                     if (this.bp == 6) break block24;
-                    this.b.a(graphics, this.cf[8 + Constants.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
+                    this.utilService.a(graphics, this.cf[8 + Constants.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
                     break block23;
                 }
                 if (!Constants.L) break block23;
-                this.b.a(graphics, this.cf[5], by - 70, bz - 70 + 120, 20, 1);
+                this.utilService.a(graphics, this.cf[5], by - 70, bz - 70 + 120, 20, 1);
                 if (this.bp == 5) {
                     // empty if block
                 }
             }
-            this.b.a(graphics, this.cf[8 + Constants.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
+            this.utilService.a(graphics, this.cf[8 + Constants.w], by + 20, bz - 60 + 30 * (5 - n), 17, 1);
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[12], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[12], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void f(int n) {
@@ -1487,10 +1493,10 @@ implements Runnable {
                 this.a("pieceblack");
                 int n = 0;
                 while (n < this.aD.length) {
-                    this.aD[n] = this.b.e(n);
+                    this.aD[n] = this.utilService.e(n);
                     ++n;
                 }
-                this.b.b();
+                this.utilService.b();
                 return;
             }
         }
@@ -1505,7 +1511,7 @@ implements Runnable {
         int n3 = 6;
         while (n3 <= 11) {
             if (this.aB[n3] == null) {
-                image = this.b.e(n3);
+                image = this.utilService.e(n3);
                 if (n3 > 5) {
                     n = image.getWidth() >> 1;
                     n2 = image.getHeight() >> 1;
@@ -1515,7 +1521,7 @@ implements Runnable {
             System.gc();
             ++n3;
         }
-        this.b.b();
+        this.utilService.b();
     }
 
     private void C() {
@@ -1552,10 +1558,10 @@ implements Runnable {
             this.a("help_show");
             int n = 0;
             while (n < 17) {
-                this.v[n] = this.b.e(n);
+                this.v[n] = this.utilService.e(n);
                 ++n;
             }
-            this.b.b();
+            this.utilService.b();
         }
         catch (Exception exception) {}
         this.dateLong_HelpText(2);
@@ -1583,7 +1589,7 @@ implements Runnable {
         int n2 = bz;
         int n3 = bz - n2 / 2;
         PlayStage.a(graphics, by, n3 - 40, 100, 30, 17);
-        this.b.a(graphics, this.cf[0], by, n3 - 30, 17, 1);
+        this.utilService.a(graphics, this.cf[0], by, n3 - 30, 17, 1);
         PlayStage.a(graphics, by, bz + 10, n, n2 + 30, 3);
         int n4 = 0;
         int n5 = bz - 22;
@@ -1595,9 +1601,9 @@ implements Runnable {
                 int n6 = 0;
                 while (n6 < Constants.l + 1) {
                     if (n6 == 1 && this.cf[2].length * 8 <= 150) {
-                        this.b.a(graphics, this.cf[n6 + 1], by, n5 + n6 * 30, 17, 1);
+                        this.utilService.a(graphics, this.cf[n6 + 1], by, n5 + n6 * 30, 17, 1);
                     } else {
-                        this.b.a(graphics, this.cf[n6 + 1], by, n5 + n6 * 30, 17, 1);
+                        this.utilService.a(graphics, this.cf[n6 + 1], by, n5 + n6 * 30, 17, 1);
                     }
                     ++n6;
                 }
@@ -1606,9 +1612,9 @@ implements Runnable {
                 graphics.setColor(0xFFFFFF);
                 graphics.drawLine(by - by / 2, n5 + this.bp * 30 + 15, by + by / 2, n5 + this.bp * 30 + 15);
                 graphics.setColor(0x555555);
-                graphics.fillRect(0, bB - 12, bA, 12);
-                this.b.a(graphics, this.cf[4], 0, bB, 36, 1);
-                this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+                graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+                this.utilService.a(graphics, this.cf[4], 0, canvasHeight, 36, 1);
+                this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
                 return;
             }
             case 1: {
@@ -1618,7 +1624,7 @@ implements Runnable {
                     case 0: {
                         int n7 = 0;
                         while (n7 < (this.cB != this.cp - 1 ? this.cx : (this.ci % this.cx == 0 ? this.cx : this.ci % this.cx))) {
-                            this.b.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n7], by - 80, this.bZ + n7 * (this.b.o[0] + 2), 20, 0);
+                            this.utilService.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n7], by - 80, this.bZ + n7 * (this.utilService.o[0] + 2), 20, 0);
                             ++n7;
                         }
                         break;
@@ -1626,7 +1632,7 @@ implements Runnable {
                     case 1: {
                         int n8 = 0;
                         while (n8 < (this.cB != this.cq - 1 ? this.cx : (this.cj % this.cx == 0 ? this.cx : this.cj % this.cx))) {
-                            this.b.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n8], by - 80, this.bZ + n8 * (this.b.o[0] + 2), 20, 0);
+                            this.utilService.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n8], by - 80, this.bZ + n8 * (this.utilService.o[0] + 2), 20, 0);
                             ++n8;
                         }
                         break;
@@ -1634,7 +1640,7 @@ implements Runnable {
                     case 2: {
                         int n9 = 0;
                         while (n9 < (this.cB != this.cr - 1 ? this.cx : (this.ck % this.cx == 0 ? this.cx : this.ck % this.cx))) {
-                            this.b.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n9], by - 80, this.bZ + n9 * (this.b.o[0] + 2), 20, 0);
+                            this.utilService.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n9], by - 80, this.bZ + n9 * (this.utilService.o[0] + 2), 20, 0);
                             ++n9;
                         }
                         break;
@@ -1642,7 +1648,7 @@ implements Runnable {
                     case 3: {
                         int n10 = 0;
                         while (n10 < (this.cB != this.cs - 1 ? this.cx : (this.cl % this.cx == 0 ? this.cx : this.cl % this.cx))) {
-                            this.b.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n10], by - 80, this.bZ + n10 * (this.b.o[0] + 2), 20, 0);
+                            this.utilService.a(graphics, this.cg[this.cC + 6][this.cB * this.cx + n10], by - 80, this.bZ + n10 * (this.utilService.o[0] + 2), 20, 0);
                             ++n10;
                         }
                         break;
@@ -1657,9 +1663,9 @@ implements Runnable {
                     Util.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, this.bZ - 15, 10, 12, 0, 0, 24);
                 }
                 graphics.setColor(0x555555);
-                graphics.fillRect(0, bB - 12, bA, 12);
-                this.b.a(graphics, this.cf[this.cC + 1], by, this.bZ - 15, 17, 1);
-                this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+                graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+                this.utilService.a(graphics, this.cf[this.cC + 1], by, this.bZ - 15, 17, 1);
+                this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
                 return;
             }
             case 2: {
@@ -1674,37 +1680,37 @@ implements Runnable {
                 if (this.cz < this.cp) {
                     int n11 = 0;
                     while (n11 < (this.cz != this.cp - 1 ? this.cx : (this.ci % this.cx == 0 ? this.cx : this.ci % this.cx))) {
-                        this.b.a(graphics, this.cg[10][this.cz * this.cx + n11], by - 80, this.bZ + n11 * (this.b.o[0] + 2), 20, 0);
+                        this.utilService.a(graphics, this.cg[10][this.cz * this.cx + n11], by - 80, this.bZ + n11 * (this.utilService.o[0] + 2), 20, 0);
                         ++n11;
                     }
                 } else if (this.cz >= this.cp && this.cz < this.cp + this.cq) {
                     int n12 = 0;
                     while (n12 < (this.cz - this.cp != this.cq - 1 ? this.cx : (this.cj % this.cx == 0 ? this.cx : this.cj % this.cx))) {
-                        this.b.a(graphics, this.cg[11][(this.cz - this.cp) * this.cx + n12], by - 80, this.bZ + n12 * (this.b.o[0] + 2), 20, 0);
+                        this.utilService.a(graphics, this.cg[11][(this.cz - this.cp) * this.cx + n12], by - 80, this.bZ + n12 * (this.utilService.o[0] + 2), 20, 0);
                         ++n12;
                     }
                 } else if (this.cz >= this.cp + this.cq && this.cz < this.cp + this.cq + this.cr) {
                     int n13 = 0;
                     while (n13 < (this.cz - (this.cp + this.cq) != this.cr - 1 ? this.cx : (this.ck % this.cx == 0 ? this.cx : this.ck % this.cx))) {
-                        this.b.a(graphics, this.cg[12][(this.cz - (this.cp + this.cq)) * this.cx + n13], by - 80, this.bZ + n13 * (this.b.o[0] + 2), 20, 0);
+                        this.utilService.a(graphics, this.cg[12][(this.cz - (this.cp + this.cq)) * this.cx + n13], by - 80, this.bZ + n13 * (this.utilService.o[0] + 2), 20, 0);
                         ++n13;
                     }
                 } else if (this.cz >= this.cp + this.cq + this.cr && this.cz < this.cp + this.cq + this.cr + this.cs) {
                     int n14 = 0;
                     while (n14 < (this.cz - (this.cp + this.cq + this.cr) != this.cs - 1 ? this.cx : (this.cl % this.cx == 0 ? this.cx : this.cl % this.cx))) {
-                        this.b.a(graphics, this.cg[13][(this.cz - (this.cp + this.cq + this.cr)) * this.cx + n14], by - 80, this.bZ + n14 * (this.b.o[0] + 2), 20, 0);
+                        this.utilService.a(graphics, this.cg[13][(this.cz - (this.cp + this.cq + this.cr)) * this.cx + n14], by - 80, this.bZ + n14 * (this.utilService.o[0] + 2), 20, 0);
                         ++n14;
                     }
                 } else if (this.cz >= this.cp + this.cq + this.cr + this.cs && this.cz < this.cp + this.cq + this.cr + this.cs + this.ct) {
                     int n15 = 0;
                     while (n15 < (this.cz - (this.cp + this.cq + this.cr + this.cs) != this.ct - 1 ? this.cx : (this.cm % this.cx == 0 ? this.cx : this.cm % this.cx))) {
-                        this.b.a(graphics, this.cg[14][(this.cz - (this.cp + this.cq + this.cr + this.cs)) * this.cx + n15], by - 80, this.bZ + n15 * (this.b.o[0] + 2), 20, 0);
+                        this.utilService.a(graphics, this.cg[14][(this.cz - (this.cp + this.cq + this.cr + this.cs)) * this.cx + n15], by - 80, this.bZ + n15 * (this.utilService.o[0] + 2), 20, 0);
                         ++n15;
                     }
                 } else if (this.cz >= this.cp + this.cq + this.cr + this.cs + this.ct && this.cz < this.cp + this.cq + this.cr + this.cs + this.ct + this.cu) {
                     int n16 = 0;
                     while (n16 < (this.cz - (this.cp + this.cq + this.cr + this.cs + this.ct) != this.cu - 1 ? this.cx : (this.cn % this.cx == 0 ? this.cx : this.cn % this.cx))) {
-                        this.b.a(graphics, this.cg[15][(this.cz - (this.cp + this.cq + this.cr + this.cs + this.ct)) * this.cx + n16], by - 80, this.bZ + n16 * (this.b.o[0] + 2), 20, 0);
+                        this.utilService.a(graphics, this.cg[15][(this.cz - (this.cp + this.cq + this.cr + this.cs + this.ct)) * this.cx + n16], by - 80, this.bZ + n16 * (this.utilService.o[0] + 2), 20, 0);
                         ++n16;
                     }
                 }
@@ -1717,8 +1723,8 @@ implements Runnable {
                     Util.a(graphics, this.ao, aU ? by - by / 2 : by - by / 2 + 2, n4, 10, 12, 0, 0, 24);
                 }
                 graphics.setColor(0x555555);
-                graphics.fillRect(0, bB - 12, bA, 12);
-                this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+                graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+                this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
                 return;
             }
             case 3: {
@@ -1727,7 +1733,7 @@ implements Runnable {
                     int n17 = this.cf.length;
                     int n18 = 0;
                     while (n18 < n17 - 3) {
-                        this.b.a(graphics, this.cf[n18 + 1], by, n5 + 20 * n18, 17, 1);
+                        this.utilService.a(graphics, this.cf[n18 + 1], by, n5 + 20 * n18, 17, 1);
                         ++n18;
                     }
                     Util.a(graphics, this.ao, aU ? by - by / 2 - 20 : by - by / 2 + 2 - 20, n5 + this.bp * 20, 10, 12, 0, 1, 20);
@@ -1735,18 +1741,18 @@ implements Runnable {
                     graphics.setColor(0xFFFFFF);
                     graphics.drawLine(by - by / 2, n5 + this.bp * 20 + 15, by + by / 2, n5 + this.bp * 20 + 15);
                     graphics.setColor(0x555555);
-                    graphics.fillRect(0, bB - 12, bA, 12);
-                    this.b.a(graphics, this.cf[7], 0, bB, 36, 1);
+                    graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+                    this.utilService.a(graphics, this.cf[7], 0, canvasHeight, 36, 1);
                 } else {
                     graphics.setColor(0x555555);
-                    graphics.fillRect(0, bB - 12, bA, 12);
+                    graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
                     if (this.bp < 3) {
                         this.a(this.cg[this.bp + 3], this.cy, this.cx, this.co);
                     } else {
                         this.a(this.cg[this.bp - 3], this.cy, this.cx, this.co);
                     }
                 }
-                this.b.a(graphics, this.cf[8], bA, bB, 40, 1);
+                this.utilService.a(graphics, this.cf[8], canvasWidth, canvasHeight, 40, 1);
             }
         }
     }
@@ -1769,8 +1775,8 @@ implements Runnable {
         Constants.T = 1;
         this.a(this.ce, this.cy, this.cx, this.co);
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[0], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[0], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void q(Graphics graphics) {
@@ -1798,8 +1804,8 @@ implements Runnable {
         this.bJ = null;
         bK = false;
         bL = 0;
-        if (d == null) {
-            d = new ChessEngine();
+        if (chessEngine == null) {
+            chessEngine = new ChessEngine();
         }
         this.bJ = null;
         ChessR.c = null;
@@ -1809,8 +1815,8 @@ implements Runnable {
             if (i) {
                 this.bA();
             }
-            d = null;
-            d = new ChessEngine();
+            chessEngine = null;
+            chessEngine = new ChessEngine();
             ChessR.k = 0;
             ChessEngine.h();
             ChessEngine.a(this.L());
@@ -1827,7 +1833,7 @@ implements Runnable {
         PlayStage.k();
         System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         ChessR.k = 1;
-        c.stopSound();
+        audioService.stopSound();
         bb = -4132;
         this.ez = false;
         ChessR.r = 0;
@@ -1873,10 +1879,10 @@ implements Runnable {
             this.a("boardPiece");
             n2 = 0;
             while (n2 < n) {
-                this.cY[n2] = this.b.e(Util.d(0, 8) + 6);
+                this.cY[n2] = this.utilService.e(Util.d(0, 8) + 6);
                 ++n2;
             }
-            this.b.b();
+            this.utilService.b();
             this.g();
             this.b(3);
             this.d(34);
@@ -1925,16 +1931,16 @@ implements Runnable {
             }
             this.aH.a(graphics, n3 + 5, n4 - 5);
         }
-        this.b.a(graphics, this.cf[1], n3 + 5, n4 + 5, 20, 1);
-        this.b.a(graphics, this.cf[2], n3 + 5, n4 + 26, 20, 1);
+        this.utilService.a(graphics, this.cf[1], n3 + 5, n4 + 5, 20, 1);
+        this.utilService.a(graphics, this.cf[2], n3 + 5, n4 + 26, 20, 1);
         int n6 = by + 80;
         graphics.setColor(0);
-        graphics.fillRect(n6, n2, bA - n6, 115);
-        graphics.fillRect(0, n2, bA - n6, 115);
+        graphics.fillRect(n6, n2, canvasWidth - n6, 115);
+        graphics.fillRect(0, n2, canvasWidth - n6, 115);
         graphics.setColor(0x212020);
         Util.a(graphics, by, n2 - 5, 76, 19, 33);
         this.a(graphics, this.x, by, n2 - 5, 80, 21, 33);
-        this.b.a(graphics, this.cf[0], by, n2 - 22, 17, 1);
+        this.utilService.a(graphics, this.cf[0], by, n2 - 22, 17, 1);
     }
 
     private void K() {
@@ -2050,13 +2056,13 @@ implements Runnable {
             this.da = new Image[3];
             this.db = 0;
             this.a("getitem");
-            this.cZ = Constants.C == 0 || Constants.C == 1 ? this.b.e(3) : this.b.e(3 + Constants.C - 1);
+            this.cZ = Constants.C == 0 || Constants.C == 1 ? this.utilService.e(3) : this.utilService.e(3 + Constants.C - 1);
             int n = 0;
             while (n < this.da.length) {
-                this.da[n] = this.b.e(n);
+                this.da[n] = this.utilService.e(n);
                 ++n;
             }
-            this.b.b();
+            this.utilService.b();
             this.data_Text(21);
             if (!this.du) {
                 n = Util.d(0, 100);
@@ -2064,8 +2070,8 @@ implements Runnable {
             }
             this.v = new Image[2];
             this.a("i_icon");
-            this.v[0] = this.b.e(this.dc);
-            this.b.b();
+            this.v[0] = this.utilService.e(this.dc);
+            this.utilService.b();
             this.d(37);
         }
         catch (Exception exception) {}
@@ -2339,7 +2345,7 @@ implements Runnable {
     private void w(Graphics graphics) {
         PlayStage.a(graphics, this.aM);
         this.W(graphics);
-        this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
+        this.utilService.a(graphics, this.cf[2], 0, canvasHeight, 36, 1);
     }
 
     private void x(Graphics graphics) {
@@ -2363,18 +2369,18 @@ implements Runnable {
         if (this.cS < 2) {
             graphics.setColor(0);
             n = 70 + this.cS * 6;
-            graphics.fillRect(0, 0, bA, n);
-            graphics.fillRect(0, bB - n, bA, n);
-            Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+            graphics.fillRect(0, 0, canvasWidth, n);
+            graphics.fillRect(0, canvasHeight - n, canvasWidth, n);
+            Util.DrawRectBorder(graphics, 0, 0, 0, canvasWidth, canvasHeight, 7 * this.cS * this.cS);
             return;
         }
         if (this.cS < 4) {
             this.bD();
             n = 80 + this.cS * 13;
             graphics.setColor(0);
-            graphics.fillRect(0, 0, bA, n);
-            graphics.fillRect(0, bB - n, bA, n);
-            Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+            graphics.fillRect(0, 0, canvasWidth, n);
+            graphics.fillRect(0, canvasHeight - n, canvasWidth, n);
+            Util.DrawRectBorder(graphics, 0, 0, 0, canvasWidth, canvasHeight, 7 * this.cS * this.cS);
             return;
         }
         if (this.cS == 4 && !this.dg) {
@@ -2442,8 +2448,8 @@ implements Runnable {
             this.bq();
             this.bs();
             this.a("arrow");
-            this.en = this.b.e(this.y[this.ek ? 0 : this.U + 1][0]);
-            this.b.b();
+            this.en = this.utilService.e(this.y[this.ek ? 0 : this.U + 1][0]);
+            this.utilService.b();
             int n = this.ek ? 0 : this.U + 1;
             if (n < 0) {
                 n = 0;
@@ -2451,8 +2457,8 @@ implements Runnable {
                 n = 6;
             }
             this.a("CastleCursor");
-            this.ab = this.b.e(n);
-            this.b.b();
+            this.ab = this.utilService.e(n);
+            this.utilService.b();
             System.out.println("PlayStage.i_storyEndAni() nStage = " + this.U);
             this.g();
             this.b(4 + this.U);
@@ -2494,17 +2500,17 @@ implements Runnable {
             if (++this.cS < 2) {
                 graphics.setColor(0);
                 n = 70 + this.cS * 6;
-                graphics.fillRect(0, 0, bA, n);
-                graphics.fillRect(0, bB - n, bA, n);
-                Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+                graphics.fillRect(0, 0, canvasWidth, n);
+                graphics.fillRect(0, canvasHeight - n, canvasWidth, n);
+                Util.DrawRectBorder(graphics, 0, 0, 0, canvasWidth, canvasHeight, 7 * this.cS * this.cS);
                 return;
             }
             if (this.cS < 4) {
                 n = 80 + this.cS * 13;
                 graphics.setColor(0);
-                graphics.fillRect(0, 0, bA, n);
-                graphics.fillRect(0, bB - n, bA, n);
-                Util.DrawRectBorder(graphics, 0, 0, 0, bA, bB, 7 * this.cS * this.cS);
+                graphics.fillRect(0, 0, canvasWidth, n);
+                graphics.fillRect(0, canvasHeight - n, canvasWidth, n);
+                Util.DrawRectBorder(graphics, 0, 0, 0, canvasWidth, canvasHeight, 7 * this.cS * this.cS);
                 return;
             }
             PlayStage.V(graphics);
@@ -2570,7 +2576,7 @@ implements Runnable {
                     n14 -= 13;
                 }
                 graphics.drawImage(this.v[0], n14 - 1 - 15, n7 + n11, 20);
-                this.b.a(graphics, this.cf[this.dc], n14 + (n12 << 1) + 3 - 15, n7 + n11 + 8, 20, 0);
+                this.utilService.a(graphics, this.cf[this.dc], n14 + (n12 << 1) + 3 - 15, n7 + n11 + 8, 20, 0);
             }
         } else {
             if (n >= n2) {
@@ -2662,15 +2668,15 @@ implements Runnable {
         this.v = new Image[4];
         this.a("ending");
         if (stringArray[0] != null) {
-            this.v[0] = this.b.e(2);
+            this.v[0] = this.utilService.e(2);
         }
         if (stringArray[1] != null) {
-            this.v[1] = this.b.e(0);
+            this.v[1] = this.utilService.e(0);
         }
         if (stringArray[2] != null) {
-            this.v[2] = this.b.e(1);
+            this.v[2] = this.utilService.e(1);
         }
-        this.b.b();
+        this.utilService.b();
         this.cy = 0;
         this.dh = 0;
     }
@@ -2708,8 +2714,8 @@ implements Runnable {
         this.v = new Image[1];
         if (stringArray[0] != null) {
             this.a("ending");
-            this.v[0] = this.b.e(3);
-            this.b.b();
+            this.v[0] = this.utilService.e(3);
+            this.utilService.b();
         }
         this.cy = 0;
         this.dh = 0;
@@ -2728,8 +2734,8 @@ implements Runnable {
         this.v = new Image[1];
         System.out.println("scene = " + n);
         this.a("ending");
-        this.v[0] = this.b.e(2 + n);
-        this.b.b();
+        this.v[0] = this.utilService.e(2 + n);
+        this.utilService.b();
         PlayStage.V(graphics);
     }
 
@@ -2780,18 +2786,18 @@ implements Runnable {
             this.bZ = n3 + 10;
             this.a(this.cg[(this.U > 6 ? 33 : 30) + this.cy], this.cy, this.cx, this.co);
             graphics.setColor(0x555555);
-            graphics.fillRect(0, bB - 12, bA, 12);
+            graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
             if (this.U != 7) {
                 if (this.dh < 2) {
-                    this.b.a(graphics, this.cf[1], 0, bB, 36, 1);
-                    this.b.a(graphics, this.cf[0], bA, bB, 40, 1);
+                    this.utilService.a(graphics, this.cf[1], 0, canvasHeight, 36, 1);
+                    this.utilService.a(graphics, this.cf[0], canvasWidth, canvasHeight, 40, 1);
                     return;
                 }
-                this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
+                this.utilService.a(graphics, this.cf[2], 0, canvasHeight, 36, 1);
                 return;
             }
             if (this.U == 7) {
-                this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
+                this.utilService.a(graphics, this.cf[2], 0, canvasHeight, 36, 1);
             }
         }
     }
@@ -2932,7 +2938,7 @@ implements Runnable {
     private void h(int n) {
         if (n == 0) {
             this.dm = 0;
-            c.setVolumeLevel(40);
+            audioService.setVolumeLevel(40);
             return;
         }
         if (n != -4132) {
@@ -2948,14 +2954,14 @@ implements Runnable {
             this.dt = -4132;
             this.ak = new Image[2];
             this.a(String.valueOf(Constants.C) + "_imgText");
-            this.ak[0] = this.b.e(Constants.Y);
-            this.ak[1] = this.b.e(Constants.Z);
-            this.b.b();
+            this.ak[0] = this.utilService.e(Constants.Y);
+            this.ak[1] = this.utilService.e(Constants.Z);
+            this.utilService.b();
             this.b(24, false);
             this.a("ui_effect");
-            this.ag = this.b.e(0);
-            this.ah = this.b.e(2);
-            this.b.b();
+            this.ag = this.utilService.e(0);
+            this.ah = this.utilService.e(2);
+            this.utilService.b();
             int n = Util.d(0, 100);
             this.dc = n < 10 ? 0 : (n < 20 ? 1 : (n < 60 ? 2 : 3));
             this.du = true;
@@ -3421,8 +3427,8 @@ implements Runnable {
             this.dA = null;
             System.gc();
             this.a("prologue");
-            this.dA = this.b.e(this.dy);
-            this.b.b();
+            this.dA = this.utilService.e(this.dy);
+            this.utilService.b();
         }
         catch (Exception exception) {}
         System.gc();
@@ -3456,35 +3462,35 @@ implements Runnable {
             graphics.fillRect(n, 0, n2, n3);
         }
         int n4 = 0 + n3 + 10;
-        int n5 = bB - n4 - 20;
+        int n5 = canvasHeight - n4 - 20;
         if (eh && !this.dz) {
-            graphics.setClip(0, n4, bA, n5);
+            graphics.setClip(0, n4, canvasWidth, n5);
             this.bZ = 100;
             int n6 = 0;
             while (n6 < this.cg[this.dy].length) {
-                this.b.a(graphics, this.cg[this.dy][n6], by, this.bZ + n6 * (this.b.o[1] + 2), 17, 1);
+                this.utilService.a(graphics, this.cg[this.dy][n6], by, this.bZ + n6 * (this.utilService.o[1] + 2), 17, 1);
                 ++n6;
             }
             graphics.setColor(0x555555);
-            graphics.fillRect(0, bB - 12, bA, 12);
+            graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
             if (this.dy != 3) {
-                this.b.a(graphics, this.cf[1], 0, bB, 36, 1);
-                this.b.a(graphics, this.cf[0], bA, bB, 40, 1);
+                this.utilService.a(graphics, this.cf[1], 0, canvasHeight, 36, 1);
+                this.utilService.a(graphics, this.cf[0], canvasWidth, canvasHeight, 40, 1);
                 return;
             }
             if (this.dy == 3) {
-                this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
+                this.utilService.a(graphics, this.cf[2], 0, canvasHeight, 36, 1);
             }
         }
     }
 
     private void F(Graphics graphics) {
-        int n = bA - 6;
-        int n2 = bB - 2;
-        int n3 = bA - 12;
-        int n4 = bB - 10;
-        int n5 = bA - 1;
-        int n6 = bB - 10;
+        int n = canvasWidth - 6;
+        int n2 = canvasHeight - 2;
+        int n3 = canvasWidth - 12;
+        int n4 = canvasHeight - 10;
+        int n5 = canvasWidth - 1;
+        int n6 = canvasHeight - 10;
         this.cE = this.cE < 500 ? ++this.cE : 0;
         switch (bu) {
             case 0: {
@@ -3497,49 +3503,49 @@ implements Runnable {
             }
             case 2: {
                 graphics.setColor(0x555555);
-                graphics.fillRect(0, bB - 12, bA, 12);
+                graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
                 if (bk != 2) {
                     if (!Constants.I) {
                         if (this.cE % 4 == 0) {
                             graphics.setColor(16729600);
                             graphics.fillTriangle(n, n2, n3, n4, n5, n6);
                         }
-                        this.b.a(graphics, this.cf[10], 0, bB, 36, 1);
+                        this.utilService.a(graphics, this.cf[10], 0, canvasHeight, 36, 1);
                     } else {
                         if (Constants.L) {
                             graphics.setColor(0x555555);
-                            graphics.fillRect(bA - 72, bB - 43, 72, 38);
+                            graphics.fillRect(canvasWidth - 72, canvasHeight - 43, 72, 38);
                             graphics.setColor(0xDDDDDD);
-                            graphics.fillRect(bA - 70, bB - 42 + 15 * Constants.J, 70, 13);
-                            this.b.a(graphics, this.cf[6], bA - 67, bB - 15, 36, 1);
-                            this.b.a(graphics, this.cf[7], bA - 67, bB - 30, 36, 1);
+                            graphics.fillRect(canvasWidth - 70, canvasHeight - 42 + 15 * Constants.J, 70, 13);
+                            this.utilService.a(graphics, this.cf[6], canvasWidth - 67, canvasHeight - 15, 36, 1);
+                            this.utilService.a(graphics, this.cf[7], canvasWidth - 67, canvasHeight - 30, 36, 1);
                         } else {
                             graphics.setColor(0x555555);
-                            graphics.fillRect(bA - 72, bB - 28, 72, 20);
+                            graphics.fillRect(canvasWidth - 72, canvasHeight - 28, 72, 20);
                             graphics.setColor(0xDDDDDD);
-                            graphics.fillRect(bA - 72, bB - 27, 72, 13);
-                            this.b.a(graphics, this.cf[7], bA - 67, bB - 15, 36, 1);
+                            graphics.fillRect(canvasWidth - 72, canvasHeight - 27, 72, 13);
+                            this.utilService.a(graphics, this.cf[7], canvasWidth - 67, canvasHeight - 15, 36, 1);
                         }
-                        this.b.a(graphics, this.cf[8], 0, bB, 36, 1);
-                        this.b.a(graphics, this.cf[9], bA, bB, 40, 1);
+                        this.utilService.a(graphics, this.cf[8], 0, canvasHeight, 36, 1);
+                        this.utilService.a(graphics, this.cf[9], canvasWidth, canvasHeight, 40, 1);
                     }
                 }
                 if (this.ey == 1) break;
                 int n7 = Math.abs(ChessEngine.a[ChessR.e + ChessR.f * 8]);
                 if (n7 != 0) {
-                    this.b.a(graphics, this.cf[n7 - 1], by, bB - 30, 17, 1);
+                    this.utilService.a(graphics, this.cf[n7 - 1], by, canvasHeight - 30, 17, 1);
                     Util.a(graphics);
                 }
                 if (Constants.I) break;
-                this.b.a(graphics, this.cf[10], 0, bB, 36, 1);
+                this.utilService.a(graphics, this.cf[10], 0, canvasHeight, 36, 1);
             }
             case 3: {
                 return;
             }
             case 48: {
                 graphics.setColor(0x555555);
-                graphics.fillRect(0, bB - 12, bA, 12);
-                this.b.a(graphics, this.cf[6], 0, bB, 36, 1);
+                graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+                this.utilService.a(graphics, this.cf[6], 0, canvasHeight, 36, 1);
                 return;
             }
             case 158: {
@@ -3636,12 +3642,12 @@ implements Runnable {
         }
         try {
             this.a(String.valueOf(Constants.C) + "_imgText");
-            this.aj = this.b.e(n2);
-            this.b.b();
+            this.aj = this.utilService.e(n2);
+            this.utilService.b();
             this.a("ui_effect");
-            this.ag = this.b.e(0);
-            this.ah = this.b.e(2);
-            this.b.b();
+            this.ag = this.utilService.e(0);
+            this.ah = this.utilService.e(2);
+            this.utilService.b();
         }
         catch (Throwable throwable) {}
         System.gc();
@@ -3737,12 +3743,12 @@ implements Runnable {
 
     private void H(Graphics graphics) {
         int n;
-        int n2 = bB - 70 - 5 - 24;
-        n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += 70 / (this.dD + 1) - 24) : bB - 70 - 5 - 24;
+        int n2 = canvasHeight - 70 - 5 - 24;
+        n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += 70 / (this.dD + 1) - 24) : canvasHeight - 70 - 5 - 24;
         PlayStage.a(graphics, by, n2, 170, 90, 17);
         int n3 = by - 55;
         int n4 = n2 + 6;
-        this.b.a(graphics, this.cf[this.bp], by, n4 + 6, 3, 1);
+        this.utilService.a(graphics, this.cf[this.bp], by, n4 + 6, 3, 1);
         Util.a(graphics, n3 + 90 + 4 + 20, n2 + 6 + 20, 20, 13, 0, 0x393939, 0x868686, 1);
         int n5 = by - 14 * (Constants.n + 1);
         int n6 = n4 + 13 + 4;
@@ -3795,7 +3801,7 @@ implements Runnable {
             graphics.drawImage(this.am[n], n5 + 10 + 14 * (n * 2), n6 + 2 + 10, 3);
             ++n;
         }
-        this.b.a(graphics, this.al, n3 + 90 + 4 + 10 + 20, n4 + 6 + 20, this.aw[this.bp], 3);
+        this.utilService.a(graphics, this.al, n3 + 90 + 4 + 10 + 20, n4 + 6 + 20, this.aw[this.bp], 3);
         if (this.dB == -4132) {
             n7 = n5 + 14 * (this.bp * 2) - 2;
             PlayStage.a(graphics, this.an[0], n7 + 20 + 4, n6, 2, 0, this.dE, 24);
@@ -3810,15 +3816,15 @@ implements Runnable {
             int n8 = PlayStage.a(graphics, bz, 176, 40, 2, 16, Constants.H);
             graphics.setColor(0xFFFFFF);
             if (n8 == 1) {
-                this.b.a(graphics, this.ce[0], by, bz - 8, 17, 0);
+                this.utilService.a(graphics, this.ce[0], by, bz - 8, 17, 0);
             } else if (n8 == 2) {
                 Constants.H = -4132;
             }
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[4], 0, bB, 36, 1);
-        this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[4], 0, canvasHeight, 36, 1);
+        this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void k(int n) {
@@ -4027,11 +4033,11 @@ implements Runnable {
 
     private void I(Graphics graphics) {
         int n = bz - 30;
-        int n2 = bA > 150 ? 176 : 96;
+        int n2 = canvasWidth > 150 ? 176 : 96;
         PlayStage.a(graphics, by, n, n2, 61, 17);
         graphics.setColor(0xDDDDDD);
-        this.b.a(graphics, this.cf[14], by, (n += 5) + 5, 17, 1);
-        this.b.a(graphics, this.cf[15], by, n + 26, 17, 1);
+        this.utilService.a(graphics, this.cf[14], by, (n += 5) + 5, 17, 1);
+        this.utilService.a(graphics, this.cf[15], by, n + 26, 17, 1);
     }
 
     private void l(int n) {
@@ -4152,19 +4158,19 @@ implements Runnable {
 
     private void J(Graphics graphics) {
         int n = this.dm != -4132 ? 27 : this.cg[this.dl + 4].length * 17 + 10;
-        int n2 = bB - n - 5 - 12;
-        n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += n / (this.dD + 1)) : bB - n - 5;
+        int n2 = canvasHeight - n - 5 - 12;
+        n2 = this.dD >= 0 && this.dD <= 3 ? (n2 += n / (this.dD + 1)) : canvasHeight - n - 5;
         PlayStage.a(graphics, by, n2, 179, n + 20, 17);
         this.b(graphics, n2);
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[3], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[3], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void b(Graphics graphics, int n) {
         if (this.dm != -4132) {
             int n2 = this.dm == 17 ? 2 : (this.dm == 1 ? 1 : 0);
-            this.b.a(graphics, this.cf[n2], by, n + 8, 17, 1);
+            this.utilService.a(graphics, this.cf[n2], by, n + 8, 17, 1);
             return;
         }
         this.bZ = n + 10;
@@ -4175,7 +4181,7 @@ implements Runnable {
         if (this.dt == -4132) {
             int n = bz;
             graphics.drawImage(this.ak[0], this.dN - 5, n, 33);
-            graphics.drawImage(this.ak[1], bA - this.dN + 5, n, 17);
+            graphics.drawImage(this.ak[1], canvasWidth - this.dN + 5, n, 17);
             return;
         }
         this.a(graphics, 14, 18);
@@ -4263,16 +4269,16 @@ implements Runnable {
         }
         PlayStage.a(graphics, by, n3, 150, n2, 17);
         graphics.setColor(0, 0, 255);
-        graphics.fillRect(bA - (by + by / 2), n3 + 8 + 18 * this.bp, bA - by, 15);
+        graphics.fillRect(canvasWidth - (by + by / 2), n3 + 8 + 18 * this.bp, canvasWidth - by, 15);
         int n4 = 0;
         while (n4 < n) {
-            this.b.a(graphics, this.cf[n4], by, n3 + 10 + n4 * 18, 17, 1);
+            this.utilService.a(graphics, this.cf[n4], by, n3 + 10 + n4 * 18, 17, 1);
             ++n4;
         }
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[6], 0, bB, 36, 1);
-        this.b.a(graphics, this.cf[7], bA, bB, 40, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[6], 0, canvasHeight, 36, 1);
+        this.utilService.a(graphics, this.cf[7], canvasWidth, canvasHeight, 40, 1);
     }
 
     private void aF() {
@@ -4315,7 +4321,7 @@ implements Runnable {
         int n = this.ai.getWidth();
         int n2 = this.ai.getHeight() >> 1;
         Util.a(graphics, this.ai, this.dN, bz, n, n2, 0, 0, 33);
-        Util.a(graphics, this.ai, bA - this.dN, bz, n, n2, 0, 1, 17);
+        Util.a(graphics, this.ai, canvasWidth - this.dN, bz, n, n2, 0, 1, 17);
     }
 
     private void aH() {
@@ -4330,8 +4336,8 @@ implements Runnable {
         this.c(1);
         this.d(38);
         this.a(String.valueOf(Constants.C) + "_imgText");
-        this.x = this.b.e(Constants.Y);
-        this.b.b();
+        this.x = this.utilService.e(Constants.Y);
+        this.utilService.b();
         bu = 1;
     }
 
@@ -4386,7 +4392,7 @@ implements Runnable {
         int n3 = this.x.getWidth();
         int n4 = this.x.getHeight() >> 1;
         Util.a(graphics, this.x, this.dN, n2 - n4, n3, n4, 0, 0, 33);
-        Util.a(graphics, this.x, bA - this.dN, n2 - n4, n3, n4, 0, 1, 17);
+        Util.a(graphics, this.x, canvasWidth - this.dN, n2 - n4, n3, n4, 0, 1, 17);
         PlayStage.a(graphics, by, n2, 179, n + 20, 17);
         this.b(graphics, n2);
     }
@@ -4441,10 +4447,10 @@ implements Runnable {
         } else if (this.bo == 3) {
             n = 1;
         }
-        this.b.a(graphics, this.cf[n], by, n5 + n4 - 5, 33, 1);
+        this.utilService.a(graphics, this.cf[n], by, n5 + n4 - 5, 33, 1);
         graphics.setColor(0x555555);
-        graphics.fillRect(0, bB - 12, bA, 12);
-        this.b.a(graphics, this.cf[8], 0, bB, 36, 1);
+        graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+        this.utilService.a(graphics, this.cf[8], 0, canvasHeight, 36, 1);
     }
 
     public final void d() {
@@ -4457,8 +4463,8 @@ implements Runnable {
                     this.W = true;
                     this.V = false;
                     this.a(String.valueOf(Constants.C) + "_imgText");
-                    this.aj = this.b.e(Constants.ac);
-                    this.b.b();
+                    this.aj = this.utilService.e(Constants.ac);
+                    this.utilService.b();
                     dS = 0;
                     this.b(16, false);
                     break;
@@ -4467,8 +4473,8 @@ implements Runnable {
                     this.W = true;
                     this.V = false;
                     this.a(String.valueOf(Constants.C) + "_imgText");
-                    this.aj = this.b.e(Constants.ac);
-                    this.b.b();
+                    this.aj = this.utilService.e(Constants.ac);
+                    this.utilService.b();
                     dS = 1;
                     this.b(16, false);
                     break;
@@ -4476,8 +4482,8 @@ implements Runnable {
                 case 2: {
                     this.W = true;
                     this.a(String.valueOf(Constants.C) + "_imgText");
-                    this.aj = this.b.e(Constants.ac);
-                    this.b.b();
+                    this.aj = this.utilService.e(Constants.ac);
+                    this.utilService.b();
                     this.V = false;
                     dS = 2;
                     this.b(16, false);
@@ -4485,8 +4491,8 @@ implements Runnable {
                 }
                 case 20: {
                     this.a(String.valueOf(Constants.C) + "_imgText");
-                    this.aj = this.b.e(Constants.aa);
-                    this.b.b();
+                    this.aj = this.utilService.e(Constants.aa);
+                    this.utilService.b();
                     this.V = true;
                     this.bm = 7;
                     this.b(24, false);
@@ -4494,17 +4500,17 @@ implements Runnable {
                 }
                 case 30: {
                     this.a(String.valueOf(Constants.C) + "_imgText");
-                    this.aj = this.b.e(Constants.ab);
-                    this.b.b();
+                    this.aj = this.utilService.e(Constants.ab);
+                    this.utilService.b();
                     this.V = false;
                     this.bm = 8;
                     this.b(16, false);
                 }
             }
             this.a("ui_effect");
-            this.ag = this.b.e(0);
-            this.ah = this.b.e(2);
-            this.b.b();
+            this.ag = this.utilService.e(0);
+            this.ah = this.utilService.e(2);
+            this.utilService.b();
             return;
         }
         catch (Throwable throwable) {
@@ -4586,9 +4592,9 @@ implements Runnable {
                 Util.a(graphics, nArray3, nArray4, n5);
             }
             graphics.setColor(0x555555);
-            graphics.fillRect(0, bB - 12, bA, 12);
-            this.b.a(graphics, this.cf[4], 0, bB, 36, 1);
-            this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+            graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+            this.utilService.a(graphics, this.cf[4], 0, canvasHeight, 36, 1);
+            this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
         }
     }
 
@@ -4683,10 +4689,11 @@ implements Runnable {
         }
     }
 
-    private void aM() {
+    private void startGameThread() {
         if (this.f != null) {
             return;
         }
+
         this.bH = true;
         this.f = new Thread(this);
         this.f.start();
@@ -4913,7 +4920,7 @@ implements Runnable {
             }
             case 26214: {
                 graphics.setColor(0);
-                graphics.fillRect(0, 0, bA, bB);
+                graphics.fillRect(0, 0, canvasWidth, canvasHeight);
                 graphics.setColor(0xFFFFFF);
                 graphics.drawString("<5>", by, bz, 17);
             }
@@ -5217,7 +5224,7 @@ implements Runnable {
                             return;
                         }
                         case 5: {
-                            if (!Constants.b) {
+                            if (!Constants.isMoreGamesOn) {
                                 this.bR = 0;
                                 this.data_Text(18);
                                 this.d(4);
@@ -5234,7 +5241,7 @@ implements Runnable {
                             }
                         }
                         case 6: {
-                            if (!Constants.b) return;
+                            if (!Constants.isMoreGamesOn) return;
                             this.bR = 0;
                             this.data_Text(18);
                             this.d(4);
@@ -5728,7 +5735,7 @@ implements Runnable {
     }
 
     private void H(int n) {
-        if (n == 48 && Constants.g) {
+        if (n == 48 && Constants.isCheatModeOn) {
             this.bz();
         }
         block0 : switch (bu) {
@@ -5882,7 +5889,7 @@ implements Runnable {
             case 54: {
                 switch (this.bp) {
                     case 1: {
-                        if (Constants.d != 6) break block0;
+                        if (Constants.forcedLocaleLanguageCode != 6) break block0;
                         if (n == -3 || n == 52) {
                             if (--Constants.v < 0) {
                                 Constants.v = 5;
@@ -6182,10 +6189,10 @@ implements Runnable {
         bG = true;
         ChessEngine.c = null;
         this.bJ = null;
-        d.c();
+        chessEngine.c();
         while (ChessEngine.c == null) {
             PlayStage.ba();
-            this.repaint(0, 0, bA, bB);
+            this.repaint(0, 0, canvasWidth, canvasHeight);
             this.serviceRepaints();
             this.e(300);
         }
@@ -6312,7 +6319,7 @@ implements Runnable {
                 }
                 if (ChessEngine.b(ChessEngine.l) && !bI) {
                     dv = 0;
-                    c.setVolumeLevel(1000);
+                    audioService.setVolumeLevel(1000);
                 }
                 ChessR.b();
                 if (bk == 2) break;
@@ -6500,12 +6507,12 @@ implements Runnable {
         Constants.G = 30;
         Constants.H = 0;
         this.a(String.valueOf(Constants.C) + "_imgText");
-        this.aj = this.b.e(Constants.ab);
-        this.b.b();
+        this.aj = this.utilService.e(Constants.ab);
+        this.utilService.b();
         this.a("ui_effect");
-        this.ag = this.b.e(0);
-        this.ah = this.b.e(2);
-        this.b.b();
+        this.ag = this.utilService.e(0);
+        this.ah = this.utilService.e(2);
+        this.utilService.b();
         this.V = false;
         PlayStage.P(44);
         this.bD();
@@ -6553,7 +6560,7 @@ implements Runnable {
             int n3 = 0;
             while (n3 < 3) {
                 n2 = n + 45 * n3;
-                if (n2 + 45 < bB) {
+                if (n2 + 45 < canvasHeight) {
                     if (this.bp == n3) {
                         graphics.setColor(0xC8C8C8);
                         Util.a(graphics, by, n2 + 1, 164, 43, 17);
@@ -6562,15 +6569,15 @@ implements Runnable {
                     if (ax[n3] == null) {
                         PlayStage.ax[n3] = " - ";
                     }
-                    this.b.a(graphics, ax[n3].getBytes(), by, n2 + 22 - 8, 17, 0);
+                    this.utilService.a(graphics, ax[n3].getBytes(), by, n2 + 22 - 8, 17, 0);
                 }
                 ++n3;
             }
             if (this.br == 768) {
                 graphics.setColor(0x555555);
-                graphics.fillRect(0, bB - 12, bA, 12);
-                this.b.a(graphics, this.cf[6], 0, bB, 36, 1);
-                this.b.a(graphics, this.cf[7], bA, bB, 40, 1);
+                graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+                this.utilService.a(graphics, this.cf[6], 0, canvasHeight, 36, 1);
+                this.utilService.a(graphics, this.cf[7], canvasWidth, canvasHeight, 40, 1);
             }
         }
         if (this.av != -4132) {
@@ -6581,14 +6588,14 @@ implements Runnable {
         }
         if (Constants.H != -4132) {
             graphics.setColor(0);
-            graphics.fillRect(0, bz - 3, bA, 20);
+            graphics.fillRect(0, bz - 3, canvasWidth, 20);
             if (Constants.H < 15) {
                 if (aT % 3 == 0) {
-                    this.b.a(graphics, this.cf[10], by, bz, 17, 1);
+                    this.utilService.a(graphics, this.cf[10], by, bz, 17, 1);
                     return;
                 }
             } else if (aT % 3 == 0) {
-                this.b.a(graphics, this.cf[11], by, bz, 17, 1);
+                this.utilService.a(graphics, this.cf[11], by, bz, 17, 1);
             }
         }
     }
@@ -6649,7 +6656,7 @@ implements Runnable {
             return true;
         }
         int n = 19 * Constants.s + 14;
-        int n2 = bB - n;
+        int n2 = canvasHeight - n;
         if (this.br != 768) {
             n2 -= 80;
         }
@@ -6662,17 +6669,17 @@ implements Runnable {
             n4 = this.X[n5][1];
         }
         System.out.println("nStage = " + this.U);
-        this.aN[n4].a(graphics, n3 == 1 ? 0 : bA, n2, n3 == 1 ? 20 : 24, n3 != 1);
+        this.aN[n4].a(graphics, n3 == 1 ? 0 : canvasWidth, n2, n3 == 1 ? 20 : 24, n3 != 1);
         GameSpritesManager f2 = null;
         f2 = by == 2 ? this.aP[n4] : (by == 3 ? this.aQ[n4] : this.aO[n4]);
         if (by != 1 || aU) {
             if (n3 == 1) {
                 f2.a(graphics, this.ed[n4][0], n2 - this.ed[n4][1], 20, false);
             } else {
-                f2.a(graphics, bA - 35 - this.ed[n4][0], n2 - this.ed[n4][1], 20, true);
+                f2.a(graphics, canvasWidth - 35 - this.ed[n4][0], n2 - this.ed[n4][1], 20, true);
             }
         }
-        PlayStage.a(graphics, 0, n2 - 2, bA, n + 8 + 5, 20);
+        PlayStage.a(graphics, 0, n2 - 2, canvasWidth, n + 8 + 5, 20);
         this.bZ = n2 + 5;
         System.out.println("situation ====" + Constants.W);
         System.out.println("nStage=====" + this.U);
@@ -6680,12 +6687,12 @@ implements Runnable {
         this.a(this.cg[Constants.W[this.U][this.bm] + this.ef], this.cy, this.cx, this.co);
         if (this.bm != 10) {
             graphics.setColor(0x555555);
-            graphics.fillRect(0, bB - 12, bA, 12);
+            graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
             if (this.ef < Constants.U[this.U][this.bm].length - 1) {
-                this.b.a(graphics, this.cf[1], 0, bB, 36, 1);
-                this.b.a(graphics, this.cf[0], bA, bB, 40, 1);
+                this.utilService.a(graphics, this.cf[1], 0, canvasHeight, 36, 1);
+                this.utilService.a(graphics, this.cf[0], canvasWidth, canvasHeight, 40, 1);
             } else {
-                this.b.a(graphics, this.cf[2], 0, bB, 36, 1);
+                this.utilService.a(graphics, this.cf[2], 0, canvasHeight, 36, 1);
             }
         }
         Util.a(graphics);
@@ -6711,12 +6718,12 @@ implements Runnable {
 
     private static void U(Graphics graphics) {
         graphics.setColor(0xFFFFFF);
-        graphics.fillRect(0, 0, bA, bB);
+        graphics.fillRect(0, 0, canvasWidth, canvasHeight);
     }
 
     private static void V(Graphics graphics) {
         graphics.setColor(0);
-        graphics.fillRect(0, 0, bA, bB);
+        graphics.fillRect(0, 0, canvasWidth, canvasHeight);
     }
 
     private static void ba() {
@@ -7370,7 +7377,7 @@ implements Runnable {
         int n2 = 0;
         switch (n) {
             case 512: {
-                if (Constants.b) {
+                if (Constants.isMoreGamesOn) {
                     n2 = Constants.h + 1;
                     break;
                 }
@@ -7483,7 +7490,7 @@ implements Runnable {
                     n11 = n + n15 * n6;
                 }
                 if (n12 != 1 || n13 != 1) {
-                    this.b.a(graphics, image, n11, n10, n6, n7, n12, n13);
+                    this.utilService.a(graphics, image, n11, n10, n6, n7, n12, n13);
                 }
                 ++n15;
             }
@@ -7603,17 +7610,17 @@ implements Runnable {
                     this.a("piecewhite");
                     n = 0;
                     while (n < this.aC.length) {
-                        this.aC[n] = this.b.e(n);
+                        this.aC[n] = this.utilService.e(n);
                         ++n;
                     }
-                    this.b.b();
+                    this.utilService.b();
                     this.a("pieceblack");
                     n = 0;
                     while (n < this.aC.length) {
-                        this.aD[n] = this.b.e(n);
+                        this.aD[n] = this.utilService.e(n);
                         ++n;
                     }
-                    this.b.b();
+                    this.utilService.b();
                     break;
                 }
                 case 5: {
@@ -7668,10 +7675,10 @@ implements Runnable {
         this.a("effect");
         int n = 0;
         while (n < this.aI.length) {
-            this.aI[n] = this.b.e(n);
+            this.aI[n] = this.utilService.e(n);
             ++n;
         }
-        this.b.b();
+        this.utilService.b();
     }
 
     private void bj() {
@@ -7683,18 +7690,18 @@ implements Runnable {
         this.az = new Image[2];
         this.aA = new Image[2];
         this.a("3dcursor");
-        this.aA[0] = this.b.e(0);
-        this.aA[1] = this.b.e(1);
-        this.az[0] = this.b.e(2);
-        this.az[1] = this.b.e(3);
-        this.b.b();
+        this.aA[0] = this.utilService.e(0);
+        this.aA[1] = this.utilService.e(1);
+        this.az[0] = this.utilService.e(2);
+        this.az[1] = this.utilService.e(3);
+        this.utilService.b();
     }
 
     private void bl() {
         try {
             this.a(String.valueOf(Constants.C) + "_imgText");
-            this.ai = this.b.e(Constants.X);
-            this.b.b();
+            this.ai = this.utilService.e(Constants.X);
+            this.utilService.b();
             return;
         }
         catch (Exception exception) {
@@ -7709,11 +7716,11 @@ implements Runnable {
         this.a("i_icon");
         int n2 = 0;
         while (n2 < n) {
-            this.am[n2] = this.b.e(n2);
-            this.an[n2] = this.b.e(4 + n2);
+            this.am[n2] = this.utilService.e(n2);
+            this.an[n2] = this.utilService.e(4 + n2);
             ++n2;
         }
-        this.b.b();
+        this.utilService.b();
     }
 
     private void bn() {
@@ -7727,10 +7734,10 @@ implements Runnable {
         this.a("watch");
         int n = 0;
         while (n < this.aZ.length) {
-            this.aZ[n] = this.b.e(n);
+            this.aZ[n] = this.utilService.e(n);
             ++n;
         }
-        this.b.b();
+        this.utilService.b();
     }
 
     private void bp() {
@@ -7744,10 +7751,10 @@ implements Runnable {
         this.a("worldMap");
         int n = 0;
         while (n < this.aM.length) {
-            this.aM[n] = this.b.e(10 + n);
+            this.aM[n] = this.utilService.e(10 + n);
             ++n;
         }
-        this.b.b();
+        this.utilService.b();
     }
 
     private void br() {
@@ -7774,14 +7781,14 @@ implements Runnable {
         this.a("char_talk");
         int n2 = 0;
         while (n2 < n) {
-            image = this.b.e(nArray[n2]);
+            image = this.utilService.e(nArray[n2]);
             this.aN[nArray[n2]] = new GameSpritesManager(image, 0, image.getHeight());
-            this.aP[nArray[n2]] = new GameSpritesManager(this.b.e(nArray[n2] + 27), 0, 0);
-            this.aQ[nArray[n2]] = new GameSpritesManager(this.b.e(nArray[n2] + 9), 0, 0);
-            this.aO[nArray[n2]] = new GameSpritesManager(this.b.e(nArray[n2] + 18), 0, 0);
+            this.aP[nArray[n2]] = new GameSpritesManager(this.utilService.e(nArray[n2] + 27), 0, 0);
+            this.aQ[nArray[n2]] = new GameSpritesManager(this.utilService.e(nArray[n2] + 9), 0, 0);
+            this.aO[nArray[n2]] = new GameSpritesManager(this.utilService.e(nArray[n2] + 18), 0, 0);
             ++n2;
         }
-        this.b.b();
+        this.utilService.b();
         this.bs();
     }
 
@@ -7794,12 +7801,12 @@ implements Runnable {
         while (n3 < n) {
             int n4 = 0;
             while (n4 < n2) {
-                this.el[n3][n4] = this.b.e(n3 * 2 + n4);
+                this.el[n3][n4] = this.utilService.e(n3 * 2 + n4);
                 ++n4;
             }
             ++n3;
         }
-        this.b.b();
+        this.utilService.b();
     }
 
     private void bt() {
@@ -7845,7 +7852,7 @@ implements Runnable {
         int n4 = 0;
         while (n4 < n3) {
             if (this.aB[n4] == null) {
-                image = this.b.e(n4);
+                image = this.utilService.e(n4);
                 System.out.println("11111111111111111111111111111111");
                 if (n4 > 5) {
                     n = image.getWidth() >> 1;
@@ -7856,7 +7863,7 @@ implements Runnable {
             System.gc();
             ++n4;
         }
-        this.b.b();
+        this.utilService.b();
     }
 
     private void a(boolean bl) {
@@ -8069,7 +8076,7 @@ implements Runnable {
                         if (!recordEnumeration.hasNextElement()) {
                             bl = false;
                             this.f();
-                            this.c.setVolumeLevel(Constants.soundVolumeLevel);
+                            this.audioService.setVolumeLevel(Constants.soundVolumeLevel);
                         } else {
                             int n = 0;
                             while (recordEnumeration.hasNextElement()) {
@@ -8329,8 +8336,8 @@ implements Runnable {
     private void bB() {
         this.df = null;
         this.a("stagemap");
-        this.df = this.b.e(this.U > 6 ? 6 : this.U);
-        this.b.b();
+        this.df = this.utilService.e(this.U > 6 ? 6 : this.U);
+        this.utilService.b();
     }
 
     public final void showNotify() {
@@ -8348,25 +8355,25 @@ implements Runnable {
 
     private int a(String string) {
         int n = 0;
-        n = this.b.d("/img/" + string + ".mgd");
+        n = this.utilService.d("/img/" + string + ".mgd");
         return n;
     }
 
     public final void b(int n) {
-        this.b.a(1, 5000, 1);
+        this.utilService.a(1, 5000, 1);
         this.bY = Constants.C;
         this.a(this.bY, n);
     }
 
     private void a(int n, int n2) {
-        this.b.d("/txt/ChessText_" + n + ".mgd");
-        this.b.b(n2, 1);
-        this.b.b();
+        this.utilService.d("/txt/ChessText_" + n + ".mgd");
+        this.utilService.b(n2, 1);
+        this.utilService.b();
     }
 
     private byte[] U(int n) {
-        this.b.a(n, 1);
-        byte[] byArray = this.b.c(1);
+        this.utilService.a(n, 1);
+        byte[] byArray = this.utilService.c(1);
         return byArray;
     }
 
@@ -8400,30 +8407,30 @@ implements Runnable {
         int n4 = n3;
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
-            this.b.a(';');
-            this.cg[n4] = this.b.stringParser(this.cd, this.b.n[0] * 27, (this.b.o[0] + this.b.o[0] / 2) * this.cx, this.b.n[0], this.b.o[0], this.b.o[0] / 2);
+            this.utilService.a(';');
+            this.cg[n4] = this.utilService.stringParser(this.cd, this.utilService.n[0] * 27, (this.utilService.o[0] + this.utilService.o[0] / 2) * this.cx, this.utilService.n[0], this.utilService.o[0], this.utilService.o[0] / 2);
             if (n4 == n3) {
-                this.cp = this.b.f(this.cx);
+                this.cp = this.utilService.f(this.cx);
                 this.ci = this.cg[n3].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_0 = " + this.cg[n3].length);
             } else if (n4 == n3 + 1) {
-                this.cq = this.b.f(this.cx);
+                this.cq = this.utilService.f(this.cx);
                 this.cj = this.cg[n3 + 1].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_1 = " + this.cg[n3 + 1].length);
             } else if (n4 == n3 + 2) {
-                this.cr = this.b.f(this.cx);
+                this.cr = this.utilService.f(this.cx);
                 this.ck = this.cg[n3 + 2].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_2 = " + this.cg[n3 + 2].length);
             } else if (n4 == n3 + 3) {
-                this.cs = this.b.f(this.cx);
+                this.cs = this.utilService.f(this.cx);
                 this.cl = this.cg[n3 + 3].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_3 = " + this.cg[n3 + 3].length);
             } else if (n4 == n3 + 4) {
-                this.ct = this.b.f(this.cx);
+                this.ct = this.utilService.f(this.cx);
                 this.cm = this.cg[n3 + 4].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_4 = " + this.cg[n3 + 4].length);
             } else if (n4 == n3 + 5) {
-                this.cu = this.b.f(this.cx);
+                this.cu = this.utilService.f(this.cx);
                 this.cn = this.cg[n3 + 5].length;
             }
             ++n4;
@@ -8443,22 +8450,22 @@ implements Runnable {
         int n3 = 0;
         while (n3 < 0 + n2) {
             this.cd = this.U(n3);
-            this.b.a(';');
-            this.cg[n3] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.utilService.a(';');
+            this.cg[n3] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 2, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n3 == 0) {
-                this.cp = this.b.f(this.cx);
+                this.cp = this.utilService.f(this.cx);
                 this.ci = this.cg[0].length;
             } else if (n3 == 1) {
-                this.cq = this.b.f(this.cx);
+                this.cq = this.utilService.f(this.cx);
                 this.cj = this.cg[1].length;
             } else if (n3 == 2) {
-                this.cr = this.b.f(this.cx);
+                this.cr = this.utilService.f(this.cx);
                 this.ck = this.cg[2].length;
             } else if (n3 == 3) {
-                this.cs = this.b.f(this.cx);
+                this.cs = this.utilService.f(this.cx);
                 this.cl = this.cg[3].length;
             } else if (n3 == 4) {
-                this.ct = this.b.f(this.cx);
+                this.ct = this.utilService.f(this.cx);
                 this.cm = this.cg[4].length;
             }
             ++n3;
@@ -8532,22 +8539,22 @@ implements Runnable {
         while (n2 < n4 + n3) {
             System.out.println("PlayStage.dateLong_StageText() = " + n2);
             this.cd = this.U(n2);
-            this.b.a(';');
-            this.cg[n2] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.utilService.a(';');
+            this.cg[n2] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 2, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n2 == n4) {
-                this.cp = this.b.f(this.cx);
+                this.cp = this.utilService.f(this.cx);
                 this.ci = this.cg[n4].length;
             } else if (n2 == n4 + 1) {
-                this.cq = this.b.f(this.cx);
+                this.cq = this.utilService.f(this.cx);
                 this.cj = this.cg[n4 + 1].length;
             } else if (n2 == n4 + 2) {
-                this.cr = this.b.f(this.cx);
+                this.cr = this.utilService.f(this.cx);
                 this.ck = this.cg[n4 + 2].length;
             } else if (n2 == n4 + 3) {
-                this.cs = this.b.f(this.cx);
+                this.cs = this.utilService.f(this.cx);
                 this.cl = this.cg[n4 + 3].length;
             } else if (n2 == n4 + 4) {
-                this.ct = this.b.f(this.cx);
+                this.ct = this.utilService.f(this.cx);
                 this.cm = this.cg[n4 + 4].length;
             }
             System.out.println("i = " + n2);
@@ -8577,22 +8584,22 @@ implements Runnable {
         int n4 = n3;
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
-            this.b.a(';');
-            this.cg[n4] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 16, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.utilService.a(';');
+            this.cg[n4] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 16, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n4 == n3) {
-                this.cp = this.b.f(this.cx);
+                this.cp = this.utilService.f(this.cx);
                 this.ci = this.cg[n3].length;
             } else if (n4 == n3 + 1) {
-                this.cq = this.b.f(this.cx);
+                this.cq = this.utilService.f(this.cx);
                 this.cj = this.cg[n3 + 1].length;
             } else if (n4 == n3 + 2) {
-                this.cr = this.b.f(this.cx);
+                this.cr = this.utilService.f(this.cx);
                 this.ck = this.cg[n3 + 2].length;
             } else if (n4 == n3 + 3) {
-                this.cs = this.b.f(this.cx);
+                this.cs = this.utilService.f(this.cx);
                 this.cl = this.cg[n3 + 3].length;
             } else if (n4 == n3 + 4) {
-                this.ct = this.b.f(this.cx);
+                this.ct = this.utilService.f(this.cx);
                 this.cm = this.cg[n3 + 4].length;
             }
             ++n4;
@@ -8621,22 +8628,22 @@ implements Runnable {
         int n4 = n3;
         while (n4 < n3 + n2) {
             this.cd = this.U(n4);
-            this.b.a(';');
-            this.cg[n4] = this.b.stringParser(this.cd, bA - this.b.n[Constants.T] * 2, (this.b.o[Constants.T] + this.b.o[Constants.T] / 2) * this.cx, this.b.n[Constants.T], this.b.o[Constants.T], this.b.o[Constants.T] / 2);
+            this.utilService.a(';');
+            this.cg[n4] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 2, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n4 == n3) {
-                this.cp = this.b.f(this.cx);
+                this.cp = this.utilService.f(this.cx);
                 this.ci = this.cg[n3].length;
             } else if (n4 == n3 + 1) {
-                this.cq = this.b.f(this.cx);
+                this.cq = this.utilService.f(this.cx);
                 this.cj = this.cg[n3 + 1].length;
             } else if (n4 == n3 + 2) {
-                this.cr = this.b.f(this.cx);
+                this.cr = this.utilService.f(this.cx);
                 this.ck = this.cg[n3 + 2].length;
             } else if (n4 == n3 + 3) {
-                this.cs = this.b.f(this.cx);
+                this.cs = this.utilService.f(this.cx);
                 this.cl = this.cg[n3 + 3].length;
             } else if (n4 == n3 + 4) {
-                this.ct = this.b.f(this.cx);
+                this.ct = this.utilService.f(this.cx);
                 this.cm = this.cg[n3 + 4].length;
             }
             ++n4;
@@ -8652,26 +8659,26 @@ implements Runnable {
         System.arraycopy(this.cb, 0, this.cc, 0, this.cb.length);
         System.arraycopy(this.eu, 0, this.cc, this.cb.length, this.eu.length);
         System.arraycopy(this.ev, 0, this.cc, this.cb.length + this.eu.length, this.ev.length);
-        this.b.a(';');
-        this.ce = this.b.stringParser(this.cc, bA - this.b.n[1] * 10, (this.b.o[1] + this.b.o[1] / 2) * this.cx, this.b.n[1], this.b.o[1], this.b.o[1] / 2);
+        this.utilService.a(';');
+        this.ce = this.utilService.stringParser(this.cc, canvasWidth - this.utilService.n[1] * 10, (this.utilService.o[1] + this.utilService.o[1] / 2) * this.cx, this.utilService.n[1], this.utilService.o[1], this.utilService.o[1] / 2);
         this.ch = this.ce.length;
-        this.co = this.b.f(this.cx);
+        this.co = this.utilService.f(this.cx);
     }
 
     private void data_Text(int n) {
         this.cx = 5;
-        this.ca = (bB - 64 - 15) / 2;
-        this.bZ = bB - 13 - this.ca - this.b.o[0] / 2 * 3 * 3;
+        this.ca = (canvasHeight - 64 - 15) / 2;
+        this.bZ = canvasHeight - 13 - this.ca - this.utilService.o[0] / 2 * 3 * 3;
         this.cb = this.U(n);
-        this.b.a(';');
-        this.ce = this.b.stringParser(this.cb, bA - this.b.n[0] * 16, (this.b.o[0] + this.b.o[0] / 2) * this.cx, this.b.n[0], this.b.o[0], this.b.o[0] / 2);
+        this.utilService.a(';');
+        this.ce = this.utilService.stringParser(this.cb, canvasWidth - this.utilService.n[0] * 16, (this.utilService.o[0] + this.utilService.o[0] / 2) * this.cx, this.utilService.n[0], this.utilService.o[0], this.utilService.o[0] / 2);
         this.ch = this.ce.length;
         System.out.println("PlayStage.data_Text() str2DimensionCount = " + this.ch);
-        this.co = this.b.f(this.cx);
+        this.co = this.utilService.f(this.cx);
     }
 
     public final void g() {
-        this.b.b(1);
+        this.utilService.b(1);
         this.cb = null;
         this.cc = null;
         this.cd = null;
@@ -8681,12 +8688,12 @@ implements Runnable {
     }
 
     private byte[][] ab(int n) {
-        this.b.a(n, 1);
-        int n2 = this.b.d[1][0];
+        this.utilService.a(n, 1);
+        int n2 = this.utilService.d[1][0];
         byte[][] byArray = new byte[n2][];
         int n3 = 0;
         while (n3 < n2) {
-            byArray[n3] = this.b.c(1);
+            byArray[n3] = this.utilService.c(1);
             ++n3;
         }
         return byArray;
@@ -8708,14 +8715,14 @@ implements Runnable {
         if (byArray.length <= n2) {
             int n4 = 0;
             while (n4 < byArray.length) {
-                this.b.a(this.e, byArray[n4], by, this.bZ + n4 * (this.b.o[Constants.T] + 2), 17, Constants.T);
+                this.utilService.a(this.e, byArray[n4], by, this.bZ + n4 * (this.utilService.o[Constants.T] + 2), 17, Constants.T);
                 ++n4;
             }
             return;
         }
         int n5 = 0;
         while (n5 < (n != n3 - 1 ? n2 : (byArray.length % n2 == 0 ? n2 : byArray.length % n2))) {
-            this.b.a(this.e, byArray[n * n2 + n5], by, this.bZ + n5 * (this.b.o[0] + 2), 17, 0);
+            this.utilService.a(this.e, byArray[n * n2 + n5], by, this.bZ + n5 * (this.utilService.o[0] + 2), 17, 0);
             ++n5;
         }
     }
@@ -8724,7 +8731,7 @@ implements Runnable {
         if (this.bW == -1) {
             return;
         }
-        this.c.a(this.bW, this.bX);
+        this.audioService.a(this.bW, this.bX);
         this.bW = -1;
     }
 
@@ -8737,7 +8744,7 @@ implements Runnable {
     }
 
     private void bD() {
-        this.c.stopSound();
+        this.audioService.stopSound();
         this.bW = -1;
         this.bX = false;
     }
@@ -8748,7 +8755,7 @@ implements Runnable {
         }
         ChessEngine.d();
         PlayStage.aL();
-        d.c();
+        chessEngine.c();
     }
 
     public static LittleEndianInt[] i() {
@@ -8762,9 +8769,9 @@ implements Runnable {
             this.Z(graphics);
         } else if (bu == 110) {
             graphics.setColor(0x555555);
-            graphics.fillRect(0, bB - 12, bA, 12);
-            this.b.a(graphics, this.cf[4], 0, bB, 36, 1);
-            this.b.a(graphics, this.cf[5], bA, bB, 40, 1);
+            graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
+            this.utilService.a(graphics, this.cf[4], 0, canvasHeight, 36, 1);
+            this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
         }
         this.a(graphics, ChessR.c, 136);
         if (this.bJ != null && !bi) {
@@ -8801,7 +8808,7 @@ implements Runnable {
                 this.paintPiece(graphics, ChessR.p & 7, ChessR.p >>> 3, ChessR.n[ChessR.p]);
             } else if (bu == 666) {
                 n = bz - 25;
-                Util.a(graphics, aK, by, n, bA, 50, 0, aT % 3, 17);
+                Util.a(graphics, aK, by, n, canvasWidth, 50, 0, aT % 3, 17);
                 int n3 = Math.abs(ChessR.r);
                 int n4 = this.J[n3];
                 int n5 = this.K[n3] - ChessR.l;
@@ -9231,7 +9238,7 @@ implements Runnable {
                         ChessR.g = -1;
                         if (ChessEngine.b(ChessEngine.l) && !bI && Constants.G == 0) {
                             dv = 0;
-                            c.setVolumeLevel(1000);
+                            audioService.setVolumeLevel(1000);
                         }
                         ChessR.b();
                         return;
@@ -9277,7 +9284,7 @@ implements Runnable {
     }
 
     private void b(LittleEndianInt i2) {
-        if (d != null) {
+        if (chessEngine != null) {
             ChessEngine.d();
         }
         PlayStage.bE();
@@ -9289,10 +9296,10 @@ implements Runnable {
             bI = true;
             if (ChessEngine.b(iArray) == 0) {
                 Constants.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
-                c.setVolumeLevel(44);
+                audioService.setVolumeLevel(44);
             } else {
                 Constants.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
-                c.setVolumeLevel(44);
+                audioService.setVolumeLevel(44);
             }
         } else {
             if (Constants.L) {

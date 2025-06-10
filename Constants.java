@@ -3,12 +3,12 @@
  */
 public final class Constants {
     public static int a;
-    public static boolean b;
-    public static String c;
-    public static int d;
+    public static boolean isMoreGamesOn;
+    public static String downloadUrl;
+    public static int forcedLocaleLanguageCode;
     public static String midletVersion;
     public static boolean f;
-    public static boolean g;
+    public static boolean isCheatModeOn;
     public static int h;
     public static int i;
     public static int j;
@@ -62,7 +62,7 @@ public final class Constants {
     public static int af;
 
     static {
-        d = 0;
+        forcedLocaleLanguageCode = 0;
         h = 5;
         i = 3;
         j = 5;
