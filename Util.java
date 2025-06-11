@@ -25,7 +25,7 @@ public final class Util {
     public int j;
     public byte[][] k = null;
     private int t = 0;
-    private int u = 0;
+    private int maxLineWordCntY = 0;
     private char v;
     private boolean w = false;
     public int l = 0;
@@ -516,26 +516,28 @@ public final class Util {
         this.v = c2;
     }
 
-    public final int f(int n) {
+    public final int getTotalPageCount(int linePerPage) {
         if (this.k == null) {
             return 0;
         }
-        System.out.println("maxLineWordCntY = " + this.u);
-        System.out.println("_lineCountPerOnePage = " + n);
-        return this.u / n + (this.u % n > 0 ? 1 : 0);
+
+        System.out.println("maxLineWordCntY = " + this.maxLineWordCntY);
+        System.out.println("_lineCountPerOnePage = " + linePerPage);
+
+        return this.maxLineWordCntY / linePerPage + (this.maxLineWordCntY % linePerPage > 0 ? 1 : 0);
     }
 
     public final byte[][] stringParser(byte[] byArray, int n, int n2, int n3, int n4, int n5) {
         this.l = n2 / (n4 + n5);
         System.out.println("Util.stringParser() onePageYLineCount = " + this.l);
         System.out.println("Util.stringParser() maxLineWordCntX = " + this.t);
-        System.out.println("Util.stringParser() maxLineWordCntY = " + this.u);
+        System.out.println("Util.stringParser() maxLineWordCntY = " + this.maxLineWordCntY);
         this.t = n / n3;
-        this.u = this.a(byArray, false);
+        this.maxLineWordCntY = this.a(byArray, false);
         if (this.k != null) {
             this.k = null;
         }
-        this.k = new byte[this.u][];
+        this.k = new byte[this.maxLineWordCntY][];
         this.a(byArray, true);
         return this.k;
     }

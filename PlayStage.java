@@ -8410,27 +8410,27 @@ implements Runnable {
             this.utilService.a(';');
             this.cg[n4] = this.utilService.stringParser(this.cd, this.utilService.n[0] * 27, (this.utilService.o[0] + this.utilService.o[0] / 2) * this.cx, this.utilService.n[0], this.utilService.o[0], this.utilService.o[0] / 2);
             if (n4 == n3) {
-                this.cp = this.utilService.f(this.cx);
+                this.cp = this.utilService.getTotalPageCount(this.cx);
                 this.ci = this.cg[n3].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_0 = " + this.cg[n3].length);
             } else if (n4 == n3 + 1) {
-                this.cq = this.utilService.f(this.cx);
+                this.cq = this.utilService.getTotalPageCount(this.cx);
                 this.cj = this.cg[n3 + 1].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_1 = " + this.cg[n3 + 1].length);
             } else if (n4 == n3 + 2) {
-                this.cr = this.utilService.f(this.cx);
+                this.cr = this.utilService.getTotalPageCount(this.cx);
                 this.ck = this.cg[n3 + 2].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_2 = " + this.cg[n3 + 2].length);
             } else if (n4 == n3 + 3) {
-                this.cs = this.utilService.f(this.cx);
+                this.cs = this.utilService.getTotalPageCount(this.cx);
                 this.cl = this.cg[n3 + 3].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_3 = " + this.cg[n3 + 3].length);
             } else if (n4 == n3 + 4) {
-                this.ct = this.utilService.f(this.cx);
+                this.ct = this.utilService.getTotalPageCount(this.cx);
                 this.cm = this.cg[n3 + 4].length;
                 System.out.println("PlayStage.dateLong_HelpText() nPage_4 = " + this.cg[n3 + 4].length);
             } else if (n4 == n3 + 5) {
-                this.cu = this.utilService.f(this.cx);
+                this.cu = this.utilService.getTotalPageCount(this.cx);
                 this.cn = this.cg[n3 + 5].length;
             }
             ++n4;
@@ -8453,19 +8453,19 @@ implements Runnable {
             this.utilService.a(';');
             this.cg[n3] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 2, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n3 == 0) {
-                this.cp = this.utilService.f(this.cx);
+                this.cp = this.utilService.getTotalPageCount(this.cx);
                 this.ci = this.cg[0].length;
             } else if (n3 == 1) {
-                this.cq = this.utilService.f(this.cx);
+                this.cq = this.utilService.getTotalPageCount(this.cx);
                 this.cj = this.cg[1].length;
             } else if (n3 == 2) {
-                this.cr = this.utilService.f(this.cx);
+                this.cr = this.utilService.getTotalPageCount(this.cx);
                 this.ck = this.cg[2].length;
             } else if (n3 == 3) {
-                this.cs = this.utilService.f(this.cx);
+                this.cs = this.utilService.getTotalPageCount(this.cx);
                 this.cl = this.cg[3].length;
             } else if (n3 == 4) {
-                this.ct = this.utilService.f(this.cx);
+                this.ct = this.utilService.getTotalPageCount(this.cx);
                 this.cm = this.cg[4].length;
             }
             ++n3;
@@ -8542,19 +8542,19 @@ implements Runnable {
             this.utilService.a(';');
             this.cg[n2] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 2, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n2 == n4) {
-                this.cp = this.utilService.f(this.cx);
+                this.cp = this.utilService.getTotalPageCount(this.cx);
                 this.ci = this.cg[n4].length;
             } else if (n2 == n4 + 1) {
-                this.cq = this.utilService.f(this.cx);
+                this.cq = this.utilService.getTotalPageCount(this.cx);
                 this.cj = this.cg[n4 + 1].length;
             } else if (n2 == n4 + 2) {
-                this.cr = this.utilService.f(this.cx);
+                this.cr = this.utilService.getTotalPageCount(this.cx);
                 this.ck = this.cg[n4 + 2].length;
             } else if (n2 == n4 + 3) {
-                this.cs = this.utilService.f(this.cx);
+                this.cs = this.utilService.getTotalPageCount(this.cx);
                 this.cl = this.cg[n4 + 3].length;
             } else if (n2 == n4 + 4) {
-                this.ct = this.utilService.f(this.cx);
+                this.ct = this.utilService.getTotalPageCount(this.cx);
                 this.cm = this.cg[n4 + 4].length;
             }
             System.out.println("i = " + n2);
@@ -8587,19 +8587,19 @@ implements Runnable {
             this.utilService.a(';');
             this.cg[n4] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 16, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n4 == n3) {
-                this.cp = this.utilService.f(this.cx);
+                this.cp = this.utilService.getTotalPageCount(this.cx);
                 this.ci = this.cg[n3].length;
             } else if (n4 == n3 + 1) {
-                this.cq = this.utilService.f(this.cx);
+                this.cq = this.utilService.getTotalPageCount(this.cx);
                 this.cj = this.cg[n3 + 1].length;
             } else if (n4 == n3 + 2) {
-                this.cr = this.utilService.f(this.cx);
+                this.cr = this.utilService.getTotalPageCount(this.cx);
                 this.ck = this.cg[n3 + 2].length;
             } else if (n4 == n3 + 3) {
-                this.cs = this.utilService.f(this.cx);
+                this.cs = this.utilService.getTotalPageCount(this.cx);
                 this.cl = this.cg[n3 + 3].length;
             } else if (n4 == n3 + 4) {
-                this.ct = this.utilService.f(this.cx);
+                this.ct = this.utilService.getTotalPageCount(this.cx);
                 this.cm = this.cg[n3 + 4].length;
             }
             ++n4;
@@ -8631,19 +8631,19 @@ implements Runnable {
             this.utilService.a(';');
             this.cg[n4] = this.utilService.stringParser(this.cd, canvasWidth - this.utilService.n[Constants.T] * 2, (this.utilService.o[Constants.T] + this.utilService.o[Constants.T] / 2) * this.cx, this.utilService.n[Constants.T], this.utilService.o[Constants.T], this.utilService.o[Constants.T] / 2);
             if (n4 == n3) {
-                this.cp = this.utilService.f(this.cx);
+                this.cp = this.utilService.getTotalPageCount(this.cx);
                 this.ci = this.cg[n3].length;
             } else if (n4 == n3 + 1) {
-                this.cq = this.utilService.f(this.cx);
+                this.cq = this.utilService.getTotalPageCount(this.cx);
                 this.cj = this.cg[n3 + 1].length;
             } else if (n4 == n3 + 2) {
-                this.cr = this.utilService.f(this.cx);
+                this.cr = this.utilService.getTotalPageCount(this.cx);
                 this.ck = this.cg[n3 + 2].length;
             } else if (n4 == n3 + 3) {
-                this.cs = this.utilService.f(this.cx);
+                this.cs = this.utilService.getTotalPageCount(this.cx);
                 this.cl = this.cg[n3 + 3].length;
             } else if (n4 == n3 + 4) {
-                this.ct = this.utilService.f(this.cx);
+                this.ct = this.utilService.getTotalPageCount(this.cx);
                 this.cm = this.cg[n3 + 4].length;
             }
             ++n4;
@@ -8662,7 +8662,7 @@ implements Runnable {
         this.utilService.a(';');
         this.ce = this.utilService.stringParser(this.cc, canvasWidth - this.utilService.n[1] * 10, (this.utilService.o[1] + this.utilService.o[1] / 2) * this.cx, this.utilService.n[1], this.utilService.o[1], this.utilService.o[1] / 2);
         this.ch = this.ce.length;
-        this.co = this.utilService.f(this.cx);
+        this.co = this.utilService.getTotalPageCount(this.cx);
     }
 
     private void data_Text(int n) {
@@ -8674,7 +8674,7 @@ implements Runnable {
         this.ce = this.utilService.stringParser(this.cb, canvasWidth - this.utilService.n[0] * 16, (this.utilService.o[0] + this.utilService.o[0] / 2) * this.cx, this.utilService.n[0], this.utilService.o[0], this.utilService.o[0] / 2);
         this.ch = this.ce.length;
         System.out.println("PlayStage.data_Text() str2DimensionCount = " + this.ch);
-        this.co = this.utilService.f(this.cx);
+        this.co = this.utilService.getTotalPageCount(this.cx);
     }
 
     public final void nullSomeVariables() {
