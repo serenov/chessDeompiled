@@ -572,7 +572,7 @@ implements Runnable {
         this.a("font");
         this.utilService.a(this.utilService.e(0), 0, 6);
         this.utilService.a(this.utilService.e(1), 1, 6);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         this.bV = -1;
         this.at = new Image[9];
         this.a("logo");
@@ -581,7 +581,7 @@ implements Runnable {
             this.at[n] = this.utilService.e(n);
             ++n;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         this.br = 6;
     }
 
@@ -599,14 +599,14 @@ implements Runnable {
                     this.a("ui_effect");
                     this.w[0] = this.utilService.e(1);
                     this.w[1] = this.utilService.e(2);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.o();
                     this.v = new Image[8];
                     this.a("loading_0");
                     this.ap = this.utilService.e(0);
                     this.aq = this.utilService.e(1);
                     this.ar = this.utilService.e(2);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.bO = 0;
                     this.a("boardPiece");
                     int n = 0;
@@ -614,7 +614,7 @@ implements Runnable {
                         this.aR[this.bO][n] = this.utilService.e(n);
                         ++n;
                     }
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.bc = this.aR[this.bO][4].getHeight();
                     this.bd = this.aR[this.bO][0] == null ? this.aR[this.bO][1].getHeight() : this.aR[this.bO][0].getHeight();
                     this.aL = this.bc >> 1;
@@ -890,7 +890,7 @@ implements Runnable {
         this.v[1] = this.utilService.e(1);
         this.v[3] = this.utilService.e(2);
         this.v[4] = this.utilService.e(3);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         this.nullSomeVariables();
         this.b(0);
         this.ac(3);
@@ -1136,7 +1136,7 @@ implements Runnable {
                         }
                     }
                     this.cK[n2] = this.utilService.e(n);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                 } else {
                     this.a("char_talk");
                     switch (n2) {
@@ -1169,7 +1169,7 @@ implements Runnable {
                         }
                     }
                     this.cK[n2] = this.utilService.e(n);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.cM = Image.createImage((String)"/img/vs_grid.png");
                 }
                 ++n2;
@@ -1496,7 +1496,7 @@ implements Runnable {
                     this.aD[n] = this.utilService.e(n);
                     ++n;
                 }
-                this.utilService.b();
+                this.utilService.unsetTheFileBytes();
                 return;
             }
         }
@@ -1521,7 +1521,7 @@ implements Runnable {
             System.gc();
             ++n3;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void C() {
@@ -1561,7 +1561,7 @@ implements Runnable {
                 this.v[n] = this.utilService.e(n);
                 ++n;
             }
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
         }
         catch (Exception exception) {}
         this.dateLong_HelpText(2);
@@ -1882,7 +1882,7 @@ implements Runnable {
                 this.cY[n2] = this.utilService.e(Util.d(0, 8) + 6);
                 ++n2;
             }
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             this.nullSomeVariables();
             this.b(3);
             this.d(34);
@@ -2062,7 +2062,7 @@ implements Runnable {
                 this.da[n] = this.utilService.e(n);
                 ++n;
             }
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             this.data_Text(21);
             if (!this.du) {
                 n = Util.d(0, 100);
@@ -2071,7 +2071,7 @@ implements Runnable {
             this.v = new Image[2];
             this.a("i_icon");
             this.v[0] = this.utilService.e(this.dc);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             this.d(37);
         }
         catch (Exception exception) {}
@@ -2449,7 +2449,7 @@ implements Runnable {
             this.bs();
             this.a("arrow");
             this.en = this.utilService.e(this.y[this.ek ? 0 : this.U + 1][0]);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             int n = this.ek ? 0 : this.U + 1;
             if (n < 0) {
                 n = 0;
@@ -2458,7 +2458,7 @@ implements Runnable {
             }
             this.a("CastleCursor");
             this.ab = this.utilService.e(n);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             System.out.println("PlayStage.i_storyEndAni() nStage = " + this.U);
             this.nullSomeVariables();
             this.b(4 + this.U);
@@ -2676,7 +2676,7 @@ implements Runnable {
         if (stringArray[2] != null) {
             this.v[2] = this.utilService.e(1);
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         this.cy = 0;
         this.dh = 0;
     }
@@ -2715,7 +2715,7 @@ implements Runnable {
         if (stringArray[0] != null) {
             this.a("ending");
             this.v[0] = this.utilService.e(3);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
         }
         this.cy = 0;
         this.dh = 0;
@@ -2735,7 +2735,7 @@ implements Runnable {
         System.out.println("scene = " + n);
         this.a("ending");
         this.v[0] = this.utilService.e(2 + n);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         PlayStage.V(graphics);
     }
 
@@ -2956,12 +2956,12 @@ implements Runnable {
             this.a(String.valueOf(Constants.C) + "_imgText");
             this.ak[0] = this.utilService.e(Constants.Y);
             this.ak[1] = this.utilService.e(Constants.Z);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             this.b(24, false);
             this.a("ui_effect");
             this.ag = this.utilService.e(0);
             this.ah = this.utilService.e(2);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             int n = Util.d(0, 100);
             this.dc = n < 10 ? 0 : (n < 20 ? 1 : (n < 60 ? 2 : 3));
             this.du = true;
@@ -3428,7 +3428,7 @@ implements Runnable {
             System.gc();
             this.a("prologue");
             this.dA = this.utilService.e(this.dy);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
         }
         catch (Exception exception) {}
         System.gc();
@@ -3643,11 +3643,11 @@ implements Runnable {
         try {
             this.a(String.valueOf(Constants.C) + "_imgText");
             this.aj = this.utilService.e(n2);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             this.a("ui_effect");
             this.ag = this.utilService.e(0);
             this.ah = this.utilService.e(2);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
         }
         catch (Throwable throwable) {}
         System.gc();
@@ -4337,7 +4337,7 @@ implements Runnable {
         this.d(38);
         this.a(String.valueOf(Constants.C) + "_imgText");
         this.x = this.utilService.e(Constants.Y);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         bu = 1;
     }
 
@@ -4464,7 +4464,7 @@ implements Runnable {
                     this.V = false;
                     this.a(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.e(Constants.ac);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     dS = 0;
                     this.b(16, false);
                     break;
@@ -4474,7 +4474,7 @@ implements Runnable {
                     this.V = false;
                     this.a(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.e(Constants.ac);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     dS = 1;
                     this.b(16, false);
                     break;
@@ -4483,7 +4483,7 @@ implements Runnable {
                     this.W = true;
                     this.a(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.e(Constants.ac);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.V = false;
                     dS = 2;
                     this.b(16, false);
@@ -4492,7 +4492,7 @@ implements Runnable {
                 case 20: {
                     this.a(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.e(Constants.aa);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.V = true;
                     this.bm = 7;
                     this.b(24, false);
@@ -4501,7 +4501,7 @@ implements Runnable {
                 case 30: {
                     this.a(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.e(Constants.ab);
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.V = false;
                     this.bm = 8;
                     this.b(16, false);
@@ -4510,7 +4510,7 @@ implements Runnable {
             this.a("ui_effect");
             this.ag = this.utilService.e(0);
             this.ah = this.utilService.e(2);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             return;
         }
         catch (Throwable throwable) {
@@ -6508,11 +6508,11 @@ implements Runnable {
         Constants.H = 0;
         this.a(String.valueOf(Constants.C) + "_imgText");
         this.aj = this.utilService.e(Constants.ab);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         this.a("ui_effect");
         this.ag = this.utilService.e(0);
         this.ah = this.utilService.e(2);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         this.V = false;
         PlayStage.P(44);
         this.bD();
@@ -7613,14 +7613,14 @@ implements Runnable {
                         this.aC[n] = this.utilService.e(n);
                         ++n;
                     }
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     this.a("pieceblack");
                     n = 0;
                     while (n < this.aC.length) {
                         this.aD[n] = this.utilService.e(n);
                         ++n;
                     }
-                    this.utilService.b();
+                    this.utilService.unsetTheFileBytes();
                     break;
                 }
                 case 5: {
@@ -7678,7 +7678,7 @@ implements Runnable {
             this.aI[n] = this.utilService.e(n);
             ++n;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void bj() {
@@ -7694,14 +7694,14 @@ implements Runnable {
         this.aA[1] = this.utilService.e(1);
         this.az[0] = this.utilService.e(2);
         this.az[1] = this.utilService.e(3);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void bl() {
         try {
             this.a(String.valueOf(Constants.C) + "_imgText");
             this.ai = this.utilService.e(Constants.X);
-            this.utilService.b();
+            this.utilService.unsetTheFileBytes();
             return;
         }
         catch (Exception exception) {
@@ -7720,7 +7720,7 @@ implements Runnable {
             this.an[n2] = this.utilService.e(4 + n2);
             ++n2;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void bn() {
@@ -7737,7 +7737,7 @@ implements Runnable {
             this.aZ[n] = this.utilService.e(n);
             ++n;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void bp() {
@@ -7754,7 +7754,7 @@ implements Runnable {
             this.aM[n] = this.utilService.e(10 + n);
             ++n;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void br() {
@@ -7788,7 +7788,7 @@ implements Runnable {
             this.aO[nArray[n2]] = new GameSpritesManager(this.utilService.e(nArray[n2] + 18), 0, 0);
             ++n2;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
         this.bs();
     }
 
@@ -7806,7 +7806,7 @@ implements Runnable {
             }
             ++n3;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void bt() {
@@ -7863,7 +7863,7 @@ implements Runnable {
             System.gc();
             ++n4;
         }
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private void a(boolean bl) {
@@ -8337,7 +8337,7 @@ implements Runnable {
         this.df = null;
         this.a("stagemap");
         this.df = this.utilService.e(this.U > 6 ? 6 : this.U);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     public final void showNotify() {
@@ -8368,7 +8368,7 @@ implements Runnable {
     private void a(int assetSerialId, int n2) {
         this.utilService.deserializeAsset("/txt/ChessText_" + assetSerialId + ".mgd");
         this.utilService.b(n2, 1);
-        this.utilService.b();
+        this.utilService.unsetTheFileBytes();
     }
 
     private byte[] U(int n) {

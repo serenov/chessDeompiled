@@ -497,7 +497,7 @@ public final class Util {
         return headerInt;
     }
 
-    public final void b() {
+    public final void unsetTheFileBytes() {
         this.fileBytes = null;
         this.fileXInt = null;
         this.fileYInt = null;
