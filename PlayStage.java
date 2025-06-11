@@ -891,7 +891,7 @@ implements Runnable {
         this.v[3] = this.utilService.e(2);
         this.v[4] = this.utilService.e(3);
         this.utilService.b();
-        this.g();
+        this.nullSomeVariables();
         this.b(0);
         this.ac(3);
         this.br = 512;
@@ -1373,7 +1373,7 @@ implements Runnable {
         this.br = bu == 200 ? 210 : 1280;
         this.bq = PlayStage.S(1280);
         this.bp = 1;
-        this.g();
+        this.nullSomeVariables();
         this.b(0);
         this.ac(12);
     }
@@ -1792,7 +1792,7 @@ implements Runnable {
         this.n();
         bi = Constants.E != 0;
         this.aY = 1;
-        this.g();
+        this.nullSomeVariables();
         this.b(3);
         this.c(1);
         this.d(41);
@@ -1883,7 +1883,7 @@ implements Runnable {
                 ++n2;
             }
             this.utilService.b();
-            this.g();
+            this.nullSomeVariables();
             this.b(3);
             this.d(34);
             return;
@@ -1946,7 +1946,7 @@ implements Runnable {
     private void K() {
         this.bD();
         this.b(20, false);
-        this.g();
+        this.nullSomeVariables();
         this.b(0);
         this.q();
         this.bq = PlayStage.S(512);
@@ -2416,7 +2416,7 @@ implements Runnable {
         if (this.W) {
             this.ef = 0;
             this.bm = 11 + dS;
-            this.g();
+            this.nullSomeVariables();
             this.b(4 + this.U);
             this.dateLong_StageText(5);
             this.d(42);
@@ -2426,14 +2426,14 @@ implements Runnable {
             this.bm = 8;
             this.ef = 0;
             System.out.println("PlayStage.i_storyEndTalk() nStage = " + this.U);
-            this.g();
+            this.nullSomeVariables();
             this.b(4 + this.U);
             this.dateLong_StageText(2);
             this.d(42);
         } else {
             this.bm = 7;
             this.ef = 0;
-            this.g();
+            this.nullSomeVariables();
             this.b(4 + this.U);
             this.dateLong_StageText(2);
             this.d(42);
@@ -2460,7 +2460,7 @@ implements Runnable {
             this.ab = this.utilService.e(n);
             this.utilService.b();
             System.out.println("PlayStage.i_storyEndAni() nStage = " + this.U);
-            this.g();
+            this.nullSomeVariables();
             this.b(4 + this.U);
             this.dateLong_StageText(0);
             this.d(42);
@@ -2625,7 +2625,7 @@ implements Runnable {
         this.ee = true;
         this.bm = 10;
         this.ef = 0;
-        this.g();
+        this.nullSomeVariables();
         this.b(4 + this.U);
         this.dateLong_StageText(4);
         this.d(42);
@@ -2657,7 +2657,7 @@ implements Runnable {
         this.dz = false;
         this.dy = 0;
         ej = 0;
-        this.g();
+        this.nullSomeVariables();
         this.b(4 + this.U);
         this.Y(6);
         this.d(42);
@@ -2703,7 +2703,7 @@ implements Runnable {
         this.dz = false;
         this.dy = 0;
         ej = 0;
-        this.g();
+        this.nullSomeVariables();
         this.b(4 + this.U);
         this.Y(7);
         this.d(42);
@@ -3414,7 +3414,7 @@ implements Runnable {
         this.dy = 0;
         ej = 0;
         this.ax();
-        this.g();
+        this.nullSomeVariables();
         this.b(2);
         this.W(0);
         this.d(9);
@@ -3683,7 +3683,7 @@ implements Runnable {
         bK = false;
         try {
             this.bm();
-            this.g();
+            this.nullSomeVariables();
             this.b(3);
             this.c(0);
             this.d(37);
@@ -4121,7 +4121,7 @@ implements Runnable {
         this.dD = 0;
         this.dC = true;
         this.dE = 0;
-        this.g();
+        this.nullSomeVariables();
         this.b(3);
         this.c(1);
         this.d(38);
@@ -4331,7 +4331,7 @@ implements Runnable {
         this.dQ = false;
         this.dR = 0;
         this.aj();
-        this.g();
+        this.nullSomeVariables();
         this.b(3);
         this.c(1);
         this.d(38);
@@ -4358,7 +4358,7 @@ implements Runnable {
                 this.aJ();
             } else {
                 bu = 2;
-                this.g();
+                this.nullSomeVariables();
                 this.b(3);
                 this.d(41);
             }
@@ -4375,7 +4375,7 @@ implements Runnable {
             this.b(this.X[n]);
         }
         catch (Throwable throwable) {}
-        this.g();
+        this.nullSomeVariables();
         this.b(4 + this.U);
         this.dateLong_StageText(3);
         this.d(42);
@@ -4726,7 +4726,7 @@ implements Runnable {
                 }
                 case 3: {
                     bG = false;
-                    this.g();
+                    this.nullSomeVariables();
                     this.b(0);
                     this.ac(1);
                     this.g = false;
@@ -5213,7 +5213,7 @@ implements Runnable {
                         }
                         case 3: {
                             this.bM = 0;
-                            this.g();
+                            this.nullSomeVariables();
                             this.b(1);
                             this.z();
                             return;
@@ -5743,7 +5743,7 @@ implements Runnable {
                 if (!this.I(n)) break;
                 this.bu();
                 this.bt();
-                this.g();
+                this.nullSomeVariables();
                 this.b(3);
                 this.d(41);
                 bu = 2;
@@ -5948,7 +5948,7 @@ implements Runnable {
             case -7: {
                 if (this.br == 210) {
                     this.br = 768;
-                    this.g();
+                    this.nullSomeVariables();
                     this.b(3);
                     this.d(39);
                     if (bi != (Constants.E == 1)) {
@@ -6001,7 +6001,7 @@ implements Runnable {
                         case -7: {
                             this.C();
                             if (this.br == 220) {
-                                this.g();
+                                this.nullSomeVariables();
                                 this.b(3);
                                 this.d(39);
                                 this.br = 768;
@@ -6253,7 +6253,7 @@ implements Runnable {
         this.b(20, false);
         try {
             System.out.println("i_gmenui_gmenui_gmenu");
-            this.g();
+            this.nullSomeVariables();
             this.b(3);
             this.d(39);
             return;
@@ -6434,7 +6434,7 @@ implements Runnable {
                             case 3: {
                                 this.bD();
                                 this.b(20, false);
-                                this.g();
+                                this.nullSomeVariables();
                                 this.b(1);
                                 this.z();
                                 return;
@@ -7543,7 +7543,7 @@ implements Runnable {
                     case 3: {
                         this.bB();
                         System.out.println("PlayStage.d_LoadResource() nStage = " + this.U);
-                        this.g();
+                        this.nullSomeVariables();
                         this.b(4 + this.U);
                         this.dateLong_StageText(0);
                         this.d(42);
@@ -7625,7 +7625,7 @@ implements Runnable {
                 }
                 case 5: {
                     this.bk();
-                    this.g();
+                    this.nullSomeVariables();
                     this.b(3);
                     if (bu != 200) {
                         this.c(1);
@@ -7636,7 +7636,7 @@ implements Runnable {
                         this.d(41);
                         break;
                     }
-                    this.g();
+                    this.nullSomeVariables();
                     this.b(3);
                     this.d(39);
                     break;
@@ -8355,18 +8355,18 @@ implements Runnable {
 
     private int a(String string) {
         int n = 0;
-        n = this.utilService.d("/img/" + string + ".mgd");
+        n = this.utilService.deserializeAsset("/img/" + string + ".mgd");
         return n;
     }
 
     public final void b(int n) {
-        this.utilService.a(1, 5000, 1);
+        this.utilService.someByteAllocation(1, 5000, 1);
         this.bY = Constants.C;
         this.a(this.bY, n);
     }
 
-    private void a(int n, int n2) {
-        this.utilService.d("/txt/ChessText_" + n + ".mgd");
+    private void a(int assetSerialId, int n2) {
+        this.utilService.deserializeAsset("/txt/ChessText_" + assetSerialId + ".mgd");
         this.utilService.b(n2, 1);
         this.utilService.b();
     }
@@ -8677,8 +8677,8 @@ implements Runnable {
         this.co = this.utilService.f(this.cx);
     }
 
-    public final void g() {
-        this.utilService.b(1);
+    public final void nullSomeVariables() {
+        this.utilService.somenullification(1);
         this.cb = null;
         this.cc = null;
         this.cd = null;

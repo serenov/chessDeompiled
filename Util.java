@@ -32,9 +32,9 @@ public final class Util {
     public Image[] m;
     public int[] n;
     public int[] o;
-    public byte[] p;
-    public int[] q;
-    public int[] r;
+    public byte[] fileBytes;
+    public int[] fileXInt;
+    public int[] fileYInt;
     public static final Random s = new Random();
 
     public static Image GetImageByAssetName(String string) {
@@ -253,7 +253,7 @@ public final class Util {
         this.j = n4;
     }
 
-    public final void a(int n, int n2, int n3) {
+    public final void someByteAllocation(int n, int n2, int n3) {
         this.c[n] = null;
         this.c[n] = new byte[n2];
         this.g[n] = n3;
@@ -261,7 +261,7 @@ public final class Util {
         this.d[n] = new int[this.g[n]];
     }
 
-    public final void b(int n) {
+    public final void somenullification(int n) {
         this.c[n] = null;
         this.d[n] = null;
     }
@@ -467,37 +467,40 @@ public final class Util {
     }
 
     public final void b(int n, int n2) {
-        System.arraycopy(this.p, this.r[n], this.c[n2], 0, this.q[n]);
-        this.f[n2] = this.q[n];
+        System.arraycopy(this.fileBytes, this.fileYInt[n], this.c[n2], 0, this.fileXInt[n]);
+        this.f[n2] = this.fileXInt[n];
         this.c[n2][this.f[n2]] = 0;
         this.g(n2);
         this.h[n2] = 0;
     }
 
     private byte[] h(int n) {
-        byte[] byArray = new byte[this.q[n]];
-        System.arraycopy(this.p, this.r[n], byArray, 0, this.q[n]);
+        byte[] byArray = new byte[this.fileXInt[n]];
+        System.arraycopy(this.fileBytes, this.fileYInt[n], byArray, 0, this.fileXInt[n]);
         return byArray;
     }
 
-    public final int d(String string) {
-        this.p = this.getFileBytesByFilePath(string);
-        int n = Util.getIntFromByteArray(this.p, 0);
-        this.q = new int[n];
-        this.r = new int[n];
-        int n2 = 0;
-        while (n2 < n) {
-            this.q[n2] = Util.getIntFromByteArray(this.p, 4 + n2 * 8);
-            this.r[n2] = Util.getIntFromByteArray(this.p, 8 + n2 * 8);
-            ++n2;
+    public final int deserializeAsset(String filepath) {
+        this.fileBytes = this.getFileBytesByFilePath(filepath);
+        int headerInt = Util.getIntFromByteArray(this.fileBytes, 0);
+
+        this.fileXInt = new int[headerInt];
+        this.fileYInt = new int[headerInt];
+
+        int byteOffset = 0;
+
+        while (byteOffset < headerInt) {
+            this.fileXInt[byteOffset] = Util.getIntFromByteArray(this.fileBytes, 4 + byteOffset * 8);
+            this.fileYInt[byteOffset] = Util.getIntFromByteArray(this.fileBytes, 8 + byteOffset * 8);
+            ++byteOffset;
         }
-        return n;
+        return headerInt;
     }
 
     public final void b() {
-        this.p = null;
-        this.q = null;
-        this.r = null;
+        this.fileBytes = null;
+        this.fileXInt = null;
+        this.fileYInt = null;
     }
 
     private static int getIntFromByteArray(byte[] byArray, int n) {

@@ -197,7 +197,7 @@ extends MIDlet {
     public static void c() {
         // int n = ChessCanvas.bu = ChessCanvas.bL == 0 ? 2 : 3;
         if (PlayStage.bu == 2) {
-            b.g();
+            b.nullSomeVariables();
             b.b(3);
             b.c(1);
             b.d(41);
