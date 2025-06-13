@@ -66,7 +66,7 @@ implements Runnable {
     private int blackKingSquare;
     private int whiteKingSquare;
     public static int castlingStatusMask; // First 2 bits for white castling (left and right) next two bits for black castling.
-    private int ar;
+    private int castlingMask;
     private int as;
     private int at;
     public static int n;
@@ -2190,7 +2190,7 @@ implements Runnable {
         this.blackKingSquare = blackKingSquareIndex;
         this.whiteKingSquare = whiteKingSquareIndex;
         this.al = ak;
-        this.ar = castlingStatusMask;
+        this.castlingMask = castlingStatusMask;
         this.au = ChessEngine.n;
         this.J = H;
         this.K = I;
@@ -2209,7 +2209,7 @@ implements Runnable {
         blackKingSquareIndex = this.blackKingSquare;
         whiteKingSquareIndex = this.whiteKingSquare;
         ak = this.al;
-        castlingStatusMask = this.ar;
+        castlingStatusMask = this.castlingMask;
         ChessEngine.n = this.au;
         H = this.J;
         I = this.K;
@@ -2226,7 +2226,7 @@ implements Runnable {
             }
             ++n;
         }
-        return this.ar == castlingStatusMask && this.au == ChessEngine.n;
+        return this.castlingMask == castlingStatusMask && this.au == ChessEngine.n;
     }
 
     public static int g() {
