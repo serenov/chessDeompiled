@@ -35,7 +35,7 @@ implements Runnable {
     public static ChessEngine chessEngine;
     public Graphics e;
     public Thread f;
-    public boolean g;
+    public boolean isImgLoading;
     public boolean h = false;
     public static boolean i;
     public static boolean j;
@@ -141,7 +141,7 @@ implements Runnable {
     public static int bf;
     public static int bg;
     public static int bh;
-    public static boolean bi;
+    public static boolean is3D;
     public int bj;
     public static int bk;
     public static int bl;
@@ -150,7 +150,7 @@ implements Runnable {
     public int bo;
     public int bp;
     public int bq;
-    public int br;
+    public int keyProcess_nState;
     public int bs;
     public int bt;
     public static int bu;
@@ -330,7 +330,7 @@ implements Runnable {
         bf = 0;
         bg = 0;
         bh = 0;
-        bi = true;
+        is3D = true;
         bk = 0;
         bl = 0;
         bI = false;
@@ -551,14 +551,14 @@ implements Runnable {
 
         this.LoadOption();
 
-        this.br = 0;
+        this.keyProcess_nState = 0;
         this.startGameThread();
     }
 
     private void l() {
         by = canvasWidth >> 1;
         bz = canvasHeight >> 1;
-        this.g = true;
+        this.isImgLoading = true;
         bG = true;
         bg = by - 121;
         bh = bz - 96;
@@ -582,7 +582,7 @@ implements Runnable {
             ++n;
         }
         this.utilService.unsetTheFileBytes();
-        this.br = 6;
+        this.keyProcess_nState = 6;
     }
 
     private void a(Graphics graphics) {
@@ -830,7 +830,7 @@ implements Runnable {
         bw = by - (this.m.getWidth() / 6 + this.m.getWidth() / 3);
         bx = bz - (this.m.getHeight() / 6 + this.m.getHeight() / 3);
         graphics.drawImage(this.m, by, bz, 3);
-        if (this.br == 256) {
+        if (this.keyProcess_nState == 256) {
             @SuppressWarnings("unused")
             int n = 0;
             if (++this.R > 20) {
@@ -850,7 +850,7 @@ implements Runnable {
         bu = 0;
         this.bq = PlayStage.S(512);
         chessEngine = null;
-        switch (this.br) {
+        switch (this.keyProcess_nState) {
             case 257: {
                 this.bp = 0;
                 break;
@@ -894,7 +894,7 @@ implements Runnable {
         this.nullSomeVariables();
         this.b(0);
         this.ac(3);
-        this.br = 512;
+        this.keyProcess_nState = 512;
         this.bM = 0;
         this.bD();
         this.l = null;
@@ -942,9 +942,9 @@ implements Runnable {
 
     private void r() {
         this.bQ = -4132;
-        this.br = 257;
+        this.keyProcess_nState = 257;
         this.bs = 257;
-        this.bq = PlayStage.S(this.br);
+        this.bq = PlayStage.S(this.keyProcess_nState);
         this.bp = Constants.D != 0 ? 1 : 0;
         this.ac(4);
         this.data_Text(17);
@@ -1003,7 +1003,7 @@ implements Runnable {
         int n6 = n3 + n4 - 22;
         graphics.setColor(0x212020);
         Util.a(graphics, n5, n6, 152, 19, 20);
-        if (this.br != 768) {
+        if (this.keyProcess_nState != 768) {
             this.utilService.a(graphics, this.cf[4], by - 75, n6 + 3, 20, 1);
             this.utilService.a(graphics, this.cf[5], by + 5, n6 + 3, 20, 1);
         } else {
@@ -1031,7 +1031,7 @@ implements Runnable {
     }
 
     private void s() {
-        this.br = 258;
+        this.keyProcess_nState = 258;
         this.bq = PlayStage.S(258);
         this.bp = 0;
         this.cI = false;
@@ -1057,7 +1057,7 @@ implements Runnable {
     }
 
     private void t() {
-        this.br = 272;
+        this.keyProcess_nState = 272;
         this.bs = 272;
         this.bq = PlayStage.S(272);
         this.bp = 0;
@@ -1092,7 +1092,7 @@ implements Runnable {
     }
 
     private void u() {
-        this.br = 273;
+        this.keyProcess_nState = 273;
         this.bq = PlayStage.S(273);
         this.bp = 0;
         this.ac(8);
@@ -1370,7 +1370,7 @@ implements Runnable {
     }
 
     private void y() {
-        this.br = bu == 200 ? 210 : 1280;
+        this.keyProcess_nState = bu == 200 ? 210 : 1280;
         this.bq = PlayStage.S(1280);
         this.bp = 1;
         this.nullSomeVariables();
@@ -1383,7 +1383,7 @@ implements Runnable {
             int n;
             block24: {
                 block22: {
-                    if (this.br == 1280) {
+                    if (this.keyProcess_nState == 1280) {
                         this.e(graphics);
                         if (++this.cE > 500) {
                             this.cE = 0;
@@ -1471,7 +1471,7 @@ implements Runnable {
             this.A();
         }
         catch (Exception exception) {}
-        this.br = bu == 200 ? 220 : 1536;
+        this.keyProcess_nState = bu == 200 ? 220 : 1536;
         this.cT = 0;
         this.bp = 0;
         this.bq = PlayStage.S(1536);
@@ -1526,7 +1526,7 @@ implements Runnable {
 
     private void C() {
         this.ao = null;
-        if (bi) {
+        if (is3D) {
             int n = 6;
             while (n <= 11) {
                 this.aB[n] = null;
@@ -1535,7 +1535,7 @@ implements Runnable {
         } else {
             this.aD = null;
         }
-        if (this.br != 220) {
+        if (this.keyProcess_nState != 220) {
             this.aD = null;
         }
         System.gc();
@@ -1580,7 +1580,7 @@ implements Runnable {
     }
 
     private void o(Graphics graphics) {
-        if (this.br == 1536) {
+        if (this.keyProcess_nState == 1536) {
             this.e(graphics);
         } else {
             this.D(graphics);
@@ -1761,7 +1761,7 @@ implements Runnable {
         this.Z(20);
         this.d(21);
         System.out.println("aaaaaaaaaaaaaa");
-        this.br = 2048;
+        this.keyProcess_nState = 2048;
         this.bp = 0;
         this.cW = 0;
     }
@@ -1790,7 +1790,7 @@ implements Runnable {
         this.bw();
         this.bD();
         this.n();
-        bi = Constants.E != 0;
+        is3D = Constants.E != 0;
         this.aY = 1;
         this.nullSomeVariables();
         this.b(3);
@@ -1857,7 +1857,7 @@ implements Runnable {
     }
 
     private void I() {
-        this.br = 624;
+        this.keyProcess_nState = 624;
         try {
             this.R = Util.d(1, 6);
             this.R = 3;
@@ -2408,7 +2408,7 @@ implements Runnable {
         catch (Exception exception) {}
         System.gc();
         this.h = false;
-        this.br = 593;
+        this.keyProcess_nState = 593;
         eh = false;
         ej = 0;
         this.cS = 0;
@@ -2483,7 +2483,7 @@ implements Runnable {
         }
         this.n();
         this.bu();
-        this.br = 594;
+        this.keyProcess_nState = 594;
         this.cS = -4132;
     }
 
@@ -2522,7 +2522,7 @@ implements Runnable {
     }
 
     private void ae() {
-        this.br = 596;
+        this.keyProcess_nState = 596;
         this.ee = true;
         try {
             this.b(this.X[this.U]);
@@ -2620,7 +2620,7 @@ implements Runnable {
     }
 
     private void ag() {
-        this.br = 595;
+        this.keyProcess_nState = 595;
         Constants.M = true;
         this.ee = true;
         this.bm = 10;
@@ -2663,7 +2663,7 @@ implements Runnable {
         this.d(42);
         this.bD();
         this.b(18, false);
-        this.br = 597;
+        this.keyProcess_nState = 597;
         this.v = null;
         this.v = new Image[4];
         this.a("ending");
@@ -2709,7 +2709,7 @@ implements Runnable {
         this.d(42);
         this.bD();
         this.b(18, false);
-        this.br = 597;
+        this.keyProcess_nState = 597;
         this.v = null;
         this.v = new Image[1];
         if (stringArray[0] != null) {
@@ -3407,7 +3407,7 @@ implements Runnable {
         System.out.println("PlayStage.i_prologue()");
         this.p();
         this.U = 0;
-        this.br = 769;
+        this.keyProcess_nState = 769;
         eh = false;
         ei = false;
         this.dz = false;
@@ -3838,7 +3838,7 @@ implements Runnable {
         this.dI = 0;
         try {
             this.dJ = Image.createImage((String)"/img/makepiece.png");
-            if (bi) {
+            if (is3D) {
                 String string = "/date/" + this.spriteId + "w.dmg";
                 this.dF = new GameSpritesManager("filename");
                 DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
@@ -4013,7 +4013,7 @@ implements Runnable {
         System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);
         try {
             this.dJ = Image.createImage((String)"/img/resurrection.png");
-            if (bi) {
+            if (is3D) {
                 String string = "/date/" + this.spriteId + "w.dmg";
                 this.dF = new GameSpritesManager(string);
                 DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
@@ -4077,7 +4077,7 @@ implements Runnable {
             n4 = this.dF.width;
             n5 = this.dF.height;
         }
-        if ((n3 = n5 - ++this.dI * 3) <= 0 || !bi || Constants.F != 1) {
+        if ((n3 = n5 - ++this.dI * 3) <= 0 || !is3D || Constants.F != 1) {
             ChessEngine.l = -1;
             bL = 1;
             if (bu == 1000) {
@@ -4257,7 +4257,7 @@ implements Runnable {
     }
 
     private void L(Graphics graphics) {
-        if (this.br != 768) {
+        if (this.keyProcess_nState != 768) {
             return;
         }
         int n = Constants.j + 1;
@@ -4411,7 +4411,7 @@ implements Runnable {
         int n3 = by - n2 / 2;
         int n4 = this.bc + 10 + 17 + 10;
         int n5 = bz - n4 / 3 * 2;
-        if (bi) {
+        if (is3D) {
             n2 += 60;
             n3 -= 30;
             n4 += 30;
@@ -4420,7 +4420,7 @@ implements Runnable {
             this.R = -5;
         }
         PlayStage.a(graphics, n3, n5, n2, n4, 20);
-        if (!bi) {
+        if (!is3D) {
             n = 0;
             while (n < 4) {
                 this.aB[10 - n].a(graphics, n3 + 7 + this.bc * n + this.aL, n5 + 5 + this.aL);
@@ -4524,14 +4524,14 @@ implements Runnable {
 
     private void a(Graphics graphics, int n, int n2, int n3) {
         if (bu == 2 || bu == 110) {
-            if (!bi) {
+            if (!is3D) {
                 n += be;
                 n2 += bf;
             }
             if (n3 == 1 || n3 == 5) {
                 int n4 = n;
                 int n5 = n2;
-                if (!bi) {
+                if (!is3D) {
                     this.aB[aU ? 18 : 19].a(graphics, n4 += this.aL, n5 += this.aL);
                     return;
                 }
@@ -4549,7 +4549,7 @@ implements Runnable {
                 graphics.setColor(16384);
                 int n6 = n;
                 int n7 = n2;
-                if (!bi) {
+                if (!is3D) {
                     this.aB[n + n2 % 2 == 0 ? 20 : 21].a(graphics, n + this.aL, n2 + this.aL);
                     n6 = n + (this.bc >> 1);
                     n7 = n2 + (this.bc >> 1);
@@ -4569,7 +4569,7 @@ implements Runnable {
 
     private void a(Graphics graphics, int n, int n2, int n3, int n4) {
         if (bu == 2 || bu == 110) {
-            if (!bi) {
+            if (!is3D) {
                 this.aB[n3 == 1 ? ((n + n2) % 2 == 0 ? 22 : 23) : ((n + n2) % 2 == 0 ? 20 : 21)].a(graphics, this.ae(n) + this.aL + be, this.ag(n2) + this.aL + bf);
             } else {
                 int[] nArray = new int[]{bg + Constants.S[n + n2 * 9], bg + Constants.S[n + n2 * 9 + 1], bg + Constants.S[n + (n2 + 1) * 9 + 1], bg + Constants.S[n + (n2 + 1) * 9]};
@@ -4599,7 +4599,7 @@ implements Runnable {
     }
 
     private void Q(Graphics graphics) {
-        if (!bi) {
+        if (!is3D) {
             this.aB[0].a(graphics, be, bf, 36);
             this.aB[1].a(graphics, be, bf + (this.bc << 3));
             this.aB[2].a(graphics, be - this.aB[2].width, bf - this.aB[0].height);
@@ -4615,7 +4615,7 @@ implements Runnable {
             }
             return;
         }
-        if (bi && this.aJ != null) {
+        if (is3D && this.aJ != null) {
             graphics.drawImage(this.aJ, by - 120, bz - 94, 20);
         }
     }
@@ -4700,9 +4700,9 @@ implements Runnable {
     }
 
     private void a(int n, boolean bl) {
-        this.br = n;
-        this.g = bl;
-        System.out.println("setState = " + this.br);
+        this.keyProcess_nState = n;
+        this.isImgLoading = bl;
+        System.out.println("setState = " + this.keyProcess_nState);
         this.bE = false;
     }
 
@@ -4711,17 +4711,17 @@ implements Runnable {
      * Enabled aggressive block sorting
      */
     private void i_storyTalk() {
-        if (!this.g) {
+        if (!this.isImgLoading) {
             return;
         }
         int n = 0;
         block10: do {
-            switch (n == 0 ? this.br : n) {
+            switch (n == 0 ? this.keyProcess_nState : n) {
                 case 2: {
                     bG = false;
                     this.b(0);
                     this.ac(0);
-                    this.g = false;
+                    this.isImgLoading = false;
                     break;
                 }
                 case 3: {
@@ -4729,7 +4729,7 @@ implements Runnable {
                     this.nullSomeVariables();
                     this.b(0);
                     this.ac(1);
-                    this.g = false;
+                    this.isImgLoading = false;
                     break;
                 }
                 case 4: {
@@ -4737,13 +4737,13 @@ implements Runnable {
                     this.cE = 0;
                     bG = true;
                     this.cD = true;
-                    this.g = false;
+                    this.isImgLoading = false;
                     break;
                 }
                 case 6: {
                     this.bN = 0;
                     bG = true;
-                    this.g = false;
+                    this.isImgLoading = false;
                     break;
                 }
                 case 256: {
@@ -4756,9 +4756,9 @@ implements Runnable {
                     continue block10;
                 }
                 case 259: {
-                    System.out.println("updateData is3D = " + bi);
+                    System.out.println("updateData is3D = " + is3D);
                     this.aY = 1;
-                    this.g = false;
+                    this.isImgLoading = false;
                     break;
                 }
                 case 592: {
@@ -4779,20 +4779,20 @@ implements Runnable {
                     this.bd();
                     this.cS = 0;
                     this.h = false;
-                    this.g = false;
+                    this.isImgLoading = false;
                     this.bE = false;
                     this.aY = 0;
                     break;
                 }
                 case 768: {
                     bG = false;
-                    this.g = false;
+                    this.isImgLoading = false;
                     break;
                 }
             }
             break;
         } while (true);
-        System.out.println("isImgLoading = " + this.g);
+        System.out.println("isImgLoading = " + this.isImgLoading);
     }
 
     private void R(Graphics graphics) {
@@ -4807,11 +4807,11 @@ implements Runnable {
             this.R(graphics);
             return;
         }
-        if (this.g) {
+        if (this.isImgLoading) {
             return;
         }
         PlayStage.V(graphics);
-        switch (this.br) {
+        switch (this.keyProcess_nState) {
             case 0: {
                 this.l();
                 return;
@@ -4931,7 +4931,7 @@ implements Runnable {
         if (this.aY != 0) {
             return;
         }
-        switch (this.br) {
+        switch (this.keyProcess_nState) {
             case 2: {
                 break;
             }
@@ -4974,7 +4974,7 @@ implements Runnable {
     }
 
     public final void keyPressed(int n) {
-        if (this.bE || bG || this.g) {
+        if (this.bE || bG || this.isImgLoading) {
             return;
         }
         int n2 = this.n(n);
@@ -4990,7 +4990,7 @@ implements Runnable {
     }
 
     private void o(int n) {
-        System.out.println("keyProcess_nState = " + this.br);
+        System.out.println("keyProcess_nState = " + this.keyProcess_nState);
         if (this.aY != 0) {
             return;
         }
@@ -5004,7 +5004,7 @@ implements Runnable {
             }
             this.k = 1;
         }
-        switch (this.br) {
+        switch (this.keyProcess_nState) {
             case 2: {
                 this.p(n);
                 return;
@@ -5721,14 +5721,14 @@ implements Runnable {
     private void G(int n) {
         if (n == 49) {
             Constants.E = 1;
-            bi = true;
+            is3D = true;
             this.J();
             this.H();
             return;
         }
         if (n == 50) {
             Constants.E = 0;
-            bi = false;
+            is3D = false;
             this.J();
             this.H();
         }
@@ -5946,14 +5946,14 @@ implements Runnable {
                 return;
             }
             case -7: {
-                if (this.br == 210) {
-                    this.br = 768;
+                if (this.keyProcess_nState == 210) {
+                    this.keyProcess_nState = 768;
                     this.nullSomeVariables();
                     this.b(3);
                     this.d(39);
-                    if (bi != (Constants.E == 1)) {
+                    if (is3D != (Constants.E == 1)) {
                         this.aY = 1;
-                        bi = Constants.E == 1;
+                        is3D = Constants.E == 1;
                         Constants.f = false;
                         this.a(259, true);
                     }
@@ -6000,11 +6000,11 @@ implements Runnable {
                         }
                         case -7: {
                             this.C();
-                            if (this.br == 220) {
+                            if (this.keyProcess_nState == 220) {
                                 this.nullSomeVariables();
                                 this.b(3);
                                 this.d(39);
-                                this.br = 768;
+                                this.keyProcess_nState = 768;
                                 this.bq = PlayStage.S(200);
                                 this.bp = 3;
                                 return;
@@ -6286,7 +6286,7 @@ implements Runnable {
             case -5: 
             case 53: {
                 this.n();
-                if (bi) {
+                if (is3D) {
                     this.a(false);
                 }
                 int n2 = 5 - this.bo;
@@ -6573,7 +6573,7 @@ implements Runnable {
                 }
                 ++n3;
             }
-            if (this.br == 768) {
+            if (this.keyProcess_nState == 768) {
                 graphics.setColor(0x555555);
                 graphics.fillRect(0, canvasHeight - 12, canvasWidth, 12);
                 this.utilService.a(graphics, this.cf[6], 0, canvasHeight, 36, 1);
@@ -6657,7 +6657,7 @@ implements Runnable {
         }
         int n = 19 * Constants.s + 14;
         int n2 = canvasHeight - n;
-        if (this.br != 768) {
+        if (this.keyProcess_nState != 768) {
             n2 -= 80;
         }
         int n3 = 0;
@@ -7132,7 +7132,7 @@ implements Runnable {
                 ++n;
             }
         }
-        byte[] byArray3 = Util.ConvertIntToByteArray(this.br);
+        byte[] byArray3 = Util.ConvertIntToByteArray(this.keyProcess_nState);
         System.arraycopy(byArray3, 0, byArray2, n2, 4);
         return byArray2;
     }
@@ -7170,7 +7170,7 @@ implements Runnable {
             return;
         }
         if (n3 == 593) {
-            this.br = 593;
+            this.keyProcess_nState = 593;
             this.V = true;
             Constants.y = 593;
         }
@@ -7559,7 +7559,7 @@ implements Runnable {
                 System.out.println("nResourceLoad=== " + this.aY);
                 return;
             }
-            if (!bi) {
+            if (!is3D) {
                 switch (this.aY) {
                     case 1: {
                         break;
@@ -7656,7 +7656,7 @@ implements Runnable {
                 }
                 case 9: {
                     this.aY = 0;
-                    this.br = 768;
+                    this.keyProcess_nState = 768;
                     this.a(768, true);
                     return;
                 }
@@ -7867,7 +7867,7 @@ implements Runnable {
     }
 
     private void a(boolean bl) {
-        if (bl || bi) {
+        if (bl || is3D) {
             int n = this.aB.length;
             int n2 = 0;
             while (n2 < n) {
@@ -7877,7 +7877,7 @@ implements Runnable {
                 ++n2;
             }
         }
-        if (bl || !bi) {
+        if (bl || !is3D) {
             this.aC = null;
             this.aD = null;
             this.aA = null;
@@ -8091,7 +8091,7 @@ implements Runnable {
                                 Constants.C = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 Constants.E = Integer.parseInt(string.substring(n3 + 1, n = string.indexOf(42, n3 + 1)));
-                                bi = Constants.E == 1;
+                                is3D = Constants.E == 1;
                                 n3 = n;
                                 n = string.indexOf(42, n3 + 1);
                                 Constants.F = Integer.parseInt(string.substring(n3 + 1, n));
@@ -8322,7 +8322,7 @@ implements Runnable {
             dataInputStream.readByte();
             int n = 0;
             while (n < 64) {
-                ChessEngine.b[n] = dataInputStream.readByte();
+                ChessEngine.chessBoard[n] = dataInputStream.readByte();
                 ++n;
             }
             dataInputStream.close();
@@ -8349,7 +8349,7 @@ implements Runnable {
 
     private void T(int n) {
         if (n == 53) {
-            this.br = this.es;
+            this.keyProcess_nState = this.es;
         }
     }
 
@@ -8774,13 +8774,13 @@ implements Runnable {
             this.utilService.a(graphics, this.cf[5], canvasWidth, canvasHeight, 40, 1);
         }
         this.a(graphics, ChessR.c, 136);
-        if (this.bJ != null && !bi) {
+        if (this.bJ != null && !is3D) {
             this.a(graphics, this.bJ, 0xFF6600);
         }
-        if (bi && Constants.B == 1) {
+        if (is3D && Constants.B == 1) {
             this.aa(graphics);
         }
-        if (this.bJ != null && bi && bu != 110) {
+        if (this.bJ != null && is3D && bu != 110) {
             this.a(graphics, this.bJ.a & 7, this.bJ.a >>> 3, 2, 0);
             this.a(graphics, this.bJ.b & 7, this.bJ.b >>> 3, 2, 0);
         }
@@ -8795,7 +8795,7 @@ implements Runnable {
         }
         if (Constants.E == 1 && Constants.F == 1) {
             if (bu == 444) {
-                if (!bi) {
+                if (!is3D) {
                     n2 = be + this.af(ChessR.p & 7);
                     n = bf + this.ah(ChessR.p >>> 3);
                 } else {
@@ -8854,7 +8854,7 @@ implements Runnable {
         int n5 = 0;
         int n6 = 0;
         int n7 = 0;
-        if (bi) {
+        if (is3D) {
             n6 = n + n2 * 8;
             n4 = bg + Constants.O[n6];
             n5 = bh + Constants.P[n2];
@@ -8867,7 +8867,7 @@ implements Runnable {
             this.a(graphics, n4, n5, 2);
         }
         if (ChessR.e == n && ChessR.f == n2) {
-            if (bi) {
+            if (is3D) {
                 if (ChessR.n[n + n2 * 8] != 0) {
                     n7 -= 6;
                 } else {
@@ -8913,7 +8913,7 @@ implements Runnable {
                 this.a(graphics, n4, n5 + n7, 1);
             }
         }
-        if (bi) {
+        if (is3D) {
             if (n3 > 0) {
                 graphics.drawImage(this.aC[n3 - 1], n4, n5, 33);
             } else if (n3 < 0) {
@@ -9055,15 +9055,15 @@ implements Runnable {
         int n3 = i2.a >>> 3;
         int n4 = i2.b & 7;
         int n5 = i2.b >>> 3;
-        int n6 = bi ? Constants.O[i2.a] : this.ae(n2) + this.bc / 2;
-        int n7 = bi ? Constants.Q[n3] : this.ag(n3) + this.bc / 2;
-        int n8 = bi ? Constants.O[i2.b] : this.ae(n4) + this.bc / 2;
-        int n9 = bi ? Constants.Q[n5] : this.ag(n5) + this.bc / 2;
+        int n6 = is3D ? Constants.O[i2.a] : this.ae(n2) + this.bc / 2;
+        int n7 = is3D ? Constants.Q[n3] : this.ag(n3) + this.bc / 2;
+        int n8 = is3D ? Constants.O[i2.b] : this.ae(n4) + this.bc / 2;
+        int n9 = is3D ? Constants.Q[n5] : this.ag(n5) + this.bc / 2;
         graphics.setColor(n);
-        int n10 = bi ? bg + n6 : be + n6;
-        int n11 = bi ? bh + n7 : bf + n7;
-        int n12 = bi ? bg + n8 : be + n8;
-        int n13 = bi ? bh + n9 : bf + n9;
+        int n10 = is3D ? bg + n6 : be + n6;
+        int n11 = is3D ? bh + n7 : bf + n7;
+        int n12 = is3D ? bg + n8 : be + n8;
+        int n13 = is3D ? bh + n9 : bf + n9;
         graphics.drawLine(n10, n11, n12, n13);
         graphics.drawLine(n10 + 1, n11, n12 + 1, n13);
         graphics.drawLine(n10, n11 + 1, n12, n13 + 1);
@@ -9075,7 +9075,7 @@ implements Runnable {
         this.ey = 0;
         if (bu == 110) {
             int n = dd.size();
-            if (bi) {
+            if (is3D) {
                 int n2 = 0;
                 while (n2 < n) {
                     int n3 = Integer.parseInt(dd.elementAt(n2).toString());
@@ -9104,7 +9104,7 @@ implements Runnable {
                         by = i2.b;
                         this.a(graphics, by & 7, by >>> 3, 0, 0);
                     }
-                } else if (!bi) {
+                } else if (!is3D) {
                     by = i2.a;
                     this.a(graphics, by & 7, by >>> 3, 1, 0);
                 }
