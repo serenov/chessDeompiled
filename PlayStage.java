@@ -7321,7 +7321,7 @@ implements Runnable {
     }
 
     private void b(byte[] byArray) {
-        ChessEngine.a(byArray);
+        ChessEngine.initializeTheChessEngine(byArray);
         this.bn = ChessEngine.e();
         bL = this.bn == 1 ? 0 : 1;
         System.arraycopy(ChessEngine.a, 0, ChessR.o, 0, 64);

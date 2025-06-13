@@ -2132,7 +2132,7 @@ implements Runnable {
                         }
                         n2 -= n10 << 3;
                         n2 -= ChessEngine.c(n8, n7) << 3;
-                        if (ChessEngine.v(n8)) {
+                        if (ChessEngine.isRank1Rank8FileAFileB(n8)) {
                             n2 -= 9;
                         }
                     } else if (by == -2 || by == -3 || by == -6) {
@@ -2472,8 +2472,8 @@ implements Runnable {
         return n;
     }
 
-    private static boolean v(int n) {
-        return n < 8 || n >= 56 || (n + 1 & 7) < 2;
+    private static boolean isRank1Rank8FileAFileB(int squareIndex) {
+        return squareIndex < 8 || squareIndex >= 56 || (squareIndex + 1 & 7) < 2;
     }
 
     public static void h() {
@@ -2719,7 +2719,7 @@ implements Runnable {
         PlayStage.k();
     }
 
-    public static void a(byte[] byArray) {
+    public static void initializeTheChessEngine(byte[] byArray) {
         w = i.nextInt() >>> 8 | 0x11;
         x = i.nextInt() >>> 8 | 0x104;
         y = i.nextInt() >>> 8 | 0x402;
