@@ -1818,7 +1818,7 @@ implements Runnable {
             chessEngine = null;
             chessEngine = new ChessEngine();
             ChessR.k = 0;
-            ChessEngine.h();
+            ChessEngine.initializeTheBoard();
             ChessEngine.a(this.L());
             ba = 0;
             j = false;

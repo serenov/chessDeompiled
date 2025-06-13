@@ -61,8 +61,8 @@ implements Runnable {
     public static int k;
     private int am;
     public static int l;
-    private static int an;
-    private static int ao;
+    private static int blackKingSquareIndex;
+    private static int whiteKingSquareIndex;
     private int ap;
     private int aq;
     public static int castlingStatusMask; // First 2 bits for white castling (left and right) next two bits for black castling.
@@ -323,7 +323,7 @@ implements Runnable {
                 } else if (n2 == 5) {
                     g -= 960;
                 } else {
-                    ao = -1;
+                    whiteKingSquareIndex = -1;
                 }
             } else if (n2 == -1) {
                 I -= q[n3];
@@ -337,7 +337,7 @@ implements Runnable {
             } else if (n2 == -5) {
                 h -= 960;
             } else {
-                an = -1;
+                blackKingSquareIndex = -1;
             }
         }
         if ((n7 & 0x40) != 0) {
@@ -369,13 +369,13 @@ implements Runnable {
             h -= s[n5];
             h += s[n6];
         } else if (n3 == 6) {
-            ao = n6;
+            whiteKingSquareIndex = n6;
             W = 30000;
-            ChessEngine.B();
+            ChessEngine.evaluateKingFileDistances();
         } else if (n3 == -6) {
-            an = n6;
+            blackKingSquareIndex = n6;
             W = 30000;
-            ChessEngine.B();
+            ChessEngine.evaluateKingFileDistances();
         }
         ChessEngine.chessBoard[n6] = chessBoard[n5];
         ChessEngine.chessBoard[n5] = 0;
@@ -465,24 +465,27 @@ implements Runnable {
         return new LittleEndianInt(Y[n >>> 8][n & 0xFF] & 0xFF, Y[n >>> 8][n & 0xFF] >>> 8 & 0xFF, Y[n >>> 8][n & 0xFF] >>> 16 & 0xFF, Y[n >>> 8][n & 0xFF] >>> 24);
     }
 
-    private static void j() {
-        ao = -1;
-        an = -1;
-        int n = 63;
-        while (n >= 0) {
-            if (chessBoard[n] == -6) {
-                an = n;
+    private static void setKingsSquareIndices() {
+        whiteKingSquareIndex = -1;
+        blackKingSquareIndex = -1;
+
+        int squareIndex = 63;
+
+        while (squareIndex >= 0) {
+            if (chessBoard[squareIndex] == -6) { // Black King
+                blackKingSquareIndex = squareIndex;
                 break;
             }
-            n = (byte)(n - 1);
+            squareIndex = (byte)(squareIndex - 1);
         }
-        n = 0;
-        while (n < 64) {
-            if (chessBoard[n] == 6) {
-                ao = n;
+
+        squareIndex = 0;
+        while (squareIndex < 64) {
+            if (chessBoard[squareIndex] == 6) {
+                whiteKingSquareIndex = squareIndex;
                 return;
             }
-            n = (byte)(n + 1);
+            squareIndex = (byte)(squareIndex + 1);
         }
     }
 
@@ -535,11 +538,11 @@ implements Runnable {
                 }
             }
             if (n == 6) {
-                ao = n6;
-                ChessEngine.B();
+                whiteKingSquareIndex = n6;
+                ChessEngine.evaluateKingFileDistances();
             } else if (n == -6) {
-                an = n6;
-                ChessEngine.B();
+                blackKingSquareIndex = n6;
+                ChessEngine.evaluateKingFileDistances();
             }
             n2 = chessBoard[n5];
             if (n2 == 1) {
@@ -569,9 +572,9 @@ implements Runnable {
                 h -= s[n6];
                 h += s[n5];
             } else if (n2 == 6) {
-                ao = n5;
+                whiteKingSquareIndex = n5;
             } else if (n2 == -6) {
-                an = n5;
+                blackKingSquareIndex = n5;
             }
         }
         if (n7 != 0) {
@@ -1277,7 +1280,7 @@ implements Runnable {
 
     private static void q() {
         int n;
-        if (ao < 0 || an < 0) {
+        if (whiteKingSquareIndex < 0 || blackKingSquareIndex < 0) {
             return;
         }
         if (l > 0) {
@@ -1309,7 +1312,7 @@ implements Runnable {
                     ChessEngine.e[ChessEngine.f++] = 31 + ChessEngine.n + (40 + ChessEngine.n << 8) + 0x410000;
                 }
             }
-            ChessEngine.n(ao);
+            ChessEngine.n(whiteKingSquareIndex);
             n3 = 0;
             while (n3 < f) {
                 n2 = e[n3];
@@ -1361,7 +1364,7 @@ implements Runnable {
                 ChessEngine.e[ChessEngine.f++] = 23 + ChessEngine.n + (16 + ChessEngine.n << 8) + 0x410000;
             }
         }
-        ChessEngine.m(an);
+        ChessEngine.m(blackKingSquareIndex);
         n12 = 0;
         while (n12 < f) {
             n = e[n12];
@@ -1387,7 +1390,7 @@ implements Runnable {
     }
 
     private static int[] r() {
-        if (ao < 0 || an < 0) {
+        if (whiteKingSquareIndex < 0 || blackKingSquareIndex < 0) {
             return Q;
         }
         f = 0;
@@ -1402,7 +1405,7 @@ implements Runnable {
     }
 
     private static int[] s() {
-        if (ao < 0 || an < 0) {
+        if (whiteKingSquareIndex < 0 || blackKingSquareIndex < 0) {
             return Q;
         }
         f = 0;
@@ -1480,7 +1483,7 @@ implements Runnable {
         int n2 = f;
         if (n > 0) {
             byte by2;
-            int n3 = ao;
+            int n3 = whiteKingSquareIndex;
             int n4 = n3 & 7;
             if (n3 < 56) {
                 if (n4 > 0 && chessBoard[n3 + 7] == -1) {
@@ -1536,7 +1539,7 @@ implements Runnable {
             f = n2;
             return false;
         }
-        int n6 = an;
+        int n6 = blackKingSquareIndex;
         int n7 = n6 & 7;
         if (n6 >= 8) {
             if (n7 > 0 && chessBoard[n6 - 9] == 1) {
@@ -1605,10 +1608,10 @@ implements Runnable {
     }
 
     public static final int b(LittleEndianInt[] iArray) {
-        if (ao < 0) {
+        if (whiteKingSquareIndex < 0) {
             return -1;
         }
-        if (an < 0) {
+        if (blackKingSquareIndex < 0) {
             return 1;
         }
         if (ChessEngine.b(l) && iArray.length == 0) {
@@ -1826,10 +1829,10 @@ implements Runnable {
         int n3;
         int n4;
         int n5;
-        if (ao < 0) {
+        if (whiteKingSquareIndex < 0) {
             return -100000 + U;
         }
-        if (an < 0) {
+        if (blackKingSquareIndex < 0) {
             return 100000 - U;
         }
         int n6 = g + H;
@@ -1862,12 +1865,12 @@ implements Runnable {
                 ++n5;
             }
         }
-        if (((n5 = ao) & 7) == 0) {
+        if (((n5 = whiteKingSquareIndex) & 7) == 0) {
             ++n5;
         } else if ((n5 & 7) == 7) {
             --n5;
         }
-        int n12 = an;
+        int n12 = blackKingSquareIndex;
         if ((n12 & 7) == 0) {
             ++n12;
         } else if ((n12 & 7) == 7) {
@@ -1894,26 +1897,26 @@ implements Runnable {
             ++n13;
         }
         if (n8 > 800) {
-            n10 += (n8 - 800) * (7 - (an >> 3)) >> 8;
+            n10 += (n8 - 800) * (7 - (blackKingSquareIndex >> 3)) >> 8;
         }
         if (n9 > 800) {
-            n10 -= (n9 - 800) * (ao >> 3) >> 8;
+            n10 -= (n9 - 800) * (whiteKingSquareIndex >> 3) >> 8;
         }
         if (aw != 0) {
-            n13 = an;
+            n13 = blackKingSquareIndex;
             if (aw == 1) {
-                n13 = ao;
+                n13 = whiteKingSquareIndex;
             }
-            n10 -= aw * ChessEngine.b(ao, an) << 3;
-            n4 = (an & 7) - (ao & 7);
-            n3 = (an >> 3) - (ao >> 3);
+            n10 -= aw * ChessEngine.b(whiteKingSquareIndex, blackKingSquareIndex) << 3;
+            n4 = (blackKingSquareIndex & 7) - (whiteKingSquareIndex & 7);
+            n3 = (blackKingSquareIndex >> 3) - (whiteKingSquareIndex >> 3);
             if (n4 < 0) {
                 n4 = -n4;
             }
             if (n3 < 0) {
                 n3 = -n3;
             }
-            if ((n2 = an - ao) < 0) {
+            if ((n2 = blackKingSquareIndex - whiteKingSquareIndex) < 0) {
                 n2 = -n2;
             }
             if (l == aw) {
@@ -1932,8 +1935,8 @@ implements Runnable {
             n10 += ChessEngine.u(-aw);
         }
         if (G < 1200) {
-            n10 -= av[ao] - 10;
-            n10 += av[an] - 10;
+            n10 -= av[whiteKingSquareIndex] - 10;
+            n10 += av[blackKingSquareIndex] - 10;
         }
         if ((n13 = 330 - (n6 + n7 + 64 >> 7)) < 200) {
             n13 = 200;
@@ -1970,7 +1973,7 @@ implements Runnable {
                     n4 += 6;
                 }
             }
-            if ((castlingStatusMask & 1) != 0 || ao == 6 || ao == 7) {
+            if ((castlingStatusMask & 1) != 0 || whiteKingSquareIndex == 6 || whiteKingSquareIndex == 7) {
                 if (chessBoard[13] == 1) {
                     n4 += 8;
                 }
@@ -1993,7 +1996,7 @@ implements Runnable {
                     n3 += 4;
                 }
             }
-            if ((castlingStatusMask & 2) != 0 || ao < 4) {
+            if ((castlingStatusMask & 2) != 0 || whiteKingSquareIndex < 4) {
                 if (chessBoard[8] == 1 || chessBoard[16] == 1) {
                     n3 += 8;
                 }
@@ -2019,7 +2022,7 @@ implements Runnable {
                     n2 += 6;
                 }
             }
-            if ((castlingStatusMask & 4) != 0 || an >= 62) {
+            if ((castlingStatusMask & 4) != 0 || blackKingSquareIndex >= 62) {
                 if (chessBoard[53] == -1) {
                     n2 += 8;
                 }
@@ -2042,7 +2045,7 @@ implements Runnable {
                     n += 4;
                 }
             }
-            if ((castlingStatusMask & 8) != 0 || an < 60 && an >= 56) {
+            if ((castlingStatusMask & 8) != 0 || blackKingSquareIndex < 60 && blackKingSquareIndex >= 56) {
                 if (chessBoard[48] == -1 || chessBoard[40] == -1) {
                     n += 8;
                 }
@@ -2075,14 +2078,14 @@ implements Runnable {
     private static int u(int n) {
         int n2 = 0;
         if (n > 0) {
-            int n3 = an;
+            int n3 = blackKingSquareIndex;
             int n4 = 63;
             while (n4 >= 0) {
                 byte by = chessBoard[n4];
                 if (by > 0) {
                     if (by == 4) {
-                        int n5 = (ao & 7) - (n4 & 7);
-                        int n6 = (ao >> 3) - (n4 >> 3);
+                        int n5 = (whiteKingSquareIndex & 7) - (n4 & 7);
+                        int n6 = (whiteKingSquareIndex >> 3) - (n4 >> 3);
                         if (n5 < 0) {
                             n5 = -n5;
                         }
@@ -2110,14 +2113,14 @@ implements Runnable {
                 --n4;
             }
         } else {
-            int n7 = ao;
+            int n7 = whiteKingSquareIndex;
             int n8 = 63;
             while (n8 >= 0) {
                 byte by = chessBoard[n8];
                 if (by < 0) {
                     if (by == -4) {
-                        int n9 = (an & 7) - (n8 & 7);
-                        int n10 = (an >> 3) - (n8 >> 3);
+                        int n9 = (blackKingSquareIndex & 7) - (n8 & 7);
+                        int n10 = (blackKingSquareIndex >> 3) - (n8 >> 3);
                         if (n9 < 0) {
                             n9 = -n9;
                         }
@@ -2184,8 +2187,8 @@ implements Runnable {
             --n;
         }
         this.X = W;
-        this.ap = an;
-        this.aq = ao;
+        this.ap = blackKingSquareIndex;
+        this.aq = whiteKingSquareIndex;
         this.al = ak;
         this.ar = castlingStatusMask;
         this.au = ChessEngine.n;
@@ -2203,8 +2206,8 @@ implements Runnable {
             --n;
         }
         W = this.X;
-        an = this.ap;
-        ao = this.aq;
+        blackKingSquareIndex = this.ap;
+        whiteKingSquareIndex = this.aq;
         ak = this.al;
         castlingStatusMask = this.ar;
         ChessEngine.n = this.au;
@@ -2275,14 +2278,14 @@ implements Runnable {
             int n6 = nArray[n5];
             ChessEngine.c(n6);
             if (l > 0) {
-                if (ao < 0) {
+                if (whiteKingSquareIndex < 0) {
                     if (this.v > U) {
                         this.v = U;
                     }
                     ChessEngine.a(true);
                     return 100000 - U;
                 }
-            } else if (an < 0) {
+            } else if (blackKingSquareIndex < 0) {
                 if (this.v > U) {
                     this.v = U;
                 }
@@ -2355,11 +2358,11 @@ implements Runnable {
         }
         nArray2 = new int[48];
         int n13 = n3 - 1;
-        if (n3 > 1 && ao >= 0 && an >= 0) {
+        if (n3 > 1 && whiteKingSquareIndex >= 0 && blackKingSquareIndex >= 0) {
             ChessEngine.C();
         }
         if ((nArray = (n7 = U - V) < 3 ? ChessEngine.p() : ChessEngine.s()).length == 0) {
-            if (l > 0 && ao < 0 || l < 0 && an < 0) {
+            if (l > 0 && whiteKingSquareIndex < 0 || l < 0 && blackKingSquareIndex < 0) {
                 if (this.v > U) {
                     this.v = U;
                 }
@@ -2401,14 +2404,14 @@ implements Runnable {
             }
             ChessEngine.c(n5);
             if (l > 0) {
-                if (ao < 0) {
+                if (whiteKingSquareIndex < 0) {
                     if (this.v > U) {
                         this.v = U;
                     }
                     ChessEngine.a(true);
                     return 100000 - U;
                 }
-            } else if (an < 0) {
+            } else if (blackKingSquareIndex < 0) {
                 if (this.v > U) {
                     this.v = U;
                 }
@@ -2476,7 +2479,7 @@ implements Runnable {
         return squareIndex < 8 || squareIndex >= 56 || (squareIndex + 1 & 7) < 2;
     }
 
-    public static void h() {
+    public static void initializeTheBoard() {
         int squareIndex;
         w = i.nextInt() >>> 8 | 0x11;
         x = i.nextInt() >>> 8 | 0x104;
@@ -2495,6 +2498,8 @@ implements Runnable {
                 ChessEngine.chessBoard[squareIndex] = 0;
 
                 // (squareIndex & 7) can only count upto 0-7
+                // so that it could never be more than 15 and less than 8
+                // similarly for (squareIndex & 7) + 48
                 // very clever way of doing things...
                 ChessEngine.chessBoard[8 + (squareIndex & 7)] = 1;
                 ChessEngine.chessBoard[48 + (squareIndex & 7)] = -1;
@@ -2518,9 +2523,9 @@ implements Runnable {
             ChessEngine.chessBoard[60] = -6;
             castlingStatusMask = 15;
         }
-        ChessEngine.j();
+        ChessEngine.setKingsSquareIndices();
         ChessEngine.A();
-        ChessEngine.B();
+        ChessEngine.evaluateKingFileDistances();
         squareIndex = 0;
         while (squareIndex < 8) {
             ChessEngine.w(squareIndex);
@@ -2575,33 +2580,47 @@ implements Runnable {
         ChessEngine.o();
     }
 
-    private static void B() {
-        int n;
-        int n2 = an & 7;
-        if (n2 < 2) {
-            n2 = 2;
+    private static void evaluateKingFileDistances() {
+        int blackKingFile = blackKingSquareIndex & 7;
+
+        if (blackKingFile < 2) {
+            // AB File 
+            blackKingFile = 2;
         }
-        if (n2 >= 6) {
-            n2 = 5;
+        if (blackKingFile >= 6) {
+            // GH File
+            blackKingFile = 5;
         }
-        if ((n = ao & 7) < 2) {
-            n = 2;
+
+        int whiteKingFile;
+        if ((whiteKingFile = whiteKingSquareIndex & 7) < 2) {
+            // AB File
+            whiteKingFile = 2;
         }
-        if (n >= 6) {
-            n = 5;
+        if (whiteKingFile >= 6) {
+            // GH File
+            whiteKingFile = 5;
         }
-        int n3 = 0;
-        while (n3 < 8) {
-            int n4;
-            int n5 = n3 - n2;
-            if (n5 < 0) {
-                n5 = -n5;
+
+        int file = 0;
+        while (file < 8) {
+            int blackKingFileDistance = file - blackKingFile;
+
+            if (blackKingFileDistance < 0) {
+
+                blackKingFileDistance = -blackKingFileDistance;
             }
-            if ((n4 = n3 - n) < 0) {
-                n4 = -n4;
+
+            int whiteKingFileDistance;
+
+            if ((whiteKingFileDistance = file - whiteKingFile) < 0) {
+
+                whiteKingFileDistance = -whiteKingFileDistance;
             }
-            ChessEngine.A[n3] = (G - 700) * (n4 - n5) >> 10;
-            ++n3;
+
+            ChessEngine.A[file] = (G - 700) * (whiteKingFileDistance - blackKingFileDistance) >> 10; // G is 
+
+            ++file;
         }
     }
 
@@ -2706,9 +2725,9 @@ implements Runnable {
         ChessEngine.chessBoard[n2] = (byte)n;
         ++U;
         ChessEngine.a[n2] = chessBoard[n2];
-        ChessEngine.j();
+        ChessEngine.setKingsSquareIndices();
         ChessEngine.A();
-        ChessEngine.B();
+        ChessEngine.evaluateKingFileDistances();
         int n3 = 0;
         while (n3 < 8) {
             ChessEngine.w(n3);
@@ -2738,9 +2757,9 @@ implements Runnable {
             ++n;
         }
         castlingStatusMask = byArray[64];
-        ChessEngine.j();
+        ChessEngine.setKingsSquareIndices();
         ChessEngine.A();
-        ChessEngine.B();
+        ChessEngine.evaluateKingFileDistances();
         int n2 = 0;
         while (n2 < 8) {
             ChessEngine.w(n2);
