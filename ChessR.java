@@ -99,7 +99,7 @@ extends MIDlet {
                 LittleEndianInt[] iArray = PlayStage.e();
                 if (ChessEngine.a(iArray)) {
                     if (ChessEngine.b(iArray) == 0) {
-                        Constants.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
+                        Constants.G = ChessEngine.b() ? 2 : (ChessEngine.alwaysReturnsOne() >= 3 ? 1 : 0);
                         if (PlayStage.dM) {
                             PlayStage.dM = false;
                             b.d();

@@ -1597,7 +1597,7 @@ implements Runnable {
     }
 
     public static final boolean a(LittleEndianInt[] iArray) {
-        if (ChessEngine.b() || k >= 100 || ChessEngine.g() >= 3) {
+        if (ChessEngine.b() || k >= 100 || ChessEngine.alwaysReturnsOne() >= 3) {
             return true;
         }
         return iArray.length == 0;
@@ -1617,7 +1617,7 @@ implements Runnable {
         if (ChessEngine.b(l) && iArray.length == 0) {
             return -l;
         }
-        if (ChessEngine.g() >= 3 || k < 100) {
+        if (ChessEngine.alwaysReturnsOne() >= 3 || k < 100) {
             // empty if block
         }
         return 0;
@@ -2229,7 +2229,7 @@ implements Runnable {
         return this.castlingMask == castlingStatusMask && this.au == ChessEngine.n;
     }
 
-    public static int g() {
+    public static int alwaysReturnsOne() {
         return 1;
     }
 
@@ -2347,7 +2347,7 @@ implements Runnable {
         if (n3 < 1) {
             n12 = this.b(n, n2, n3);
         } else {
-            n11 = T == 1 ? this.z() : ChessEngine.g();
+            n11 = T == 1 ? this.z() : ChessEngine.alwaysReturnsOne();
         }
         // boolean bl3 = bl2 = n11 >= 2;
         if (n3 <= 0) {

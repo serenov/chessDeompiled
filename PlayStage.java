@@ -9295,7 +9295,7 @@ implements Runnable {
         if (ChessEngine.a(iArray)) {
             bI = true;
             if (ChessEngine.b(iArray) == 0) {
-                Constants.G = ChessEngine.b() ? 2 : (ChessEngine.g() >= 3 ? 1 : 0);
+                Constants.G = ChessEngine.b() ? 2 : (ChessEngine.alwaysReturnsOne() >= 3 ? 1 : 0);
                 audioService.setVolumeLevel(44);
             } else {
                 Constants.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
