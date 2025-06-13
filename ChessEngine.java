@@ -65,7 +65,7 @@ implements Runnable {
     private static int ao;
     private int ap;
     private int aq;
-    public static int m;
+    public static int castlingStatusMask; // First 2 bits for white castling (left and right) next two bits for black castling.
     private int ar;
     private int as;
     private int at;
@@ -288,7 +288,7 @@ implements Runnable {
         int n6 = n >> 8 & 0xFF;
         int n7 = n >> 16 & 0xFF;
         byte by = (byte)(n >> 24 & 0xFF);
-        int n8 = m;
+        int n8 = castlingStatusMask;
         ChessEngine.Z[ChessEngine.U] = n4 = (k << 16) + (ChessEngine.n << 8) + n8 + (chessBoard[n6] << 24);
         ++k;
         ChessEngine.n = 10;
@@ -389,7 +389,7 @@ implements Runnable {
                 ChessEngine.chessBoard[(n5 & 0xFFFFFFF8) + 5] = (byte)(4 * l);
                 ak += l * 65;
             }
-            m = l < 0 ? (m &= 0xFFFFFFF3) : (m &= 0xFFFFFFFC);
+            castlingStatusMask = l < 0 ? (castlingStatusMask &= 0xFFFFFFF3) : (castlingStatusMask &= 0xFFFFFFFC);
         }
         if (n9 == 1) {
             ChessEngine.w(n5 & 7);
@@ -408,16 +408,16 @@ implements Runnable {
                 }
             }
             if (n5 == 0) {
-                m &= 0xFFFFFFFD;
+                castlingStatusMask &= 0xFFFFFFFD;
             }
             if (n5 == 7) {
-                m &= 0xFFFFFFFE;
+                castlingStatusMask &= 0xFFFFFFFE;
             }
             if (n6 == 56) {
-                m &= 0xFFFFFFF7;
+                castlingStatusMask &= 0xFFFFFFF7;
             }
             if (n6 == 63) {
-                m &= 0xFFFFFFFB;
+                castlingStatusMask &= 0xFFFFFFFB;
             }
             if (by != 0) {
                 ChessEngine.chessBoard[n6] = by;
@@ -434,16 +434,16 @@ implements Runnable {
                 }
             }
             if (n5 == 56) {
-                m &= 0xFFFFFFF7;
+                castlingStatusMask &= 0xFFFFFFF7;
             }
             if (n5 == 63) {
-                m &= 0xFFFFFFFB;
+                castlingStatusMask &= 0xFFFFFFFB;
             }
             if (n6 == 0) {
-                m &= 0xFFFFFFFD;
+                castlingStatusMask &= 0xFFFFFFFD;
             }
             if (n6 == 7) {
-                m &= 0xFFFFFFFE;
+                castlingStatusMask &= 0xFFFFFFFE;
             }
             if (by != 0) {
                 ChessEngine.chessBoard[n6] = by;
@@ -496,7 +496,7 @@ implements Runnable {
         int n7 = n4 >> 24 & 0xFF;
         int n8 = Z[U];
         int n9 = n8 & 0xFF;
-        m = n9 & 0xF;
+        castlingStatusMask = n9 & 0xF;
         k = n8 >> 16 & 0xFF;
         ChessEngine.n = n8 >> 8 & 0xFF;
         l = -l;
@@ -863,25 +863,26 @@ implements Runnable {
         ChessEngine.a(n, 1, -1);
     }
 
-    private static final void k() {
+    private static final void checkBlackPawnAttackForCastleRight() {
+        // Checking if white castling right is possile with respect to the black pawn attack
         if (F != 0 && chessBoard[5] == 0 && chessBoard[6] == 0 && chessBoard[11] != -1 && chessBoard[12] != -1 && chessBoard[13] != -1 && chessBoard[14] != -1 && chessBoard[15] != -1) {
             ChessEngine.e[ChessEngine.f++] = 263684;
         }
     }
 
-    private static void l() {
+    private static void checkBlackPawnAttackForCastleLeft() {
         if (F != 0 && chessBoard[1] == 0 && chessBoard[2] == 0 && chessBoard[3] == 0 && chessBoard[8] != -1 && chessBoard[9] != -1 && chessBoard[10] != -1 && chessBoard[11] != -1 && chessBoard[12] != -1) {
             ChessEngine.e[ChessEngine.f++] = 524804;
         }
     }
 
-    private static final void m() {
+    private static final void checkWhitePawnAttackForCastleRight() {
         if (F != 0 && chessBoard[61] == 0 && chessBoard[62] == 0 && chessBoard[51] != 1 && chessBoard[52] != 1 && chessBoard[53] != 1 && chessBoard[54] != 1 && chessBoard[55] != 1) {
             ChessEngine.e[ChessEngine.f++] = 278076;
         }
     }
 
-    private static void n() {
+    private static void checkWhitePawnAttackForCastleLeft() {
         if (F != 0 && chessBoard[57] == 0 && chessBoard[58] == 0 && chessBoard[59] == 0 && chessBoard[48] != 1 && chessBoard[49] != 1 && chessBoard[50] != 1 && chessBoard[51] != 1 && chessBoard[52] != 1) {
             ChessEngine.e[ChessEngine.f++] = 539196;
         }
@@ -1418,11 +1419,11 @@ implements Runnable {
 
     private static void t() {
         if (l < 0) {
-            if ((m & 4) != 0) {
-                ChessEngine.m();
+            if ((castlingStatusMask & 4) != 0) {
+                ChessEngine.checkWhitePawnAttackForCastleRight();
             }
-            if ((m & 8) != 0) {
-                ChessEngine.n();
+            if ((castlingStatusMask & 8) != 0) {
+                ChessEngine.checkWhitePawnAttackForCastleLeft();
             }
             int n = 0;
             while (n < 64) {
@@ -1446,11 +1447,11 @@ implements Runnable {
             }
             return;
         }
-        if ((m & 1) != 0) {
-            ChessEngine.k();
+        if ((castlingStatusMask & 1) != 0) {
+            ChessEngine.checkBlackPawnAttackForCastleRight();
         }
-        if ((m & 2) != 0) {
-            ChessEngine.l();
+        if ((castlingStatusMask & 2) != 0) {
+            ChessEngine.checkBlackPawnAttackForCastleLeft();
         }
         int n = 63;
         while (n >= 0) {
@@ -1960,7 +1961,7 @@ implements Runnable {
             n10 += ak;
             n4 = 0;
             n3 = 0;
-            if ((m & 1) != 0) {
+            if ((castlingStatusMask & 1) != 0) {
                 n4 += 20;
                 if (chessBoard[5] == 0) {
                     n4 += 6;
@@ -1969,7 +1970,7 @@ implements Runnable {
                     n4 += 6;
                 }
             }
-            if ((m & 1) != 0 || ao == 6 || ao == 7) {
+            if ((castlingStatusMask & 1) != 0 || ao == 6 || ao == 7) {
                 if (chessBoard[13] == 1) {
                     n4 += 8;
                 }
@@ -1980,7 +1981,7 @@ implements Runnable {
                     n4 += 8;
                 }
             }
-            if ((m & 2) != 0) {
+            if ((castlingStatusMask & 2) != 0) {
                 n3 += 10;
                 if (chessBoard[1] == 0) {
                     n3 += 4;
@@ -1992,7 +1993,7 @@ implements Runnable {
                     n3 += 4;
                 }
             }
-            if ((m & 2) != 0 || ao < 4) {
+            if ((castlingStatusMask & 2) != 0 || ao < 4) {
                 if (chessBoard[8] == 1 || chessBoard[16] == 1) {
                     n3 += 8;
                 }
@@ -2009,7 +2010,7 @@ implements Runnable {
             n10 += n2;
             n2 = 0;
             n = 0;
-            if ((m & 4) != 0) {
+            if ((castlingStatusMask & 4) != 0) {
                 n2 += 20;
                 if (chessBoard[61] == 0) {
                     n2 += 6;
@@ -2018,7 +2019,7 @@ implements Runnable {
                     n2 += 6;
                 }
             }
-            if ((m & 4) != 0 || an >= 62) {
+            if ((castlingStatusMask & 4) != 0 || an >= 62) {
                 if (chessBoard[53] == -1) {
                     n2 += 8;
                 }
@@ -2029,7 +2030,7 @@ implements Runnable {
                     n2 += 8;
                 }
             }
-            if ((m & 8) != 0) {
+            if ((castlingStatusMask & 8) != 0) {
                 n += 12;
                 if (chessBoard[57] == 0) {
                     n += 4;
@@ -2041,7 +2042,7 @@ implements Runnable {
                     n += 4;
                 }
             }
-            if ((m & 8) != 0 || an < 60 && an >= 56) {
+            if ((castlingStatusMask & 8) != 0 || an < 60 && an >= 56) {
                 if (chessBoard[48] == -1 || chessBoard[40] == -1) {
                     n += 8;
                 }
@@ -2186,7 +2187,7 @@ implements Runnable {
         this.ap = an;
         this.aq = ao;
         this.al = ak;
-        this.ar = m;
+        this.ar = castlingStatusMask;
         this.au = ChessEngine.n;
         this.J = H;
         this.K = I;
@@ -2205,7 +2206,7 @@ implements Runnable {
         an = this.ap;
         ao = this.aq;
         ak = this.al;
-        m = this.ar;
+        castlingStatusMask = this.ar;
         ChessEngine.n = this.au;
         H = this.J;
         I = this.K;
@@ -2222,7 +2223,7 @@ implements Runnable {
             }
             ++n;
         }
-        return this.ar == m && this.au == ChessEngine.n;
+        return this.ar == castlingStatusMask && this.au == ChessEngine.n;
     }
 
     public static int g() {
@@ -2515,7 +2516,7 @@ implements Runnable {
             ChessEngine.chessBoard[58] = -3;
             ChessEngine.chessBoard[59] = -5;
             ChessEngine.chessBoard[60] = -6;
-            m = 15;
+            castlingStatusMask = 15;
         }
         ChessEngine.j();
         ChessEngine.A();
@@ -2736,7 +2737,7 @@ implements Runnable {
             ChessEngine.chessBoard[n] = byArray[n];
             ++n;
         }
-        m = byArray[64];
+        castlingStatusMask = byArray[64];
         ChessEngine.j();
         ChessEngine.A();
         ChessEngine.B();

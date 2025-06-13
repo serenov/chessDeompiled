@@ -7189,7 +7189,7 @@ implements Runnable {
             byArray[n] = ChessEngine.a[n];
             ++n;
         }
-        byArray[64] = (byte)ChessEngine.m;
+        byArray[64] = (byte)ChessEngine.castlingStatusMask;
         return byArray;
     }
 
@@ -9318,7 +9318,7 @@ implements Runnable {
     private static void bE() {
         byte[] byArray = new byte[66];
         System.arraycopy(ChessEngine.a, 0, byArray, 0, 64);
-        byArray[64] = (byte)ChessEngine.m;
+        byArray[64] = (byte)ChessEngine.castlingStatusMask;
         byArray[65] = (byte)(j ? 1 : 0);
         et.addElement(byArray);
     }
