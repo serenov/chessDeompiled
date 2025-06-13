@@ -2148,20 +2148,29 @@ implements Runnable {
         return n2;
     }
 
-    private static int b(int n, int n2) {
-        int n3;
-        int n4 = (n & 7) - (n2 & 7);
-        int n5 = (n >> 3) - (n2 >> 3);
-        if (n4 < 0) {
-            n4 = -n4;
+    private static int b(int sqaureIndex1, int squareIndex2) {
+
+        int fileDistance = (sqaureIndex1 & 7) - (squareIndex2 & 7);
+
+        if (fileDistance < 0) {
+            fileDistance = -fileDistance;
         }
-        if (n5 < 0) {
-            n5 = -n5;
+
+        int rankDistance = (sqaureIndex1 >> 3) - (squareIndex2 >> 3);
+
+        if (rankDistance < 0) {
+            rankDistance = -rankDistance;
         }
-        if ((n3 = n4) > n5) {
-            n3 = n5;
+
+
+        int minimumDistance;
+
+        if ((minimumDistance = fileDistance) > rankDistance) {
+
+            minimumDistance = rankDistance;
         }
-        return 4 - n4 - n5 - n3;
+
+        return 4 - fileDistance - rankDistance - minimumDistance;
     }
 
     private static int c(int n, int n2) {
