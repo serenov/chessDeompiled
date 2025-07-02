@@ -4601,7 +4601,7 @@ implements Runnable {
 
     private void Q(Graphics graphics) {
         if (!is3D) {
-            this.aB[0].drawUnmirrored(graphics, be, bf, 36);
+            this.aB[0].drawUnmirrored(graphics, be, bf, Graphics.BOTTOM | Graphics.LEFT);
             this.aB[1].drawUnmirroredTopLeft(graphics, be, bf + (this.bc << 3));
             this.aB[2].drawUnmirroredTopLeft(graphics, be - this.aB[2].width, bf - this.aB[0].height);
             this.aB[3].drawUnmirroredTopLeft(graphics, be + (this.bc << 3), bf - this.aB[0].height);

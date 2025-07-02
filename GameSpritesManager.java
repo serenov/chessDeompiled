@@ -108,7 +108,13 @@ public final class GameSpritesManager {
         );
     }
 
-    public final void drawAlingedSprite(Graphics graphics, int x, int y, int anchorPoint, boolean isMirrored) {
+    public final void drawAlingedSprite(
+        Graphics graphics,
+        int x,
+        int y,
+        int anchorPoint,
+        boolean isMirrored
+    ) {
         int baseX = x;
         int baseY = y;
 
