@@ -3160,7 +3160,7 @@ implements Runnable {
     private void at() {
         switch (bu) {
             case 0: {
-                if (!this.aG() || !Constants.L) break;
+                if (!this.gameCommencementSussy() || !Constants.L) break;
                 this.aH();
                 return;
             }
@@ -3290,7 +3290,7 @@ implements Runnable {
             }
             case 40: {
                 if (this.dt == -4132) {
-                    if (!this.aG()) break;
+                    if (!this.gameCommencementSussy()) break;
                     this.dt = 0;
                     return;
                 }
@@ -4292,10 +4292,11 @@ implements Runnable {
         }
     }
 
-    private boolean aG() {
+    private boolean gameCommencementSussy() {
         this.dN += this.dO;
         if (++this.dR == 2) {
             this.bD();
+            // Game commence sound //
             this.setSoundResouceAndLoopOption(21, false);
         }
         if (this.dN + this.dO >= by) {
@@ -4673,7 +4674,7 @@ implements Runnable {
                                 this.bF = false;
                             }
                             this.i_storyTalk();
-                            this.bC();
+                            this.playTheSound();
                             this.aO();
                             this.repaint();
                             this.serviceRepaints();
@@ -8727,11 +8728,11 @@ implements Runnable {
         }
     }
 
-    private void bC() {
+    private void playTheSound() {
         if (this.soundResourceId == -1) {
             return;
         }
-        this.audioService.queueTheSound(this.soundResourceId, this.loopTheSound);
+        this.audioService.playSoundByResouceId(this.soundResourceId, this.loopTheSound);
         this.soundResourceId = -1;
     }
 

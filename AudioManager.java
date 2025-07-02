@@ -92,7 +92,7 @@ implements PlayerListener {
         }
     }
 
-    public final synchronized void queueTheSound(int soundSerialId, boolean loopSound) {
+    public final synchronized void playSoundByResouceId(int soundSerialId, boolean loopSound) {
         this.loopCount = loopSound ? -1 : 1;
         try {
             this.stopSound();
@@ -112,7 +112,8 @@ implements PlayerListener {
 
             if (this.volumeController != null) {
 
-                this.volumeController.setLevel(level);
+                this.volumeController.setLevel(level); // what is the point of this? it is anyways getting set below
+
                 this.soundLevelScaled = 30 * level;
 
                 if (this.soundLevelScaled > 99) {
