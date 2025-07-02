@@ -1729,7 +1729,7 @@ implements Runnable {
                     c = new LittleEndianInt(this.as & 0xFF, this.as >>> 8 & 0xFF, this.as >>> 16 & 0xFF, this.as >>> 24);
                 }
                 while (j || !ah && !ag) {
-                    ChessR.a();
+                    ChessR.sussyFunction();
                     Thread.sleep(400L);
                 }
                 if (!j && !ah && ag) {

@@ -1809,7 +1809,7 @@ implements Runnable {
         }
         this.bJ = null;
         ChessR.c = null;
-        ChessR.t = false;
+        ChessR.someTerminationCondition = false;
         if (!this.h) {
             this.l = new Vector();
             if (i) {
@@ -2227,7 +2227,7 @@ implements Runnable {
 
     public final void b() {
         this.X();
-        if (ChessR.t) {
+        if (ChessR.someTerminationCondition) {
             return;
         }
         ChessEngine.d();
@@ -6321,7 +6321,7 @@ implements Runnable {
                     dv = 0;
                     audioService.setVolumeLevel(1000);
                 }
-                ChessR.b();
+                ChessR.sussyBFunction();
                 if (bk == 2) break;
                 af = false;
             }
@@ -6669,14 +6669,14 @@ implements Runnable {
             n4 = this.X[n5][1];
         }
         System.out.println("nStage = " + this.U);
-        this.aN[n4].a(graphics, n3 == 1 ? 0 : canvasWidth, n2, n3 == 1 ? 20 : 24, n3 != 1);
+        this.aN[n4].drawAlingedSprite(graphics, n3 == 1 ? 0 : canvasWidth, n2, n3 == 1 ? 20 : 24, n3 != 1);
         GameSpritesManager f2 = null;
         f2 = by == 2 ? this.aP[n4] : (by == 3 ? this.aQ[n4] : this.aO[n4]);
         if (by != 1 || aU) {
             if (n3 == 1) {
-                f2.a(graphics, this.ed[n4][0], n2 - this.ed[n4][1], 20, false);
+                f2.drawAlingedSprite(graphics, this.ed[n4][0], n2 - this.ed[n4][1], 20, false);
             } else {
-                f2.a(graphics, canvasWidth - 35 - this.ed[n4][0], n2 - this.ed[n4][1], 20, true);
+                f2.drawAlingedSprite(graphics, canvasWidth - 35 - this.ed[n4][0], n2 - this.ed[n4][1], 20, true);
             }
         }
         PlayStage.a(graphics, 0, n2 - 2, canvasWidth, n + 8 + 5, 20);
@@ -8750,7 +8750,7 @@ implements Runnable {
     }
 
     public static void h() {
-        if (ChessR.t) {
+        if (ChessR.someTerminationCondition) {
             return;
         }
         ChessEngine.d();
@@ -9240,7 +9240,7 @@ implements Runnable {
                             dv = 0;
                             audioService.setVolumeLevel(1000);
                         }
-                        ChessR.b();
+                        ChessR.sussyBFunction();
                         return;
                     }
                     bK = false;

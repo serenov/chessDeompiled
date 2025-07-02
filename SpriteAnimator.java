@@ -138,7 +138,7 @@ public final class SpriteAnimator {
         if (bl) {
             n5 *= -1;
         }
-        this.a[this.c[this.b][n4]].a(graphics, n + n5, n2 + n6, n3, bl);
+        this.a[this.c[this.b][n4]].drawAlingedSprite(graphics, n + n5, n2 + n6, n3, bl);
     }
 }
 

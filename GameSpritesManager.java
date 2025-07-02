@@ -87,46 +87,64 @@ public final class GameSpritesManager {
     }
 
     public final void a(Graphics graphics, int n, int n2) {
-        this.a(graphics, n, n2, 20, false);
+        this.drawAlingedSprite(graphics, n, n2, 20, false);
     }
 
     public final void a(Graphics graphics, int n, int n2, int n3) {
-        this.a(graphics, n, n2, n3, false);
+        this.drawAlingedSprite(graphics, n, n2, n3, false);
     }
 
-    public final void a(Graphics graphics, int n, int n2, int n3, boolean bl) {
+    public final void drawAlingedSprite(Graphics graphics, int n, int n2, int n3, boolean bl) {
         int n4 = n;
         int n5 = n2;
+
         if ((n3 & 8) != 0) {
+
             n -= this.width;
         } else if ((n3 & 1) != 0) {
+
             n -= this.width >> 1;
         }
+
         if ((n3 & 0x20) != 0) {
+
             n2 -= this.height;
         } else if ((n3 & 2) != 0) {
             n2 -= this.height >> 1;
+
         }
+
         if (bl) {
             n4 = n;
             n5 = n2;
             byte by = 0;
+
             if (this.offsetX != 0) {
+
                 by = (byte)((this.width - Math.abs(this.offsetX)) * -1);
             }
-            int n6 = graphics.getClipX();
-            int n7 = graphics.getClipY();
-            int n8 = graphics.getClipWidth();
-            int n9 = graphics.getClipHeight();
-            int n10 = 0;
-            while (n10 < this.width) {
-                graphics.setClip(n4 + n10 + by, n5 + this.offsetY, 1, this.height);
-                graphics.drawImage(this.spriteImage, n4 - (this.width - 1 - n10 * 2) + by, n5 + this.offsetY, 0);
-                ++n10;
+
+            int clipX = graphics.getClipX();
+            int clipY = graphics.getClipY();
+            int clipWidth = graphics.getClipWidth();
+            int clipHeight = graphics.getClipHeight();
+
+            int yCoordinate = 0;
+
+            while (yCoordinate < this.width) {
+
+                graphics.setClip(n4 + yCoordinate + by, n5 + this.offsetY, 1, this.height);
+
+                graphics.drawImage(this.spriteImage, n4 - (this.width - 1 - yCoordinate * 2) + by, n5 + this.offsetY, 0);
+
+                ++yCoordinate;
             }
-            graphics.setClip(n6, n7, n8, n9);
+
+            graphics.setClip(clipX, clipY, clipWidth, clipHeight);
+
             return;
         }
+
         graphics.drawImage(this.spriteImage, n4 + this.offsetX, n5 + this.offsetY, n3);
     }
 }

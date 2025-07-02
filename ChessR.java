@@ -34,7 +34,7 @@ extends MIDlet {
     public static int q;
     public static byte r;
     public static byte s;
-    public static boolean t;
+    public static boolean someTerminationCondition;
 
     static {
         d = 2;
@@ -67,10 +67,11 @@ extends MIDlet {
     public void pauseApp() {
     }
 
-    public static void a() {
-        if (t) {
+    public static void sussyFunction() {
+        if (someTerminationCondition) {
             return;
         }
+
         if (j++ > 0) {
             if ((j -= 2) < 0) {
                 j = 0;
@@ -105,14 +106,14 @@ extends MIDlet {
                             b.d();
                         } else {
                             PlayStage.a(44);
-                            ChessR.b();
+                            ChessR.sussyBFunction();
                         }
-                        t = true;
+                        someTerminationCondition = true;
                     } else {
                         Constants.G = ChessEngine.b(iArray) == 1 ? 20 : 30;
                         PlayStage.a(44);
-                        t = true;
-                        ChessR.b();
+                        someTerminationCondition = true;
+                        ChessR.sussyBFunction();
                     }
                 } else {
                     PlayStage.au = false;
@@ -130,7 +131,7 @@ extends MIDlet {
                         b.b();
                         ChessEngine.d();
                         PlayStage.af = true;
-                        ChessR.b();
+                        ChessR.sussyBFunction();
                     }
                     if (Constants.L) {
                         b.c();
@@ -154,10 +155,11 @@ extends MIDlet {
     }
 
     @SuppressWarnings("unchecked")
-    public static void b() {
+    public static void sussyBFunction() {
         if (PlayStage.ba <= 0) {
             return;
         }
+
         PlayStage.bG = true;
         PlayStage.bu = 444;
         int n = Math.abs(r);
@@ -175,9 +177,13 @@ extends MIDlet {
             if (r != 0 && s != 0) {
                 try {
                     ChessR.b.aF = new SpriteAnimator("/ea_" + n + ".dpr");
+
                     Runtime.getRuntime().gc();
+
                     ChessR.b.aG = new SpriteAnimator("/ed_" + n2 + ".dpr");
+
                     Runtime.getRuntime().gc();
+
                     l = ChessR.b.aG.a[0].width;
                     PlayStage.a(666);
                     PlayStage.aK = Image.createImage((String)"/img/effect_bg.png");
