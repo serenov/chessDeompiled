@@ -181,8 +181,8 @@ implements Runnable {
     public int bT;
     public boolean bU;
     public int bV;
-    public int bW;
-    public boolean bX;
+    public int soundResourceId;
+    public boolean loopTheSound;
     public int bY;
     public int bZ;
     public int ca;
@@ -440,7 +440,7 @@ implements Runnable {
         this.bS = -4132;
         this.bT = -4132;
         this.bU = false;
-        this.bW = -1;
+        this.soundResourceId = -1;
         this.cb = null;
         this.cc = null;
         this.cd = null;
@@ -650,12 +650,12 @@ implements Runnable {
                     ChessR.n = new int[64];
                     ChessR.o = new byte[64];
                     this.al = Image.createImage((String)"/img/ui_num.png");
-                    this.bW = -1;
-                    this.bX = false;
+                    this.soundResourceId = -1;
+                    this.loopTheSound = false;
                     this.bV = -1;
                 }
                 if (++this.cE > 3) {
-                    this.b(13, false);
+                    this.setSoundResouceAndLoopOption(13, false);
                     this.a(256, true);
                     this.cD = false;
                     return;
@@ -1208,7 +1208,7 @@ implements Runnable {
             if (this.cO <= 8) {
                 if (this.cO == 5) {
                     this.bD();
-                    this.b(17, false);
+                    this.setSoundResouceAndLoopOption(17, false);
                     if (this.cQ) {
                         if (--this.bp < 0) {
                             this.bp = this.cN - 1;
@@ -1548,7 +1548,7 @@ implements Runnable {
         this.bq = this.cf.length - 1;
         this.cU = true;
         this.bD();
-        this.b(0, false);
+        this.setSoundResouceAndLoopOption(0, false);
     }
 
     private void E() {
@@ -1945,7 +1945,7 @@ implements Runnable {
 
     private void K() {
         this.bD();
-        this.b(20, false);
+        this.setSoundResouceAndLoopOption(20, false);
         this.nullSomeVariables();
         this.b(0);
         this.q();
@@ -2086,7 +2086,7 @@ implements Runnable {
 
     private void S() {
         this.bD();
-        this.b(20, false);
+        this.setSoundResouceAndLoopOption(20, false);
         this.Q();
         int n = this.dc;
         this.aw[n] = this.aw[n] + 1;
@@ -2111,7 +2111,7 @@ implements Runnable {
                 int n4 = this.db - 7;
                 int n5 = 0;
                 if (n4 == 0) {
-                    this.b(9, false);
+                    this.setSoundResouceAndLoopOption(9, false);
                     n5 = -15;
                 } else {
                     n5 = n4 == 1 ? -29 : (n4 == 2 ? -44 : -48 - (aT & 1));
@@ -2190,7 +2190,7 @@ implements Runnable {
             case 53: {
                 int n3 = Integer.parseInt(dd.elementAt(de).toString());
                 this.bD();
-                this.b(11, false);
+                this.setSoundResouceAndLoopOption(11, false);
                 ++ba;
                 ChessR.e = n3 & 7;
                 ChessR.f = n3 >>> 3;
@@ -2386,7 +2386,7 @@ implements Runnable {
         if (this.cS == 4 && !this.dg) {
             eh = true;
             this.bD();
-            this.b(22, false);
+            this.setSoundResouceAndLoopOption(22, false);
             this.ee = true;
             bG = false;
         }
@@ -2662,7 +2662,7 @@ implements Runnable {
         this.Y(6);
         this.d(42);
         this.bD();
-        this.b(18, false);
+        this.setSoundResouceAndLoopOption(18, false);
         this.keyProcess_nState = 597;
         this.v = null;
         this.v = new Image[4];
@@ -2708,7 +2708,7 @@ implements Runnable {
         this.Y(7);
         this.d(42);
         this.bD();
-        this.b(18, false);
+        this.setSoundResouceAndLoopOption(18, false);
         this.keyProcess_nState = 597;
         this.v = null;
         this.v = new Image[1];
@@ -2957,7 +2957,7 @@ implements Runnable {
             this.ak[0] = this.utilService.e(Constants.Y);
             this.ak[1] = this.utilService.e(Constants.Z);
             this.utilService.unsetTheFileBytes();
-            this.b(24, false);
+            this.setSoundResouceAndLoopOption(24, false);
             this.a("ui_effect");
             this.ag = this.utilService.e(0);
             this.ah = this.utilService.e(2);
@@ -3348,57 +3348,57 @@ implements Runnable {
             case 6: {
                 if (this.aF.h == 2) {
                     this.bD();
-                    this.b(11, false);
+                    this.setSoundResouceAndLoopOption(11, false);
                     return;
                 }
                 if (this.aF.h != this.L[n] - 4) break;
                 this.bD();
-                this.b(12, false);
+                this.setSoundResouceAndLoopOption(12, false);
                 return;
             }
             case 5: {
                 if (this.aF.h == 2) {
                     this.bD();
-                    this.b(9, false);
+                    this.setSoundResouceAndLoopOption(9, false);
                     return;
                 }
                 if (this.aF.h != this.L[n] - 3) break;
                 this.bD();
-                this.b(10, false);
+                this.setSoundResouceAndLoopOption(10, false);
                 return;
             }
             case 4: {
                 if (this.aF.h == 1) {
                     this.bD();
-                    this.b(7, false);
+                    this.setSoundResouceAndLoopOption(7, false);
                     return;
                 }
                 if (this.aF.h != this.L[n]) break;
                 this.bD();
-                this.b(8, false);
+                this.setSoundResouceAndLoopOption(8, false);
                 return;
             }
             case 3: {
                 if (this.aF.h == 3) {
                     this.bD();
-                    this.b(5, false);
+                    this.setSoundResouceAndLoopOption(5, false);
                     return;
                 }
                 if (this.aF.h != 12) break;
                 this.bD();
-                this.b(6, false);
+                this.setSoundResouceAndLoopOption(6, false);
                 return;
             }
             case 2: {
                 if (this.aF.h != 5) break;
                 this.bD();
-                this.b(5, false);
+                this.setSoundResouceAndLoopOption(5, false);
                 return;
             }
             case 1: {
                 if (this.aF.h != this.L[n] - 1) break;
                 this.bD();
-                this.b(2, false);
+                this.setSoundResouceAndLoopOption(2, false);
             }
         }
     }
@@ -3419,7 +3419,7 @@ implements Runnable {
         this.W(0);
         this.d(9);
         this.bD();
-        this.b(18, false);
+        this.setSoundResouceAndLoopOption(18, false);
     }
 
     private void ax() {
@@ -3624,19 +3624,19 @@ implements Runnable {
         switch (n) {
             case 1000: {
                 this.bD();
-                this.b(14, false);
+                this.setSoundResouceAndLoopOption(14, false);
                 n2 = Constants.ad;
                 break;
             }
             case 2000: {
                 this.bD();
-                this.b(15, false);
+                this.setSoundResouceAndLoopOption(15, false);
                 n2 = Constants.ae;
                 break;
             }
             case 3000: {
                 this.bD();
-                this.b(15, false);
+                this.setSoundResouceAndLoopOption(15, false);
                 n2 = Constants.af;
             }
         }
@@ -3679,7 +3679,7 @@ implements Runnable {
         this.dE = 0;
         this.dB = -4132;
         this.bD();
-        this.b(17, false);
+        this.setSoundResouceAndLoopOption(17, false);
         bK = false;
         try {
             this.bm();
@@ -4028,7 +4028,7 @@ implements Runnable {
         catch (Throwable throwable) {}
         System.gc();
         this.bD();
-        this.b(7, false);
+        this.setSoundResouceAndLoopOption(7, false);
     }
 
     private void I(Graphics graphics) {
@@ -4126,7 +4126,7 @@ implements Runnable {
         this.c(1);
         this.d(38);
         this.bD();
-        this.b(17, false);
+        this.setSoundResouceAndLoopOption(17, false);
     }
 
     private void m(int n) {
@@ -4152,7 +4152,7 @@ implements Runnable {
             System.gc();
             this.aT();
             this.bD();
-            this.b(17, false);
+            this.setSoundResouceAndLoopOption(17, false);
         }
     }
 
@@ -4296,7 +4296,7 @@ implements Runnable {
         this.dN += this.dO;
         if (++this.dR == 2) {
             this.bD();
-            this.b(21, false);
+            this.setSoundResouceAndLoopOption(21, false);
         }
         if (this.dN + this.dO >= by) {
             this.dN = by;
@@ -4402,7 +4402,7 @@ implements Runnable {
         this.bo = 0;
         bu = 9;
         this.bD();
-        this.b(15, false);
+        this.setSoundResouceAndLoopOption(15, false);
     }
 
     private void O(Graphics graphics) {
@@ -4466,7 +4466,7 @@ implements Runnable {
                     this.aj = this.utilService.e(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     dS = 0;
-                    this.b(16, false);
+                    this.setSoundResouceAndLoopOption(16, false);
                     break;
                 }
                 case 1: {
@@ -4476,7 +4476,7 @@ implements Runnable {
                     this.aj = this.utilService.e(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     dS = 1;
-                    this.b(16, false);
+                    this.setSoundResouceAndLoopOption(16, false);
                     break;
                 }
                 case 2: {
@@ -4486,7 +4486,7 @@ implements Runnable {
                     this.utilService.unsetTheFileBytes();
                     this.V = false;
                     dS = 2;
-                    this.b(16, false);
+                    this.setSoundResouceAndLoopOption(16, false);
                     break;
                 }
                 case 20: {
@@ -4495,7 +4495,7 @@ implements Runnable {
                     this.utilService.unsetTheFileBytes();
                     this.V = true;
                     this.bm = 7;
-                    this.b(24, false);
+                    this.setSoundResouceAndLoopOption(24, false);
                     break;
                 }
                 case 30: {
@@ -4504,7 +4504,7 @@ implements Runnable {
                     this.utilService.unsetTheFileBytes();
                     this.V = false;
                     this.bm = 8;
-                    this.b(16, false);
+                    this.setSoundResouceAndLoopOption(16, false);
                 }
             }
             this.a("ui_effect");
@@ -5194,7 +5194,7 @@ implements Runnable {
                 case -6: 
                 case -5: {
                     this.bD();
-                    this.b(20, false);
+                    this.setSoundResouceAndLoopOption(20, false);
                     switch (this.bp) {
                         case 0: {
                             this.bM = 0;
@@ -5387,7 +5387,7 @@ implements Runnable {
                     this.R(this.bp);
                 }
                 this.bD();
-                this.b(20, false);
+                this.setSoundResouceAndLoopOption(20, false);
                 return;
             }
             case -7: {
@@ -5428,7 +5428,7 @@ implements Runnable {
             case -6: 
             case -5: {
                 this.bD();
-                this.b(20, false);
+                this.setSoundResouceAndLoopOption(20, false);
                 if (this.bp == 0) {
                     bk = 0;
                     this.u();
@@ -5500,7 +5500,7 @@ implements Runnable {
                     this.cP = 0;
                 }
                 this.bD();
-                this.b(20, false);
+                this.setSoundResouceAndLoopOption(20, false);
                 return;
             }
             case -7: {
@@ -5599,7 +5599,7 @@ implements Runnable {
                 }
             }
             if (this.dy != 4) {
-                this.b(18, false);
+                this.setSoundResouceAndLoopOption(18, false);
                 this.ax();
                 ej = 0;
                 eh = false;
@@ -5699,7 +5699,7 @@ implements Runnable {
             if (this.U != 7) {
                 if (this.dh >= 3) return;
                 this.bD();
-                this.b(18, false);
+                this.setSoundResouceAndLoopOption(18, false);
                 ++this.cy;
                 ++this.dh;
                 this.dz = true;
@@ -5911,7 +5911,7 @@ implements Runnable {
                         }
                         this.bP[0] = Constants.soundVolumeLevel == 0 ? 0 : 1;
                         this.bD();
-                        this.b(0, false);
+                        this.setSoundResouceAndLoopOption(0, false);
                         return;
                     }
                     case 3: {
@@ -5995,7 +5995,7 @@ implements Runnable {
                                 this.F();
                             }
                             this.bD();
-                            this.b(1, false);
+                            this.setSoundResouceAndLoopOption(1, false);
                             return;
                         }
                         case -7: {
@@ -6160,7 +6160,7 @@ implements Runnable {
                             if (!this.cU) {
                                 this.cU = true;
                                 this.bD();
-                                this.b(0, false);
+                                this.setSoundResouceAndLoopOption(0, false);
                                 return;
                             }
                             break block60;
@@ -6250,7 +6250,7 @@ implements Runnable {
         bu = 200;
         this.bp = 0;
         this.bq = PlayStage.S(200);
-        this.b(20, false);
+        this.setSoundResouceAndLoopOption(20, false);
         try {
             System.out.println("i_gmenui_gmenui_gmenu");
             this.nullSomeVariables();
@@ -6364,7 +6364,7 @@ implements Runnable {
                 }
                 this.dB = 0;
                 this.bD();
-                this.b(23, false);
+                this.setSoundResouceAndLoopOption(23, false);
                 Constants.I = false;
                 Constants.J = 0;
                 return;
@@ -6376,7 +6376,7 @@ implements Runnable {
             Constants.I = false;
             Constants.J = 0;
             this.bD();
-            this.b(17, false);
+            this.setSoundResouceAndLoopOption(17, false);
         }
     }
 
@@ -6414,26 +6414,26 @@ implements Runnable {
                         switch (this.bp) {
                             case 0: {
                                 this.bD();
-                                this.b(20, false);
+                                this.setSoundResouceAndLoopOption(20, false);
                                 bu = 2;
                                 this.d(41);
                                 return;
                             }
                             case 1: {
                                 this.bD();
-                                this.b(20, false);
+                                this.setSoundResouceAndLoopOption(20, false);
                                 this.y();
                                 return;
                             }
                             case 2: {
                                 this.bD();
-                                this.b(20, false);
+                                this.setSoundResouceAndLoopOption(20, false);
                                 this.aU();
                                 return;
                             }
                             case 3: {
                                 this.bD();
-                                this.b(20, false);
+                                this.setSoundResouceAndLoopOption(20, false);
                                 this.nullSomeVariables();
                                 this.b(1);
                                 this.z();
@@ -6441,14 +6441,14 @@ implements Runnable {
                             }
                             case 4: {
                                 this.bD();
-                                this.b(20, false);
+                                this.setSoundResouceAndLoopOption(20, false);
                                 this.data_Text(33);
                                 this.bT = 0;
                                 return;
                             }
                             case 5: {
                                 this.bD();
-                                this.b(20, false);
+                                this.setSoundResouceAndLoopOption(20, false);
                                 this.data_Text(32);
                                 this.bS = 0;
                             }
@@ -6467,7 +6467,7 @@ implements Runnable {
             switch (n) {
                 case 49: {
                     this.bD();
-                    this.b(20, false);
+                    this.setSoundResouceAndLoopOption(20, false);
                     if (this.bS == 0) {
                         this.bS = -4132;
                         this.K();
@@ -6516,7 +6516,7 @@ implements Runnable {
         this.V = false;
         PlayStage.P(44);
         this.bD();
-        this.b(16, false);
+        this.setSoundResouceAndLoopOption(16, false);
         if (!Constants.L && bk != 2) {
             this.dX = true;
             ++this.I;
@@ -8728,25 +8728,25 @@ implements Runnable {
     }
 
     private void bC() {
-        if (this.bW == -1) {
+        if (this.soundResourceId == -1) {
             return;
         }
-        this.audioService.a(this.bW, this.bX);
-        this.bW = -1;
+        this.audioService.queueTheSound(this.soundResourceId, this.loopTheSound);
+        this.soundResourceId = -1;
     }
 
-    private void b(int n, boolean bl) {
-        if (n == -1 || this.bP[0] == 0 || this.bX && n == this.bV) {
+    private void setSoundResouceAndLoopOption(int resourceId, boolean isLoopEnabled) {
+        if (resourceId == -1 || this.bP[0] == 0 || this.loopTheSound && resourceId == this.bV) {
             return;
         }
-        this.bW = n;
-        this.bX = bl;
+        this.soundResourceId = resourceId;
+        this.loopTheSound = isLoopEnabled;
     }
 
     private void bD() {
         this.audioService.stopSound();
-        this.bW = -1;
-        this.bX = false;
+        this.soundResourceId = -1;
+        this.loopTheSound = false;
     }
 
     public static void h() {
@@ -9337,7 +9337,7 @@ implements Runnable {
                         bb = 0;
                     }
                     if (Constants.F == 0 || Constants.E == 0) {
-                        this.b(3, false);
+                        this.setSoundResouceAndLoopOption(3, false);
                     }
                 }
                 if (by < 0) {

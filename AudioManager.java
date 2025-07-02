@@ -16,10 +16,13 @@ import javax.microedition.media.control.VolumeControl;
 public final class AudioManager
 extends Thread
 implements PlayerListener {
+
     public Player soundPlayer;
     public boolean isResourceAvailable = false; // Mutex lock for thread synchronization
+
     public Thread audioThread;
     private VolumeControl volumeController;
+
     public int soundLevelScaled = 0;
     private int loopCount; 
 
@@ -89,7 +92,7 @@ implements PlayerListener {
         }
     }
 
-    public final synchronized void a(int soundSerialId, boolean loopSound) {
+    public final synchronized void queueTheSound(int soundSerialId, boolean loopSound) {
         this.loopCount = loopSound ? -1 : 1;
         try {
             this.stopSound();
