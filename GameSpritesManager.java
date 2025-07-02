@@ -115,13 +115,22 @@ public final class GameSpritesManager {
         int anchorPoint,
         boolean isMirrored
     ) {
-        int baseX = x;
-        int baseY = y;
+        if (!isMirrored) {
+            graphics.drawImage(
+                this.spriteImage,
+                x + this.offsetX,
+                y + this.offsetY,
+                anchorPoint
+            );
+
+            return;
+        }
 
         if ((anchorPoint & Graphics.RIGHT) != 0) { 
 
             x -= this.width;
-        } else if ((anchorPoint & Graphics.HCENTER) != 0) { 
+        }
+        else if ((anchorPoint & Graphics.HCENTER) != 0) { 
 
             x -= this.width >> 1;
         }
@@ -129,44 +138,49 @@ public final class GameSpritesManager {
         if ((anchorPoint & (Graphics.TOP | Graphics.LEFT)) != 0) {
 
             y -= this.height;
-        } else if ((anchorPoint & Graphics.VCENTER) != 0) {
+        }
+        else if ((anchorPoint & Graphics.VCENTER) != 0) {
 
             y -= this.height >> 1;
         }
 
-        if (isMirrored) {
-            baseX = x;
-            baseY = y;
+        int baseX = x;
+        int baseY = y;
 
-            byte mirrorOffsetX = 0;
+        byte mirrorOffsetX = 0;
 
-            if (this.offsetX != 0) {
+        if (this.offsetX != 0) {
 
-                mirrorOffsetX = (byte)((this.width - Math.abs(this.offsetX)) * -1);
-            }
-
-            int clipX = graphics.getClipX();
-            int clipY = graphics.getClipY();
-            int clipWidth = graphics.getClipWidth();
-            int clipHeight = graphics.getClipHeight();
-
-            int col = 0;
-
-            while (col < this.width) {
-
-                graphics.setClip(baseX + col + mirrorOffsetX, baseY + this.offsetY, 1, this.height);
-
-                graphics.drawImage(this.spriteImage, baseX - (this.width - 1 - col * 2) + mirrorOffsetX, baseY + this.offsetY, 0);
-
-                ++col;
-            }
-
-            graphics.setClip(clipX, clipY, clipWidth, clipHeight);
-
-            return;
+            mirrorOffsetX = (byte)((this.width - Math.abs(this.offsetX)) * -1);
         }
 
-        graphics.drawImage(this.spriteImage, baseX + this.offsetX, baseY + this.offsetY, anchorPoint);
+        int clipX = graphics.getClipX();
+        int clipY = graphics.getClipY();
+        int clipWidth = graphics.getClipWidth();
+        int clipHeight = graphics.getClipHeight();
+
+        int col = 0;
+
+        while (col < this.width) {
+
+            graphics.setClip(
+                baseX + col + mirrorOffsetX,
+                baseY + this.offsetY,
+                1,
+                this.height
+            );
+
+            graphics.drawImage(
+                this.spriteImage,
+                baseX - (this.width - 1 - col * 2) + mirrorOffsetX,
+                baseY + this.offsetY,
+                0
+            );
+
+            ++col;
+        }
+
+        graphics.setClip(clipX, clipY, clipWidth, clipHeight);
     }
 }
 
