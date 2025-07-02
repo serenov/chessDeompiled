@@ -87,37 +87,36 @@ public final class GameSpritesManager {
     }
 
     public final void a(Graphics graphics, int initialX, int initialY) {
-        this.drawAlingedSprite(graphics, initialX, initialY, 20, false);
+        this.drawAlingedSprite(graphics, initialX, initialY, Graphics.TOP | Graphics.LEFT, false);
     }
 
     public final void a(Graphics graphics, int initialX, int initialY, int alignmentBitmask) {
         this.drawAlingedSprite(graphics, initialX, initialY, alignmentBitmask, false);
     }
 
-    public final void drawAlingedSprite(Graphics graphics, int initialX, int initialY, int alignmentBitmask, boolean isMirrored) {
-        int baseX = initialX;
-        int baseY = initialY;
+    public final void drawAlingedSprite(Graphics graphics, int x, int y, int anchorPoint, boolean isMirrored) {
+        int baseX = x;
+        int baseY = y;
 
-        if ((alignmentBitmask & 8) != 0) {
+        if ((anchorPoint & Graphics.RIGHT) != 0) { 
 
-            initialX -= this.width;
-        } else if ((alignmentBitmask & 1) != 0) {
+            x -= this.width;
+        } else if ((anchorPoint & Graphics.HCENTER) != 0) { 
 
-            initialX -= this.width >> 1;
+            x -= this.width >> 1;
         }
 
-        if ((alignmentBitmask & 0x20) != 0) {
+        if ((anchorPoint & (Graphics.TOP | Graphics.LEFT)) != 0) {
 
-            initialY -= this.height;
-        } else if ((alignmentBitmask & 2) != 0) {
+            y -= this.height;
+        } else if ((anchorPoint & Graphics.VCENTER) != 0) {
 
-            initialY -= this.height >> 1;
-
+            y -= this.height >> 1;
         }
 
         if (isMirrored) {
-            baseX = initialX;
-            baseY = initialY;
+            baseX = x;
+            baseY = y;
 
             byte mirrorOffsetX = 0;
 
@@ -147,7 +146,7 @@ public final class GameSpritesManager {
             return;
         }
 
-        graphics.drawImage(this.spriteImage, baseX + this.offsetX, baseY + this.offsetY, alignmentBitmask);
+        graphics.drawImage(this.spriteImage, baseX + this.offsetX, baseY + this.offsetY, anchorPoint);
     }
 }
 
