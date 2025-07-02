@@ -95,8 +95,8 @@ public final class GameSpritesManager {
     }
 
     public final void drawAlingedSprite(Graphics graphics, int initialX, int initialY, int alignmentBitmask, boolean isMirrored) {
-        int n4 = initialX;
-        int n5 = initialY;
+        int baseX = initialX;
+        int baseY = initialY;
 
         if ((alignmentBitmask & 8) != 0) {
 
@@ -110,18 +110,20 @@ public final class GameSpritesManager {
 
             initialY -= this.height;
         } else if ((alignmentBitmask & 2) != 0) {
+
             initialY -= this.height >> 1;
 
         }
 
         if (isMirrored) {
-            n4 = initialX;
-            n5 = initialY;
-            byte by = 0;
+            baseX = initialX;
+            baseY = initialY;
+
+            byte mirrorOffsetX = 0;
 
             if (this.offsetX != 0) {
 
-                by = (byte)((this.width - Math.abs(this.offsetX)) * -1);
+                mirrorOffsetX = (byte)((this.width - Math.abs(this.offsetX)) * -1);
             }
 
             int clipX = graphics.getClipX();
@@ -129,15 +131,15 @@ public final class GameSpritesManager {
             int clipWidth = graphics.getClipWidth();
             int clipHeight = graphics.getClipHeight();
 
-            int yCoordinate = 0;
+            int col = 0;
 
-            while (yCoordinate < this.width) {
+            while (col < this.width) {
 
-                graphics.setClip(n4 + yCoordinate + by, n5 + this.offsetY, 1, this.height);
+                graphics.setClip(baseX + col + mirrorOffsetX, baseY + this.offsetY, 1, this.height);
 
-                graphics.drawImage(this.spriteImage, n4 - (this.width - 1 - yCoordinate * 2) + by, n5 + this.offsetY, 0);
+                graphics.drawImage(this.spriteImage, baseX - (this.width - 1 - col * 2) + mirrorOffsetX, baseY + this.offsetY, 0);
 
-                ++yCoordinate;
+                ++col;
             }
 
             graphics.setClip(clipX, clipY, clipWidth, clipHeight);
@@ -145,7 +147,7 @@ public final class GameSpritesManager {
             return;
         }
 
-        graphics.drawImage(this.spriteImage, n4 + this.offsetX, n5 + this.offsetY, alignmentBitmask);
+        graphics.drawImage(this.spriteImage, baseX + this.offsetX, baseY + this.offsetY, alignmentBitmask);
     }
 }
 
