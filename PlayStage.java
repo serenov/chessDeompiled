@@ -1671,7 +1671,7 @@ implements Runnable {
             case 2: {
                 n4 = n3 + 30;
                 if (Constants.E == 0) {
-                    this.aB[this.bp + 6].a(graphics, by, n4);
+                    this.aB[this.bp + 6].drawUnmirroredTopLeft(graphics, by, n4);
                 } else {
                     graphics.drawImage(this.aD[this.bp], by, n4 + 17, 33);
                 }
@@ -4097,7 +4097,7 @@ implements Runnable {
             }
         } else {
             graphics.setClip(n + this.dF.offsetX, n2 + this.dF.offsetY, n4, n3);
-            this.dF.a(graphics, n, n2);
+            this.dF.drawUnmirroredTopLeft(graphics, n, n2);
             Util.a(graphics);
         }
         return false;
@@ -4424,10 +4424,10 @@ implements Runnable {
         if (!is3D) {
             n = 0;
             while (n < 4) {
-                this.aB[10 - n].a(graphics, n3 + 7 + this.bc * n + this.aL, n5 + 5 + this.aL);
+                this.aB[10 - n].drawUnmirroredTopLeft(graphics, n3 + 7 + this.bc * n + this.aL, n5 + 5 + this.aL);
                 ++n;
             }
-            this.aB[aU ? 18 : 19].a(graphics, n3 + 7 + this.bc * this.bo + this.aL, n5 + 5 + this.aL);
+            this.aB[aU ? 18 : 19].drawUnmirroredTopLeft(graphics, n3 + 7 + this.bc * this.bo + this.aL, n5 + 5 + this.aL);
         } else {
             n = n2 / 4;
             graphics.drawImage(this.az[aT & 1], n3 + 22 + this.bo * n, n5 + 33, 33);
@@ -4533,7 +4533,7 @@ implements Runnable {
                 int n4 = n;
                 int n5 = n2;
                 if (!is3D) {
-                    this.aB[aU ? 18 : 19].a(graphics, n4 += this.aL, n5 += this.aL);
+                    this.aB[aU ? 18 : 19].drawUnmirroredTopLeft(graphics, n4 += this.aL, n5 += this.aL);
                     return;
                 }
                 if (!bG && bu == 2 && this.aA != null && this.az != null) {
@@ -4551,7 +4551,7 @@ implements Runnable {
                 int n6 = n;
                 int n7 = n2;
                 if (!is3D) {
-                    this.aB[n + n2 % 2 == 0 ? 20 : 21].a(graphics, n + this.aL, n2 + this.aL);
+                    this.aB[n + n2 % 2 == 0 ? 20 : 21].drawUnmirroredTopLeft(graphics, n + this.aL, n2 + this.aL);
                     n6 = n + (this.bc >> 1);
                     n7 = n2 + (this.bc >> 1);
                 }
@@ -4571,7 +4571,7 @@ implements Runnable {
     private void a(Graphics graphics, int n, int n2, int n3, int n4) {
         if (bu == 2 || bu == 110) {
             if (!is3D) {
-                this.aB[n3 == 1 ? ((n + n2) % 2 == 0 ? 22 : 23) : ((n + n2) % 2 == 0 ? 20 : 21)].a(graphics, this.ae(n) + this.aL + be, this.ag(n2) + this.aL + bf);
+                this.aB[n3 == 1 ? ((n + n2) % 2 == 0 ? 22 : 23) : ((n + n2) % 2 == 0 ? 20 : 21)].drawUnmirroredTopLeft(graphics, this.ae(n) + this.aL + be, this.ag(n2) + this.aL + bf);
             } else {
                 int[] nArray = new int[]{bg + Constants.S[n + n2 * 9], bg + Constants.S[n + n2 * 9 + 1], bg + Constants.S[n + (n2 + 1) * 9 + 1], bg + Constants.S[n + (n2 + 1) * 9]};
                 int[] nArray2 = new int[]{bh + Constants.R[n2], bh + Constants.R[n2], bh + Constants.R[n2 + 1], bh + Constants.R[n2 + 1]};
@@ -4601,15 +4601,15 @@ implements Runnable {
 
     private void Q(Graphics graphics) {
         if (!is3D) {
-            this.aB[0].a(graphics, be, bf, 36);
-            this.aB[1].a(graphics, be, bf + (this.bc << 3));
-            this.aB[2].a(graphics, be - this.aB[2].width, bf - this.aB[0].height);
-            this.aB[3].a(graphics, be + (this.bc << 3), bf - this.aB[0].height);
+            this.aB[0].drawUnmirrored(graphics, be, bf, 36);
+            this.aB[1].drawUnmirroredTopLeft(graphics, be, bf + (this.bc << 3));
+            this.aB[2].drawUnmirroredTopLeft(graphics, be - this.aB[2].width, bf - this.aB[0].height);
+            this.aB[3].drawUnmirroredTopLeft(graphics, be + (this.bc << 3), bf - this.aB[0].height);
             int n = 0;
             while (n < 8) {
                 int n2 = 0;
                 while (n2 < 8) {
-                    this.aB[(n + n2) % 2 == 0 ? 4 : 5].a(graphics, be + this.ae(n), bf + this.ag(n2));
+                    this.aB[(n + n2) % 2 == 0 ? 4 : 5].drawUnmirroredTopLeft(graphics, be + this.ae(n), bf + this.ag(n2));
                     ++n2;
                 }
                 ++n;
@@ -6669,15 +6669,41 @@ implements Runnable {
             int n5 = this.U > 6 ? 6 : this.U;
             n4 = this.X[n5][1];
         }
+
         System.out.println("nStage = " + this.U);
-        this.aN[n4].drawAlingedSprite(graphics, n3 == 1 ? 0 : canvasWidth, n2, n3 == 1 ? 20 : 24, n3 != 1);
-        GameSpritesManager f2 = null;
-        f2 = by == 2 ? this.aP[n4] : (by == 3 ? this.aQ[n4] : this.aO[n4]);
+
+        this.aN[n4].drawAlingedSprite(
+            graphics,
+            n3 == 1 ? 0 : canvasWidth,
+            n2,
+            n3 == 1 ? (Graphics.TOP | Graphics.LEFT) : (Graphics.TOP | Graphics.RIGHT),
+            n3 != 1
+        );
+
+        GameSpritesManager fetchedGameSpriteInst = null;
+
+        fetchedGameSpriteInst = by == 2 ? this.aP[n4] : (by == 3 ? this.aQ[n4] : this.aO[n4]);
+
         if (by != 1 || aU) {
             if (n3 == 1) {
-                f2.drawAlingedSprite(graphics, this.ed[n4][0], n2 - this.ed[n4][1], 20, false);
+
+                fetchedGameSpriteInst.drawAlingedSprite(
+                    graphics,
+                    this.ed[n4][0],
+                    n2 - this.ed[n4][1],
+                    Graphics.TOP | Graphics.LEFT,
+                    false
+                );
+
             } else {
-                f2.drawAlingedSprite(graphics, canvasWidth - 35 - this.ed[n4][0], n2 - this.ed[n4][1], 20, true);
+
+                fetchedGameSpriteInst.drawAlingedSprite(
+                    graphics,
+                    canvasWidth - 35 - this.ed[n4][0],
+                    n2 - this.ed[n4][1],
+                    Graphics.TOP | Graphics.RIGHT,
+                    true
+                );
             }
         }
         PlayStage.a(graphics, 0, n2 - 2, canvasWidth, n + 8 + 5, 20);
@@ -8953,7 +8979,7 @@ implements Runnable {
             }
         } else {
             if (n3 != 0) {
-                this.aB[5 + Math.abs(n3) + (n3 > 0 ? 0 : 6)].a(graphics, be + n4 + this.aL, bf + n5 + this.aL);
+                this.aB[5 + Math.abs(n3) + (n3 > 0 ? 0 : 6)].drawUnmirroredTopLeft(graphics, be + n4 + this.aL, bf + n5 + this.aL);
             }
             if (this.dI != -4132 || bu == 110) {
                 if (bu == 110) {

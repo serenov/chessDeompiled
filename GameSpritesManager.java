@@ -86,12 +86,26 @@ public final class GameSpritesManager {
         return n2;
     }
 
-    public final void a(Graphics graphics, int initialX, int initialY) {
-        this.drawAlingedSprite(graphics, initialX, initialY, Graphics.TOP | Graphics.LEFT, false);
+    public final void drawUnmirroredTopLeft(Graphics graphics, int initialX, int initialY) {
+
+        this.drawAlingedSprite(
+            graphics,
+            initialX,
+            initialY,
+            Graphics.TOP | Graphics.LEFT,
+            false
+        );
     }
 
-    public final void a(Graphics graphics, int initialX, int initialY, int alignmentBitmask) {
-        this.drawAlingedSprite(graphics, initialX, initialY, alignmentBitmask, false);
+    public final void drawUnmirrored(Graphics graphics, int initialX, int initialY, int alignmentBitmask) {
+
+        this.drawAlingedSprite(
+            graphics,
+            initialX,
+            initialY,
+            alignmentBitmask,
+            false
+        );
     }
 
     public final void drawAlingedSprite(Graphics graphics, int x, int y, int anchorPoint, boolean isMirrored) {
