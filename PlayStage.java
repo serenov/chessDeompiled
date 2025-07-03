@@ -183,7 +183,7 @@ implements Runnable {
     public int bV;
     public int soundResourceId;
     public boolean loopTheSound;
-    public int bY;
+    public int localeTextAssetId;
     public int bZ;
     public int ca;
     public byte[] cb;
@@ -8393,11 +8393,11 @@ implements Runnable {
 
     public final void b(int n) {
         this.utilService.someByteAllocation(1, 5000, 1);
-        this.bY = Constants.C;
-        this.a(this.bY, n);
+        this.localeTextAssetId = Constants.C;
+        this.loadTextAssetInUtil(this.localeTextAssetId, n);
     }
 
-    private void a(int assetSerialId, int n2) {
+    private void loadTextAssetInUtil(int assetSerialId, int n2) {
         this.utilService.deserializeAsset("/txt/ChessText_" + assetSerialId + ".mgd");
         this.utilService.b(n2, 1);
         this.utilService.unsetTheFileBytes();
