@@ -8386,9 +8386,9 @@ implements Runnable {
 
     private int loadAssetInUtil(String assetName) {
         // Returns custom image format's header (Magic Number!?)...
-        int n = 0;
-        n = this.utilService.deserializeAsset("/img/" + assetName + ".mgd");
-        return n;
+        int magicNumber = this.utilService.deserializeAsset("/img/" + assetName + ".mgd");
+
+        return magicNumber;
     }
 
     public final void b(int n) {
