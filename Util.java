@@ -494,6 +494,7 @@ public final class Util {
             this.fileYInt[byteOffset] = Util.getIntFromByteArray(this.fileBytes, 8 + byteOffset * 8);
             ++byteOffset;
         }
+
         return headerInt;
     }
 

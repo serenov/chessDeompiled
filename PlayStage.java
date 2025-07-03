@@ -3840,7 +3840,7 @@ implements Runnable {
             this.dJ = Image.createImage((String)"/img/makepiece.png");
             if (is3D) {
                 String string = "/date/" + this.spriteId + "w.dmg";
-                this.dF = new GameSpritesManager("filename");
+                this.dF = new GameSpritesManager(string);
                 DataInputStream dataInputStream = new DataInputStream(this.getClass().getResourceAsStream(string));
                 byte[] byArray = this.b(string);
                 dataInputStream.readInt();
