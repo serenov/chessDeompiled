@@ -569,13 +569,13 @@ implements Runnable {
         this.bP[1] = 0;
         this.utilService.a(canvasWidth, canvasHeight, 2, -1000);
         this.utilService.d(2);
-        this.a("font");
+        this.loadAssetInUtil("font");
         this.utilService.a(this.utilService.createImageBySize(0), 0, 6);
         this.utilService.a(this.utilService.createImageBySize(1), 1, 6);
         this.utilService.unsetTheFileBytes();
         this.bV = -1;
         this.at = new Image[9];
-        this.a("logo");
+        this.loadAssetInUtil("logo");
         int n = 0;
         while (n < this.at.length) {
             this.at[n] = this.utilService.createImageBySize(n);
@@ -596,19 +596,19 @@ implements Runnable {
             try {
                 if (this.cE == 1) {
                     this.w = new Image[2];
-                    this.a("ui_effect");
+                    this.loadAssetInUtil("ui_effect");
                     this.w[0] = this.utilService.createImageBySize(1);
                     this.w[1] = this.utilService.createImageBySize(2);
                     this.utilService.unsetTheFileBytes();
                     this.o();
                     this.v = new Image[8];
-                    this.a("loading_0");
+                    this.loadAssetInUtil("loading_0");
                     this.ap = this.utilService.createImageBySize(0);
                     this.aq = this.utilService.createImageBySize(1);
                     this.ar = this.utilService.createImageBySize(2);
                     this.utilService.unsetTheFileBytes();
                     this.bO = 0;
-                    this.a("boardPiece");
+                    this.loadAssetInUtil("boardPiece");
                     int n = 0;
                     while (n < 18) {
                         this.aR[this.bO][n] = this.utilService.createImageBySize(n);
@@ -885,7 +885,7 @@ implements Runnable {
         this.n();
         this.v = null;
         this.v = new Image[5];
-        this.a("fm_0");
+        this.loadAssetInUtil("fm_0");
         this.v[0] = this.utilService.createImageBySize(0);
         this.v[1] = this.utilService.createImageBySize(1);
         this.v[3] = this.utilService.createImageBySize(2);
@@ -1105,7 +1105,7 @@ implements Runnable {
             int n2 = 0;
             while (n2 < this.cN) {
                 if (this.T[n2] == 0) {
-                    this.a("char_talk");
+                    this.loadAssetInUtil("char_talk");
                     switch (n2) {
                         case 0: {
                             n = 7;
@@ -1138,7 +1138,7 @@ implements Runnable {
                     this.cK[n2] = this.utilService.createImageBySize(n);
                     this.utilService.unsetTheFileBytes();
                 } else {
-                    this.a("char_talk");
+                    this.loadAssetInUtil("char_talk");
                     switch (n2) {
                         case 0: {
                             n = 7;
@@ -1490,7 +1490,7 @@ implements Runnable {
             }
             if (this.aD == null) {
                 this.aD = new Image[6];
-                this.a("pieceblack");
+                this.loadAssetInUtil("pieceblack");
                 int n = 0;
                 while (n < this.aD.length) {
                     this.aD[n] = this.utilService.createImageBySize(n);
@@ -1507,19 +1507,23 @@ implements Runnable {
         Image image = null;
         int n = 0;
         int n2 = 0;
-        this.a("boardPiece");
-        int n3 = 6;
-        while (n3 <= 11) {
-            if (this.aB[n3] == null) {
-                image = this.utilService.createImageBySize(n3);
-                if (n3 > 5) {
+        this.loadAssetInUtil("boardPiece");
+        int imageSize = 6;
+        while (imageSize <= 11) {
+            if (this.aB[imageSize] == null) {
+                image = this.utilService.createImageBySize(imageSize);
+
+                if (imageSize > 5) {
+                    // always true condition...
+
                     n = image.getWidth() >> 1;
                     n2 = image.getHeight() >> 1;
                 }
-                this.aB[n3] = new GameSpritesManager(image, n, n2);
+
+                this.aB[imageSize] = new GameSpritesManager(image, n, n2);
             }
             System.gc();
-            ++n3;
+            ++imageSize;
         }
         this.utilService.unsetTheFileBytes();
     }
@@ -1555,7 +1559,7 @@ implements Runnable {
         this.bq = PlayStage.S(2);
         this.v = this.bp == 5 ? new Image[2] : new Image[3];
         try {
-            this.a("help_show");
+            this.loadAssetInUtil("help_show");
             int n = 0;
             while (n < 17) {
                 this.v[n] = this.utilService.createImageBySize(n);
@@ -1876,7 +1880,7 @@ implements Runnable {
             this.cX.b();
             this.cY = new Image[3];
             n = this.cY.length;
-            this.a("boardPiece");
+            this.loadAssetInUtil("boardPiece");
             n2 = 0;
             while (n2 < n) {
                 this.cY[n2] = this.utilService.createImageBySize(Util.d(0, 8) + 6);
@@ -2055,7 +2059,7 @@ implements Runnable {
         try {
             this.da = new Image[3];
             this.db = 0;
-            this.a("getitem");
+            this.loadAssetInUtil("getitem");
             this.cZ = Constants.C == 0 || Constants.C == 1 ? this.utilService.createImageBySize(3) : this.utilService.createImageBySize(3 + Constants.C - 1);
             int n = 0;
             while (n < this.da.length) {
@@ -2069,7 +2073,7 @@ implements Runnable {
                 this.dc = n < 10 ? 0 : (n < 20 ? 1 : (n < 60 ? 2 : 3));
             }
             this.v = new Image[2];
-            this.a("i_icon");
+            this.loadAssetInUtil("i_icon");
             this.v[0] = this.utilService.createImageBySize(this.dc);
             this.utilService.unsetTheFileBytes();
             this.d(37);
@@ -2447,7 +2451,7 @@ implements Runnable {
         try {
             this.bq();
             this.bs();
-            this.a("arrow");
+            this.loadAssetInUtil("arrow");
             this.en = this.utilService.createImageBySize(this.y[this.ek ? 0 : this.U + 1][0]);
             this.utilService.unsetTheFileBytes();
             int n = this.ek ? 0 : this.U + 1;
@@ -2456,7 +2460,7 @@ implements Runnable {
             } else if (n > 6) {
                 n = 6;
             }
-            this.a("CastleCursor");
+            this.loadAssetInUtil("CastleCursor");
             this.ab = this.utilService.createImageBySize(n);
             this.utilService.unsetTheFileBytes();
             System.out.println("PlayStage.i_storyEndAni() nStage = " + this.U);
@@ -2666,7 +2670,7 @@ implements Runnable {
         this.keyProcess_nState = 597;
         this.v = null;
         this.v = new Image[4];
-        this.a("ending");
+        this.loadAssetInUtil("ending");
         if (stringArray[0] != null) {
             this.v[0] = this.utilService.createImageBySize(2);
         }
@@ -2713,7 +2717,7 @@ implements Runnable {
         this.v = null;
         this.v = new Image[1];
         if (stringArray[0] != null) {
-            this.a("ending");
+            this.loadAssetInUtil("ending");
             this.v[0] = this.utilService.createImageBySize(3);
             this.utilService.unsetTheFileBytes();
         }
@@ -2733,7 +2737,7 @@ implements Runnable {
         this.v = null;
         this.v = new Image[1];
         System.out.println("scene = " + n);
-        this.a("ending");
+        this.loadAssetInUtil("ending");
         this.v[0] = this.utilService.createImageBySize(2 + n);
         this.utilService.unsetTheFileBytes();
         PlayStage.V(graphics);
@@ -2953,12 +2957,12 @@ implements Runnable {
             this.aF();
             this.dt = -4132;
             this.ak = new Image[2];
-            this.a(String.valueOf(Constants.C) + "_imgText");
+            this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
             this.ak[0] = this.utilService.createImageBySize(Constants.Y);
             this.ak[1] = this.utilService.createImageBySize(Constants.Z);
             this.utilService.unsetTheFileBytes();
             this.setSoundResouceAndLoopOption(24, false);
-            this.a("ui_effect");
+            this.loadAssetInUtil("ui_effect");
             this.ag = this.utilService.createImageBySize(0);
             this.ah = this.utilService.createImageBySize(2);
             this.utilService.unsetTheFileBytes();
@@ -3426,7 +3430,7 @@ implements Runnable {
         try {
             this.dA = null;
             System.gc();
-            this.a("prologue");
+            this.loadAssetInUtil("prologue");
             this.dA = this.utilService.createImageBySize(this.dy);
             this.utilService.unsetTheFileBytes();
         }
@@ -3641,10 +3645,10 @@ implements Runnable {
             }
         }
         try {
-            this.a(String.valueOf(Constants.C) + "_imgText");
+            this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
             this.aj = this.utilService.createImageBySize(n2);
             this.utilService.unsetTheFileBytes();
-            this.a("ui_effect");
+            this.loadAssetInUtil("ui_effect");
             this.ag = this.utilService.createImageBySize(0);
             this.ah = this.utilService.createImageBySize(2);
             this.utilService.unsetTheFileBytes();
@@ -4336,7 +4340,7 @@ implements Runnable {
         this.b(3);
         this.c(1);
         this.d(38);
-        this.a(String.valueOf(Constants.C) + "_imgText");
+        this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
         this.x = this.utilService.createImageBySize(Constants.Y);
         this.utilService.unsetTheFileBytes();
         bu = 1;
@@ -4463,7 +4467,7 @@ implements Runnable {
                 case 0: {
                     this.W = true;
                     this.V = false;
-                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     dS = 0;
@@ -4473,7 +4477,7 @@ implements Runnable {
                 case 1: {
                     this.W = true;
                     this.V = false;
-                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     dS = 1;
@@ -4482,7 +4486,7 @@ implements Runnable {
                 }
                 case 2: {
                     this.W = true;
-                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     this.V = false;
@@ -4491,7 +4495,7 @@ implements Runnable {
                     break;
                 }
                 case 20: {
-                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.aa);
                     this.utilService.unsetTheFileBytes();
                     this.V = true;
@@ -4500,7 +4504,7 @@ implements Runnable {
                     break;
                 }
                 case 30: {
-                    this.a(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ab);
                     this.utilService.unsetTheFileBytes();
                     this.V = false;
@@ -4508,7 +4512,7 @@ implements Runnable {
                     this.setSoundResouceAndLoopOption(16, false);
                 }
             }
-            this.a("ui_effect");
+            this.loadAssetInUtil("ui_effect");
             this.ag = this.utilService.createImageBySize(0);
             this.ah = this.utilService.createImageBySize(2);
             this.utilService.unsetTheFileBytes();
@@ -6507,10 +6511,10 @@ implements Runnable {
         bu = 44;
         Constants.G = 30;
         Constants.H = 0;
-        this.a(String.valueOf(Constants.C) + "_imgText");
+        this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
         this.aj = this.utilService.createImageBySize(Constants.ab);
         this.utilService.unsetTheFileBytes();
-        this.a("ui_effect");
+        this.loadAssetInUtil("ui_effect");
         this.ag = this.utilService.createImageBySize(0);
         this.ah = this.utilService.createImageBySize(2);
         this.utilService.unsetTheFileBytes();
@@ -7634,14 +7638,14 @@ implements Runnable {
                 }
                 case 4: {
                     int n = 0;
-                    this.a("piecewhite");
+                    this.loadAssetInUtil("piecewhite");
                     n = 0;
                     while (n < this.aC.length) {
                         this.aC[n] = this.utilService.createImageBySize(n);
                         ++n;
                     }
                     this.utilService.unsetTheFileBytes();
-                    this.a("pieceblack");
+                    this.loadAssetInUtil("pieceblack");
                     n = 0;
                     while (n < this.aC.length) {
                         this.aD[n] = this.utilService.createImageBySize(n);
@@ -7699,7 +7703,7 @@ implements Runnable {
 
     private void bi() {
         this.aI = new Image[5];
-        this.a("effect");
+        this.loadAssetInUtil("effect");
         int n = 0;
         while (n < this.aI.length) {
             this.aI[n] = this.utilService.createImageBySize(n);
@@ -7716,7 +7720,7 @@ implements Runnable {
     private void bk() {
         this.az = new Image[2];
         this.aA = new Image[2];
-        this.a("3dcursor");
+        this.loadAssetInUtil("3dcursor");
         this.aA[0] = this.utilService.createImageBySize(0);
         this.aA[1] = this.utilService.createImageBySize(1);
         this.az[0] = this.utilService.createImageBySize(2);
@@ -7726,7 +7730,7 @@ implements Runnable {
 
     private void bl() {
         try {
-            this.a(String.valueOf(Constants.C) + "_imgText");
+            this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
             this.ai = this.utilService.createImageBySize(Constants.X);
             this.utilService.unsetTheFileBytes();
             return;
@@ -7740,7 +7744,7 @@ implements Runnable {
         this.am = new Image[4];
         this.an = new Image[4];
         int n = this.am.length;
-        this.a("i_icon");
+        this.loadAssetInUtil("i_icon");
         int n2 = 0;
         while (n2 < n) {
             this.am[n2] = this.utilService.createImageBySize(n2);
@@ -7758,7 +7762,7 @@ implements Runnable {
 
     private void bo() {
         this.aZ = new Image[5];
-        this.a("watch");
+        this.loadAssetInUtil("watch");
         int n = 0;
         while (n < this.aZ.length) {
             this.aZ[n] = this.utilService.createImageBySize(n);
@@ -7775,7 +7779,7 @@ implements Runnable {
     private void bq() {
         this.br();
         this.aM = new Image[9];
-        this.a("worldMap");
+        this.loadAssetInUtil("worldMap");
         int n = 0;
         while (n < this.aM.length) {
             this.aM[n] = this.utilService.createImageBySize(10 + n);
@@ -7805,7 +7809,7 @@ implements Runnable {
         this.aQ = new GameSpritesManager[9];
         this.aO = new GameSpritesManager[9];
         Image image = null;
-        this.a("char_talk");
+        this.loadAssetInUtil("char_talk");
         int n2 = 0;
         while (n2 < n) {
             image = this.utilService.createImageBySize(nArray[n2]);
@@ -7823,7 +7827,7 @@ implements Runnable {
         this.el = new Image[5][2];
         int n = this.el.length;
         int n2 = this.el[0].length;
-        this.a("worldMap");
+        this.loadAssetInUtil("worldMap");
         int n3 = 0;
         while (n3 < n) {
             int n4 = 0;
@@ -7875,7 +7879,7 @@ implements Runnable {
         int n2 = 0;
         Image image = null;
         int n3 = this.aB.length;
-        this.a("boardPiece");
+        this.loadAssetInUtil("boardPiece");
         int n4 = 0;
         while (n4 < n3) {
             if (this.aB[n4] == null) {
@@ -8362,7 +8366,7 @@ implements Runnable {
 
     private void bB() {
         this.df = null;
-        this.a("stagemap");
+        this.loadAssetInUtil("stagemap");
         this.df = this.utilService.createImageBySize(this.U > 6 ? 6 : this.U);
         this.utilService.unsetTheFileBytes();
     }
@@ -8380,9 +8384,10 @@ implements Runnable {
         }
     }
 
-    private int a(String string) {
+    private int loadAssetInUtil(String assetName) {
+        // Returns custom image format's header (Magic Number!?)...
         int n = 0;
-        n = this.utilService.deserializeAsset("/img/" + string + ".mgd");
+        n = this.utilService.deserializeAsset("/img/" + assetName + ".mgd");
         return n;
     }
 
