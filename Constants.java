@@ -30,7 +30,7 @@ public final class Constants {
     public static int z;
     public static int soundVolumeLevel;
     public static int B;
-    public static int C;
+    public static int localeTextAssetId;
     public static int D;
     public static int E;
     public static int F;
@@ -86,7 +86,7 @@ public final class Constants {
         z = 1;
         soundVolumeLevel = 1;
         B = 1;
-        C = -1;
+        localeTextAssetId = -1;
         D = 0;
         E = 1;
         F = 1;

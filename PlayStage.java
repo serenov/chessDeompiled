@@ -753,16 +753,16 @@ implements Runnable {
         if (Constants.a == 0) {
             if (++this.bN > 45) {
                 this.at = null;
-                if (Constants.forcedLocaleLanguageCode == 6 && Constants.C == -1) {
-                    Constants.C = 0;
+                if (Constants.forcedLocaleLanguageCode == 6 && Constants.localeTextAssetId == -1) {
+                    Constants.localeTextAssetId = 0;
                     this.a(2, true);
                     return;
                 }
                 if (Constants.forcedLocaleLanguageCode != 6) {
-                    Constants.C = Constants.forcedLocaleLanguageCode;
+                    Constants.localeTextAssetId = Constants.forcedLocaleLanguageCode;
                 }
                 this.a(3, true);
-                Constants.v = Constants.C;
+                Constants.v = Constants.localeTextAssetId;
                 return;
             }
         } else if (++this.bN > 30) {
@@ -772,7 +772,7 @@ implements Runnable {
                 return;
             }
             this.a(3, true);
-            Constants.v = Constants.C;
+            Constants.v = Constants.localeTextAssetId;
         }
     }
 
@@ -1435,7 +1435,7 @@ implements Runnable {
                         }
                         ++n5;
                     }
-                    this.utilService.a(graphics, this.cf[14 + Constants.C], by + 20, bz - 60 + 0, 17, 1);
+                    this.utilService.a(graphics, this.cf[14 + Constants.localeTextAssetId], by + 20, bz - 60 + 0, 17, 1);
                     this.utilService.a(graphics, this.cf[20 + Constants.soundVolumeLevel], by + 20, bz - 60 + 30, 17, 1);
                     this.utilService.a(graphics, this.cf[6 + Constants.E], by + 20, bz - 60 + 60, 17, 1);
                     this.utilService.a(graphics, this.cf[10 + Constants.B], by + 20, bz - 60 + 90, 17, 1);
@@ -2060,7 +2060,7 @@ implements Runnable {
             this.da = new Image[3];
             this.db = 0;
             this.loadAssetInUtil("getitem");
-            this.cZ = Constants.C == 0 || Constants.C == 1 ? this.utilService.createImageBySize(3) : this.utilService.createImageBySize(3 + Constants.C - 1);
+            this.cZ = Constants.localeTextAssetId == 0 || Constants.localeTextAssetId == 1 ? this.utilService.createImageBySize(3) : this.utilService.createImageBySize(3 + Constants.localeTextAssetId - 1);
             int n = 0;
             while (n < this.da.length) {
                 this.da[n] = this.utilService.createImageBySize(n);
@@ -2957,7 +2957,7 @@ implements Runnable {
             this.aF();
             this.dt = -4132;
             this.ak = new Image[2];
-            this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+            this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
             this.ak[0] = this.utilService.createImageBySize(Constants.Y);
             this.ak[1] = this.utilService.createImageBySize(Constants.Z);
             this.utilService.unsetTheFileBytes();
@@ -3645,7 +3645,7 @@ implements Runnable {
             }
         }
         try {
-            this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+            this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
             this.aj = this.utilService.createImageBySize(n2);
             this.utilService.unsetTheFileBytes();
             this.loadAssetInUtil("ui_effect");
@@ -4340,7 +4340,7 @@ implements Runnable {
         this.b(3);
         this.c(1);
         this.d(38);
-        this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+        this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
         this.x = this.utilService.createImageBySize(Constants.Y);
         this.utilService.unsetTheFileBytes();
         bu = 1;
@@ -4467,7 +4467,7 @@ implements Runnable {
                 case 0: {
                     this.W = true;
                     this.V = false;
-                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     dS = 0;
@@ -4477,7 +4477,7 @@ implements Runnable {
                 case 1: {
                     this.W = true;
                     this.V = false;
-                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     dS = 1;
@@ -4486,7 +4486,7 @@ implements Runnable {
                 }
                 case 2: {
                     this.W = true;
-                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ac);
                     this.utilService.unsetTheFileBytes();
                     this.V = false;
@@ -4495,7 +4495,7 @@ implements Runnable {
                     break;
                 }
                 case 20: {
-                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.aa);
                     this.utilService.unsetTheFileBytes();
                     this.V = true;
@@ -4504,7 +4504,7 @@ implements Runnable {
                     break;
                 }
                 case 30: {
-                    this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+                    this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
                     this.aj = this.utilService.createImageBySize(Constants.ab);
                     this.utilService.unsetTheFileBytes();
                     this.V = false;
@@ -4803,7 +4803,7 @@ implements Runnable {
     private void R(Graphics graphics) {
         graphics.setColor(0);
         graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
-        graphics.drawImage(Util.GetImageByImagePath("/" + Constants.C + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
+        graphics.drawImage(Util.GetImageByImagePath("/" + Constants.localeTextAssetId + ".png"), this.getWidth() / 2, this.getHeight() / 2, 17);
     }
 
     public final void paint(Graphics graphics) {
@@ -5132,7 +5132,7 @@ implements Runnable {
             case -6: 
             case -5: {
                 this.bP[1] = Constants.v;
-                Constants.C = this.bP[1];
+                Constants.localeTextAssetId = this.bP[1];
                 this.a(3, true);
             }
         }
@@ -5903,7 +5903,7 @@ implements Runnable {
                             Constants.v = 0;
                         }
                         this.bP[1] = Constants.v;
-                        Constants.C = this.bP[1];
+                        Constants.localeTextAssetId = this.bP[1];
                         return;
                     }
                     case 2: {
@@ -6511,7 +6511,7 @@ implements Runnable {
         bu = 44;
         Constants.G = 30;
         Constants.H = 0;
-        this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+        this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
         this.aj = this.utilService.createImageBySize(Constants.ab);
         this.utilService.unsetTheFileBytes();
         this.loadAssetInUtil("ui_effect");
@@ -7730,7 +7730,7 @@ implements Runnable {
 
     private void bl() {
         try {
-            this.loadAssetInUtil(String.valueOf(Constants.C) + "_imgText");
+            this.loadAssetInUtil(String.valueOf(Constants.localeTextAssetId) + "_imgText");
             this.ai = this.utilService.createImageBySize(Constants.X);
             this.utilService.unsetTheFileBytes();
             return;
@@ -7943,7 +7943,7 @@ implements Runnable {
         int n = 0;
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(String.valueOf(Constants.soundVolumeLevel) + "*");
-        stringBuffer.append(String.valueOf(Constants.C) + "*");
+        stringBuffer.append(String.valueOf(Constants.localeTextAssetId) + "*");
         stringBuffer.append(String.valueOf(Constants.E) + "*");
         stringBuffer.append(String.valueOf(Constants.F) + "*");
         n = this.aw.length;
@@ -8119,7 +8119,7 @@ implements Runnable {
                                 Constants.soundVolumeLevel = Integer.parseInt(string.substring(0, n));
                                 int n3 = n;
                                 n = string.indexOf(42, n3 + 1);
-                                Constants.C = Integer.parseInt(string.substring(n3 + 1, n));
+                                Constants.localeTextAssetId = Integer.parseInt(string.substring(n3 + 1, n));
                                 n3 = n;
                                 Constants.E = Integer.parseInt(string.substring(n3 + 1, n = string.indexOf(42, n3 + 1)));
                                 is3D = Constants.E == 1;
@@ -8393,7 +8393,7 @@ implements Runnable {
 
     public final void b(int n) {
         this.utilService.someByteAllocation(1, 5000, 1);
-        this.localeTextAssetId = Constants.C;
+        this.localeTextAssetId = Constants.localeTextAssetId;
         this.loadTextAssetInUtil(this.localeTextAssetId, n);
     }
 
