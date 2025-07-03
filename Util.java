@@ -492,6 +492,7 @@ public final class Util {
 
     public final int deserializeAsset(String filepath) {
         this.fileBytes = this.getFileBytesByFilePath(filepath);
+
         int headerInt = Util.getIntFromByteArray(this.fileBytes, 0);
 
         this.fileXInt = new int[headerInt];
