@@ -468,9 +468,11 @@ public final class Util {
 
     public final void b(int n, int n2) {
         System.arraycopy(this.fileBytes, this.fileYInt[n], this.c[n2], 0, this.fileXInt[n]);
+
         this.f[n2] = this.fileXInt[n];
         this.c[n2][this.f[n2]] = 0;
         this.g(n2);
+
         this.h[n2] = 0;
     }
 

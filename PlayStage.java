@@ -1505,26 +1505,33 @@ implements Runnable {
 
     private void B() {
         Image image = null;
+
         int n = 0;
         int n2 = 0;
-        this.loadAssetInUtil("boardPiece");
-        int imageSize = 6;
-        while (imageSize <= 11) {
-            if (this.aB[imageSize] == null) {
-                image = this.utilService.createImageBySize(imageSize);
 
-                if (imageSize > 5) {
-                    // always true condition...
+        this.loadAssetInUtil("boardPiece");
+
+        int imageId = 6;
+
+        while (imageId <= 11) {
+            if (this.aB[imageId] == null) {
+                image = this.utilService.createImageBySize(imageId);
+
+                if (imageId > 5) {
+                    // this is an always true condition since the counter starts from 6
 
                     n = image.getWidth() >> 1;
                     n2 = image.getHeight() >> 1;
                 }
 
-                this.aB[imageSize] = new GameSpritesManager(image, n, n2);
+                this.aB[imageId] = new GameSpritesManager(image, n, n2);
             }
+
             System.gc();
-            ++imageSize;
+
+            ++imageId;
         }
+
         this.utilService.unsetTheFileBytes();
     }
 
