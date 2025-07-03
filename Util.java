@@ -453,10 +453,10 @@ public final class Util {
         graphics.setClip(0, 0, this.a, this.b);
     }
 
-    public final Image e(int n) {
+    public final Image createImageBySize(int imageBufferSize) {
         Image image = null;
         try {
-            byte[] byArray = this.h(n);
+            byte[] byArray = this.h(imageBufferSize);
             try {
                 image = Image.createImage((byte[])byArray, (int)0, (int)byArray.length);
             }
