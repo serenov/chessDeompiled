@@ -456,7 +456,7 @@ public final class Util {
     public final Image createImageBySize(int imageBufferSize) {
         Image image = null;
         try {
-            byte[] byArray = this.h(imageBufferSize);
+            byte[] byArray = this.prepareImageBySize(imageBufferSize);
             try {
                 image = Image.createImage((byte[])byArray, (int)0, (int)byArray.length);
             }
@@ -474,10 +474,18 @@ public final class Util {
         this.h[n2] = 0;
     }
 
-    private byte[] h(int n) {
-        byte[] byArray = new byte[this.fileXInt[n]];
-        System.arraycopy(this.fileBytes, this.fileYInt[n], byArray, 0, this.fileXInt[n]);
-        return byArray;
+    private byte[] prepareImageBySize(int size) {
+        byte[] imageBuffer = new byte[this.fileXInt[size]];
+
+        System.arraycopy(
+            this.fileBytes,
+            this.fileYInt[size],
+            imageBuffer,
+            0,
+            this.fileXInt[size]
+        );
+
+        return imageBuffer;
     }
 
     public final int deserializeAsset(String filepath) {
