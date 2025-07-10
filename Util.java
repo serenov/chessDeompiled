@@ -13,8 +13,8 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 public final class Util {
-    public int a;
-    public int b;
+    public int clipWidth;
+    public int clipHeight;
     public byte[][] c;
     public int[][] d;
     public int[] e;
@@ -24,7 +24,7 @@ public final class Util {
     public int[] i;
     public int j;
     public byte[][] k = null;
-    private int t = 0;
+    private int maxLineWordCntX = 0;
     private int maxLineWordCntY = 0;
     private char v;
     private boolean w = false;
@@ -241,8 +241,8 @@ public final class Util {
     }
 
     public final void a(int n, int n2, int n3, int n4) {
-        this.a = n;
-        this.b = n2;
+        this.clipWidth = n;
+        this.clipHeight = n2;
         this.c = new byte[n3][];
         this.d = new int[n3][];
         this.e = new int[n3];
@@ -450,7 +450,7 @@ public final class Util {
             }
             ++n7;
         }
-        graphics.setClip(0, 0, this.a, this.b);
+        graphics.setClip(0, 0, this.clipWidth, this.clipHeight);
     }
 
     public final Image createImageBySize(int imageBufferSize) {
@@ -542,9 +542,9 @@ public final class Util {
     public final byte[][] stringParser(byte[] byArray, int n, int n2, int n3, int n4, int n5) {
         this.l = n2 / (n4 + n5);
         System.out.println("Util.stringParser() onePageYLineCount = " + this.l);
-        System.out.println("Util.stringParser() maxLineWordCntX = " + this.t);
+        System.out.println("Util.stringParser() maxLineWordCntX = " + this.maxLineWordCntX);
         System.out.println("Util.stringParser() maxLineWordCntY = " + this.maxLineWordCntY);
-        this.t = n / n3;
+        this.maxLineWordCntX = n / n3;
         this.maxLineWordCntY = this.a(byArray, false);
         if (this.k != null) {
             this.k = null;
@@ -563,7 +563,7 @@ public final class Util {
         int n6 = byArray.length;
         while (n <= n6) {
             n4 = this.b(byArray, n);
-            if (n4 >= 10000 && n2 + (n4 - 10000) <= this.t) {
+            if (n4 >= 10000 && n2 + (n4 - 10000) <= this.maxLineWordCntX) {
                 if (bl && (n3 == 0 || n3 % this.l != 0 || (n4 -= 10000) != 0)) {
                     this.k[n3] = new byte[n2 + n4];
                     System.arraycopy(byArray, n - n2, this.k[n3++], 0, n2 + n4);
@@ -574,11 +574,11 @@ public final class Util {
                 n2 = 0;
                 continue;
             }
-            if ((n4 >= 10000 ? n4 - 10000 : n4) > this.t && n2 == 0) {
+            if ((n4 >= 10000 ? n4 - 10000 : n4) > this.maxLineWordCntX && n2 == 0) {
                 // int n7 = n4 = n4 >= 10000 ? n4 - 10000 : n4;
                 if (bl) {
-                    this.k[n3] = new byte[this.t];
-                    System.arraycopy(byArray, n, this.k[n3++], 0, this.t);
+                    this.k[n3] = new byte[this.maxLineWordCntX];
+                    System.arraycopy(byArray, n, this.k[n3++], 0, this.maxLineWordCntX);
                 } else {
                     ++n5;
                 }
@@ -586,7 +586,7 @@ public final class Util {
                 n2 = 0;
                 continue;
             }
-            if (n2 + n4 > this.t) {
+            if (n2 + n4 > this.maxLineWordCntX) {
                 if (bl) {
                     this.k[n3] = new byte[n2];
                     System.arraycopy(byArray, n - n2, this.k[n3++], 0, n2);
@@ -596,7 +596,7 @@ public final class Util {
                 n2 = 0;
                 continue;
             }
-            if (n2 + n4 == this.t || n2 + n4 + 1 == this.t || n + n4 >= n6) {
+            if (n2 + n4 == this.maxLineWordCntX || n2 + n4 + 1 == this.maxLineWordCntX || n + n4 >= n6) {
                 if (bl) {
                     this.k[n3] = new byte[n2 + n4];
                     System.arraycopy(byArray, n - n2, this.k[n3++], 0, n2 + n4);
