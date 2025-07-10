@@ -28,7 +28,7 @@ public final class Util {
     private int maxLineWordCntY = 0;
     private char v;
     private boolean w = false;
-    public int l = 0;
+    public int onePageYLineCount = 0;
     public Image[] m;
     public int[] n;
     public int[] o;
@@ -240,9 +240,9 @@ public final class Util {
         return image;
     }
 
-    public final void a(int n, int n2, int n3, int n4) {
-        this.clipWidth = n;
-        this.clipHeight = n2;
+    public final void a(int clipWidth, int clipHeight, int n3, int n4) {
+        this.clipWidth = clipWidth;
+        this.clipHeight = clipHeight;
         this.c = new byte[n3][];
         this.d = new int[n3][];
         this.e = new int[n3];
@@ -539,18 +539,32 @@ public final class Util {
         return this.maxLineWordCntY / linePerPage + (this.maxLineWordCntY % linePerPage > 0 ? 1 : 0);
     }
 
-    public final byte[][] stringParser(byte[] byArray, int n, int n2, int n3, int n4, int n5) {
-        this.l = n2 / (n4 + n5);
-        System.out.println("Util.stringParser() onePageYLineCount = " + this.l);
+    public final byte[][] stringParser(
+        byte[] byArray,
+        int screenWidth,
+        int screenHeight,
+        int glyphSize,
+        int lineHeight,
+        int lineSpacing
+    ) {
+        this.onePageYLineCount = screenHeight / (lineHeight + lineSpacing);
+
+        System.out.println("Util.stringParser() onePageYLineCount = " + this.onePageYLineCount);
         System.out.println("Util.stringParser() maxLineWordCntX = " + this.maxLineWordCntX);
         System.out.println("Util.stringParser() maxLineWordCntY = " + this.maxLineWordCntY);
-        this.maxLineWordCntX = n / n3;
+
+        this.maxLineWordCntX = screenWidth / glyphSize;
         this.maxLineWordCntY = this.a(byArray, false);
+
         if (this.k != null) {
+
             this.k = null;
         }
+
         this.k = new byte[this.maxLineWordCntY][];
+
         this.a(byArray, true);
+
         return this.k;
     }
 
@@ -564,10 +578,10 @@ public final class Util {
         while (n <= n6) {
             n4 = this.b(byArray, n);
             if (n4 >= 10000 && n2 + (n4 - 10000) <= this.maxLineWordCntX) {
-                if (bl && (n3 == 0 || n3 % this.l != 0 || (n4 -= 10000) != 0)) {
+                if (bl && (n3 == 0 || n3 % this.onePageYLineCount != 0 || (n4 -= 10000) != 0)) {
                     this.k[n3] = new byte[n2 + n4];
                     System.arraycopy(byArray, n - n2, this.k[n3++], 0, n2 + n4);
-                } else if (n5 == 0 || n5 % this.l != 0 || n4 != 0) {
+                } else if (n5 == 0 || n5 % this.onePageYLineCount != 0 || n4 != 0) {
                     ++n5;
                 }
                 n += n4 + 1;
